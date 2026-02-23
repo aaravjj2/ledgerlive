@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Waves | 200 |
-| Total Tests | 2316 |
-| Total Routes | 1184+ |
+| Total Waves | 220 |
+| Total Tests | 2558 |
+| Total Routes | 1312+ |
 | Gates | 2/2 PASS |
-| Tags | v0.0.0-ledgerlive-purged → v0.200.0-ledgerlive |
+| Tags | v0.0.0-ledgerlive-purged → v0.220.0-ledgerlive |
 | Proof Pack | `artifacts/proof/20260223155258-wavebase/` |
 
 ---
@@ -348,6 +348,41 @@
 | W199 | v0.199.0-ledgerlive | hackpack_v2 | Hackpack v2 Multi-Bundle |
 | W200 | v0.200.0-ledgerlive | submit_all | Submission Hardening v2 |
 
+## Phase 20: Live Parity + Resilience (Waves 201-208)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W201 | v0.201.0-ledgerlive | parity_harness | Provider Parity Harness v1 |
+| W202 | v0.202.0-ledgerlive | live_reconnect | Live Reconnect Buffering Resume v2 |
+| W203 | v0.203.0-ledgerlive | exactly_once | Exactly-Once Tool Effects v2 |
+| W204 | v0.204.0-ledgerlive | adversarial_corpus | Agent Policy Adversarial Corpus v1 |
+| W205 | v0.205.0-ledgerlive | smoke_recorder | Deployed Smoke Recorder v1 |
+| W206 | v0.206.0-ledgerlive | transcript_export | Transcript Tool Trace Exporter v1 |
+| W207 | v0.207.0-ledgerlive | multi_tenant | Multi-Tenant Live Sessions v1 |
+| W208 | v0.208.0-ledgerlive | fail_closed | Fail-Closed Posture v1 |
+
+## Phase 21: Close Replay + Time Travel Audit (Waves 209-214)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W209 | v0.209.0-ledgerlive | run_artifact_store | Run Artifact Store v2 |
+| W210 | v0.210.0-ledgerlive | replay_engine | Replay Engine v1 |
+| W211 | v0.211.0-ledgerlive | replay_viewer | Replay Viewer UI v1 |
+| W212 | v0.212.0-ledgerlive | binder_regen | Binder Regeneration From Replay |
+| W213 | v0.213.0-ledgerlive | regression_harness | Replay Regression Harness v1 |
+| W214 | v0.214.0-ledgerlive | court_pack | Audit Court Mode Export v1 |
+
+## Phase 22: ML Impact + Hackpack Automation (Waves 215-220)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W215 | v0.215.0-ledgerlive | model_impact | Model Impact Dashboard v1 |
+| W216 | v0.216.0-ledgerlive | drift_budgets | Drift Monitoring Budgets Enforced |
+| W217 | v0.217.0-ledgerlive | gradient_provenance | Gradient Provenance Capture v1 |
+| W218 | v0.218.0-ledgerlive | arch_diagram | Auto Architecture Diagram Generator v1 |
+| W219 | v0.219.0-ledgerlive | checklist_verifier | Hackathon Checklist Auto-Verifier v1 |
+| W220 | v0.220.0-ledgerlive | submit_all_v3 | Submission Hardening v3 |
+
 ---
 
 ## Gate Results
@@ -359,7 +394,7 @@
 
 ## Determinism Note
 
-All 2316 tests are fully deterministic:
+All 2558 tests are fully deterministic:
 - In-memory stores reset via `autouse` fixtures before each test
 - No external network calls (gate-enforced)
 - No randomness without seeding (scenario engine uses fixed seeds)
