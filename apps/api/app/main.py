@@ -409,3 +409,45 @@ app.include_router(w157_router)
 app.include_router(w158_router)
 app.include_router(w159_router)
 app.include_router(w160_router)
+
+from app.routers.w161_demo_contract import router as w161_router
+from app.routers.w162_e2e_reset_v2 import router as w162_router
+from app.routers.w163_tool_registry import router as w163_router
+from app.routers.w164_agent_runtime import router as w164_router
+from app.routers.w165_session_sim import router as w165_router
+from app.routers.w166_agent_console import router as w166_router
+from app.routers.w167_close_orchestrator import router as w167_router
+from app.routers.w168_hackpack_gen import router as w168_router
+from app.routers.w169_connector_mocks import router as w169_router
+from app.routers.w170_connector_realmode import router as w170_router
+from app.routers.w171_ml_dataset import router as w171_router
+from app.routers.w172_ml_baseline import router as w172_router
+from app.routers.w173_ml_inference import router as w173_router
+from app.routers.w174_model_governance import router as w174_router
+from app.routers.w175_evidence_search import router as w175_router
+from app.routers.w176_reliability_harness import router as w176_router
+from app.routers.w177_gemini_adapter import router as w177_router
+from app.routers.w178_airia_adapter import router as w178_router
+from app.routers.w179_gradient_adapter import router as w179_router
+from app.routers.w180_submission_harden import router as w180_router
+
+app.include_router(w161_router)
+app.include_router(w162_router)
+app.include_router(w163_router)
+app.include_router(w164_router)
+app.include_router(w165_router)
+app.include_router(w166_router)
+app.include_router(w167_router)
+app.include_router(w168_router)
+app.include_router(w169_router)
+app.include_router(w170_router)
+app.include_router(w171_router)
+app.include_router(w172_router)
+app.include_router(w173_router)
+app.include_router(w174_router)
+app.include_router(w175_router)
+app.include_router(w176_router)
+app.include_router(w177_router)
+app.include_router(w178_router)
+app.include_router(w179_router)
+app.include_router(w180_router)
