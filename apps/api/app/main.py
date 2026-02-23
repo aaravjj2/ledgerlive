@@ -84,3 +84,64 @@ async def get_audit_log(limit: int = 100):
 
 
 # ── Wave routers will be registered below this line ──────────────────
+from app.routers.w01_close_period import router as w01_router
+from app.routers.w02_entity import router as w02_router
+from app.routers.w03_document_store import router as w03_router
+from app.routers.w04_ocr_pipeline import router as w04_router
+from app.routers.w05_extraction import router as w05_router
+from app.routers.w06_reconciliation import router as w06_router
+from app.routers.w07_exception import router as w07_router
+from app.routers.w08_review_queue import router as w08_router
+from app.routers.w09_evidence_binder import router as w09_router
+from app.routers.w10_eval_harness import router as w10_router
+from app.routers.w11_tenant import router as w11_router
+from app.routers.w12_auth import router as w12_router
+from app.routers.w13_workflow import router as w13_router
+from app.routers.w14_notification import router as w14_router
+from app.routers.w15_connector import router as w15_router
+from app.routers.w16_vendor_master import router as w16_router
+from app.routers.w17_chart_of_accounts import router as w17_router
+from app.routers.w18_continuous_close import router as w18_router
+from app.routers.w19_audit_integrity import router as w19_router
+from app.routers.w20_signed_export import router as w20_router
+from app.routers.w21_report import router as w21_router
+from app.routers.w22_search_index import router as w22_router
+from app.routers.w23_compliance_bundle import router as w23_router
+from app.routers.w24_retention import router as w24_router
+from app.routers.w25_data_privacy import router as w25_router
+from app.routers.w26_performance import router as w26_router
+from app.routers.w27_release_bundle import router as w27_router
+from app.routers.w28_judge_demo import router as w28_router
+from app.routers.w29_deploy_config import router as w29_router
+from app.routers.w30_hardening import router as w30_router
+
+app.include_router(w01_router)
+app.include_router(w02_router)
+app.include_router(w03_router)
+app.include_router(w04_router)
+app.include_router(w05_router)
+app.include_router(w06_router)
+app.include_router(w07_router)
+app.include_router(w08_router)
+app.include_router(w09_router)
+app.include_router(w10_router)
+app.include_router(w11_router)
+app.include_router(w12_router)
+app.include_router(w13_router)
+app.include_router(w14_router)
+app.include_router(w15_router)
+app.include_router(w16_router)
+app.include_router(w17_router)
+app.include_router(w18_router)
+app.include_router(w19_router)
+app.include_router(w20_router)
+app.include_router(w21_router)
+app.include_router(w22_router)
+app.include_router(w23_router)
+app.include_router(w24_router)
+app.include_router(w25_router)
+app.include_router(w26_router)
+app.include_router(w27_router)
+app.include_router(w28_router)
+app.include_router(w29_router)
+app.include_router(w30_router)

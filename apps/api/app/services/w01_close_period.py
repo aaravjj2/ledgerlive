@@ -1,0 +1,77 @@
+"""Wave 1: Close Period Management — Manage accounting close periods with open/close/lock lifecycle.
+
+PROJECT_ID: LEDGERLIVE
+"""
+import uuid
+import datetime as dt
+from app.main import emit_audit_event
+
+
+class ClosePeriodService:
+    """Domain service for Close Period Management."""
+
+    def __init__(self):
+        self._store: dict[str, dict] = {}
+
+    def _template(self) -> dict:
+        return {
+        "period_id": "",
+        "name": "",
+        "status": "",
+        "fiscal_year": 0,
+        "fiscal_month": 0,
+        "opened_at": "",
+        "closed_at": "",
+        }
+
+    def reset(self):
+        """Clear all data (for testing)."""
+        self._store.clear()
+
+    @property
+    def count(self) -> int:
+        return len(self._store)
+
+    def list(self, **kwargs) -> list[dict]:
+        """List items with optional filters."""
+        items = list(self._store.values())
+        limit = kwargs.get("limit", 100)
+        return items[:limit]
+
+    def create(self, data: dict) -> dict:
+        """Create a new item."""
+        item_id = str(uuid.uuid4())
+        item = {**self._template(), **data, "period_id": item_id}
+        self._store[item_id] = item
+        emit_audit_event("create", "close_period", item_id, {"data": data})
+        return item
+
+    def get(self, period_id: str) -> dict | None:
+        """Get item by ID."""
+        return self._store.get(period_id)
+
+    def close_period(self, period_id: str, data: dict | None = None) -> dict | None:
+        """Action: close_period on item."""
+        item = self._store.get(period_id)
+        if not item:
+            return None
+        if data:
+            item.update(data)
+        item["status"] = "close_periodd" if "status" in item else item.get("status", "done")
+        emit_audit_event("close_period", "close_period", period_id, {"action": "close_period", "data": data or {}})
+        return item
+
+    def lock_period(self, period_id: str, data: dict | None = None) -> dict | None:
+        """Action: lock_period on item."""
+        item = self._store.get(period_id)
+        if not item:
+            return None
+        if data:
+            item.update(data)
+        item["status"] = "lock_periodd" if "status" in item else item.get("status", "done")
+        emit_audit_event("lock_period", "close_period", period_id, {"action": "lock_period", "data": data or {}})
+        return item
+
+
+# Module-level singleton
+service = ClosePeriodService()
