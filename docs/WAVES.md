@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Waves | 180 |
-| Total Tests | 2068 |
-| Total Routes | 1054+ |
+| Total Waves | 200 |
+| Total Tests | 2316 |
+| Total Routes | 1184+ |
 | Gates | 2/2 PASS |
-| Tags | v0.0.0-ledgerlive-purged → v0.180.0-ledgerlive |
+| Tags | v0.0.0-ledgerlive-purged → v0.200.0-ledgerlive |
 | Proof Pack | `artifacts/proof/20260223155258-wavebase/` |
 
 ---
@@ -313,6 +313,41 @@
 | W179 | v0.179.0-ledgerlive | gradient_adapter | DigitalOcean Gradient Adapter Skeleton |
 | W180 | v0.180.0-ledgerlive | submission_harden | Submission Hardening Wave |
 
+## Phase 17: Real Implementations Behind Flags (Waves 181-188)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W181 | v0.181.0-ledgerlive | gemini_live_provider | Gemini Live Provider v1 |
+| W182 | v0.182.0-ledgerlive | cloudrun_deploy | Cloud Run Deploy Automation |
+| W183 | v0.183.0-ledgerlive | session_resume | Session Interruption Resume Safety |
+| W184 | v0.184.0-ledgerlive | airia_finalizer | Airia Package Finalizer v1 |
+| W185 | v0.185.0-ledgerlive | gradient_training | Gradient Training Spec v1 |
+| W186 | v0.186.0-ledgerlive | gradient_inference | Gradient Inference Adapter v1 |
+| W187 | v0.187.0-ledgerlive | connector_runbooks | Connector Runbooks Anti-CI Guard |
+| W188 | v0.188.0-ledgerlive | audit_seal | Live-Mode Audit Sealing v1 |
+
+## Phase 18: Evidence-First Decision Dossier (Waves 189-194)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W189 | v0.189.0-ledgerlive | decision_dossier | Decision Dossier Model API |
+| W190 | v0.190.0-ledgerlive | evidence_highlighter | Evidence Span Highlighter v2 |
+| W191 | v0.191.0-ledgerlive | explanation_graph | Explanation Graph v3 |
+| W192 | v0.192.0-ledgerlive | policy_engine | Policy Engine v4 |
+| W193 | v0.193.0-ledgerlive | claim_enforcement | No-Floating-Claim Enforcement |
+| W194 | v0.194.0-ledgerlive | audit_narrative | Audit Narrative Export v1 |
+
+## Phase 19: Deployment Proof + Production Hygiene (Waves 195-200)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W195 | v0.195.0-ledgerlive | cloudrun_deploy_v2 | Cloud Run Deploy v2 |
+| W196 | v0.196.0-ledgerlive | do_deploy | DigitalOcean Deploy Automation v1 |
+| W197 | v0.197.0-ledgerlive | release_bundle | Release Bundle v3 |
+| W198 | v0.198.0-ledgerlive | chaos_hooks | Deployed Environment Chaos Hooks |
+| W199 | v0.199.0-ledgerlive | hackpack_v2 | Hackpack v2 Multi-Bundle |
+| W200 | v0.200.0-ledgerlive | submit_all | Submission Hardening v2 |
+
 ---
 
 ## Gate Results
@@ -324,7 +359,7 @@
 
 ## Determinism Note
 
-All 2068 tests are fully deterministic:
+All 2316 tests are fully deterministic:
 - In-memory stores reset via `autouse` fixtures before each test
 - No external network calls (gate-enforced)
 - No randomness without seeding (scenario engine uses fixed seeds)
