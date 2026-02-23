@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Waves | 160 |
-| Total Tests | 1827 |
-| Total Routes | 924 |
+| Total Waves | 180 |
+| Total Tests | 2068 |
+| Total Routes | 1054+ |
 | Gates | 2/2 PASS |
-| Tags | v0.0.0-ledgerlive-purged → v0.160.0-ledgerlive |
+| Tags | v0.0.0-ledgerlive-purged → v0.180.0-ledgerlive |
 | Proof Pack | `artifacts/proof/20260223155258-wavebase/` |
 
 ---
@@ -278,6 +278,43 @@
 
 ---
 
+## Phase 14: DEMO Completeness + Agentization (Waves 161-168)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W161 | v0.161.0-ledgerlive | demo_contract | DEMO Contract |
+| W162 | v0.162.0-ledgerlive | e2e_reset_v2 | E2E Reset Seed State v2 |
+| W163 | v0.163.0-ledgerlive | tool_registry | Tool Registry v1 |
+| W164 | v0.164.0-ledgerlive | agent_runtime | Agent Runtime v1 |
+| W165 | v0.165.0-ledgerlive | session_sim | Live Session Simulator |
+| W166 | v0.166.0-ledgerlive | agent_console | Agent Console UI |
+| W167 | v0.167.0-ledgerlive | close_orchestrator | Close Orchestrator Workflow v1 |
+| W168 | v0.168.0-ledgerlive | hackpack_gen | Hackpack Generator v1 |
+
+## Phase 15: Mocked Connectors + ML Baseline (Waves 169-176)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W169 | v0.169.0-ledgerlive | connector_mocks | Connector Mock Servers v1 |
+| W170 | v0.170.0-ledgerlive | connector_realmode | Connector Real-Mode Interface |
+| W171 | v0.171.0-ledgerlive | ml_dataset | ML Dataset Builder v1 |
+| W172 | v0.172.0-ledgerlive | ml_baseline | ML Baseline Models v1 |
+| W173 | v0.173.0-ledgerlive | ml_inference | ML Inference Hook v1 |
+| W174 | v0.174.0-ledgerlive | model_governance | Model Governance Lite |
+| W175 | v0.175.0-ledgerlive | evidence_search | Evidence Graph Search v2 |
+| W176 | v0.176.0-ledgerlive | reliability_harness | Reliability Harness v1 |
+
+## Phase 16: Live-Ready Adapters (Waves 177-180)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W177 | v0.177.0-ledgerlive | gemini_adapter | Gemini Live Adapter Skeleton |
+| W178 | v0.178.0-ledgerlive | airia_adapter | Airia Adapter Skeleton |
+| W179 | v0.179.0-ledgerlive | gradient_adapter | DigitalOcean Gradient Adapter Skeleton |
+| W180 | v0.180.0-ledgerlive | submission_harden | Submission Hardening Wave |
+
+---
+
 ## Gate Results
 
 | Gate | Status |
@@ -287,7 +324,7 @@
 
 ## Determinism Note
 
-All 1827 tests are fully deterministic:
+All 2068 tests are fully deterministic:
 - In-memory stores reset via `autouse` fixtures before each test
 - No external network calls (gate-enforced)
 - No randomness without seeding (scenario engine uses fixed seeds)
