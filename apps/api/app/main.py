@@ -493,3 +493,45 @@ app.include_router(w197_router)
 app.include_router(w198_router)
 app.include_router(w199_router)
 app.include_router(w200_router)
+
+from app.routers.w201_parity_harness import router as w201_router
+from app.routers.w202_live_reconnect import router as w202_router
+from app.routers.w203_exactly_once import router as w203_router
+from app.routers.w204_adversarial_corpus import router as w204_router
+from app.routers.w205_smoke_recorder import router as w205_router
+from app.routers.w206_transcript_export import router as w206_router
+from app.routers.w207_multi_tenant import router as w207_router
+from app.routers.w208_fail_closed import router as w208_router
+from app.routers.w209_run_artifact_store import router as w209_router
+from app.routers.w210_replay_engine import router as w210_router
+from app.routers.w211_replay_viewer import router as w211_router
+from app.routers.w212_binder_regen import router as w212_router
+from app.routers.w213_regression_harness import router as w213_router
+from app.routers.w214_court_pack import router as w214_router
+from app.routers.w215_model_impact import router as w215_router
+from app.routers.w216_drift_budgets import router as w216_router
+from app.routers.w217_gradient_provenance import router as w217_router
+from app.routers.w218_arch_diagram import router as w218_router
+from app.routers.w219_checklist_verifier import router as w219_router
+from app.routers.w220_submit_all_v3 import router as w220_router
+
+app.include_router(w201_router)
+app.include_router(w202_router)
+app.include_router(w203_router)
+app.include_router(w204_router)
+app.include_router(w205_router)
+app.include_router(w206_router)
+app.include_router(w207_router)
+app.include_router(w208_router)
+app.include_router(w209_router)
+app.include_router(w210_router)
+app.include_router(w211_router)
+app.include_router(w212_router)
+app.include_router(w213_router)
+app.include_router(w214_router)
+app.include_router(w215_router)
+app.include_router(w216_router)
+app.include_router(w217_router)
+app.include_router(w218_router)
+app.include_router(w219_router)
+app.include_router(w220_router)
