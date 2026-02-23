@@ -207,3 +207,205 @@ app.include_router(w57_router)
 app.include_router(w58_router)
 app.include_router(w59_router)
 app.include_router(w60_router)
+
+from app.routers.w061_testid_guard import router as w061_router
+from app.routers.w062_e2e_ops import router as w062_router
+from app.routers.w063_route_sweep import router as w063_router
+from app.routers.w064_role_sweep import router as w064_router
+from app.routers.w065_close_flow_e2e import router as w065_router
+from app.routers.w066_integration_flow_e2e import router as w066_router
+from app.routers.w067_fpa_flow_e2e import router as w067_router
+from app.routers.w068_determinism_harness import router as w068_router
+from app.routers.w069_tour_spec import router as w069_router
+from app.routers.w070_e2e_gate import router as w070_router
+from app.routers.w071_exception_classifier import router as w071_router
+from app.routers.w072_auto_fix import router as w072_router
+from app.routers.w073_accrual_suggest import router as w073_router
+from app.routers.w074_je_suggest import router as w074_router
+from app.routers.w075_triage_queue_v2 import router as w075_router
+from app.routers.w076_recon_explain import router as w076_router
+from app.routers.w077_no_floating_claim import router as w077_router
+from app.routers.w078_close_scorecard import router as w078_router
+from app.routers.w079_binder_v3 import router as w079_router
+from app.routers.w080_exc_flow_e2e import router as w080_router
+from app.routers.w081_intercompany_v2 import router as w081_router
+from app.routers.w082_fx_v3 import router as w082_router
+from app.routers.w083_cashflow_consol import router as w083_router
+from app.routers.w084_statement_notes import router as w084_router
+from app.routers.w085_consol_adj_lock import router as w085_router
+from app.routers.w086_multi_entity_cal import router as w086_router
+from app.routers.w087_consol_e2e import router as w087_router
+from app.routers.w088_consol_regression import router as w088_router
+from app.routers.w089_consol_perf import router as w089_router
+from app.routers.w090_consol_tour import router as w090_router
+from app.routers.w091_workflow_plugin import router as w091_router
+from app.routers.w092_workflow_marketplace import router as w092_router
+from app.routers.w093_report_marketplace import router as w093_router
+from app.routers.w094_mapping_marketplace import router as w094_router
+from app.routers.w095_template_governance import router as w095_router
+from app.routers.w096_marketplace_e2e import router as w096_router
+from app.routers.w097_breaking_change import router as w097_router
+from app.routers.w098_execution_lineage import router as w098_router
+from app.routers.w099_template_proof import router as w099_router
+from app.routers.w100_demo_marketplace import router as w100_router
+from app.routers.w101_soc2_evidence import router as w101_router
+from app.routers.w102_iso_mapping import router as w102_router
+from app.routers.w103_ediscovery import router as w103_router
+from app.routers.w104_gdpr_redaction import router as w104_router
+from app.routers.w105_key_management import router as w105_router
+from app.routers.w106_compliance_signing import router as w106_router
+from app.routers.w107_compliance_e2e import router as w107_router
+from app.routers.w108_compliance_chaos import router as w108_router
+from app.routers.w109_compliance_regression import router as w109_router
+from app.routers.w110_compliance_tour import router as w110_router
+from app.routers.w111_data_lake_export import router as w111_router
+from app.routers.w112_lineage_manifest import router as w112_router
+from app.routers.w113_query_language import router as w113_router
+from app.routers.w114_deterministic_paging import router as w114_router
+from app.routers.w115_query_export_e2e import router as w115_router
+from app.routers.w116_dq_export_gate import router as w116_router
+from app.routers.w117_data_perf_25x import router as w117_router
+from app.routers.w118_schema_versioning import router as w118_router
+from app.routers.w119_data_proof import router as w119_router
+from app.routers.w120_release_data_bundle import router as w120_router
+from app.routers.w121_abac_engine import router as w121_router
+from app.routers.w122_sso_scim import router as w122_router
+from app.routers.w123_admin_console import router as w123_router
+from app.routers.w124_rbac_abac_e2e import router as w124_router
+from app.routers.w125_policy_regression import router as w125_router
+from app.routers.w126_legal_holds_abac import router as w126_router
+from app.routers.w127_export_perm_gate import router as w127_router
+from app.routers.w128_access_audit import router as w128_router
+from app.routers.w129_policy_proof import router as w129_router
+from app.routers.w130_policy_chaos import router as w130_router
+from app.routers.w131_chaos_matrix import router as w131_router
+from app.routers.w132_mutation_budget import router as w132_router
+from app.routers.w133_proof_of_proof import router as w133_router
+from app.routers.w134_judge_loop_20x import router as w134_router
+from app.routers.w135_recon_export_budget import router as w135_router
+from app.routers.w136_stability_e2e import router as w136_router
+from app.routers.w137_verifier_guard import router as w137_router
+from app.routers.w138_trace_explorer import router as w138_router
+from app.routers.w139_incident_sim import router as w139_router
+from app.routers.w140_reliability_proof import router as w140_router
+from app.routers.w141_fixture_100x import router as w141_router
+from app.routers.w142_db_partitioning import router as w142_router
+from app.routers.w143_caching_proof import router as w143_router
+from app.routers.w144_large_fixture_e2e import router as w144_router
+from app.routers.w145_perf_budgets_enforced import router as w145_router
+from app.routers.w146_export_budget import router as w146_router
+from app.routers.w147_ui_pagination import router as w147_router
+from app.routers.w148_batch_workflow_perf import router as w148_router
+from app.routers.w149_perf_proof import router as w149_router
+from app.routers.w150_release_perf_bundle import router as w150_router
+from app.routers.w151_release_v3 import router as w151_router
+from app.routers.w152_hash_equality_gate import router as w152_router
+from app.routers.w153_proof_verifier import router as w153_router
+from app.routers.w154_judge_demo_v3 import router as w154_router
+from app.routers.w155_lineage_strict import router as w155_router
+from app.routers.w156_release_ui_e2e import router as w156_router
+from app.routers.w157_docs_verify import router as w157_router
+from app.routers.w158_no_drift_guard import router as w158_router
+from app.routers.w159_final_proof_pack import router as w159_router
+from app.routers.w160_release_finale import router as w160_router
+
+app.include_router(w061_router)
+app.include_router(w062_router)
+app.include_router(w063_router)
+app.include_router(w064_router)
+app.include_router(w065_router)
+app.include_router(w066_router)
+app.include_router(w067_router)
+app.include_router(w068_router)
+app.include_router(w069_router)
+app.include_router(w070_router)
+app.include_router(w071_router)
+app.include_router(w072_router)
+app.include_router(w073_router)
+app.include_router(w074_router)
+app.include_router(w075_router)
+app.include_router(w076_router)
+app.include_router(w077_router)
+app.include_router(w078_router)
+app.include_router(w079_router)
+app.include_router(w080_router)
+app.include_router(w081_router)
+app.include_router(w082_router)
+app.include_router(w083_router)
+app.include_router(w084_router)
+app.include_router(w085_router)
+app.include_router(w086_router)
+app.include_router(w087_router)
+app.include_router(w088_router)
+app.include_router(w089_router)
+app.include_router(w090_router)
+app.include_router(w091_router)
+app.include_router(w092_router)
+app.include_router(w093_router)
+app.include_router(w094_router)
+app.include_router(w095_router)
+app.include_router(w096_router)
+app.include_router(w097_router)
+app.include_router(w098_router)
+app.include_router(w099_router)
+app.include_router(w100_router)
+app.include_router(w101_router)
+app.include_router(w102_router)
+app.include_router(w103_router)
+app.include_router(w104_router)
+app.include_router(w105_router)
+app.include_router(w106_router)
+app.include_router(w107_router)
+app.include_router(w108_router)
+app.include_router(w109_router)
+app.include_router(w110_router)
+app.include_router(w111_router)
+app.include_router(w112_router)
+app.include_router(w113_router)
+app.include_router(w114_router)
+app.include_router(w115_router)
+app.include_router(w116_router)
+app.include_router(w117_router)
+app.include_router(w118_router)
+app.include_router(w119_router)
+app.include_router(w120_router)
+app.include_router(w121_router)
+app.include_router(w122_router)
+app.include_router(w123_router)
+app.include_router(w124_router)
+app.include_router(w125_router)
+app.include_router(w126_router)
+app.include_router(w127_router)
+app.include_router(w128_router)
+app.include_router(w129_router)
+app.include_router(w130_router)
+app.include_router(w131_router)
+app.include_router(w132_router)
+app.include_router(w133_router)
+app.include_router(w134_router)
+app.include_router(w135_router)
+app.include_router(w136_router)
+app.include_router(w137_router)
+app.include_router(w138_router)
+app.include_router(w139_router)
+app.include_router(w140_router)
+app.include_router(w141_router)
+app.include_router(w142_router)
+app.include_router(w143_router)
+app.include_router(w144_router)
+app.include_router(w145_router)
+app.include_router(w146_router)
+app.include_router(w147_router)
+app.include_router(w148_router)
+app.include_router(w149_router)
+app.include_router(w150_router)
+app.include_router(w151_router)
+app.include_router(w152_router)
+app.include_router(w153_router)
+app.include_router(w154_router)
+app.include_router(w155_router)
+app.include_router(w156_router)
+app.include_router(w157_router)
+app.include_router(w158_router)
+app.include_router(w159_router)
+app.include_router(w160_router)
