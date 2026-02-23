@@ -451,3 +451,45 @@ app.include_router(w177_router)
 app.include_router(w178_router)
 app.include_router(w179_router)
 app.include_router(w180_router)
+
+from app.routers.w181_gemini_live_provider import router as w181_router
+from app.routers.w182_cloudrun_deploy import router as w182_router
+from app.routers.w183_session_resume import router as w183_router
+from app.routers.w184_airia_finalizer import router as w184_router
+from app.routers.w185_gradient_training import router as w185_router
+from app.routers.w186_gradient_inference import router as w186_router
+from app.routers.w187_connector_runbooks import router as w187_router
+from app.routers.w188_audit_seal import router as w188_router
+from app.routers.w189_decision_dossier import router as w189_router
+from app.routers.w190_evidence_highlighter import router as w190_router
+from app.routers.w191_explanation_graph import router as w191_router
+from app.routers.w192_policy_engine import router as w192_router
+from app.routers.w193_claim_enforcement import router as w193_router
+from app.routers.w194_audit_narrative import router as w194_router
+from app.routers.w195_cloudrun_deploy_v2 import router as w195_router
+from app.routers.w196_do_deploy import router as w196_router
+from app.routers.w197_release_bundle import router as w197_router
+from app.routers.w198_chaos_hooks import router as w198_router
+from app.routers.w199_hackpack_v2 import router as w199_router
+from app.routers.w200_submit_all import router as w200_router
+
+app.include_router(w181_router)
+app.include_router(w182_router)
+app.include_router(w183_router)
+app.include_router(w184_router)
+app.include_router(w185_router)
+app.include_router(w186_router)
+app.include_router(w187_router)
+app.include_router(w188_router)
+app.include_router(w189_router)
+app.include_router(w190_router)
+app.include_router(w191_router)
+app.include_router(w192_router)
+app.include_router(w193_router)
+app.include_router(w194_router)
+app.include_router(w195_router)
+app.include_router(w196_router)
+app.include_router(w197_router)
+app.include_router(w198_router)
+app.include_router(w199_router)
+app.include_router(w200_router)
