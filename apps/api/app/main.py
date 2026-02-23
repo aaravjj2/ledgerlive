@@ -145,3 +145,65 @@ app.include_router(w27_router)
 app.include_router(w28_router)
 app.include_router(w29_router)
 app.include_router(w30_router)
+
+from app.routers.w31_close_calendar import router as w31_router
+from app.routers.w32_consolidation import router as w32_router
+from app.routers.w33_je_posting import router as w33_router
+from app.routers.w34_three_way_match import router as w34_router
+from app.routers.w35_cash_application import router as w35_router
+from app.routers.w36_accruals_deferrals import router as w36_router
+from app.routers.w37_controls_catalog import router as w37_router
+from app.routers.w38_audit_portal import router as w38_router
+from app.routers.w39_vendor_master_v2 import router as w39_router
+from app.routers.w40_evidence_binder_v2 import router as w40_router
+from app.routers.w41_connector_framework_v2 import router as w41_router
+from app.routers.w42_qbo_connector import router as w42_router
+from app.routers.w43_xero_connector import router as w43_router
+from app.routers.w44_plaid_connector import router as w44_router
+from app.routers.w45_mapping_studio import router as w45_router
+from app.routers.w46_data_quality import router as w46_router
+from app.routers.w47_continuous_close_v2 import router as w47_router
+from app.routers.w48_perf_suite import router as w48_router
+from app.routers.w49_release_bundle_v2 import router as w49_router
+from app.routers.w50_judge_demo_v2 import router as w50_router
+from app.routers.w51_budgeting import router as w51_router
+from app.routers.w52_forecasting import router as w52_router
+from app.routers.w53_driver_planning import router as w53_router
+from app.routers.w54_scenario_engine import router as w54_router
+from app.routers.w55_treasury import router as w55_router
+from app.routers.w56_covenants import router as w56_router
+from app.routers.w57_cost_allocation import router as w57_router
+from app.routers.w58_kpi_framework import router as w58_router
+from app.routers.w59_board_pack import router as w59_router
+from app.routers.w60_ops_bundle import router as w60_router
+
+app.include_router(w31_router)
+app.include_router(w32_router)
+app.include_router(w33_router)
+app.include_router(w34_router)
+app.include_router(w35_router)
+app.include_router(w36_router)
+app.include_router(w37_router)
+app.include_router(w38_router)
+app.include_router(w39_router)
+app.include_router(w40_router)
+app.include_router(w41_router)
+app.include_router(w42_router)
+app.include_router(w43_router)
+app.include_router(w44_router)
+app.include_router(w45_router)
+app.include_router(w46_router)
+app.include_router(w47_router)
+app.include_router(w48_router)
+app.include_router(w49_router)
+app.include_router(w50_router)
+app.include_router(w51_router)
+app.include_router(w52_router)
+app.include_router(w53_router)
+app.include_router(w54_router)
+app.include_router(w55_router)
+app.include_router(w56_router)
+app.include_router(w57_router)
+app.include_router(w58_router)
+app.include_router(w59_router)
+app.include_router(w60_router)
