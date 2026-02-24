@@ -7,6 +7,7 @@ Endpoints:
   POST /api/airia/generate-bundle   → generate/refresh bundle, return hash
   POST /api/airia/validate-bundle   → validate bundle completeness, return PASS/FAIL
   POST /api/airia/verify-bundle     → offline checksum verification, return PASS/FAIL
+  GET  /api/airia/compat_report     → deterministic Airia compatibility proof report
 """
 from __future__ import annotations
 
@@ -18,6 +19,7 @@ from app.services.airia_bundle import (
     validate_bundle,
     verify_bundle,
 )
+from app.services.airia_compat import run_compat_report_cached
 
 router = APIRouter(prefix="/api/airia", tags=["airia"])
 
@@ -44,3 +46,9 @@ async def airia_validate_bundle() -> dict:
 async def airia_verify_bundle() -> dict:
     """Offline checksum verification of bundle files."""
     return verify_bundle()
+
+
+@router.get("/compat_report")
+async def airia_compat_report() -> dict:
+    """Return deterministic Airia platform compatibility proof report."""
+    return run_compat_report_cached()

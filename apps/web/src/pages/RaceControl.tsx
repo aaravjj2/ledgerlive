@@ -5,7 +5,31 @@ interface Incident { incident_id: string; incident_title: string; severity: stri
 interface Score { score_id: string; overall_health: string; sla_adherence_pct: number; blocker_count: number; checkpoints_passed: number; checkpoints_total: number }
 interface Checkpoint { checkpoint_id: string; checkpoint_name: string; criteria_met: boolean; gate_result: string; status: string }
 interface Approval { approval_id: string; approval_level: number; total_levels: number; all_approved: boolean; status: string }
-interface SecurityEvent { event_id: string; event_type: string; severity: string; path_attempted: string; status: string; blocked: boolean; fix_applied: boolean }
+interface SecurityEvent { event_id: string; event_type: string; severity: string; path_attempted: string; blocked: boolean; fix_applied: boolean; status: string }
+
+interface RaceStage {
+  key: string
+  ui_label: string
+  description: string
+  order: number
+  linked_resource: string
+  approval_required: boolean
+  fail_closed: boolean
+  evidence_required: boolean
+  default_status: string
+  lap_time_ms: number | null
+  pit_stop_time_ms?: number | null
+  safety_car?: boolean
+}
+
+interface RaceWeekendData {
+  stages: RaceStage[]
+  safety_car_active: boolean
+  critical_path: string[]
+  lap_count: number
+  completed_lap_ms: number
+  pit_stop_count: number
+}
 
 export default function RaceControl() {
   const [lanes, setLanes] = useState<Lane[]>([])
@@ -15,6 +39,7 @@ export default function RaceControl() {
   const [approvals, setApprovals] = useState<Approval[]>([])
   const [securityEvents, setSecurityEvents] = useState<SecurityEvent[]>([])
   const [stateInfo, setStateInfo] = useState<string>('Loading...')
+  const [raceWeekend, setRaceWeekend] = useState<RaceWeekendData | null>(null)
 
   // Run Golden state
   const [runStatus, setRunStatus] = useState<string>('')
@@ -53,6 +78,12 @@ export default function RaceControl() {
       const machineCount = sm.items?.length || 0
       setStateInfo(`${machineCount} state machine(s) active`)
     }).catch(() => setStateInfo('Error loading RC data'))
+
+    // Race weekend stages — always available, deterministic
+    fetch('/api/race-weekend/stages')
+      .then(r => r.json())
+      .then(data => setRaceWeekend(data))
+      .catch(() => {/* non-fatal */})
   }, [])
 
   useEffect(() => { loadAll() }, [loadAll])
@@ -183,6 +214,89 @@ export default function RaceControl() {
             </div>
           ))}
         </div>
+      )}
+
+      {/* Race Weekend Timeline */}
+      {raceWeekend && (
+        <section className="mb-6" data-testid="rc-race-weekend-timeline">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-lg font-semibold">Race Weekend Timeline</h2>
+            <div className="flex items-center gap-2 text-xs text-gray-500">
+              <span>{raceWeekend.lap_count} stages</span>
+              <span>·</span>
+              <span>{raceWeekend.pit_stop_count} pit stops</span>
+              {raceWeekend.completed_lap_ms > 0 && (
+                <>
+                  <span>·</span>
+                  <span data-testid="rc-lap-time-tile" className="font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded border border-blue-200">
+                    Lap {raceWeekend.completed_lap_ms}ms
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Safety Car Banner */}
+          {raceWeekend.safety_car_active && (
+            <div
+              data-testid="rc-safety-car-banner"
+              className="mb-3 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-lg font-semibold text-sm flex items-center gap-2"
+            >
+              🚗 Safety Car Deployed — Approval gate active, automation paused
+            </div>
+          )}
+
+          {/* Stage Cards */}
+          <div className="flex flex-wrap gap-2">
+            {raceWeekend.stages.map((stage, idx) => {
+              const statusColor =
+                stage.default_status === 'completed' ? 'border-green-400 bg-green-50' :
+                stage.default_status === 'active' ? 'border-blue-400 bg-blue-50' :
+                stage.key === 'safety_car' ? 'border-yellow-400 bg-yellow-50' :
+                'border-gray-200 bg-white'
+
+              return (
+                <div
+                  key={stage.key}
+                  data-testid="rc-stage-card"
+                  className={`border-2 rounded-lg p-3 min-w-[160px] max-w-[200px] flex-1 ${statusColor}`}
+                >
+                  <div className="flex items-center gap-1 mb-1">
+                    <span className="text-xs font-bold text-gray-500">#{stage.order}</span>
+                    {stage.safety_car && <span className="text-xs">🚗</span>}
+                    {stage.approval_required && !stage.safety_car && <span className="text-xs">✋</span>}
+                  </div>
+                  <div className="font-semibold text-sm leading-tight mb-1">{stage.ui_label}</div>
+                  <div className="text-xs text-gray-500 leading-tight mb-2">{stage.description}</div>
+                  <div className="flex flex-wrap gap-1 mb-1">
+                    {stage.fail_closed && (
+                      <span className="text-xs px-1.5 py-0.5 rounded bg-red-100 text-red-700 font-medium">fail-closed</span>
+                    )}
+                    {stage.approval_required && (
+                      <span className="text-xs px-1.5 py-0.5 rounded bg-orange-100 text-orange-700 font-medium">approval</span>
+                    )}
+                    {stage.evidence_required && (
+                      <span className="text-xs px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 font-medium">evidence</span>
+                    )}
+                  </div>
+                  {stage.lap_time_ms != null && (
+                    <div
+                      data-testid="rc-lap-time-tile"
+                      className="text-xs font-mono text-blue-600 mt-1"
+                    >
+                      ⏱ {stage.lap_time_ms}ms
+                      {stage.pit_stop_time_ms != null && ` (pit ${stage.pit_stop_time_ms}ms)`}
+                    </div>
+                  )}
+                  <a
+                    href={stage.linked_resource}
+                    className="text-xs text-indigo-500 hover:text-indigo-700 mt-1 block"
+                  >→ {stage.linked_resource}</a>
+                </div>
+              )
+            })}
+          </div>
+        </section>
       )}
 
       {/* Lane Status Board */}

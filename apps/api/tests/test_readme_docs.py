@@ -94,3 +94,19 @@ def test_f1_theme_has_full_mapping():
     text = (DOCS_AIRIA / "F1_THEME.md").read_text(encoding="utf-8")
     for term in ["Race Control", "Pit Stop", "Court Pack", "Safety Car"]:
         assert term in text, f"F1_THEME.md must document term: {term!r}"
+
+
+# ── New score-boost content ───────────────────────────────────────────────────
+
+def test_readme_has_airia_compat_report():
+    text = README.read_text(encoding="utf-8")
+    assert "Airia Compatibility Report" in text, (
+        "README must contain 'Airia Compatibility Report'"
+    )
+
+
+def test_readme_has_nocode_builder_preview():
+    text = README.read_text(encoding="utf-8")
+    assert "No-Code Builder Preview" in text, (
+        "README must contain 'No-Code Builder Preview'"
+    )

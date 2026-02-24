@@ -11,7 +11,7 @@ MILESTONE ?= golden-e2e
 
 .PHONY: dev demo test e2e proof release proof-index gates \
         e2e-mcp e2e-mcp-twice e2e\:mcp\:twice \
-        airia\:bundle airia\:validate airia\:verify proof-airia
+        airia\:bundle airia\:validate airia\:verify airia\:compat proof-airia proof-airia-score
 
 # ── Dev ──────────────────────────────────────
 dev:
@@ -54,8 +54,18 @@ airia\:validate:
 airia\:verify:
 	$(PYTHON) tools/airia_bundle.py --action verify
 
+airia\:compat:
+	$(PYTHON) tools/airia_compat.py
+
 proof-airia:
 	$(PYTHON) tools/proof/generate_proof_pack.py --milestone=airia-readiness
+
+proof-airia-score:
+	$(PYTHON) tools/gates/no_apex_references.py
+	$(PYTHON) tools/gates/no_network_in_tests.py
+	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
+	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
+	$(PYTHON) tools/proof/generate_proof_pack.py --milestone=airia-score-boost-v2
 
 
 # ── Gates ────────────────────────────────────

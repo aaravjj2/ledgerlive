@@ -119,4 +119,69 @@ test.describe('Airia Readiness', () => {
 
     await checkpoint(page, 'AR-08-bundle-path')
   })
+
+  test('AR-09 — compat report badge shows PASS', async ({ page }) => {
+    await page.goto('/airia')
+    await expect(page.getByTestId('airia-readiness-page')).toBeVisible({ timeout: 10_000 })
+
+    // Compat badge should appear after report loads
+    const compatBadge = page.getByTestId('airia-compat-badge')
+    await expect(compatBadge).toBeVisible({ timeout: 12_000 })
+    const text = await compatBadge.textContent()
+    expect(text).toContain('PASS')
+
+    await checkpoint(page, 'AR-09-compat-badge')
+  })
+
+  test('AR-10 — No-Code Builder Preview renders >=8 step cards', async ({ page }) => {
+    await page.goto('/airia')
+    await expect(page.getByTestId('airia-readiness-page')).toBeVisible({ timeout: 10_000 })
+
+    const preview = page.getByTestId('airia-nocode-preview')
+    await expect(preview).toBeVisible({ timeout: 10_000 })
+
+    const stepCards = page.getByTestId('airia-nocode-step-card')
+    const count = await stepCards.count()
+    expect(count).toBeGreaterThanOrEqual(8)
+
+    await checkpoint(page, 'AR-10-nocode-step-cards')
+  })
+
+  test('AR-11 — Import Walkthrough panel visible with copy button', async ({ page }) => {
+    await page.goto('/airia')
+    await expect(page.getByTestId('airia-readiness-page')).toBeVisible({ timeout: 10_000 })
+
+    const walkthrough = page.getByTestId('airia-import-walkthrough')
+    await expect(walkthrough).toBeVisible({ timeout: 8_000 })
+
+    const copyBtn = page.getByTestId('airia-copy-import-notes')
+    await expect(copyBtn).toBeVisible({ timeout: 5_000 })
+
+    await checkpoint(page, 'AR-11-import-walkthrough')
+  })
+
+  test('AR-12 — Copy import notes button is clickable', async ({ page }) => {
+    await page.goto('/airia')
+    await expect(page.getByTestId('airia-readiness-page')).toBeVisible({ timeout: 10_000 })
+
+    await expect(page.getByTestId('airia-import-walkthrough')).toBeVisible({ timeout: 8_000 })
+
+    // Click copy button — should not error
+    const copyBtn = page.getByTestId('airia-copy-import-notes')
+    await copyBtn.click()
+
+    // After click, button text should change to indicate copied
+    // (May show 'Copied!' briefly)
+    await checkpoint(page, 'AR-12-copy-import-notes')
+  })
+
+  test('AR-13 — compat_report API returns PASS with 7 checks', async ({ page }) => {
+    const resp = await page.request.get(`${API}/api/airia/compat_report`)
+    expect(resp.status()).toBe(200)
+    const data = await resp.json()
+    expect(data.overall).toBe('PASS')
+    expect(data.checks).toHaveLength(7)
+    expect(data.report_signature_sha256.length).toBe(64)
+    expect(data.bundle_sha256.length).toBe(64)
+  })
 })

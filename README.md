@@ -52,6 +52,18 @@ open http://127.0.0.1:4173/race-control
 | Court Pack | Stewards Evidence Package |
 | DRS Zone | Fast-path Auto-approval |
 
+### Why Racing Fits
+
+Pit stops are **timed checkpoints** — a reconciliation run that takes twice as long as its SLA
+is a slow pit stop; the team sees it immediately in the lap delta.
+
+Telemetry is the **audit trail** — every tool call emits a structured trace; the court pack
+is the stewards' evidence package containing those traces plus signed verification hashes.
+
+Safety Car is **pause automation for approvals/risk** — when an approval chain is unresolved,
+the close automation halts (fail-closed) until the pit wall gives the all-clear, just as racing
+drivers slow behind the safety car until the track is declared safe.
+
 ## Why Airia
 
 LedgerLive showcases the Airia platform's three core strengths:
@@ -83,8 +95,39 @@ LedgerLive showcases the Airia platform's three core strengths:
 make airia:bundle    # generate deterministic bundle
 make airia:validate  # strict readiness check
 make airia:verify    # offline checksum verification
+make airia:compat    # run Airia Compatibility Report
 ```
 
 Bundle output: `artifacts/airia/community_bundle/`
 
 See [docs/airia/AIRIA_OVERVIEW.md](docs/airia/AIRIA_OVERVIEW.md) for full details.
+
+## Airia Compatibility Report
+
+The `GET /api/airia/compat_report` endpoint produces a deterministic proof report:
+
+| Check | What it validates |
+|-------|-------------------|
+| Bundle Structure Completeness | All 7 required files present |
+| Tool Schemas Version-Pinned | Every tool has a pinned schema_version |
+| Workflow DAG Acyclic + Stable Ordering | Steps are unique, monotonically ordered |
+| Approvals for Sensitive Steps | HITL gate exists before close |
+| Fail-Closed Rules Enabled | `on_error=halt` on critical steps |
+| Required Outputs Present | telemetry, court, replay, narrative documented |
+| Deterministic Checksums Match | sha256 hashes match bundle files |
+
+`overall: PASS` — all checks verified offline, no API keys required.
+
+Run: `make airia:compat` to write `artifacts/airia/community_bundle/compat_report.json`.
+
+## No-Code Builder Preview
+
+The `/airia` page ships a live **No-Code Builder Preview** showing the workflow DAG
+as interactive step cards, each with:
+
+- Approval-required / fail-closed / evidence-required badges
+- Mapped tool ID and I/O schema version
+- Link to dossier / verification artifacts
+
+An **Import Walkthrough** panel explains each step of importing the bundle into Airia:
+what gets created, how it's configured, and which endpoints it calls.

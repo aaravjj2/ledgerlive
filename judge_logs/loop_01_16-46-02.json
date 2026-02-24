@@ -1,0 +1,56 @@
+{
+  "evidence": {
+    "backend_running": false,
+    "backend_error": "HTTPConnectionPool(host='127.0.0.1', port=8090): Max retries exceeded with url: /openapi.json (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8090): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))",
+    "frontend_running": true,
+    "frontend_port": 4173,
+    "test_raw_output": "At line:1 char:35\n+ cd \"C:\\Aarav\\ledgerlive\\apps\\api\" && .venv\\Scripts\\python -m pytest t ...\n+                                   ~~\nThe token '&&' is not a valid statement separator in this version.\n    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException\n    + FullyQualifiedErrorId : InvalidEndOfLine\n \n",
+    "tests_passed": 0,
+    "tests_failed": 0,
+    "tests_errors": 0,
+    "all_tests_pass": true,
+    "readme": "# LedgerLive Race Control Close Agent (Airia / Williams F1 Hackathon)\n\n> The finance close process is a race. LedgerLive operates it like the Williams F1 pit wall:\n> lanes hold position, checkpoints gate progress, incidents surface in real-time, approvals\n> gate the car through scrutineering, and every tool trace becomes the telemetry pack\n> the stewards audit. No LLM keys required \u2014 fully deterministic in DEMO mode.\n\n## Project Identity\n\n```\nPROJECT_ID: LEDGERLIVE\n```\n\n## What It Does\n\nLedgerLive is a **no-code, deterministic finance-close orchestration agent** built on the Airia\nplatform. It turns a month-end close \u2014 a multi-team, multi-approval, deadline-critical operation \u2014\ninto a race-control metaphor every CFO can read at a glance.\n\n**Finance reality:** sub-ledger feeds, AP matching, cutoff reviews, intercompany elimination,\nexception triage, HITL approvals, and signed evidence bundles.\n\n**F1 metaphor:** lanes, pit stops, telemetry packs, safety cars, lap completions, and court packs\nfor the stewards.\n\nThe agent runs 340+ deterministic service waves, exports Airia community bundles, and proves\nevery assertion with real sha256 hashes \u2014 never constants.\n\n## 3-Step Quickstart\n\n```bash\n# 1 \u2014 Start demo (API + web preview)\nmake demo\n\n# 2 \u2014 Open Race Control in your browser\nopen http://127.0.0.1:4173/race-control\n\n# 3 \u2014 Click \"\u25b7 Run Canonical\" to seed the full golden scenario\n```\n\n## F1 Glossary\n\n| F1 Term | Finance Reality |\n|---------|-----------------|\n| Race Control | Close Command Center |\n| Pit Stops | Close Checkpoints |\n| Laps | Close Stages / Milestones |\n| Telemetry | Tool Trace + Audit Trail + Drift Budgets |\n| Safety Car | Fail-Closed + Approvals Required |\n| Pit Wall | Approver Chain + SLA Escalations |\n| Incident Log | Exceptions / Blockers / Policy Events |\n| Court Pack | Stewards Evidence Package |\n| DRS Zone | Fast-path Auto-approval |\n\n## Why Airia\n\nLedgerLive showcases the Airia platform's three core strengths:\n\n1. **Orchestration** \u2014 340+ deterministic waves chained into a single close workflow, all\n   expressible as Airia template steps with typed inputs and outputs.\n2. **Security posture** \u2014 every action passes through a typed guard; no write without approval\n   in HITL lanes; fail-closed on all ambiguity.\n3. **No-code template export** \u2014 Blueprint Builder (W301-305) compiles close workflows into\n   Airia community bundles; no API keys required for demo mode.\n\n## Architecture\n\n| Layer | Tech | Port |\n|-------|------|------|\n| API | FastAPI + Python 3.14 | 8090 |\n| Web | React 18 + Vite + Tailwind | 5173 (dev) / 4173 (preview) |\n| DB | SQLite (local) | \u2014 |\n| E2E | Playwright MCP headed-only | \u2014 |\n\n## Gates\n\n- `tools/gates/no_apex_references.py` \u2014 Zero Apex Terminal references\n- `tools/gates/no_network_in_tests.py` \u2014 No outbound network in tests\n\n## Airia Community Bundle\n\n```bash\nmake airia:bundle    # generate deterministic bundle\nmake airia:validate  # strict readiness check\nmake airia:verify    # offline checksum verificat"
+  },
+  "score": {
+    "score": 6.5,
+    "score_breakdown": {
+      "agent_autonomy": 2.0,
+      "workflow_impact": 1.5,
+      "f1_theme": 2.0,
+      "airia_platform": 0.5,
+      "demo_quality": 0.5
+    },
+    "proven_working": [
+      "Frontend is running on port 4173",
+      "README provides clear project overview and F1 metaphor"
+    ],
+    "blocking_issues": [
+      {
+        "issue": "Backend not running, no endpoints available",
+        "evidence": "Test output shows backend running: False",
+        "fix": "Check the backend setup in apps/api/ and ensure it's properly configured to run on http://127.0.0.1:8090",
+        "priority": "CRITICAL"
+      },
+      {
+        "issue": "No tests are being executed",
+        "evidence": "Tests passed: 0, Tests failed: 0",
+        "fix": "Add test cases in the backend (apps/api/) and ensure they can be run with pytest. Fix any syntax errors in the test command.",
+        "priority": "CRITICAL"
+      },
+      {
+        "issue": "No evidence of Airia platform integration beyond README mention",
+        "evidence": "No webhook or export functionality proven by tests",
+        "fix": "Implement real webhook/export functionality that Airia can call in the backend (apps/api/). Add test cases to verify this.",
+        "priority": "HIGH"
+      },
+      {
+        "issue": "No evidence of a working perceive\u2192decide\u2192act loop",
+        "evidence": "No endpoint tests proving autonomy",
+        "fix": "Implement and document an autonomous agent loop in the backend (apps/api/). Add test cases to verify this functionality.",
+        "priority": "HIGH"
+      }
+    ],
+    "copilot_task": "Implement a working perceive\u2192decide\u2192act loop in the backend (apps/api/) with at least one endpoint that demonstrates autonomy. Write test cases for this endpoint and ensure they pass. Also, implement real Airia platform integration with webhook/export functionality.",
+    "reached_ten": false
+  }
+}
