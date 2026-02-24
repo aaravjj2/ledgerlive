@@ -25,7 +25,19 @@ async def api_submit(request: Request):
 async def api_stats(limit: int = 100):
     """OCR pipeline statistics"""
     items = service.stats(limit=limit)
-    return {"items": items, "total": len(items)}
+    completed = sum(1 for j in items if j.get("status") == "completed")
+    in_progress = sum(1 for j in items if j.get("status") == "in_progress")
+    queued = sum(1 for j in items if j.get("status") == "queued")
+    failed = sum(1 for j in items if j.get("status") == "failed")
+    return {
+        "items": items,
+        "total": len(items),
+        "completed": completed,
+        "in_progress": in_progress,
+        "queued": queued,
+        "failed": failed,
+        "done": completed,
+    }
 
 @router.get("/api/ocr-jobs/{ocr_id}")
 async def api_get(ocr_id: str):

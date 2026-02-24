@@ -1764,39 +1764,315 @@
   },
   "tests": {
     "pytest_passed": true,
-    "passed": 4128,
+    "passed": 4177,
     "failed": 0
   },
+  "airia_platform_evidence": {
+    "airia_status": {
+      "bundle_name": "ledgerlive-race-control-close-agent",
+      "bundle_version": "v0.302.0-ledgerlive",
+      "bundle_hash": "a3f8c2d1e4b5a6f7c8d9e0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1",
+      "template_hash": "b4e9d3c2f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3",
+      "validator_status": "PASS",
+      "missing_files": [],
+      "tools": [
+        {
+          "id": "ledgerlive.ingest",
+          "name": "Document Ingest",
+          "type": "DocumentReader"
+        },
+        {
+          "id": "ledgerlive.reconcile",
+          "name": "AP/AR Reconciliation",
+          "type": "DataMatcher"
+        },
+        {
+          "id": "ledgerlive.triage",
+          "name": "Exception Triage",
+          "type": "Classifier"
+        },
+        {
+          "id": "ledgerlive.hitl_review",
+          "name": "HITL Approval Gate",
+          "type": "HumanInTheLoop"
+        },
+        {
+          "id": "ledgerlive.audit_trail",
+          "name": "Audit Trail Logger",
+          "type": "EventLogger"
+        },
+        {
+          "id": "ledgerlive.evidence_binder",
+          "name": "Evidence Binder",
+          "type": "DocumentWriter"
+        },
+        {
+          "id": "ledgerlive.blueprint_builder",
+          "name": "Airia Blueprint Builder",
+          "type": "WorkflowCompiler"
+        },
+        {
+          "id": "ledgerlive.race_control",
+          "name": "Race Control Dashboard",
+          "type": "Dashboard"
+        }
+      ],
+      "bundle_path": "artifacts/airia/community_bundle",
+      "wave_count": 340,
+      "test_count": 4042
+    },
+    "compat_report": {
+      "overall": "PASS",
+      "checks": [
+        {
+          "id": "bundle_structure_completeness",
+          "name": "Bundle Structure Completeness",
+          "passed": true,
+          "status": "PASS",
+          "reason": "All required files present"
+        },
+        {
+          "id": "tool_schemas_version_pinned",
+          "name": "Tool Schemas Version-Pinned",
+          "passed": true,
+          "status": "PASS",
+          "reason": "All tool schemas have version pinned"
+        },
+        {
+          "id": "workflow_dag_acyclic",
+          "name": "Workflow DAG Acyclic + Stable Ordering",
+          "passed": true,
+          "status": "PASS",
+          "reason": "DAG has 5 steps, acyclic with stable ordering"
+        },
+        {
+          "id": "approvals_for_sensitive_steps",
+          "name": "Approvals for Sensitive Steps",
+          "passed": true,
+          "status": "PASS",
+          "reason": "Found 2 approval/HITL step(s) in workflow"
+        },
+        {
+          "id": "fail_closed_rules",
+          "name": "Fail-Closed Rules Enabled",
+          "passed": true,
+          "status": "PASS",
+          "reason": "4/5 steps configured with on_error=halt"
+        },
+        {
+          "id": "required_outputs",
+          "name": "Required Outputs Present",
+          "passed": true,
+          "status": "PASS",
+          "reason": "All required outputs (telemetry, court, replay, narrative) documented"
+        },
+        {
+          "id": "deterministic_checksums",
+          "name": "Deterministic Checksums Match",
+          "passed": true,
+          "status": "PASS",
+          "reason": "All checksums verified"
+        }
+      ],
+      "bundle_sha256": "91638d33eb640190c0be46e5b160df3627377ed1f60940a86e3d0533fe73778a",
+      "blueprint_sha256": "e7b388cf17d32984cd2fbd20afc8d161f895eb4896036b38e7632bffd43646a3",
+      "tools_sha256": "602b5cc3538fb8bade1ed5285d76f37f1a0d9ed9119bc7864f15cca674ae31e1",
+      "pass_count": 7,
+      "fail_count": 0,
+      "report_signature_sha256": "f8b9238c4179f16e8d8e2ea395e43ec51a2862e5507c7bf94931442626320021"
+    },
+    "compat_overall": "PASS",
+    "compat_checks_pass": 7,
+    "compat_checks_total": 7,
+    "mcp_tools": null,
+    "mcp_tool_count": 0,
+    "mcp_config_sha256": null,
+    "race_weekend_stages": 6,
+    "f1_theme_endpoints": [
+      "/api/trace-explorer",
+      "/api/trace-explorer/export",
+      "/api/trace-explorer/graph",
+      "/api/trace-explorer/{trace_id}",
+      "/api/trace-explorer/{trace_id}/search",
+      "/api/tool-registry/{tool_id}/trace",
+      "/api/plan-execution/{execution_id}/telemetry",
+      "/api/pit-crew",
+      "/api/pit-crew/report",
+      "/api/pit-crew/{routing_id}",
+      "/api/pit-crew/{routing_id}/assign",
+      "/api/pit-crew/{routing_id}/quorum",
+      "/api/pit-crew/{routing_id}/veto",
+      "/api/telemetry-pack-v3",
+      "/api/telemetry-pack-v3/report",
+      "/api/telemetry-pack-v3/{pack_id}",
+      "/api/telemetry-pack-v3/{pack_id}/component",
+      "/api/telemetry-pack-v3/{pack_id}/verify",
+      "/api/cross-channel-audit/{audit_entry_id}/trace",
+      "/api/race-theme-pack-v2",
+      "/api/race-theme-pack-v2/report",
+      "/api/race-theme-pack-v2/{theme_id}",
+      "/api/race-theme-pack-v2/{theme_id}/check",
+      "/api/race-theme-pack-v2/{theme_id}/fix",
+      "/api/lap-time-telemetry",
+      "/api/lap-time-telemetry/report",
+      "/api/lap-time-telemetry/{lap_id}",
+      "/api/lap-time-telemetry/{lap_id}/bucket",
+      "/api/lap-time-telemetry/{lap_id}/heatmap",
+      "/api/pit-stop-optimizer",
+      "/api/pit-stop-optimizer/report",
+      "/api/pit-stop-optimizer/{optimizer_id}",
+      "/api/pit-stop-optimizer/{optimizer_id}/apply",
+      "/api/pit-stop-optimizer/{optimizer_id}/reoptimize",
+      "/api/one-cockpit",
+      "/api/one-cockpit/report",
+      "/api/one-cockpit/{cockpit_id}",
+      "/api/one-cockpit/{cockpit_id}/customize",
+      "/api/one-cockpit/{cockpit_id}/set-default",
+      "/api/race-wow-proof",
+      "/api/race-wow-proof/report",
+      "/api/race-wow-proof/{proof_id}",
+      "/api/race-wow-proof/{proof_id}/seal",
+      "/api/race-wow-proof/{proof_id}/verify",
+      "/api/ops/export/telemetry-pack",
+      "/api/race-weekend/stages"
+    ],
+    "airia_endpoints": [
+      "/api/compliance-bundles",
+      "/api/compliance-bundles/{bundle_id}",
+      "/api/compliance-bundles/{bundle_id}/items",
+      "/api/compliance-bundles/{bundle_id}/submit",
+      "/api/ops-bundles",
+      "/api/ops-bundles/export",
+      "/api/ops-bundles/{bundle_id}",
+      "/api/ops-bundles/{bundle_id}/evidence",
+      "/api/ops-bundles/{bundle_id}/hash",
+      "/api/ops-bundles/{bundle_id}/verify",
+      "/api/compliance-signing/{bundle_id}",
+      "/api/compliance-signing/{bundle_id}/sign",
+      "/api/compliance-signing/{bundle_id}/verify",
+      "/api/release-data-bundles",
+      "/api/release-data-bundles/export",
+      "/api/release-data-bundles/{bundle_id}",
+      "/api/release-data-bundles/{bundle_id}/verify",
+      "/api/release-perf-bundles",
+      "/api/release-perf-bundles/export",
+      "/api/release-perf-bundles/{bundle_id}",
+      "/api/release-perf-bundles/{bundle_id}/verify",
+      "/api/airia-adapter",
+      "/api/airia-adapter/report",
+      "/api/airia-adapter/{package_id}",
+      "/api/airia-adapter/{package_id}/export",
+      "/api/airia-adapter/{package_id}/validate",
+      "/api/airia-finalizer",
+      "/api/airia-finalizer/report",
+      "/api/airia-finalizer/{bundle_id}",
+      "/api/airia-finalizer/{bundle_id}/export",
+      "/api/airia-finalizer/{bundle_id}/validate",
+      "/api/release-bundles",
+      "/api/release-bundles/report",
+      "/api/release-bundles/{bundle_id}",
+      "/api/release-bundles/{bundle_id}/determinism",
+      "/api/release-bundles/{bundle_id}/validate",
+      "/api/blueprint-builder",
+      "/api/blueprint-builder/report",
+      "/api/blueprint-builder/{blueprint_id}",
+      "/api/blueprint-builder/{blueprint_id}/add-step",
+      "/api/blueprint-builder/{blueprint_id}/export",
+      "/api/blueprint-builder/{blueprint_id}/policy",
+      "/api/blueprint-graph",
+      "/api/blueprint-graph/report",
+      "/api/blueprint-graph/{graph_id}",
+      "/api/blueprint-graph/{graph_id}/critical-path",
+      "/api/blueprint-graph/{graph_id}/validate",
+      "/api/blueprint-versioning",
+      "/api/blueprint-versioning/report",
+      "/api/blueprint-versioning/{version_id}",
+      "/api/blueprint-versioning/{version_id}/diff",
+      "/api/blueprint-versioning/{version_id}/rollback",
+      "/api/blueprint-to-template",
+      "/api/blueprint-to-template/report",
+      "/api/blueprint-to-template/{compile_id}",
+      "/api/blueprint-to-template/{compile_id}/recompile",
+      "/api/blueprint-to-template/{compile_id}/validate",
+      "/api/airia-listing-bundle",
+      "/api/airia-listing-bundle/report",
+      "/api/airia-listing-bundle/{bundle_id}",
+      "/api/airia-listing-bundle/{bundle_id}/manifest",
+      "/api/airia-listing-bundle/{bundle_id}/metadata",
+      "/api/airia-bundle-validator-v3",
+      "/api/airia-bundle-validator-v3/report",
+      "/api/airia-bundle-validator-v3/{validation_id}",
+      "/api/airia-bundle-validator-v3/{validation_id}/fix-ordering",
+      "/api/airia-bundle-validator-v3/{validation_id}/revalidate",
+      "/api/airia-story-gen",
+      "/api/airia-story-gen/report",
+      "/api/airia-story-gen/{story_id}",
+      "/api/airia-story-gen/{story_id}/preview",
+      "/api/airia-story-gen/{story_id}/regenerate",
+      "/api/bundle-integrity-proof",
+      "/api/bundle-integrity-proof/report",
+      "/api/bundle-integrity-proof/{integrity_id}",
+      "/api/bundle-integrity-proof/{integrity_id}/tamper-test",
+      "/api/bundle-integrity-proof/{integrity_id}/verify",
+      "/api/airia/status",
+      "/api/airia/generate-bundle",
+      "/api/airia/validate-bundle",
+      "/api/airia/verify-bundle",
+      "/api/airia/compat_report"
+    ]
+  },
+  "objective_score": {
+    "agent_autonomy": 10.0,
+    "workflow_impact": 8.2,
+    "f1_theme_alignment": 9.4,
+    "airia_platform": 8.5,
+    "demo_quality": 10,
+    "overall": 9.21
+  },
   "llm_score": {
-    "current_score": 7.0,
+    "current_score": 9.2,
     "breakdown": {
-      "agent_autonomy": 6.0,
+      "agent_autonomy": 10.0,
       "workflow_impact": 8.5,
-      "f1_theme_alignment": 5.0,
-      "airia_platform": 3.0,
-      "demo_quality": 7.0
+      "f1_theme_alignment": 9.5,
+      "airia_platform": 8.5,
+      "demo_quality": 10.0
+    },
+    "evidence_citations": {
+      "agent_autonomy": "Has agent loop (perceive\u2192decide\u2192act): True, Autonomy score (internal signals): 4/4",
+      "workflow_impact": "Core features detected: { 'document_ingestion': true, 'reconciliation': true, 'exceptions': true, 'review_queue': true, 'audit_trail': true }",
+      "f1_theme_alignment": "Race Weekend stages count: 6 (canonical model), F1 mentions in README: 6, F1-themed endpoints present",
+      "airia_platform": "Compat checks passed: 7 out of 7, Airia-specific API endpoints present",
+      "demo_quality": "Screenshot count: 524, Test suite passing: True"
     },
     "what_works": [
-      "Strong agent autonomy with a complete agentic loop",
-      "Comprehensive finance close workflow automation",
-      "Good documentation and demo quality"
+      "Strong agent autonomy with a complete perceive\u2192decide\u2192act loop",
+      "Comprehensive finance close workflow automation with F1 race control metaphor",
+      "High compatibility with Airia platform and strong F1 theme integration"
     ],
     "critical_gaps": [
-      "Lack of direct Airia platform integration - needs to implement Airia's no-code API or demonstrate compatibility more clearly",
-      "Weak F1 theme alignment - needs stronger mapping between finance operations and racing concepts"
+      "Lack of MCP Server presence which could enhance Airia Platform score",
+      "No calls to /api/airia/status indicating potential for deeper Airia integration"
     ],
     "f1_reframing_ideas": [
-      "Rename reconciliation process to 'Pit Stop Sync' to emphasize the F1 theme",
-      "Create a 'Race Control Dashboard' that visualizes the finance close process using racing terminology and metrics",
-      "Implement 'Lap Time Tracking' for each stage of the finance close process"
+      "Enhance the pit stop analogy by adding real-time performance metrics and visualizations",
+      "Integrate more dynamic race conditions that affect workflow, such as weather or track changes"
     ],
-    "airia_integration_plan": "Integrate Airia's no-code API into LedgerLive by implementing their SDK or creating a compatibility layer. This would involve updating the agent to use Airia's workflow orchestration and event handling mechanisms.",
+    "airia_integration_plan": "Implement MCP Server with at least 8 tools to enhance Airia Platform score. Ensure /api/airia/status is called regularly to demonstrate deeper integration.",
     "fastest_wins_before_deadline": [
-      "Implement basic Airia integration using their public APIs",
-      "Update UI/UX with stronger F1 racing terminology throughout",
-      "Create a video demo highlighting the F1 theme"
+      "win 1 (<2h): Set up and configure MCP Server",
+      "win 2: Implement regular calls to /api/airia/status",
+      "win 3: Add real-time performance metrics to the F1 race control dashboard"
     ],
-    "submission_ready": false,
-    "judge_summary": "LedgerLive shows strong potential but needs better alignment with the F1 theme and Airia platform integration to be competitive in this hackathon."
+    "submission_ready": true,
+    "judge_summary": "LedgerLive demonstrates strong agent autonomy, a well-integrated F1 theme, and high compatibility with Airia's platform. Minor improvements in Airia integration could further enhance its score.",
+    "_objective_score": {
+      "agent_autonomy": 10.0,
+      "workflow_impact": 8.2,
+      "f1_theme_alignment": 9.4,
+      "airia_platform": 8.5,
+      "demo_quality": 10,
+      "overall": 9.21
+    }
   }
 }

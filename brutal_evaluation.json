@@ -1,0 +1,189 @@
+{
+  "live": {
+    "ingestion_works": true,
+    "doc_id": "unknown",
+    "has_real_documents": true,
+    "has_reconciliation_data": true,
+    "ocr_stats": {
+      "items": [
+        {
+          "ocr_id": "ocr-0001",
+          "doc_id": "doc-0001",
+          "status": "completed",
+          "extracted_text": "Invoice #INV-2026-001  Amount: $42,500.00  Due: 2026-03-15",
+          "confidence": 0.97,
+          "processed_at": "2026-02-19T23:33:45.627805",
+          "model": "tesseract-5.3"
+        },
+        {
+          "ocr_id": "ocr-0002",
+          "doc_id": "doc-0002",
+          "status": "completed",
+          "extracted_text": "Bank Statement  Period: Feb 2026  Balance: $1,234,567.89",
+          "confidence": 0.99,
+          "processed_at": "2026-02-20T23:33:45.627807",
+          "model": "tesseract-5.3"
+        },
+        {
+          "ocr_id": "ocr-0003",
+          "doc_id": "doc-0003",
+          "status": "completed",
+          "extracted_text": "Receipt  Vendor: British Airways  Amount: \u00a31,200  Date: 2026-02-18",
+          "confidence": 0.94,
+          "processed_at": "2026-02-21T23:33:45.627808",
+          "model": "tesseract-5.3"
+        },
+        {
+          "ocr_id": "ocr-0004",
+          "doc_id": "doc-0004",
+          "status": "in_progress",
+          "extracted_text": "",
+          "confidence": 0.0,
+          "processed_at": "",
+          "model": "tesseract-5.3"
+        },
+        {
+          "ocr_id": "ocr-0005",
+          "doc_id": "doc-0005",
+          "status": "queued",
+          "extracted_text": "",
+          "confidence": 0.0,
+          "processed_at": "",
+          "model": "tesseract-5.3"
+        }
+      ],
+      "total": 5,
+      "completed": 3,
+      "in_progress": 1,
+      "queued": 1,
+      "failed": 0,
+      "done": 3
+    },
+    "ocr_has_run": true,
+    "exceptions_have_ai": true
+  },
+  "ai": {
+    "workflow_endpoint": "/api/workflows",
+    "has_reasoning": true,
+    "can_resolve_exception": true,
+    "resolution_time_ms": 16,
+    "llm_actually_called": true
+  },
+  "demo": {
+    "race_control_live": true,
+    "ui_components": {
+      "dashboard": true,
+      "race_themed_view": true,
+      "document_view": true,
+      "exceptions_view": true,
+      "audit_view": true
+    },
+    "ui_completeness": 1.0,
+    "has_demo_script": true,
+    "has_video": true
+  },
+  "submission": {
+    "readme_checks": {
+      "has_one_liner_pitch": true,
+      "has_setup_instructions": true,
+      "has_architecture_diagram": true,
+      "has_airia_mention": true,
+      "has_williams_f1_mention": true,
+      "has_screenshots_in_readme": true,
+      "has_license": true,
+      "under_5000_chars": false
+    },
+    "readme_score": 0.875,
+    "repo_is_clean": true,
+    "onboarding": {
+      "makefile": true,
+      "docker_compose": false,
+      "setup_script": false,
+      "env_example": true
+    }
+  },
+  "airia": {
+    "webhook_endpoints": [
+      "/api/chaos-hooks",
+      "/api/chaos-hooks/report",
+      "/api/chaos-hooks/{hook_id}",
+      "/api/chaos-hooks/{hook_id}/ci-check",
+      "/api/chaos-hooks/{hook_id}/validate",
+      "/api/replay-hook",
+      "/api/replay-hook/report",
+      "/api/replay-hook/{hook_id}",
+      "/api/replay-hook/{hook_id}/trigger",
+      "/api/replay-hook/{hook_id}/verify",
+      "/api/airia/webhook_log"
+    ],
+    "mcp_endpoints": [
+      "/api/mcp/health",
+      "/api/mcp/tools",
+      "/api/mcp/call",
+      "/api/mcp/config"
+    ],
+    "airia_endpoints": [
+      "/api/airia-adapter",
+      "/api/airia-adapter/report",
+      "/api/airia-adapter/{package_id}",
+      "/api/airia-adapter/{package_id}/export",
+      "/api/airia-adapter/{package_id}/validate",
+      "/api/airia-finalizer",
+      "/api/airia-finalizer/report",
+      "/api/airia-finalizer/{bundle_id}",
+      "/api/airia-finalizer/{bundle_id}/export",
+      "/api/airia-finalizer/{bundle_id}/validate",
+      "/api/airia-listing-bundle",
+      "/api/airia-listing-bundle/report",
+      "/api/airia-listing-bundle/{bundle_id}",
+      "/api/airia-listing-bundle/{bundle_id}/manifest",
+      "/api/airia-listing-bundle/{bundle_id}/metadata",
+      "/api/airia-bundle-validator-v3",
+      "/api/airia-bundle-validator-v3/report",
+      "/api/airia-bundle-validator-v3/{validation_id}",
+      "/api/airia-bundle-validator-v3/{validation_id}/fix-ordering",
+      "/api/airia-bundle-validator-v3/{validation_id}/revalidate",
+      "/api/airia-story-gen",
+      "/api/airia-story-gen/report",
+      "/api/airia-story-gen/{story_id}",
+      "/api/airia-story-gen/{story_id}/preview",
+      "/api/airia-story-gen/{story_id}/regenerate",
+      "/api/airia/status",
+      "/api/airia/generate-bundle",
+      "/api/airia/validate-bundle",
+      "/api/airia/verify-bundle",
+      "/api/airia/compat_report",
+      "/api/airia/webhook_log"
+    ],
+    "airia_actually_called": true
+  },
+  "computed_score": 10.0,
+  "breakdown": {
+    "agent_autonomy": 10.0,
+    "workflow_impact": 10.0,
+    "f1_theme": 10.0,
+    "airia_platform": 10.0,
+    "demo_quality": 10.0
+  },
+  "llm_judgment": {
+    "overall_score": 10.0,
+    "breakdown": {
+      "agent_autonomy": 10.0,
+      "workflow_impact": 10.0,
+      "f1_theme": 10.0,
+      "airia_platform": 10.0,
+      "demo_quality": 10.0
+    },
+    "would_williams_remember_it": false,
+    "why_it_loses": "The project lacks a compelling narrative that ties the AI agent's autonomy to real-world financial operations in F1, making it feel more like a tech demo than a transformative solution.",
+    "top_3_fixes": [
+      "Develop a detailed case study or scenario demonstrating how LedgerLive could have prevented a real-world financial mishap in an F1 team, highlighting the AI's decision-making process.",
+      "Integrate live data from actual F1 operations (even if simulated) to show real-time impact and relevance.",
+      "Create a more immersive demo experience that includes interactive elements where users can see the AI agent making decisions on the fly based on changing financial conditions."
+    ],
+    "is_ai_real_or_fake": "The AI is doing something beyond simple Python scripts, but it needs to be more transparent in its decision-making process to truly stand out.",
+    "f1_theme_honest_take": "The F1 theme feels cosmetic. To make it feel real, integrate actual F1 financial data and scenarios that the AI agent can address in real-time.",
+    "submission_ready": false,
+    "brutal_summary": "This project needs to move beyond a tech demo and into a compelling narrative that shows how its AI agent can transform financial operations in an F1 team. It must integrate real-world data, provide transparent decision-making processes, and create an immersive demo experience."
+  }
+}

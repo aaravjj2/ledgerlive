@@ -1,9 +1,19 @@
-# LedgerLive Race Control Close Agent (Airia / Williams F1 Hackathon)
+# LedgerLive — AI Finance Close Agent
+
+> **One-liner pitch:** LedgerLive is an autonomous AI agent that closes your books like a Williams F1 pit crew closes a race — every document ingested, every mismatch triaged, every decision explained, every artifact sealed.
 
 > The finance close process is a race. LedgerLive operates it like the Williams F1 pit wall:
 > lanes hold position, checkpoints gate progress, incidents surface in real-time, approvals
 > gate the car through scrutineering, and every tool trace becomes the telemetry pack
 > the stewards audit. No LLM keys required — fully deterministic in DEMO mode.
+
+## Screenshots
+
+![Race Control Dashboard](artifacts/debug/test-07-race-control.png)
+*Race Control: live lanes, scoreboard, and incident tracking during a close cycle.*
+
+![Dashboard Overview](artifacts/debug/test-01-dashboard.png)
+*Dashboard: Pit Lane overview showing documents, OCR, reconciliations, and exceptions at a glance.*
 
 ## Project Identity
 

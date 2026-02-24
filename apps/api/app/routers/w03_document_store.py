@@ -2,7 +2,10 @@
 
 PROJECT_ID: LEDGERLIVE
 """
-from fastapi import APIRouter, HTTPException, Request
+import hashlib
+import datetime as dt
+from fastapi import APIRouter, HTTPException, Request, UploadFile, File, Form
+from typing import Optional
 
 from app.services.w03_document_store import service
 
@@ -16,8 +19,25 @@ async def api_list(limit: int = 100):
 
 @router.post("/api/documents", status_code=201)
 async def api_upload(request: Request):
-    """Upload a document"""
-    data = await request.json()
+    """Upload a document — accepts JSON body or multipart form data."""
+    content_type = request.headers.get("content-type", "")
+    if "multipart" in content_type:
+        form = await request.form()
+        file_field = form.get("file")
+        name = form.get("name", "uploaded_file")
+        file_bytes = b""
+        if file_field and hasattr(file_field, "read"):
+            file_bytes = await file_field.read()
+        data = {
+            "filename": name if isinstance(name, str) else str(name),
+            "content_hash": hashlib.sha256(file_bytes).hexdigest()[:16],
+            "mime_type": getattr(file_field, "content_type", "application/octet-stream") if file_field else "application/octet-stream",
+            "size_bytes": len(file_bytes),
+            "uploaded_at": dt.datetime.utcnow().isoformat(),
+            "entity_id": "upload",
+        }
+    else:
+        data = await request.json()
     item = service.upload(data)
     return item
 

@@ -11,7 +11,8 @@ MILESTONE ?= golden-e2e
 
 .PHONY: dev demo test e2e proof release proof-index gates \
         e2e-mcp e2e-mcp-twice e2e\:mcp\:twice \
-        airia\:bundle airia\:validate airia\:verify airia\:compat proof-airia proof-airia-score
+        airia\:bundle airia\:validate airia\:verify airia\:compat proof-airia proof-airia-score \
+        airia\:loop
 
 # ── Dev ──────────────────────────────────────
 dev:
@@ -83,3 +84,7 @@ proof-index:
 # ── Release ──────────────────────────────────
 release:
 	@echo "Run: git tag v$$(cat VERSION) && git push origin v$$(cat VERSION)"
+
+# ── Airia Strict Judge Loop ──────────────────
+airia\:loop:
+	powershell -ExecutionPolicy Bypass -File tools/airia_loop/run_strict_loop.ps1

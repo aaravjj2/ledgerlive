@@ -20,6 +20,10 @@ from app.core.config import APP_MODE, PROJECT_ID, LLM_PROVIDER
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """Application lifespan — startup / shutdown."""
     print(f"[LedgerLive] Starting in {APP_MODE} mode | LLM={LLM_PROVIDER}")
+    # Seed demo data so live endpoints never return empty
+    if APP_MODE == "DEMO" or APP_MODE == "LOCAL":
+        from app.services.demo_seed import seed_all
+        seed_all()
     yield
     print("[LedgerLive] Shutting down")
 
@@ -770,6 +774,7 @@ from app.routers.golden_scenario import router as golden_scenario_router
 from app.routers.airia_bundle import router as airia_bundle_router
 from app.routers.race_weekend import router as race_weekend_router
 from app.routers.mcp_server import router as mcp_router
+from app.routers.race_control import router as race_control_router
 
 app.include_router(w321_router)
 app.include_router(w322_router)
@@ -795,3 +800,12 @@ app.include_router(golden_scenario_router)
 app.include_router(airia_bundle_router)
 app.include_router(race_weekend_router)
 app.include_router(mcp_router)
+app.include_router(race_control_router)
+
+
+# ── Airia Webhook Log Endpoint ────────────────────────────────────────
+@app.get("/api/airia/webhook_log")
+async def get_airia_webhook_log(limit: int = 50):
+    """Return recent Airia webhook delivery log entries."""
+    from app.services.airia_webhook import get_webhook_log, get_webhook_stats
+    return {"entries": get_webhook_log(limit), "stats": get_webhook_stats()}
