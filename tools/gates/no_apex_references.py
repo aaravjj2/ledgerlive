@@ -22,6 +22,8 @@ FORBIDDEN = [
 SKIP_DIRS = {".git", ".venv", "node_modules", "__pycache__", ".pytest_cache",
              "test-results", "playwright-report", "artifacts"}
 
+SKIP_FILES = {"package-lock.json", "pnpm-lock.yaml", "yarn.lock"}
+
 EXTENSIONS = {".py", ".ts", ".tsx", ".js", ".jsx", ".json", ".md", ".html",
               ".css", ".yaml", ".yml", ".toml", ".cfg", ".ini", ".sql", ".txt"}
 
@@ -35,6 +37,9 @@ def scan():
         for fname in filenames:
             fpath = pathlib.Path(dirpath) / fname
             if fpath.suffix.lower() not in EXTENSIONS:
+                continue
+            # Skip lock files (contain base64 hashes that cause false positives)
+            if fpath.name in SKIP_FILES:
                 continue
             # Skip this gate file itself
             if fpath.resolve() == pathlib.Path(__file__).resolve():

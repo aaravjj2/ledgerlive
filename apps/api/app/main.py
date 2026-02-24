@@ -535,3 +535,45 @@ app.include_router(w217_router)
 app.include_router(w218_router)
 app.include_router(w219_router)
 app.include_router(w220_router)
+
+from app.routers.w221_close_calendar import router as w221_router
+from app.routers.w222_task_dag import router as w222_router
+from app.routers.w223_dependency_resolver import router as w223_router
+from app.routers.w224_sla_monitor import router as w224_router
+from app.routers.w225_blocker_tracker import router as w225_router
+from app.routers.w226_handoff_protocol import router as w226_router
+from app.routers.w227_progress_aggregator import router as w227_router
+from app.routers.w228_close_checkpoint import router as w228_router
+from app.routers.w229_rc_state_machine import router as w229_router
+from app.routers.w230_lane_status import router as w230_router
+from app.routers.w231_critical_path import router as w231_router
+from app.routers.w232_live_scoreboard import router as w232_router
+from app.routers.w233_incident_log import router as w233_router
+from app.routers.w234_control_export import router as w234_router
+from app.routers.w235_rc_rules import router as w235_router
+from app.routers.w236_rc_notifications import router as w236_router
+from app.routers.w237_rc_playbook import router as w237_router
+from app.routers.w238_rc_dry_run import router as w238_router
+from app.routers.w239_rc_approval import router as w239_router
+from app.routers.w240_rc_proof_pack import router as w240_router
+
+app.include_router(w221_router)
+app.include_router(w222_router)
+app.include_router(w223_router)
+app.include_router(w224_router)
+app.include_router(w225_router)
+app.include_router(w226_router)
+app.include_router(w227_router)
+app.include_router(w228_router)
+app.include_router(w229_router)
+app.include_router(w230_router)
+app.include_router(w231_router)
+app.include_router(w232_router)
+app.include_router(w233_router)
+app.include_router(w234_router)
+app.include_router(w235_router)
+app.include_router(w236_router)
+app.include_router(w237_router)
+app.include_router(w238_router)
+app.include_router(w239_router)
+app.include_router(w240_router)
