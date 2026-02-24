@@ -7,12 +7,12 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Waves | 240 |
-| Total Tests | 2803 |
-| Total Routes | 1440+ |
+| Total Waves | 300 |
+| Total Tests | 3539 |
+| Total Routes | 1800+ |
 | Gates | 2/2 PASS |
-| Tags | v0.0.0-ledgerlive-purged → v0.240.0-ledgerlive |
-| Proof Pack | `artifacts/proof/race-control/` |
+| Tags | v0.0.0-ledgerlive-purged → v0.300.0-ledgerlive |
+| Proof Pack | `artifacts/proof/w241-w300/` |
 
 ---
 
@@ -418,6 +418,96 @@
 | W239 | v0.239.0-ledgerlive | rc_approval | RC Approval Chain v1 |
 | W240 | v0.240.0-ledgerlive | rc_proof_pack | RC Proof Pack v1 |
 
+## Phase 26: Agent-Driven Race Control (Waves 241-250)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W241 | v0.241.0-ledgerlive | next_actions_engine | Next Actions Engine v1 |
+| W242 | v0.242.0-ledgerlive | plan_preview | Plan Preview v1 |
+| W243 | v0.243.0-ledgerlive | verifier_gate_ui | Verifier Gate UI v1 |
+| W244 | v0.244.0-ledgerlive | execute_from_plan | Execute from Plan v1 |
+| W245 | v0.245.0-ledgerlive | rc_why_dossier | RC Why Dossier v1 |
+| W246 | v0.246.0-ledgerlive | fail_closed_escalation | Fail-Closed Escalation v1 |
+| W247 | v0.247.0-ledgerlive | pit_crew_routing | Pit Crew Routing v1 |
+| W248 | v0.248.0-ledgerlive | channel_action_int | Channel Action Integration v1 |
+| W249 | v0.249.0-ledgerlive | replay_hook | Replay Hook v1 |
+| W250 | v0.250.0-ledgerlive | agent_rc_proof | Agent RC Proof v1 |
+
+## Phase 27: Security Posture First-Class (Waves 251-260)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W251 | v0.251.0-ledgerlive | policy_events | Policy Events v1 |
+| W252 | v0.252.0-ledgerlive | security_timeline | Security Timeline v1 |
+| W253 | v0.253.0-ledgerlive | tool_scope_matrix | Tool Scope Matrix v1 |
+| W254 | v0.254.0-ledgerlive | exfil_detector_v2 | Exfil Detector v2 |
+| W255 | v0.255.0-ledgerlive | safe_fix_path | Safe Fix Path v1 |
+| W256 | v0.256.0-ledgerlive | audit_integrity_badge | Audit Integrity Badge v1 |
+| W257 | v0.257.0-ledgerlive | tamper_simulation | Tamper Simulation v1 |
+| W258 | v0.258.0-ledgerlive | security_posture_pack | Security Posture Pack v1 |
+| W259 | v0.259.0-ledgerlive | adversarial_corpus_v2 | Adversarial Corpus v2 |
+| W260 | v0.260.0-ledgerlive | security_proof | Security Proof v1 |
+
+## Phase 28: Replay / Court / Telemetry as Product (Waves 261-270)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W261 | v0.261.0-ledgerlive | replay_viewer_v3 | Replay Viewer v3 |
+| W262 | v0.262.0-ledgerlive | court_pack_v4 | Court Pack v4 |
+| W263 | v0.263.0-ledgerlive | telemetry_pack_v3 | Telemetry Pack v3 |
+| W264 | v0.264.0-ledgerlive | reproduce_close | Reproduce & Close v1 |
+| W265 | v0.265.0-ledgerlive | replay_regression | Replay Regression v1 |
+| W266 | v0.266.0-ledgerlive | narrative_export_v2 | Narrative Export v2 |
+| W267 | v0.267.0-ledgerlive | audit_qa_pack | Audit QA Pack v1 |
+| W268 | v0.268.0-ledgerlive | replay_performance | Replay Performance v1 |
+| W269 | v0.269.0-ledgerlive | rc_gate_extension | RC Gate Extension v1 |
+| W270 | v0.270.0-ledgerlive | replay_court_proof | Replay Court Proof v1 |
+
+## Phase 29: Everywhere Surfaces (Waves 271-280)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W271 | v0.271.0-ledgerlive | email_inbox_v2 | Email Inbox v2 |
+| W272 | v0.272.0-ledgerlive | chat_workspace_v2 | Chat Workspace v2 |
+| W273 | v0.273.0-ledgerlive | browser_ext_v2 | Browser Extension v2 |
+| W274 | v0.274.0-ledgerlive | notification_hub_v4 | Notification Hub v4 |
+| W275 | v0.275.0-ledgerlive | cross_channel_audit | Cross Channel Audit v1 |
+| W276 | v0.276.0-ledgerlive | channel_reliability | Channel Reliability v1 |
+| W277 | v0.277.0-ledgerlive | rc_channel_actions | RC Channel Actions v1 |
+| W278 | v0.278.0-ledgerlive | collab_v3 | Collaboration v3 |
+| W279 | v0.279.0-ledgerlive | ops_pack_export | Ops Pack Export v1 |
+| W280 | v0.280.0-ledgerlive | everywhere_proof | Everywhere Proof v1 |
+
+## Phase 30: Enterprise Finance Power-Up (Waves 281-290)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W281 | v0.281.0-ledgerlive | payment_scheduling_v2 | Payment Scheduling v2 |
+| W282 | v0.282.0-ledgerlive | tie_out_engine_v2 | Tie-Out Engine v2 |
+| W283 | v0.283.0-ledgerlive | fraud_red_flag_v2 | Fraud Red Flag v2 |
+| W284 | v0.284.0-ledgerlive | controls_coverage_v2 | Controls Coverage v2 |
+| W285 | v0.285.0-ledgerlive | data_quality_gate_v2 | Data Quality Gate v2 |
+| W286 | v0.286.0-ledgerlive | multi_entity_v3 | Multi-Entity v3 |
+| W287 | v0.287.0-ledgerlive | fpa_insight_panel | FP&A Insight Panel v1 |
+| W288 | v0.288.0-ledgerlive | ml_impact_v4 | ML Impact v4 |
+| W289 | v0.289.0-ledgerlive | perf_budgets_v5 | Perf Budgets v5 |
+| W290 | v0.290.0-ledgerlive | finance_proof | Finance Proof v1 |
+
+## Phase 31: Final Hardening for Competition (Waves 291-300)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W291 | v0.291.0-ledgerlive | rc_gate_v3 | RC Gate v3 |
+| W292 | v0.292.0-ledgerlive | route_coverage_gate | Route Coverage Gate v1 |
+| W293 | v0.293.0-ledgerlive | determinism_super_gate | Determinism Super Gate v1 |
+| W294 | v0.294.0-ledgerlive | proof_of_proof | Proof of Proof v2 |
+| W295 | v0.295.0-ledgerlive | incident_simulator_v2 | Incident Simulator v2 |
+| W296 | v0.296.0-ledgerlive | self_healing_playbook | Self-Healing Playbook v1 |
+| W297 | v0.297.0-ledgerlive | doc_truth_gate | Doc Truth Gate v1 |
+| W298 | v0.298.0-ledgerlive | security_regression | Security Regression v1 |
+| W299 | v0.299.0-ledgerlive | perf_regression | Perf Regression v1 |
+| W300 | v0.300.0-ledgerlive | final_rc_proof | Final RC Proof v1 |
+
 ---
 
 ## Gate Results
@@ -429,7 +519,7 @@
 
 ## Determinism Note
 
-All 2803 tests are fully deterministic:
+All 3539 tests are fully deterministic:
 - In-memory stores reset via `autouse` fixtures before each test
 - No external network calls (gate-enforced)
 - No randomness without seeding (scenario engine uses fixed seeds)
