@@ -703,3 +703,87 @@ app.include_router(w297_router)
 app.include_router(w298_router)
 app.include_router(w299_router)
 app.include_router(w300_router)
+
+from app.routers.w301_blueprint_builder_v1 import router as w301_router
+from app.routers.w302_blueprint_builder_v2 import router as w302_router
+from app.routers.w303_blueprint_versioning import router as w303_router
+from app.routers.w304_generate_from_intent import router as w304_router
+from app.routers.w305_blueprint_to_template import router as w305_router
+from app.routers.w306_template_validator_v3 import router as w306_router
+from app.routers.w307_builder_e2e_suite import router as w307_router
+from app.routers.w308_builder_proof import router as w308_router
+from app.routers.w309_jira_adapter_v1 import router as w309_router
+from app.routers.w310_jira_cards_rc import router as w310_router
+from app.routers.w311_confluence_adapter_v1 import router as w311_router
+from app.routers.w312_confluence_templates import router as w312_router
+from app.routers.w313_atlassian_routing import router as w313_router
+from app.routers.w314_adapter_failure_sim import router as w314_router
+from app.routers.w315_atlassian_e2e_suite import router as w315_router
+from app.routers.w316_atlassian_proof import router as w316_router
+from app.routers.w317_airia_listing_bundle import router as w317_router
+from app.routers.w318_airia_bundle_validator_v3 import router as w318_router
+from app.routers.w319_airia_story_gen import router as w319_router
+from app.routers.w320_race_theme_pack_v2 import router as w320_router
+
+app.include_router(w301_router)
+app.include_router(w302_router)
+app.include_router(w303_router)
+app.include_router(w304_router)
+app.include_router(w305_router)
+app.include_router(w306_router)
+app.include_router(w307_router)
+app.include_router(w308_router)
+app.include_router(w309_router)
+app.include_router(w310_router)
+app.include_router(w311_router)
+app.include_router(w312_router)
+app.include_router(w313_router)
+app.include_router(w314_router)
+app.include_router(w315_router)
+app.include_router(w316_router)
+app.include_router(w317_router)
+app.include_router(w318_router)
+app.include_router(w319_router)
+app.include_router(w320_router)
+
+from app.routers.w321_bundle_integrity_proof import router as w321_router
+from app.routers.w322_readiness_e2e_suite import router as w322_router
+from app.routers.w323_readiness_dashboard import router as w323_router
+from app.routers.w324_readiness_proof import router as w324_router
+from app.routers.w325_data_classification_tiers import router as w325_router
+from app.routers.w326_tool_scope_diffing import router as w326_router
+from app.routers.w327_redaction_events_v1 import router as w327_router
+from app.routers.w328_security_scoreboard_v1 import router as w328_router
+from app.routers.w329_policy_regression_budgets import router as w329_router
+from app.routers.w330_adversarial_corpus_v3 import router as w330_router
+from app.routers.w331_security_e2e_suite import router as w331_router
+from app.routers.w332_security_gov_proof import router as w332_router
+from app.routers.w333_lap_time_telemetry import router as w333_router
+from app.routers.w334_productivity_roi import router as w334_router
+from app.routers.w335_pit_stop_optimizer import router as w335_router
+from app.routers.w336_one_cockpit import router as w336_router
+from app.routers.w337_unified_why_verify_v4 import router as w337_router
+from app.routers.w338_golden_scenario_gate import router as w338_router
+from app.routers.w339_final_rc_gate_v4 import router as w339_router
+from app.routers.w340_race_wow_proof import router as w340_router
+
+app.include_router(w321_router)
+app.include_router(w322_router)
+app.include_router(w323_router)
+app.include_router(w324_router)
+app.include_router(w325_router)
+app.include_router(w326_router)
+app.include_router(w327_router)
+app.include_router(w328_router)
+app.include_router(w329_router)
+app.include_router(w330_router)
+app.include_router(w331_router)
+app.include_router(w332_router)
+app.include_router(w333_router)
+app.include_router(w334_router)
+app.include_router(w335_router)
+app.include_router(w336_router)
+app.include_router(w337_router)
+app.include_router(w338_router)
+app.include_router(w339_router)
+app.include_router(w340_router)
