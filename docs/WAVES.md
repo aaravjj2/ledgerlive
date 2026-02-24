@@ -7,12 +7,12 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Waves | 220 |
-| Total Tests | 2558 |
-| Total Routes | 1312+ |
+| Total Waves | 240 |
+| Total Tests | 2803 |
+| Total Routes | 1440+ |
 | Gates | 2/2 PASS |
-| Tags | v0.0.0-ledgerlive-purged → v0.220.0-ledgerlive |
-| Proof Pack | `artifacts/proof/20260223155258-wavebase/` |
+| Tags | v0.0.0-ledgerlive-purged → v0.240.0-ledgerlive |
+| Proof Pack | `artifacts/proof/race-control/` |
 
 ---
 
@@ -383,6 +383,41 @@
 | W219 | v0.219.0-ledgerlive | checklist_verifier | Hackathon Checklist Auto-Verifier v1 |
 | W220 | v0.220.0-ledgerlive | submit_all_v3 | Submission Hardening v3 |
 
+## Phase 23: Close Orchestration Foundation (Waves 221-228)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W221 | v0.221.0-ledgerlive | close_calendar | Close Calendar Manager v1 |
+| W222 | v0.222.0-ledgerlive | task_dag | Task DAG Builder v1 |
+| W223 | v0.223.0-ledgerlive | dependency_resolver | Dependency Resolver v1 |
+| W224 | v0.224.0-ledgerlive | sla_monitor | SLA Monitor v1 |
+| W225 | v0.225.0-ledgerlive | blocker_tracker | Blocker Tracker v1 |
+| W226 | v0.226.0-ledgerlive | handoff_protocol | Handoff Protocol v1 |
+| W227 | v0.227.0-ledgerlive | progress_aggregator | Progress Aggregator v1 |
+| W228 | v0.228.0-ledgerlive | close_checkpoint | Close Checkpoint Manager v1 |
+
+## Phase 24: Race Control Dashboard (Waves 229-234)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W229 | v0.229.0-ledgerlive | rc_state_machine | Race Control State Machine v1 |
+| W230 | v0.230.0-ledgerlive | lane_status | Lane Status Board v1 |
+| W231 | v0.231.0-ledgerlive | critical_path | Critical Path Analyzer v1 |
+| W232 | v0.232.0-ledgerlive | live_scoreboard | Live Scoreboard v1 |
+| W233 | v0.233.0-ledgerlive | incident_log | Incident Log v1 |
+| W234 | v0.234.0-ledgerlive | control_export | Control Room Export v1 |
+
+## Phase 25: Race Control Integration & RC (Waves 235-240)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W235 | v0.235.0-ledgerlive | rc_rules | RC Automation Rules v1 |
+| W236 | v0.236.0-ledgerlive | rc_notifications | RC Notification Hub v1 |
+| W237 | v0.237.0-ledgerlive | rc_playbook | RC Playbook Engine v1 |
+| W238 | v0.238.0-ledgerlive | rc_dry_run | RC Dry Run Simulation v1 |
+| W239 | v0.239.0-ledgerlive | rc_approval | RC Approval Chain v1 |
+| W240 | v0.240.0-ledgerlive | rc_proof_pack | RC Proof Pack v1 |
+
 ---
 
 ## Gate Results
@@ -394,7 +429,7 @@
 
 ## Determinism Note
 
-All 2558 tests are fully deterministic:
+All 2803 tests are fully deterministic:
 - In-memory stores reset via `autouse` fixtures before each test
 - No external network calls (gate-enforced)
 - No randomness without seeding (scenario engine uses fixed seeds)
