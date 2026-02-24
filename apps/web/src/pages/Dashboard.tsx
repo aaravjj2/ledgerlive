@@ -33,7 +33,7 @@ export default function Dashboard() {
   ]
 
   return (
-    <div data-testid="page-dashboard">
+    <div data-testid="dashboard-page">
       <h1 className="text-2xl font-bold mb-1" data-testid="dashboard-title">Dashboard</h1>
       <p className="text-gray-500 mb-6" data-testid="dashboard-subtitle">Finance close overview and key metrics.</p>
 

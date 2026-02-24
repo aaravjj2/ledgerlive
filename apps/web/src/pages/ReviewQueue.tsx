@@ -28,7 +28,7 @@ export default function ReviewQueue() {
   }
 
   return (
-    <div data-testid="page-review">
+    <div data-testid="review-page">
       <div className="flex items-center justify-between mb-2">
         <h1 className="text-2xl font-bold" data-testid="review-title">Review Queue</h1>
         <span className="text-sm text-gray-500">{items.filter(i => i.status === 'pending').length} pending</span>

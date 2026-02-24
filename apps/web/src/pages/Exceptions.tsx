@@ -34,7 +34,7 @@ export default function Exceptions() {
   }
 
   return (
-    <div data-testid="page-exceptions">
+    <div data-testid="exceptions-page">
       <div className="flex items-center justify-between mb-2">
         <h1 className="text-2xl font-bold" data-testid="exceptions-title">Exceptions</h1>
         <span className="text-sm text-gray-500">{items.filter(i => i.status === 'open').length} open</span>

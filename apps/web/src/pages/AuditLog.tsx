@@ -14,7 +14,7 @@ export default function AuditLog() {
   useEffect(() => { load() }, [])
 
   return (
-    <div data-testid="page-audit">
+    <div data-testid="audit-page">
       <div className="flex items-center justify-between mb-2">
         <h1 className="text-2xl font-bold" data-testid="audit-title">Audit Log</h1>
         <button onClick={load} className="text-sm px-3 py-1 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">↻ Refresh</button>

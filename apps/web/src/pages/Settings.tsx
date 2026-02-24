@@ -30,7 +30,7 @@ export default function Settings() {
   ]
 
   return (
-    <div data-testid="page-settings">
+    <div data-testid="settings-page">
       <h1 className="text-2xl font-bold mb-1" data-testid="settings-title">Settings</h1>
       <p className="text-gray-500 mb-6" data-testid="settings-subtitle">System configuration and preferences.</p>
 

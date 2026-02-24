@@ -21,7 +21,7 @@ export default function Documents() {
   }
 
   return (
-    <div data-testid="page-documents">
+    <div data-testid="documents-page">
       <div className="flex items-center justify-between mb-2">
         <h1 className="text-2xl font-bold" data-testid="documents-title">Documents</h1>
         <button onClick={load} className="text-sm px-3 py-1 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">↻ Refresh</button>

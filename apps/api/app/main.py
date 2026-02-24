@@ -766,6 +766,7 @@ from app.routers.w337_unified_why_verify_v4 import router as w337_router
 from app.routers.w338_golden_scenario_gate import router as w338_router
 from app.routers.w339_final_rc_gate_v4 import router as w339_router
 from app.routers.w340_race_wow_proof import router as w340_router
+from app.routers.golden_scenario import router as golden_scenario_router
 
 app.include_router(w321_router)
 app.include_router(w322_router)
@@ -787,3 +788,4 @@ app.include_router(w337_router)
 app.include_router(w338_router)
 app.include_router(w339_router)
 app.include_router(w340_router)
+app.include_router(golden_scenario_router)

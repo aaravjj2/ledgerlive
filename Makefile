@@ -7,16 +7,23 @@ UVICORN := apps/api/.venv/Scripts/uvicorn.exe
 NPM     := npm
 NPX     := npx
 
-.PHONY: dev demo test e2e proof release proof-index gates
+MILESTONE ?= golden-e2e
+
+.PHONY: dev demo test e2e proof release proof-index gates \
+        e2e-mcp e2e-mcp-twice e2e\:mcp\:twice
 
 # ── Dev ──────────────────────────────────────
 dev:
 	cd apps/api && $(UVICORN) app.main:app --host 127.0.0.1 --port 8090 --reload &
 	cd apps/web && $(NPM) run dev
 
+# demo — starts API + vite preview on canonical ports (4173 + 8090)
 demo:
-	@echo "LedgerLive DEMO mode"
-	APP_MODE=LOCAL LLM_PROVIDER=DEMO cd apps/api && $(UVICORN) app.main:app --host 127.0.0.1 --port 8090
+	@echo "=== LedgerLive DEMO mode (API:8090  Web:4173) ==="
+	@echo "Starting API server..."
+	@start /B cmd /C "cd apps\api && set APP_MODE=LOCAL && set LLM_PROVIDER=DEMO && set SECRET_KEY=demo-secret && $(UVICORN) app.main:app --host 127.0.0.1 --port 8090"
+	@echo "Building and starting web preview..."
+	@cd apps/web && $(NPX) vite build --outDir dist && $(NPX) vite preview --host 127.0.0.1 --port 4173
 
 # ── Test ─────────────────────────────────────
 test:
@@ -29,6 +36,12 @@ e2e-mcp-twice:
 	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
 	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
 
+# Colon-variant alias — also validates API determinism after second run
+e2e\:mcp\:twice:
+	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
+	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
+	$(PYTHON) tools/gates/e2e_determinism_gate.py --api http://127.0.0.1:8090
+
 # ── Gates ────────────────────────────────────
 gates:
 	$(PYTHON) tools/gates/no_apex_references.py
@@ -36,7 +49,7 @@ gates:
 
 # ── Proof ────────────────────────────────────
 proof:
-	$(PYTHON) tools/proof/generate_proof_pack.py
+	$(PYTHON) tools/proof/generate_proof_pack.py --milestone=$(MILESTONE)
 
 proof-index:
 	@echo "Proof packs:" && dir /b artifacts\\proof 2>nul || echo "(none)"

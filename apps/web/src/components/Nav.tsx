@@ -15,7 +15,7 @@ const links = [
 export default function Nav() {
   return (
     <nav className="bg-indigo-700 text-white px-6 py-3 flex items-center gap-6 overflow-x-auto scrollbar-none" data-testid="nav-bar">
-      <Link to="/" className="font-bold text-lg mr-4 flex-shrink-0 hover:text-indigo-200 transition" data-testid="nav-brand">LedgerLive</Link>
+      <Link to="/" className="font-bold text-lg mr-4 flex-shrink-0 hover:text-indigo-200 transition" data-testid="app-logo">LedgerLive</Link>
       {links.map((l) => (
         <NavLink
           key={l.to}
