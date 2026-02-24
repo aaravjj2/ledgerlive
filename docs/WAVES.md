@@ -7,12 +7,12 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Waves | 300 |
-| Total Tests | 3539 |
-| Total Routes | 1800+ |
+| Total Waves | 340 |
+| Total Tests | 4021 |
+| Total Routes | 2040+ |
 | Gates | 2/2 PASS |
-| Tags | v0.0.0-ledgerlive-purged → v0.300.0-ledgerlive |
-| Proof Pack | `artifacts/proof/w241-w300/` |
+| Tags | v0.0.0-ledgerlive-purged → v0.340.0-ledgerlive |
+| Proof Pack | `artifacts/proof/w301-w340/` |
 
 ---
 
@@ -508,6 +508,71 @@
 | W299 | v0.299.0-ledgerlive | perf_regression | Perf Regression v1 |
 | W300 | v0.300.0-ledgerlive | final_rc_proof | Final RC Proof v1 |
 
+## Phase 32: No-Code Blueprint Builder (Waves 301-308)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W301 | v0.301.0-ledgerlive | blueprint_builder_v1 | Blueprint Builder v1 |
+| W302 | v0.302.0-ledgerlive | blueprint_builder_v2 | Blueprint Builder v2 |
+| W303 | v0.303.0-ledgerlive | blueprint_versioning | Blueprint Versioning v1 |
+| W304 | v0.304.0-ledgerlive | generate_from_intent | Generate from Intent v1 |
+| W305 | v0.305.0-ledgerlive | blueprint_to_template | Blueprint-to-Template Compiler v1 |
+| W306 | v0.306.0-ledgerlive | template_validator_v3 | Template Validator v3 |
+| W307 | v0.307.0-ledgerlive | builder_e2e_suite | Builder E2E Suite v1 |
+| W308 | v0.308.0-ledgerlive | builder_proof | Builder Proof Wave v1 |
+
+## Phase 33: Atlassian Workflow Integration (Waves 309-316)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W309 | v0.309.0-ledgerlive | jira_adapter_v1 | Jira Adapter v1 |
+| W310 | v0.310.0-ledgerlive | jira_cards_rc | Jira Cards in Race Control v1 |
+| W311 | v0.311.0-ledgerlive | confluence_adapter_v1 | Confluence Adapter v1 |
+| W312 | v0.312.0-ledgerlive | confluence_templates | Confluence Page Templates v1 |
+| W313 | v0.313.0-ledgerlive | atlassian_routing | Atlassian Routing Rules v1 |
+| W314 | v0.314.0-ledgerlive | adapter_failure_sim | Adapter Failure Simulation v1 |
+| W315 | v0.315.0-ledgerlive | atlassian_e2e_suite | Atlassian E2E Suite v1 |
+| W316 | v0.316.0-ledgerlive | atlassian_proof | Atlassian Proof Wave v1 |
+
+## Phase 34: Airia Community Readiness (Waves 317-324)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W317 | v0.317.0-ledgerlive | airia_listing_bundle | Airia Listing Bundle v1 |
+| W318 | v0.318.0-ledgerlive | airia_bundle_validator_v3 | Airia Bundle Validator v3 |
+| W319 | v0.319.0-ledgerlive | airia_story_gen | Airia Story Generator v1 |
+| W320 | v0.320.0-ledgerlive | race_theme_pack_v2 | Race Theme Pack v2 |
+| W321 | v0.321.0-ledgerlive | bundle_integrity_proof | Bundle Integrity Proof v1 |
+| W322 | v0.322.0-ledgerlive | readiness_e2e_suite | Readiness E2E Suite v1 |
+| W323 | v0.323.0-ledgerlive | readiness_dashboard | Readiness Dashboard v1 |
+| W324 | v0.324.0-ledgerlive | readiness_proof | Readiness Proof Wave v1 |
+
+## Phase 35: Security + Governance WOW (Waves 325-332)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W325 | v0.325.0-ledgerlive | data_classification_tiers | Data Classification Tiers v1 |
+| W326 | v0.326.0-ledgerlive | tool_scope_diffing | Tool Scope Diffing v1 |
+| W327 | v0.327.0-ledgerlive | redaction_events_v1 | Redaction Events v1 |
+| W328 | v0.328.0-ledgerlive | security_scoreboard_v1 | Security Scoreboard v1 |
+| W329 | v0.329.0-ledgerlive | policy_regression_budgets | Policy Regression Budgets v1 |
+| W330 | v0.330.0-ledgerlive | adversarial_corpus_v3 | Adversarial Corpus v3 |
+| W331 | v0.331.0-ledgerlive | security_e2e_suite | Security E2E Suite v1 |
+| W332 | v0.332.0-ledgerlive | security_gov_proof | Security Governance Proof v1 |
+
+## Phase 36: Impact + Race WOW (Waves 333-340)
+
+| Wave | Tag | Slug | Title |
+|------|-----|------|-------|
+| W333 | v0.333.0-ledgerlive | lap_time_telemetry | Lap Time Telemetry v1 |
+| W334 | v0.334.0-ledgerlive | productivity_roi | Productivity ROI Estimator v1 |
+| W335 | v0.335.0-ledgerlive | pit_stop_optimizer | Pit Stop Optimizer v1 |
+| W336 | v0.336.0-ledgerlive | one_cockpit | One Cockpit v1 |
+| W337 | v0.337.0-ledgerlive | unified_why_verify_v4 | Unified Why/Verify UX v4 |
+| W338 | v0.338.0-ledgerlive | golden_scenario_gate | Golden Scenario Gate v1 |
+| W339 | v0.339.0-ledgerlive | final_rc_gate_v4 | Final RC Gate v4 |
+| W340 | v0.340.0-ledgerlive | race_wow_proof | Race WOW Proof Wave v1 |
+
 ---
 
 ## Gate Results
@@ -519,7 +584,7 @@
 
 ## Determinism Note
 
-All 3539 tests are fully deterministic:
+All 4021 tests are fully deterministic:
 - In-memory stores reset via `autouse` fixtures before each test
 - No external network calls (gate-enforced)
 - No randomness without seeding (scenario engine uses fixed seeds)

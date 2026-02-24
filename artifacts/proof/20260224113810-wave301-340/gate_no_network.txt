@@ -1,0 +1,1 @@
+GATE PASS: No outbound network calls in tests.
