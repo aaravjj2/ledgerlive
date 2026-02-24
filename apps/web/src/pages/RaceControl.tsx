@@ -132,7 +132,15 @@ export default function RaceControl() {
   return (
     <div data-testid="race-control-page" className="pb-10">
       <div className="flex flex-wrap items-center justify-between gap-3 mb-1">
-        <h1 className="text-2xl font-bold" data-testid="rc-title">Race Control</h1>
+        <div className="flex items-center gap-3">
+          <h1 className="text-2xl font-bold" data-testid="rc-title">Race Control</h1>
+          <span
+            data-testid="f1-theme-badge"
+            className="px-3 py-1 bg-yellow-500 text-black rounded-full text-xs font-bold flex-shrink-0"
+          >
+            🏁 Race Beyond the Track
+          </span>
+        </div>
         <div className="flex items-center gap-2">
           <button
             data-testid="race-control-run-golden"

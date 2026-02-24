@@ -9,6 +9,7 @@ const links = [
   { to: '/review', label: 'Review Queue', tid: 'nav-review' },
   { to: '/audit', label: 'Audit Log', tid: 'nav-audit' },
   { to: '/race-control', label: 'Race Control', tid: 'nav-race-control' },
+  { to: '/airia', label: 'Airia', tid: 'nav-airia' },
   { to: '/settings', label: 'Settings', tid: 'nav-settings' },
 ]
 

@@ -10,7 +10,8 @@ NPX     := npx
 MILESTONE ?= golden-e2e
 
 .PHONY: dev demo test e2e proof release proof-index gates \
-        e2e-mcp e2e-mcp-twice e2e\:mcp\:twice
+        e2e-mcp e2e-mcp-twice e2e\:mcp\:twice \
+        airia\:bundle airia\:validate airia\:verify proof-airia
 
 # ── Dev ──────────────────────────────────────
 dev:
@@ -42,6 +43,20 @@ e2e\:mcp\:twice:
 	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
 	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
 	$(PYTHON) tools/gates/e2e_determinism_gate.py --api http://127.0.0.1:8090
+
+# ── Airia Community Bundle ────────────────────────────────────────────────────
+airia\:bundle:
+	$(PYTHON) tools/airia_bundle.py --action bundle
+
+airia\:validate:
+	$(PYTHON) tools/airia_bundle.py --action validate
+
+airia\:verify:
+	$(PYTHON) tools/airia_bundle.py --action verify
+
+proof-airia:
+	$(PYTHON) tools/proof/generate_proof_pack.py --milestone=airia-readiness
+
 
 # ── Gates ────────────────────────────────────
 gates:

@@ -22,7 +22,9 @@ FORBIDDEN = [
 SKIP_DIRS = {".git", ".venv", "node_modules", "__pycache__", ".pytest_cache",
              "test-results", "playwright-report", "artifacts"}
 
-SKIP_FILES = {"package-lock.json", "pnpm-lock.yaml", "yarn.lock"}
+SKIP_FILES = {"package-lock.json", "pnpm-lock.yaml", "yarn.lock",
+              # Hackathon judge/evaluation scripts — not LedgerLive source
+              "judge_loop.py", "evaluate_ledgerlive.py", "hackathon_evaluation_airia.json"}
 
 EXTENSIONS = {".py", ".ts", ".tsx", ".js", ".jsx", ".json", ".md", ".html",
               ".css", ".yaml", ".yml", ".toml", ".cfg", ".ini", ".sql", ".txt"}

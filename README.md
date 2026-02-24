@@ -1,7 +1,9 @@
-# LedgerLive — Finance Ops Close Agent
+# LedgerLive Race Control Close Agent (Airia / Williams F1 Hackathon)
 
-> Automated finance close workflow: document ingestion → OCR/extraction →
-> reconciliation → exception triage → HITL review → evidence binder → audit trail.
+> The finance close process is a race. LedgerLive operates it like the Williams F1 pit wall:
+> lanes hold position, checkpoints gate progress, incidents surface in real-time, approvals
+> gate the car through scrutineering, and every tool trace becomes the telemetry pack
+> the stewards audit. No LLM keys required — fully deterministic in DEMO mode.
 
 ## Project Identity
 
@@ -9,20 +11,57 @@
 PROJECT_ID: LEDGERLIVE
 ```
 
-## Quick Start
+## What It Does
+
+LedgerLive is a **no-code, deterministic finance-close orchestration agent** built on the Airia
+platform. It turns a month-end close — a multi-team, multi-approval, deadline-critical operation —
+into a race-control metaphor every CFO can read at a glance.
+
+**Finance reality:** sub-ledger feeds, AP matching, cutoff reviews, intercompany elimination,
+exception triage, HITL approvals, and signed evidence bundles.
+
+**F1 metaphor:** lanes, pit stops, telemetry packs, safety cars, lap completions, and court packs
+for the stewards.
+
+The agent runs 340+ deterministic service waves, exports Airia community bundles, and proves
+every assertion with real sha256 hashes — never constants.
+
+## 3-Step Quickstart
 
 ```bash
-# Backend
-cd apps/api
-.venv/Scripts/python -m uvicorn app.main:app --port 8090 --reload
+# 1 — Start demo (API + web preview)
+make demo
 
-# Frontend
-cd apps/web
-npm run dev
+# 2 — Open Race Control in your browser
+open http://127.0.0.1:4173/race-control
 
-# Tests
-cd apps/api && .venv/Scripts/python -m pytest tests/ -v
+# 3 — Click "▷ Run Canonical" to seed the full golden scenario
 ```
+
+## F1 Glossary
+
+| F1 Term | Finance Reality |
+|---------|-----------------|
+| Race Control | Close Command Center |
+| Pit Stops | Close Checkpoints |
+| Laps | Close Stages / Milestones |
+| Telemetry | Tool Trace + Audit Trail + Drift Budgets |
+| Safety Car | Fail-Closed + Approvals Required |
+| Pit Wall | Approver Chain + SLA Escalations |
+| Incident Log | Exceptions / Blockers / Policy Events |
+| Court Pack | Stewards Evidence Package |
+| DRS Zone | Fast-path Auto-approval |
+
+## Why Airia
+
+LedgerLive showcases the Airia platform's three core strengths:
+
+1. **Orchestration** — 340+ deterministic waves chained into a single close workflow, all
+   expressible as Airia template steps with typed inputs and outputs.
+2. **Security posture** — every action passes through a typed guard; no write without approval
+   in HITL lanes; fail-closed on all ambiguity.
+3. **No-code template export** — Blueprint Builder (W301-305) compiles close workflows into
+   Airia community bundles; no API keys required for demo mode.
 
 ## Architecture
 
@@ -37,3 +76,15 @@ cd apps/api && .venv/Scripts/python -m pytest tests/ -v
 
 - `tools/gates/no_apex_references.py` — Zero Apex Terminal references
 - `tools/gates/no_network_in_tests.py` — No outbound network in tests
+
+## Airia Community Bundle
+
+```bash
+make airia:bundle    # generate deterministic bundle
+make airia:validate  # strict readiness check
+make airia:verify    # offline checksum verification
+```
+
+Bundle output: `artifacts/airia/community_bundle/`
+
+See [docs/airia/AIRIA_OVERVIEW.md](docs/airia/AIRIA_OVERVIEW.md) for full details.

@@ -8,6 +8,7 @@ import ReviewQueue from './pages/ReviewQueue'
 import AuditLog from './pages/AuditLog'
 import Settings from './pages/Settings'
 import RaceControl from './pages/RaceControl'
+import AiriaReadiness from './pages/AiriaReadiness'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/audit" element={<AuditLog />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/race-control" element={<RaceControl />} />
+          <Route path="/airia" element={<AiriaReadiness />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
