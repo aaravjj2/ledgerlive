@@ -769,6 +769,7 @@ from app.routers.w340_race_wow_proof import router as w340_router
 from app.routers.golden_scenario import router as golden_scenario_router
 from app.routers.airia_bundle import router as airia_bundle_router
 from app.routers.race_weekend import router as race_weekend_router
+from app.routers.mcp_server import router as mcp_router
 
 app.include_router(w321_router)
 app.include_router(w322_router)
@@ -793,3 +794,4 @@ app.include_router(w340_router)
 app.include_router(golden_scenario_router)
 app.include_router(airia_bundle_router)
 app.include_router(race_weekend_router)
+app.include_router(mcp_router)

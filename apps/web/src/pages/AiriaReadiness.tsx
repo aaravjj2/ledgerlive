@@ -19,6 +19,28 @@ interface BundleStatus {
   test_count: number
 }
 
+interface McpTool {
+  name: string
+  description: string
+  airia_type: string
+  approval_required: boolean
+  fail_closed: boolean
+  f1_metaphor: string
+}
+
+interface McpData {
+  protocol: string
+  tool_count: number
+  tools_sha256: string
+  tools: McpTool[]
+}
+
+interface McpConfig {
+  config: { mcp_gateway_connection: Record<string, unknown> }
+  config_sha256: string
+  import_ready: boolean
+}
+
 interface CompatCheck {
   id: string
   name: string
@@ -72,6 +94,9 @@ export default function AiriaReadiness() {
   const [status, setStatus] = useState<BundleStatus | null>(null)
   const [loading, setLoading] = useState(true)
   const [compatReport, setCompatReport] = useState<CompatReport | null>(null)
+  const [mcpData, setMcpData] = useState<McpData | null>(null)
+  const [mcpConfig, setMcpConfig] = useState<McpConfig | null>(null)
+  const [mcpConfigCopied, setMcpConfigCopied] = useState(false)
   const [generateResult, setGenerateResult] = useState<string | null>(null)
   const [validateResult, setValidateResult] = useState<string | null>(null)
   const [verifyResult, setVerifyResult] = useState<string | null>(null)
@@ -92,10 +117,30 @@ export default function AiriaReadiness() {
       .catch(() => {/* non-fatal */})
   }, [])
 
+  const fetchMcp = useCallback(() => {
+    fetch(`${API}/api/mcp/tools`)
+      .then(r => r.json())
+      .then(data => setMcpData(data))
+      .catch(() => {/* non-fatal */})
+    fetch(`${API}/api/mcp/config`)
+      .then(r => r.json())
+      .then(data => setMcpConfig(data))
+      .catch(() => {/* non-fatal */})
+  }, [])
+
   useEffect(() => {
     fetchStatus()
     fetchCompat()
-  }, [fetchStatus, fetchCompat])
+    fetchMcp()
+  }, [fetchStatus, fetchCompat, fetchMcp])
+
+  function handleCopyMcpConfig() {
+    const text = mcpConfig ? JSON.stringify(mcpConfig.config, null, 2) : ''
+    navigator.clipboard.writeText(text).then(() => {
+      setMcpConfigCopied(true)
+      setTimeout(() => setMcpConfigCopied(false), 2000)
+    }).catch(() => {/* non-fatal */})
+  }
 
   async function handleGenerate() {
     setActionLoading(true)
@@ -331,6 +376,69 @@ export default function AiriaReadiness() {
             </li>
           ))}
         </ol>
+      </div>
+
+      {/* MCP Gateway Section */}
+      <div data-testid="airia-mcp-section" className="bg-gray-800 rounded-lg p-4 mb-6">
+        <div className="flex items-center gap-3 mb-3 flex-wrap">
+          <h2 className="text-white font-semibold">🔌 MCP Server (Airia MCP Gateway)</h2>
+          {mcpData && (
+            <span className="px-2 py-0.5 bg-green-700 text-green-200 rounded-full text-xs font-bold">
+              {mcpData.tool_count} tools online
+            </span>
+          )}
+        </div>
+        <p className="text-gray-400 text-xs mb-4">
+          LedgerLive exposes its full tool registry via MCP protocol. Airia MCP Gateway can
+          connect and invoke any tool without custom code.
+        </p>
+
+        {/* Tool grid */}
+        {mcpData && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {mcpData.tools.map(t => (
+              <div
+                key={t.name}
+                data-testid="airia-mcp-tool-card"
+                className="bg-gray-700 rounded p-2 text-xs min-w-[140px]"
+              >
+                <div className="text-indigo-300 font-mono truncate mb-0.5">{t.name.split('.')[1]}</div>
+                <div className="text-gray-400">{t.airia_type}</div>
+                <div className="text-yellow-400 text-xs mt-1 italic">{t.f1_metaphor?.substring(0, 35)}</div>
+                <div className="flex gap-1 mt-1 flex-wrap">
+                  {t.approval_required && (
+                    <span className="text-xs px-1 rounded bg-orange-900 text-orange-300">approval</span>
+                  )}
+                  {t.fail_closed && (
+                    <span className="text-xs px-1 rounded bg-red-900 text-red-300">fail-closed</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Config export */}
+        <div className="flex items-center gap-3 flex-wrap">
+          <div className="text-gray-400 text-xs">
+            Config SHA-256:{' '}
+            <span data-testid="airia-mcp-config-sha256" className="font-mono text-indigo-300">
+              {mcpConfig?.config_sha256?.substring(0, 24) ?? '…'}...
+            </span>
+          </div>
+          <button
+            data-testid="airia-mcp-export-config"
+            onClick={handleCopyMcpConfig}
+            className="px-3 py-1 bg-indigo-700 hover:bg-indigo-600 text-white rounded text-xs font-medium transition"
+          >
+            {mcpConfigCopied ? '✓ Copied!' : '📋 Export MCP Config'}
+          </button>
+        </div>
+        <div className="mt-2 text-gray-500 text-xs">
+          Endpoint: <span className="font-mono text-gray-400">GET /api/mcp/tools</span> ·{' '}
+          <span className="font-mono text-gray-400">POST /api/mcp/call</span> ·{' '}
+          <span className="font-mono text-gray-400">GET /api/mcp/config</span>
+        </div>
       </div>
 
       {/* Bundle Path */}

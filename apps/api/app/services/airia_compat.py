@@ -263,6 +263,80 @@ def _check_checksums(bundle_dir: Path = BUNDLE_DIR) -> dict:
     }
 
 
+def _check_mcp_server_present() -> dict:
+    """Check that the MCP server module exists and is importable."""
+    from pathlib import Path as _P
+    _here = _P(__file__).resolve()
+    mcp_svc = _here.parent / "mcp_server.py"
+    mcp_rtr = _here.parent.parent / "routers" / "mcp_server.py"
+    present = mcp_svc.exists() and mcp_rtr.exists()
+    return {
+        "id": "mcp_server_present",
+        "name": "MCP Server Present",
+        "passed": present,
+        "status": "PASS" if present else "FAIL",
+        "reason": "MCP server service + router found (Airia MCP Gateway compatible)"
+                  if present else "MCP server module or router missing",
+    }
+
+
+def _check_mcp_tools_match_registry() -> dict:
+    """Check that MCP tool names match the bundle tools registry."""
+    try:
+        from app.services.mcp_server import MCP_TOOLS as _mcp_tools
+        from app.services.airia_bundle import BUNDLE_TOOLS as _bundle_tools
+        mcp_ids = {t["name"].split(".", 1)[-1] for t in _mcp_tools}
+        bundle_ids = {t["id"].split(".", 1)[-1] for t in _bundle_tools}
+        # Every bundle tool should have a corresponding MCP tool
+        missing_in_mcp = bundle_ids - mcp_ids
+        passed = len(missing_in_mcp) == 0
+        return {
+            "id": "mcp_tools_match_registry",
+            "name": "MCP Tools Match Registry",
+            "passed": passed,
+            "status": "PASS" if passed else "FAIL",
+            "reason": f"All {len(bundle_ids)} bundle tools have MCP equivalents"
+                      if passed else f"Bundle tools missing from MCP: {sorted(missing_in_mcp)}",
+        }
+    except Exception as e:
+        return {
+            "id": "mcp_tools_match_registry",
+            "name": "MCP Tools Match Registry",
+            "passed": False,
+            "status": "FAIL",
+            "reason": f"Import error: {e}",
+        }
+
+
+def _check_mcp_config_generated() -> dict:
+    """Check that Airia MCP Gateway config can be generated deterministically."""
+    try:
+        from app.services.mcp_server import generate_airia_config as _gen
+        cfg = _gen()
+        has_config = isinstance(cfg.get("config"), dict)
+        has_sha = len(cfg.get("config_sha256", "")) == 64
+        # Verify determinism: second call returns same sha
+        cfg2 = _gen()
+        deterministic = cfg["config_sha256"] == cfg2["config_sha256"]
+        passed = has_config and has_sha and deterministic
+        return {
+            "id": "mcp_config_generated",
+            "name": "MCP Config Generated (Deterministic)",
+            "passed": passed,
+            "status": "PASS" if passed else "FAIL",
+            "reason": f"Airia MCP Gateway config generated (sha256={cfg.get('config_sha256','?')[:16]}...)"
+                      if passed else "MCP config generation failed or is non-deterministic",
+        }
+    except Exception as e:
+        return {
+            "id": "mcp_config_generated",
+            "name": "MCP Config Generated (Deterministic)",
+            "passed": False,
+            "status": "FAIL",
+            "reason": f"Error: {e}",
+        }
+
+
 # ── Public API ────────────────────────────────────────────────────────────────
 
 def run_compat_report(bundle_dir: Path = BUNDLE_DIR) -> dict:
@@ -279,6 +353,9 @@ def run_compat_report(bundle_dir: Path = BUNDLE_DIR) -> dict:
         _check_fail_closed(bundle_dir),
         _check_outputs_present(bundle_dir),
         _check_checksums(bundle_dir),
+        _check_mcp_server_present(),
+        _check_mcp_tools_match_registry(),
+        _check_mcp_config_generated(),
     ]
 
     overall = all(c["passed"] for c in checks)

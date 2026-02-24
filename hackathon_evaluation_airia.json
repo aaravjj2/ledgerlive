@@ -1727,7 +1727,9 @@
       "/api/airia/status",
       "/api/airia/generate-bundle",
       "/api/airia/validate-bundle",
-      "/api/airia/verify-bundle"
+      "/api/airia/verify-bundle",
+      "/api/airia/compat_report",
+      "/api/race-weekend/stages"
     ],
     "core_features": {
       "document_ingestion": true,
@@ -1762,7 +1764,7 @@
   },
   "tests": {
     "pytest_passed": true,
-    "passed": 4080,
+    "passed": 4128,
     "failed": 0
   },
   "llm_score": {
@@ -1776,25 +1778,25 @@
     },
     "what_works": [
       "Strong agent autonomy with a complete agentic loop",
-      "Comprehensive workflow automation for finance close operations",
-      "High-quality demo and documentation"
+      "Comprehensive finance close workflow automation",
+      "Good documentation and demo quality"
     ],
     "critical_gaps": [
-      "Weak Airia platform integration - needs concrete evidence of compatibility or actual integration",
-      "F1 theme alignment is forced in places, needs more genuine connections to racing concepts"
+      "Lack of direct Airia platform integration - needs to implement Airia's no-code API or demonstrate compatibility more clearly",
+      "Weak F1 theme alignment - needs stronger mapping between finance operations and racing concepts"
     ],
     "f1_reframing_ideas": [
-      "Rename reconciliation \u2192 pit stop sync",
-      "Use race terms for workflow stages (e.g., 'qualifying' for initial document ingestion)",
-      "Create a 'race dashboard' visualizing the finance close process with F1-inspired metrics"
+      "Rename reconciliation process to 'Pit Stop Sync' to emphasize the F1 theme",
+      "Create a 'Race Control Dashboard' that visualizes the finance close process using racing terminology and metrics",
+      "Implement 'Lap Time Tracking' for each stage of the finance close process"
     ],
-    "airia_integration_plan": "Develop and demonstrate Airia community bundles, show how LedgerLive can be configured as an Airia agent using their no-code builder. Create documentation showing step-by-step integration.",
+    "airia_integration_plan": "Integrate Airia's no-code API into LedgerLive by implementing their SDK or creating a compatibility layer. This would involve updating the agent to use Airia's workflow orchestration and event handling mechanisms.",
     "fastest_wins_before_deadline": [
-      "Improve F1 theme alignment by renaming workflow stages with racing terms",
-      "Create a visual race dashboard for the finance close process",
-      "Demonstrate basic Airia platform compatibility through documentation or video"
+      "Implement basic Airia integration using their public APIs",
+      "Update UI/UX with stronger F1 racing terminology throughout",
+      "Create a video demo highlighting the F1 theme"
     ],
     "submission_ready": false,
-    "judge_summary": "LedgerLive shows strong potential but needs better F1 theme integration and clearer Airia platform compatibility to be competitive in this hackathon."
+    "judge_summary": "LedgerLive shows strong potential but needs better alignment with the F1 theme and Airia platform integration to be competitive in this hackathon."
   }
 }

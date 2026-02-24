@@ -47,7 +47,7 @@ def test_compat_report_shape():
 
 def test_compat_report_checks_count():
     report = run_compat_report()
-    assert len(report["checks"]) == 7, "Must have exactly 7 checks"
+    assert len(report["checks"]) == 10, "Must have exactly 10 checks (7 bundle + 3 MCP)"
 
 
 def test_compat_report_overall_pass():
@@ -195,3 +195,46 @@ def test_pass_fail_counts():
     assert report["pass_count"] == expected_pass
     assert report["fail_count"] == expected_fail
     assert report["pass_count"] + report["fail_count"] == len(checks)
+
+
+# ── MCP checks (new in iteration 1) ──────────────────────────────────────────
+
+def test_compat_report_now_has_10_checks():
+    report = run_compat_report()
+    assert len(report["checks"]) == 10, (
+        f"Expected 10 checks after MCP additions, got {len(report['checks'])}"
+    )
+
+
+def test_compat_mcp_server_present_passes():
+    from app.services.airia_compat import _check_mcp_server_present
+    result = _check_mcp_server_present()
+    assert result["passed"] is True, f"mcp_server_present should PASS: {result['reason']}"
+
+
+def test_compat_mcp_tools_match_registry_passes():
+    from app.services.airia_compat import _check_mcp_tools_match_registry
+    result = _check_mcp_tools_match_registry()
+    assert result["passed"] is True, f"mcp_tools_match_registry should PASS: {result['reason']}"
+
+
+def test_compat_mcp_config_generated_passes():
+    from app.services.airia_compat import _check_mcp_config_generated
+    result = _check_mcp_config_generated()
+    assert result["passed"] is True, f"mcp_config_generated should PASS: {result['reason']}"
+
+
+def test_compat_mcp_check_ids_present():
+    report = run_compat_report()
+    ids = [c["id"] for c in report["checks"]]
+    assert "mcp_server_present" in ids
+    assert "mcp_tools_match_registry" in ids
+    assert "mcp_config_generated" in ids
+
+
+def test_compat_mcp_config_determinism():
+    """Two calls return same config SHA-256."""
+    from app.services.mcp_server import generate_airia_config
+    c1 = generate_airia_config()
+    c2 = generate_airia_config()
+    assert c1["config_sha256"] == c2["config_sha256"]
