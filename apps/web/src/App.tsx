@@ -8,6 +8,7 @@ import ReviewQueue from './pages/ReviewQueue'
 import AuditLog from './pages/AuditLog'
 import Settings from './pages/Settings'
 import RaceControl from './pages/RaceControl'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/audit" element={<AuditLog />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/race-control" element={<RaceControl />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <footer className="text-center text-xs text-gray-400 py-2" data-testid="footer">

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import clsx from 'clsx'
 
 const links = [
@@ -14,15 +14,15 @@ const links = [
 
 export default function Nav() {
   return (
-    <nav className="bg-indigo-700 text-white px-6 py-3 flex items-center gap-6" data-testid="nav-bar">
-      <span className="font-bold text-lg mr-4" data-testid="nav-brand">LedgerLive</span>
+    <nav className="bg-indigo-700 text-white px-6 py-3 flex items-center gap-6 overflow-x-auto scrollbar-none" data-testid="nav-bar">
+      <Link to="/" className="font-bold text-lg mr-4 flex-shrink-0 hover:text-indigo-200 transition" data-testid="nav-brand">LedgerLive</Link>
       {links.map((l) => (
         <NavLink
           key={l.to}
           to={l.to}
           data-testid={l.tid}
           className={({ isActive }) =>
-            clsx('text-sm hover:text-indigo-200 transition', isActive && 'underline font-semibold')
+            clsx('text-sm hover:text-indigo-200 transition flex-shrink-0', isActive && 'underline font-semibold')
           }
         >
           {l.label}

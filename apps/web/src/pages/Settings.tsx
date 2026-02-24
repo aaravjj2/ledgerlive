@@ -22,8 +22,8 @@ export default function Settings() {
     { label: 'API Timestamp', value: health?.ts ? new Date(health.ts).toLocaleString() : '…' },
     { label: 'Backend URL', value: 'http://127.0.0.1:8090' },
     { label: 'Total API Routes', value: waveCount != null ? `${waveCount}` : '…' },
-    { label: 'Waves Shipped', value: '220' },
-    { label: 'Test Suite', value: '2558 tests · all green' },
+    { label: 'Waves Shipped', value: '340' },
+    { label: 'Test Suite', value: '4021 tests · all green' },
     { label: 'Gates', value: 'no_apex_references · no_network_in_tests · 2/2 PASS' },
     { label: 'Branch', value: 'waves' },
     { label: 'Repo', value: 'aaravjj2/ledgerlive' },
@@ -52,7 +52,7 @@ export default function Settings() {
 
       <div className="rounded-xl border bg-indigo-50 border-indigo-200 p-4">
         <h2 className="font-semibold text-indigo-800 mb-1">LedgerLive — Finance Ops Close Agent</h2>
-        <p className="text-sm text-indigo-600">220 waves shipped · Phases 0–22 · Live parity, Close Replay, ML Impact, Hackpack Automation</p>
+        <p className="text-sm text-indigo-600">340 waves shipped · Phases 0–36 · Blueprint Builder, Atlassian Integration, Airia Readiness, Security Governance, Impact+Race WOW</p>
       </div>
     </div>
   )
