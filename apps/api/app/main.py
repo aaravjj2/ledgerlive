@@ -577,3 +577,129 @@ app.include_router(w237_router)
 app.include_router(w238_router)
 app.include_router(w239_router)
 app.include_router(w240_router)
+
+from app.routers.w241_next_actions_engine import router as w241_router
+from app.routers.w242_plan_preview import router as w242_router
+from app.routers.w243_verifier_gate_ui import router as w243_router
+from app.routers.w244_execute_from_plan import router as w244_router
+from app.routers.w245_rc_why_dossier import router as w245_router
+from app.routers.w246_fail_closed_escalation import router as w246_router
+from app.routers.w247_pit_crew_routing import router as w247_router
+from app.routers.w248_channel_action_int import router as w248_router
+from app.routers.w249_replay_hook import router as w249_router
+from app.routers.w250_agent_rc_proof import router as w250_router
+from app.routers.w251_policy_events import router as w251_router
+from app.routers.w252_security_timeline import router as w252_router
+from app.routers.w253_tool_scope_matrix import router as w253_router
+from app.routers.w254_exfil_detector_v2 import router as w254_router
+from app.routers.w255_safe_fix_path import router as w255_router
+from app.routers.w256_audit_integrity_badge import router as w256_router
+from app.routers.w257_tamper_simulation import router as w257_router
+from app.routers.w258_security_posture_pack import router as w258_router
+from app.routers.w259_adversarial_corpus_v2 import router as w259_router
+from app.routers.w260_security_proof import router as w260_router
+
+app.include_router(w241_router)
+app.include_router(w242_router)
+app.include_router(w243_router)
+app.include_router(w244_router)
+app.include_router(w245_router)
+app.include_router(w246_router)
+app.include_router(w247_router)
+app.include_router(w248_router)
+app.include_router(w249_router)
+app.include_router(w250_router)
+app.include_router(w251_router)
+app.include_router(w252_router)
+app.include_router(w253_router)
+app.include_router(w254_router)
+app.include_router(w255_router)
+app.include_router(w256_router)
+app.include_router(w257_router)
+app.include_router(w258_router)
+app.include_router(w259_router)
+app.include_router(w260_router)
+
+from app.routers.w261_replay_viewer_v3 import router as w261_router
+from app.routers.w262_court_pack_v4 import router as w262_router
+from app.routers.w263_telemetry_pack_v3 import router as w263_router
+from app.routers.w264_reproduce_close import router as w264_router
+from app.routers.w265_replay_regression import router as w265_router
+from app.routers.w266_narrative_export_v2 import router as w266_router
+from app.routers.w267_audit_qa_pack import router as w267_router
+from app.routers.w268_replay_performance import router as w268_router
+from app.routers.w269_rc_gate_extension import router as w269_router
+from app.routers.w270_replay_court_proof import router as w270_router
+from app.routers.w271_email_inbox_v2 import router as w271_router
+from app.routers.w272_chat_workspace_v2 import router as w272_router
+from app.routers.w273_browser_ext_v2 import router as w273_router
+from app.routers.w274_notification_hub_v4 import router as w274_router
+from app.routers.w275_cross_channel_audit import router as w275_router
+from app.routers.w276_channel_reliability import router as w276_router
+from app.routers.w277_rc_channel_actions import router as w277_router
+from app.routers.w278_collab_v3 import router as w278_router
+from app.routers.w279_ops_pack_export import router as w279_router
+from app.routers.w280_everywhere_proof import router as w280_router
+
+app.include_router(w261_router)
+app.include_router(w262_router)
+app.include_router(w263_router)
+app.include_router(w264_router)
+app.include_router(w265_router)
+app.include_router(w266_router)
+app.include_router(w267_router)
+app.include_router(w268_router)
+app.include_router(w269_router)
+app.include_router(w270_router)
+app.include_router(w271_router)
+app.include_router(w272_router)
+app.include_router(w273_router)
+app.include_router(w274_router)
+app.include_router(w275_router)
+app.include_router(w276_router)
+app.include_router(w277_router)
+app.include_router(w278_router)
+app.include_router(w279_router)
+app.include_router(w280_router)
+
+from app.routers.w281_payment_scheduling_v2 import router as w281_router
+from app.routers.w282_tie_out_engine_v2 import router as w282_router
+from app.routers.w283_fraud_red_flag_v2 import router as w283_router
+from app.routers.w284_controls_coverage_v2 import router as w284_router
+from app.routers.w285_data_quality_gate_v2 import router as w285_router
+from app.routers.w286_multi_entity_v3 import router as w286_router
+from app.routers.w287_fpa_insight_panel import router as w287_router
+from app.routers.w288_ml_impact_v4 import router as w288_router
+from app.routers.w289_perf_budgets_v5 import router as w289_router
+from app.routers.w290_finance_proof import router as w290_router
+from app.routers.w291_rc_gate_v3 import router as w291_router
+from app.routers.w292_route_coverage_gate import router as w292_router
+from app.routers.w293_determinism_super_gate import router as w293_router
+from app.routers.w294_proof_of_proof import router as w294_router
+from app.routers.w295_incident_simulator_v2 import router as w295_router
+from app.routers.w296_self_healing_playbook import router as w296_router
+from app.routers.w297_doc_truth_gate import router as w297_router
+from app.routers.w298_security_regression import router as w298_router
+from app.routers.w299_perf_regression import router as w299_router
+from app.routers.w300_final_rc_proof import router as w300_router
+
+app.include_router(w281_router)
+app.include_router(w282_router)
+app.include_router(w283_router)
+app.include_router(w284_router)
+app.include_router(w285_router)
+app.include_router(w286_router)
+app.include_router(w287_router)
+app.include_router(w288_router)
+app.include_router(w289_router)
+app.include_router(w290_router)
+app.include_router(w291_router)
+app.include_router(w292_router)
+app.include_router(w293_router)
+app.include_router(w294_router)
+app.include_router(w295_router)
+app.include_router(w296_router)
+app.include_router(w297_router)
+app.include_router(w298_router)
+app.include_router(w299_router)
+app.include_router(w300_router)
