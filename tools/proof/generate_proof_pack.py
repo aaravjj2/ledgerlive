@@ -56,7 +56,7 @@ def main():
 
     # 6. Collect Playwright artifacts (screenshots, traces, videos, report)
     pw_report_src = ROOT / "apps" / "web" / "playwright-report"
-    pw_screenshots_src = pw_report_src / "screenshots"
+    pw_screenshots_src = ROOT / "apps" / "web" / "test-results" / "screenshots"
     pw_traces_src = ROOT / "apps" / "web" / "test-results"
 
     playwright_meta: dict = {"screenshots": [], "traces": [], "videos": []}

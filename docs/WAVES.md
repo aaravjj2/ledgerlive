@@ -7,12 +7,12 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Waves | 340 |
-| Total Tests | 4021 |
+| Total Waves | 340 + 1 hotfix |
+| Total Tests | 4042 |
 | Total Routes | 2040+ |
 | Gates | 2/2 PASS |
-| Tags | v0.0.0-ledgerlive-purged → v0.340.0-ledgerlive |
-| Proof Pack | `artifacts/proof/w301-w340/` |
+| Tags | v0.0.0-ledgerlive-purged → v0.340.0-ledgerlive + v0.301.1-ledgerlive |
+| Proof Pack | `artifacts/proof/golden-scenario-truthfulness/` |
 
 ---
 
@@ -584,9 +584,75 @@
 
 ## Determinism Note
 
-All 4021 tests are fully deterministic:
+All 4042 tests are fully deterministic:
 - In-memory stores reset via `autouse` fixtures before each test
 - No external network calls (gate-enforced)
 - No randomness without seeding (scenario engine uses fixed seeds)
 - Same input → same structure guaranteed (determinism tests in every wave)
 - Audit events use deterministic trace IDs scoped to test runs
+
+---
+
+## Hotfix: Golden Scenario Truthfulness (v0.301.1-ledgerlive)
+
+| Field | Value |
+|-------|-------|
+| Tag | `v0.301.1-ledgerlive` |
+| Branch | `waves` |
+| Tests Added | 21 (all pass; total: 4042) |
+| Gate Results | 2/2 PASS |
+| Proof Pack | `artifacts/proof/golden-scenario-truthfulness/` |
+
+### Summary of Changes
+
+**Task A — Truthful Assertions (computed from real state)**
+- Removed hard-coded `GRC_ASSERTIONS` constant and placeholder `deadbeef` binder hash
+- `get_assertions()` now computes `actual_counts` from live in-memory service stores
+- `actual_binder_sha256` = sha256 of canonical binder bytes (excluding timestamps)
+- `assertions_signature` = sha256 of full canonical assertion payload (proves truthfulness)
+- Added `expected_binder_sha256` baseline file: `app/golden/baselines/golden_binder_sha256.txt`
+- Telemetry and court pack sha256 now derived from actual pack content
+- Seeded 2 exception types (auto-resolvable + approval-required) making exception counts real
+- `seed()` auto-generates artifact hashes so assertions are valid immediately
+
+**Task B — Router Guard (real enforcement, not comments)**
+- `require_e2e_mode()` FastAPI dependency on ALL golden-scenario router endpoints
+- Returns HTTP 403 unless `APP_MODE=DEMO` AND `E2E_MODE=1` (checked via `os.getenv` at request time)
+- `make demo` updated to set `APP_MODE=DEMO E2E_MODE=1`
+- New endpoints: `POST /api/ops/update-baseline`, `POST /api/ops/tamper-artifact`
+
+**Task C — Playwright Truthfulness Assertions**
+- RC-01 updated to use `actual_counts.*` fields from new assertion structure
+- RC-08 added: full truthfulness E2E test: actual==expected counts, real sha256 hashes, replay match, signature stability
+
+**Task D — Proof Pack**
+- Generated via `make proof MILESTONE=golden-scenario-truthfulness`
+- 21 new pytest tests, 21 passed, 0 failed, 0 skipped
+- Determinism: binder hash stable across two consecutive seeds (verified in test suite)
+- Playwright run twice with matching determinism gate
+
+### Test Matrix
+
+| Test | Status | Notes |
+|------|--------|-------|
+| `test_require_e2e_mode_raises_without_env` | PASS | Guard blocks LOCAL/E2E=0 |
+| `test_require_e2e_mode_passes_in_demo_e2e` | PASS | Guard allows DEMO+E2E=1 |
+| `test_require_e2e_mode_raises_when_only_demo_no_e2e` | PASS | Half-config blocked |
+| `test_golden_endpoints_blocked_local_mode` | PASS | HTTP 403 confirmed |
+| `test_golden_seed_accessible_in_demo_e2e` | PASS | HTTP 201 with real IDs |
+| `test_assertions_include_all_required_fields` | PASS | All 11 fields present |
+| `test_actual_counts_match_expected_counts_after_seed` | PASS | All 11 count fields match |
+| `test_binder_hash_is_real_sha256` | PASS | No deadbeef, 64-char hex |
+| `test_assertions_signature_is_real_sha256` | PASS | 71-char sha256 string |
+| `test_telemetry_pack_has_sha256_and_pass` | PASS | Real hash, PASS status |
+| `test_court_pack_has_sha256_and_pass` | PASS | Real hash, PASS status |
+| `test_replay_matches_original_after_regen` | PASS | matches_original=true |
+| `test_assertions_signature_stable_across_two_calls` | PASS | Deterministic |
+| `test_tamper_changes_assertions_signature` | PASS | Tamper detected |
+| `test_tamper_hash_changes_assertions_signature` | PASS | Hash tamper detected |
+| `test_service_compute_actual_counts_empty` | PASS | Zero before seed |
+| `test_service_binder_hash_after_seed` | PASS | Real hash |
+| `test_service_binder_hash_stable_two_seeds` | PASS | Deterministic |
+| `test_service_assertions_signature_changes_on_tamper` | PASS | Service-level tamper |
+| `test_service_update_baseline_writes_file` | PASS | Baseline file written |
+| `test_service_audit_events_on_seed` | PASS | All event types emitted |

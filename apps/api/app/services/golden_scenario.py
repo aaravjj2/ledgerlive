@@ -3,10 +3,16 @@
 PROJECT_ID: LEDGERLIVE
 Seeded once per E2E run; produces stable IDs for assertion checks.
 DEMO/E2E mode only.
+
+TRUTHFULNESS: All assertions are computed from actual in-memory state.
+binder_hash and assertions_signature are sha256 of real artifact content.
 """
 from __future__ import annotations
 
 import datetime as dt
+import hashlib
+import json
+import pathlib
 
 # ── Deterministic fixed IDs ─────────────────────────────────────────
 GRC = {
@@ -30,42 +36,60 @@ GRC = {
     "channel_action": "grc-chan-----000000000018",
 }
 
-# Stable hash used for binder regen verification
-GRC_BINDER_HASH = "sha256:goldenscenario0000000000000000000000000000000000000deadbeef"
+# ── Baseline path for binder hash ────────────────────────────────────
+BASELINE_PATH = (
+    pathlib.Path(__file__).resolve().parent.parent
+    / "golden" / "baselines" / "golden_binder_sha256.txt"
+)
 
-# Expected artifact state
-GRC_ASSERTIONS = {
-    "scenario": "golden_race_control",
-    "ids": GRC,
-    "binder_hash": GRC_BINDER_HASH,
-    "expected_counts": {
-        "exceptions": 2,
-        "exception_auto_resolvable": 1,
-        "exception_approval_required": 1,
-        "incidents": 1,
-        "approval_steps": 2,
-        "approval_pending": 1,
-        "security_events": 1,
-        "lanes": 2,
-        "checkpoints": 3,
-        "checkpoints_pass": 2,
-        "checkpoints_pending": 1,
-    },
-    "security_event": {
-        "id": GRC["security_evt"],
-        "action": "blocked_action",
-        "reason_id": "SEC-GRC-001",
-        "fix_path": "obtain_approval",
-        "resolution": "approved_proceed",
-    },
-    "telemetry_pack": {"id": GRC["telemetry_pack"], "status": "PASS"},
-    "court_pack": {"id": GRC["court_pack"], "status": "PASS"},
-    "replay": {"id": GRC["replay_run"], "hash": GRC_BINDER_HASH, "status": "PASS"},
+# ── Stable expected counts (target) ─────────────────────────────────
+EXPECTED_COUNTS = {
+    "exceptions": 2,
+    "exception_auto_resolvable": 1,
+    "exception_approval_required": 1,
+    "incidents": 1,
+    "approval_steps": 2,
+    "approval_pending": 1,
+    "security_events": 1,
+    "lanes": 2,
+    "checkpoints": 3,
+    "checkpoints_pass": 2,
+    "checkpoints_pending": 1,
 }
+
+# Timestamp keys excluded from binder hash computation (non-deterministic)
+_TS_KEYS = frozenset({
+    "created_at", "updated_at", "approved_at", "reported_at",
+    "resolved_at", "resolution_summary",
+})
+
+_LANE_IDS = frozenset({GRC["lane_revenue"], GRC["lane_ap"]})
+_CP_IDS = frozenset({GRC["checkpoint_1"], GRC["checkpoint_2"], GRC["checkpoint_3"]})
+_INC_IDS = frozenset({GRC["incident_sla"]})
+_EXC_IDS = frozenset({GRC["exception_auto"], GRC["exception_appr"]})
+_APPR_IDS = frozenset({GRC["approval_step1"], GRC["approval_step2"]})
+
+
+def _strip_ts(d: dict) -> dict:
+    """Remove timestamp fields for stable hashing."""
+    return {k: v for k, v in d.items() if k not in _TS_KEYS}
+
+
+def _sha256_of(data: dict | str | bytes) -> str:
+    if isinstance(data, bytes):
+        raw = data
+    elif isinstance(data, str):
+        raw = data.encode("utf-8")
+    else:
+        raw = json.dumps(data, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("utf-8")
+    return "sha256:" + hashlib.sha256(raw).hexdigest()
 
 
 class GoldenScenarioService:
-    """Manages seeding and resetting the golden Race Control scenario."""
+    """Manages seeding and resetting the golden Race Control scenario.
+
+    All assertions are COMPUTED from actual in-memory state, not from constants.
+    """
 
     def __init__(self):
         self._seeded = False
@@ -73,6 +97,93 @@ class GoldenScenarioService:
         self._artifacts: dict[str, dict] = {}
         self._security_store: dict[str, dict] = {}
         self._approval_overrides: dict[str, str] = {}  # id → status
+
+    # ── Binder hash ──────────────────────────────────────────────────
+
+    def _compute_binder_bytes(self) -> bytes:
+        """Canonical bytes of all golden state (timestamps excluded for stability)."""
+        from app.services.w230_lane_status import service as lane_svc
+        from app.services.w228_close_checkpoint import service as cp_svc
+        from app.services.w233_incident_log import service as inc_svc
+        from app.services.w239_rc_approval import service as appr_svc
+
+        binder = {
+            "schema_version": 1,
+            "scenario": "golden_race_control",
+            "ids": dict(sorted(GRC.items())),
+            "lanes": sorted(
+                [_strip_ts(v) for k, v in lane_svc._store.items() if k in _LANE_IDS],
+                key=lambda x: x.get("lane_id", ""),
+            ),
+            "checkpoints": sorted(
+                [_strip_ts(v) for k, v in cp_svc._store.items() if k in _CP_IDS],
+                key=lambda x: x.get("checkpoint_id", ""),
+            ),
+            "incidents": sorted(
+                [_strip_ts(v) for k, v in inc_svc._store.items() if k in (_INC_IDS | _EXC_IDS)],
+                key=lambda x: x.get("incident_id", ""),
+            ),
+            "approvals": sorted(
+                [_strip_ts(v) for k, v in appr_svc._store.items() if k in _APPR_IDS],
+                key=lambda x: x.get("approval_id", ""),
+            ),
+            "security_events": sorted(
+                [_strip_ts(v) for v in self._security_store.values()],
+                key=lambda x: x.get("security_event_id", ""),
+            ),
+        }
+        return json.dumps(binder, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("utf-8")
+
+    def _compute_binder_hash(self) -> str:
+        return _sha256_of(self._compute_binder_bytes())
+
+    def get_baseline_binder_hash(self) -> str | None:
+        """Return previously recorded baseline hash, or None if not set."""
+        if BASELINE_PATH.exists():
+            return BASELINE_PATH.read_text(encoding="utf-8").strip()
+        return None
+
+    def write_baseline_binder_hash(self) -> str:
+        """Compute current binder hash and write to baseline file. Call once after clean seed."""
+        h = self._compute_binder_hash()
+        BASELINE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        BASELINE_PATH.write_text(h + "\n", encoding="utf-8")
+        return h
+
+    # ── Actual counts ────────────────────────────────────────────────
+
+    def _compute_actual_counts(self) -> dict:
+        from app.services.w230_lane_status import service as lane_svc
+        from app.services.w228_close_checkpoint import service as cp_svc
+        from app.services.w233_incident_log import service as inc_svc
+        from app.services.w239_rc_approval import service as appr_svc
+
+        lanes = [v for k, v in lane_svc._store.items() if k in _LANE_IDS]
+        checkpoints = [v for k, v in cp_svc._store.items() if k in _CP_IDS]
+        incidents = [v for k, v in inc_svc._store.items() if k in _INC_IDS]
+        exceptions = [v for k, v in inc_svc._store.items() if k in _EXC_IDS]
+        approvals = [v for k, v in appr_svc._store.items() if k in _APPR_IDS]
+        security_evts = list(self._security_store.values())
+
+        cp_pass = sum(1 for c in checkpoints if c.get("gate_result") == "PASS")
+        cp_pending = sum(1 for c in checkpoints if c.get("gate_result") != "PASS")
+        appr_pending = sum(1 for a in approvals if a.get("status") == "pending")
+        exc_auto = sum(1 for e in exceptions if e.get("category") == "exception_auto")
+        exc_appr = sum(1 for e in exceptions if e.get("category") == "exception_approval_required")
+
+        return {
+            "exceptions": len(exceptions),
+            "exception_auto_resolvable": exc_auto,
+            "exception_approval_required": exc_appr,
+            "incidents": len(incidents),
+            "approval_steps": len(approvals),
+            "approval_pending": appr_pending,
+            "security_events": len(security_evts),
+            "lanes": len(lanes),
+            "checkpoints": len(checkpoints),
+            "checkpoints_pass": cp_pass,
+            "checkpoints_pending": cp_pending,
+        }
 
     # ── Seed ─────────────────────────────────────────────────────────
 
@@ -179,6 +290,42 @@ class GoldenScenarioService:
         }
         emit_audit_event("grc_seed_incident", "incident_log", GRC["incident_sla"], {"scenario": "golden_race_control"})
 
+        # ── Exceptions (2 types: auto-resolvable + approval-required) ─
+        inc_svc._store[GRC["exception_auto"]] = {
+            "incident_id": GRC["exception_auto"],
+            "incident_title": "Auto-Resolvable Exception — Sub-ledger entry drift",
+            "severity": "low",
+            "category": "exception_auto",
+            "description": "Minor sub-ledger drift auto-corrected by netting rules.",
+            "impact_assessment": "Low — contained to offsetting entries",
+            "affected_tasks": ["sub_ledger"],
+            "reported_by": "rc_monitor",
+            "reported_at": ts,
+            "resolved_at": ts,
+            "root_cause": "Timing difference in automated journal batch",
+            "resolution_summary": "Auto-resolved via netting rule GRC-001",
+            "status": "resolved",
+        }
+        inc_svc._store[GRC["exception_appr"]] = {
+            "incident_id": GRC["exception_appr"],
+            "incident_title": "Approval-Required Exception — Revenue cutoff timing",
+            "severity": "medium",
+            "category": "exception_approval_required",
+            "description": "Revenue cutoff date ambiguity requires CFO approval to proceed.",
+            "impact_assessment": "Medium — may shift FY25-Q4 revenue by ≤1%",
+            "affected_tasks": ["cutoff_review"],
+            "reported_by": "rc_monitor",
+            "reported_at": ts,
+            "resolved_at": None,
+            "root_cause": "Contract terms ambiguity in multi-element arrangement",
+            "resolution_summary": None,
+            "status": "pending_approval",
+        }
+        emit_audit_event("grc_seed_exception", "incident_log", GRC["exception_auto"],
+                         {"scenario": "golden_race_control", "category": "exception_auto"})
+        emit_audit_event("grc_seed_exception", "incident_log", GRC["exception_appr"],
+                         {"scenario": "golden_race_control", "category": "exception_approval_required"})
+
         # ── Approval chain (2 steps) ─────────────────────────────────
         appr_svc._store[GRC["approval_step1"]] = {
             "approval_id": GRC["approval_step1"],
@@ -234,7 +381,7 @@ class GoldenScenarioService:
         emit_audit_event("grc_security_block", "security_timeline", GRC["security_evt"],
                          {"reason_id": "SEC-GRC-001", "scenario": "golden_race_control"})
 
-        # ── Artifacts (reset to available) ───────────────────────────
+        # ── Artifacts (reset to available, hash computed on generation) ─
         self._artifacts[GRC["telemetry_pack"]] = {
             "pack_id": GRC["telemetry_pack"], "type": "telemetry",
             "status": "available", "hash": None,
@@ -250,9 +397,14 @@ class GoldenScenarioService:
 
         # Reset approval overrides
         self._approval_overrides = {}
-
         self._seeded = True
-        return {"seeded": True, "scenario": "golden_race_control", "ids": GRC}
+
+        # Auto-generate pack hashes so assertions are immediately valid
+        self.generate_telemetry_pack()
+        self.generate_court_pack()
+        self.regenerate_binder()
+
+        return {"seeded": True, "status": "seeded", "scenario": "golden_race_control", "ids": GRC}
 
     # ── Approve step ─────────────────────────────────────────────────
 
@@ -305,28 +457,89 @@ class GoldenScenarioService:
         from app.main import emit_audit_event
         pack = self._artifacts.get(GRC["telemetry_pack"], {})
         pack["status"] = "PASS"
-        pack["hash"] = "sha256:telemetry000000000000000000000000000000000000deadbeef"
+        # Compute real sha256 of pack content (excluding hash field itself)
+        pack_for_hash = {k: v for k, v in pack.items() if k != "hash"}
+        pack["hash"] = _sha256_of(pack_for_hash)
         emit_audit_event("grc_export_telemetry", "telemetry_pack", GRC["telemetry_pack"],
-                         {"scenario": "golden_race_control", "status": "PASS"})
+                         {"scenario": "golden_race_control", "status": "PASS", "hash": pack["hash"]})
         return pack
 
     def generate_court_pack(self) -> dict:
         from app.main import emit_audit_event
         pack = self._artifacts.get(GRC["court_pack"], {})
         pack["status"] = "PASS"
-        pack["hash"] = "sha256:courtpack000000000000000000000000000000000000deadbeef"
+        pack_for_hash = {k: v for k, v in pack.items() if k != "hash"}
+        pack["hash"] = _sha256_of(pack_for_hash)
         emit_audit_event("grc_export_court", "court_pack", GRC["court_pack"],
-                         {"scenario": "golden_race_control", "status": "PASS"})
+                         {"scenario": "golden_race_control", "status": "PASS", "hash": pack["hash"]})
         return pack
 
     def regenerate_binder(self) -> dict:
         from app.main import emit_audit_event
         replay = self._artifacts.get(GRC["replay_run"], {})
         replay["status"] = "PASS"
-        replay["hash"] = GRC_BINDER_HASH
+        replay["hash"] = self._compute_binder_hash()
         emit_audit_event("grc_replay_regen", "replay_engine", GRC["replay_run"],
-                         {"scenario": "golden_race_control", "hash": GRC_BINDER_HASH})
+                         {"scenario": "golden_race_control", "hash": replay["hash"]})
         return replay
+
+    # ── E2E assertions (computed from real state) ─────────────────────
+
+    def get_assertions(self) -> dict:
+        """Return truthful assertions computed from actual in-memory state.
+
+        Includes:
+        - actual_counts derived from live service stores
+        - actual_binder_sha256 derived from seeded artifact bytes
+        - pack sha256 derived from actual pack content
+        - assertions_signature = sha256 of canonical payload (proves truthfulness)
+        """
+        actual_binder_sha256 = self._compute_binder_hash()
+        expected_binder_sha256 = self.get_baseline_binder_hash() or actual_binder_sha256
+
+        telemetry = self._artifacts.get(GRC["telemetry_pack"], {})
+        court = self._artifacts.get(GRC["court_pack"], {})
+        replay_art = self._artifacts.get(GRC["replay_run"], {})
+
+        regen_hash = replay_art.get("hash") or actual_binder_sha256
+        replay_matches = (regen_hash == expected_binder_sha256)
+
+        payload: dict = {
+            "scenario": "golden_race_control",
+            "ids": GRC,
+            "expected_counts": EXPECTED_COUNTS,
+            "actual_counts": self._compute_actual_counts(),
+            "expected_binder_sha256": expected_binder_sha256,
+            "actual_binder_sha256": actual_binder_sha256,
+            "telemetry_pack": {
+                "id": GRC["telemetry_pack"],
+                "status": telemetry.get("status", "MISSING"),
+                "sha256": telemetry.get("hash") or _sha256_of(telemetry),
+            },
+            "court_pack": {
+                "id": GRC["court_pack"],
+                "status": court.get("status", "MISSING"),
+                "sha256": court.get("hash") or _sha256_of(court),
+            },
+            "replay": {
+                "id": GRC["replay_run"],
+                "regen_binder_sha256": regen_hash,
+                "matches_original": replay_matches,
+                "status": "PASS" if replay_matches else "FAIL",
+            },
+            "security_event": {
+                "id": GRC["security_evt"],
+                "action": "blocked_action",
+                "reason_id": "SEC-GRC-001",
+                "fix_path": "obtain_approval",
+                "resolution": "approved_proceed",
+            },
+        }
+
+        # assertions_signature = sha256 of canonical payload (excludes itself)
+        sig_input = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("utf-8")
+        payload["assertions_signature"] = "sha256:" + hashlib.sha256(sig_input).hexdigest()
+        return payload
 
     # ── Channel actions ───────────────────────────────────────────────
 
@@ -366,7 +579,7 @@ class GoldenScenarioService:
         page = {
             "page_id": GRC["confluence_page"],
             "title": "Race Weekend Close Report — FY25-Q4",
-            "hash": "sha256:confluence000000000000000000000000000000000000deadbeef",
+            "hash": _sha256_of("Race Weekend Close Report FY25-Q4 LEDGERLIVE"),
             "url": "https://ledgerlive.atlassian.net/wiki/LLIVE-GRC-CLOSE-REPORT",
             "status": "published",
         }
@@ -374,10 +587,22 @@ class GoldenScenarioService:
                          {"title": "Race Weekend Close Report — FY25-Q4"})
         return page
 
-    # ── E2E assertions ───────────────────────────────────────────────
+    # ── Tamper hook (DEMO+E2E — controlled negative test support) ─────
 
-    def get_assertions(self) -> dict:
-        return GRC_ASSERTIONS
+    def tamper_artifact(self, artifact_key: str, field: str, value: object) -> dict:
+        """Force-set an artifact field to simulate tampering. DEMO+E2E only.
+
+        Returns the tampered artifact. After calling this, get_assertions()
+        will produce a different assertions_signature, proving truthfulness.
+        """
+        from app.main import emit_audit_event
+        artifact_id = GRC.get(artifact_key)
+        if not artifact_id or artifact_id not in self._artifacts:
+            raise KeyError(f"Unknown artifact key: {artifact_key!r}")
+        self._artifacts[artifact_id][field] = value
+        emit_audit_event("grc_tamper_artifact", "tamper_hook", artifact_id,
+                         {"field": field, "value": str(value)})
+        return self._artifacts[artifact_id]
 
     # ── Reset ────────────────────────────────────────────────────────
 

@@ -1,15 +1,17 @@
-"""Golden Scenario Router — DEMO/E2E-only endpoints for Race Control golden state.
+"""Golden Scenario Router — DEMO+E2E-only endpoints for Race Control golden state.
 
 PROJECT_ID: LEDGERLIVE
+GUARD: All endpoints return HTTP 403 unless APP_MODE=DEMO and E2E_MODE=1.
+
 Endpoints:
   POST /api/ops/golden-scenario-run      → seed + return IDs
   POST /api/ops/golden-scenario-reset    → clear golden state
-  GET  /api/ops/e2e_assertions           → stable IDs + expected counts
-  GET  /api/ops/e2e_assertions           (alias: /api/ops/e2e-assertions)
+  GET  /api/ops/e2e-assertions           → computed truthful assertions
+  GET  /api/ops/e2e_assertions           (alias with underscore)
   POST /api/ops/rc-approval/{id}/approve → approve a pending step
   POST /api/ops/rc-approval/{id}/reject  → reject
-  POST /api/ops/export/telemetry-pack    → generate telemetry, return PASS
-  POST /api/ops/export/court-pack        → generate court pack, return PASS
+  POST /api/ops/export/telemetry-pack    → generate telemetry, return PASS + sha256
+  POST /api/ops/export/court-pack        → generate court pack, return PASS + sha256
   POST /api/ops/replay/regenerate-binder → regen binder, return hash
   GET  /api/ops/security-event/{id}      → get security event
   GET  /api/ops/security-events          → list security events
@@ -18,14 +20,40 @@ Endpoints:
   POST /api/ops/atlassian/create-jira    → mock Jira issue creation
   POST /api/ops/atlassian/create-confluence → mock Confluence page
   GET  /api/ops/checkpoint/{cp_id}/why   → dossier for checkpoint
+  GET  /api/ops/checkpoint/{cp_id}/verify → verify checkpoint
   GET  /api/ops/incident/{inc_id}/why    → dossier for incident
   GET  /api/ops/approval/{ap_id}/why     → dossier for approval
+  POST /api/ops/update-baseline          → write current binder hash as baseline
+  POST /api/ops/tamper-artifact          → controlled tamper hook (negative tests)
 """
-from fastapi import APIRouter, HTTPException, Request
+import os
+
+from fastapi import APIRouter, Depends, HTTPException, Request
 
 from app.services.golden_scenario import service
 
-router = APIRouter(tags=["Golden Scenario / E2E Ops"])
+
+def require_e2e_mode() -> None:
+    """FastAPI dependency: block access unless APP_MODE=DEMO and E2E_MODE=1.
+
+    Checks os.getenv at request time so it is patchable in tests.
+    """
+    app_mode = os.getenv("APP_MODE", "LOCAL")
+    e2e_mode = os.getenv("E2E_MODE", "0") == "1"
+    if not (app_mode == "DEMO" and e2e_mode):
+        raise HTTPException(
+            status_code=403,
+            detail=(
+                "Golden Scenario endpoints require APP_MODE=DEMO and E2E_MODE=1. "
+                f"Got APP_MODE={app_mode!r}, E2E_MODE={os.getenv('E2E_MODE', '0')!r}."
+            ),
+        )
+
+
+router = APIRouter(
+    tags=["Golden Scenario / E2E Ops"],
+    dependencies=[Depends(require_e2e_mode)],
+)
 
 
 # ── Seed / Reset ─────────────────────────────────────────────────────
@@ -230,3 +258,38 @@ async def approval_why(ap_id: str):
         ],
         "narrative": f"Approval step {item.get('approval_level')}/{item.get('total_levels')} status: {item.get('status')}.",
     }
+
+
+# ── Baseline Management ───────────────────────────────────────────────
+
+@router.post("/api/ops/update-baseline", status_code=200)
+async def update_baseline():
+    """Write the current binder hash to the baseline file.
+
+    Call once after a clean seed to record the expected hash.
+    Subsequent test runs will compare against this value.
+    """
+    h = service.write_baseline_binder_hash()
+    return {"baseline_written": True, "binder_hash": h}
+
+
+# ── Tamper Hook (controlled negative test support) ────────────────────
+
+@router.post("/api/ops/tamper-artifact", status_code=200)
+async def tamper_artifact(request: Request):
+    """Force-set a field in an artifact to simulate tampering.
+
+    Payload: {"artifact_key": "telemetry_pack", "field": "status", "value": "TAMPERED"}
+
+    After tampering, get_assertions() will return a different assertions_signature,
+    proving the signature is sensitive to artifact state changes.
+    """
+    data = await request.json()
+    artifact_key = data.get("artifact_key", "")
+    field = data.get("field", "")
+    value = data.get("value")
+    try:
+        result = service.tamper_artifact(artifact_key, field, value)
+    except KeyError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    return {"tampered": True, "artifact": result}

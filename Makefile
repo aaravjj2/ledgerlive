@@ -18,10 +18,11 @@ dev:
 	cd apps/web && $(NPM) run dev
 
 # demo — starts API + vite preview on canonical ports (4173 + 8090)
+# APP_MODE=DEMO and E2E_MODE=1 required for golden-scenario endpoints
 demo:
 	@echo "=== LedgerLive DEMO mode (API:8090  Web:4173) ==="
-	@echo "Starting API server..."
-	@start /B cmd /C "cd apps\api && set APP_MODE=LOCAL && set LLM_PROVIDER=DEMO && set SECRET_KEY=demo-secret && $(UVICORN) app.main:app --host 127.0.0.1 --port 8090"
+	@echo "Starting API server (APP_MODE=DEMO E2E_MODE=1)..."
+	@start /B cmd /C "cd apps\api && set APP_MODE=DEMO && set LLM_PROVIDER=DEMO && set SECRET_KEY=demo-secret && set E2E_MODE=1 && $(UVICORN) app.main:app --host 127.0.0.1 --port 8090"
 	@echo "Building and starting web preview..."
 	@cd apps/web && $(NPX) vite build --outDir dist && $(NPX) vite preview --host 127.0.0.1 --port 4173
 

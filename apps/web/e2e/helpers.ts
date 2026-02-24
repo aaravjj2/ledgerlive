@@ -9,7 +9,17 @@
  *   getAssertions(page) — GET /api/ops/e2e-assertions JSON
  */
 
+import * as path from 'path'
+import * as fs from 'fs'
 import { Page, expect } from '@playwright/test'
+
+/** Screenshots dir — resolved from PLAYWRIGHT_SCREENSHOTS_DIR env or cwd fallback */
+function screenshotsDir(): string {
+  if (process.env.PLAYWRIGHT_SCREENSHOTS_DIR) {
+    return process.env.PLAYWRIGHT_SCREENSHOTS_DIR
+  }
+  return path.join(process.cwd(), 'playwright-report', 'screenshots')
+}
 
 const API = 'http://127.0.0.1:8090'
 
@@ -38,8 +48,10 @@ export async function seedGolden(page: Page): Promise<void> {
 
 /** Take a named screenshot checkpoint for the proof pack */
 export async function checkpoint(page: Page, name: string): Promise<void> {
+  const dir = screenshotsDir()
+  fs.mkdirSync(dir, { recursive: true })
   await page.screenshot({
-    path: `playwright-report/screenshots/${name}.png`,
+    path: path.join(dir, `${name}.png`),
     fullPage: false,
   })
 }

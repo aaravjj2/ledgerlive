@@ -25,13 +25,15 @@ test.describe('Golden Race Control', () => {
     await expect(page.getByTestId('rc-run-status')).toHaveText('SEEDED', { timeout: 15_000 })
     await checkpoint(page, 'rc-01-seeded')
 
-    // Verify assertions match golden counts
+    // Verify assertions match golden counts (new truthful structure)
     const assertions = await getAssertions(page)
-    expect(assertions['lanes']).toBe(2)
-    expect(assertions['checkpoints']).toBe(3)
-    expect(assertions['incidents']).toBe(1)
-    expect(assertions['approval_steps']).toBe(2)
-    expect(assertions['security_events']).toBe(1)
+    const actual = assertions['actual_counts'] as Record<string, number>
+    expect(actual['lanes']).toBe(2)
+    expect(actual['checkpoints']).toBe(3)
+    expect(actual['incidents']).toBe(1)
+    expect(actual['approval_steps']).toBe(2)
+    expect(actual['security_events']).toBe(1)
+    expect(actual['exceptions']).toBe(2)
     await checkpoint(page, 'rc-01-assertions')
   })
 
@@ -78,8 +80,8 @@ test.describe('Golden Race Control', () => {
     await page.getByTestId('race-control-run-golden').click()
     await expect(page.getByTestId('rc-run-status')).toBeVisible({ timeout: 15_000 })
 
-    // 1 incident card
-    await expect(page.getByTestId('rc-incident-card')).toHaveCount(1, { timeout: 10_000 })
+    // 3 incident cards: 1 SLA breach + 2 exception types (auto_resolvable + approval_required)
+    await expect(page.getByTestId('rc-incident-card')).toHaveCount(3, { timeout: 10_000 })
 
     // Click Why on incident 0
     await page.getByTestId('rc-incident-why-0').click()
@@ -147,5 +149,76 @@ test.describe('Golden Race Control', () => {
     expect(hash).toBeTruthy()
     expect(hash).toContain('sha256:')
     await checkpoint(page, 'rc-07-replay-hash')
+  })
+
+  test('RC-08 — truthfulness: actual_counts == expected, hashes real, signature stable', async ({ page }) => {
+    const API = 'http://127.0.0.1:8090'
+
+    // Seed the golden state via the UI
+    await page.goto('/race-control')
+    await expect(page.getByTestId('race-control-page')).toBeVisible({ timeout: 10_000 })
+    await page.getByTestId('race-control-run-golden').click()
+    await expect(page.getByTestId('rc-run-status')).toHaveText('SEEDED', { timeout: 15_000 })
+
+    // Export both packs (now auto-generated on seed, but also trigger explicitly)
+    await page.getByTestId('rc-export-telemetry').click()
+    await expect(page.getByTestId('rc-export-telemetry-badge')).toBeVisible({ timeout: 10_000 })
+    await page.getByTestId('rc-export-court').click()
+    await expect(page.getByTestId('rc-export-court-badge')).toBeVisible({ timeout: 10_000 })
+
+    // Regenerate binder via replay panel
+    await page.getByTestId('rc-replay-open').click()
+    await page.getByTestId('rc-replay-regen').click()
+    await expect(page.getByTestId('rc-replay-hash-badge')).toBeVisible({ timeout: 10_000 })
+    await checkpoint(page, 'rc-08-before-assertions')
+
+    // Update baseline so matches_original is true (write current hash as reference)
+    await page.request.post(`${API}/api/ops/update-baseline`)
+
+    // Get full truthful assertions
+    const a = await getAssertions(page)
+    const actual = a['actual_counts'] as Record<string, number>
+    const expected = a['expected_counts'] as Record<string, number>
+    const actualBinder = a['actual_binder_sha256'] as string
+    const expectedBinder = a['expected_binder_sha256'] as string
+    const sig = a['assertions_signature'] as string
+    const tp = a['telemetry_pack'] as Record<string, string>
+    const cp = a['court_pack'] as Record<string, string>
+    const replay = a['replay'] as Record<string, unknown>
+
+    // actual_counts must match expected_counts exactly
+    for (const [key, expVal] of Object.entries(expected)) {
+      expect(actual[key]).toBe(expVal)
+    }
+
+    // Both hashes must be real sha256 (not placeholder)
+    expect(actualBinder).toMatch(/^sha256:[0-9a-f]{64}$/)
+    expect(actualBinder).not.toContain('deadbeef')
+    expect(expectedBinder).toMatch(/^sha256:[0-9a-f]{64}$/)
+    await checkpoint(page, 'rc-08-binder-hash')
+
+    // Telemetry and court pack must be PASS with real sha256
+    expect(tp['status']).toBe('PASS')
+    expect(tp['sha256']).toMatch(/^sha256:[0-9a-f]{64}$/)
+    expect(tp['sha256']).not.toContain('deadbeef')
+    await checkpoint(page, 'rc-08-telemetry-pass')
+
+    expect(cp['status']).toBe('PASS')
+    expect(cp['sha256']).toMatch(/^sha256:[0-9a-f]{64}$/)
+    expect(cp['sha256']).not.toContain('deadbeef')
+    await checkpoint(page, 'rc-08-court-pass')
+
+    // Replay must match after regeneration and baseline update
+    expect(replay['matches_original']).toBe(true)
+    expect(replay['status']).toBe('PASS')
+    await checkpoint(page, 'rc-08-replay-match')
+
+    // assertions_signature must be a real sha256
+    expect(sig).toMatch(/^sha256:[0-9a-f]{64}$/)
+
+    // Signature must be STABLE on a second call (determinism)
+    const a2 = await getAssertions(page)
+    expect(a2['assertions_signature']).toBe(sig)
+    await checkpoint(page, 'rc-08-signature-stable')
   })
 })

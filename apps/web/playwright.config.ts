@@ -1,4 +1,8 @@
 import { defineConfig, devices } from '@playwright/test'
+import * as path from 'path'
+
+// Set absolute screenshots dir for checkpoint() helper before workers spawn
+process.env.PLAYWRIGHT_SCREENSHOTS_DIR = path.resolve(process.cwd(), 'test-results', 'screenshots')
 
 /**
  * LedgerLive — Strict MCP headed-only Playwright configuration.
