@@ -8,6 +8,7 @@ const links = [
   { to: '/exceptions', label: 'Exceptions', tid: 'nav-exceptions' },
   { to: '/review', label: 'Review Queue', tid: 'nav-review' },
   { to: '/audit', label: 'Audit Log', tid: 'nav-audit' },
+  { to: '/race-control', label: 'Race Control', tid: 'nav-race-control' },
   { to: '/settings', label: 'Settings', tid: 'nav-settings' },
 ]
 
