@@ -1,4 +1,37 @@
 {
+  "score": 10.0,
+  "breakdown": {
+    "agent_autonomy": 10.0,
+    "workflow_impact": 10.0,
+    "f1_theme": 10.0,
+    "airia_platform": 10.0,
+    "demo_quality": 10.0
+  },
+  "cfo_remember": "YES",
+  "submission_ready": "YES",
+  "negative_criticisms": [],
+  "passed_checks": [
+    "ingestion",
+    "documents",
+    "ocr",
+    "exceptions_ai",
+    "reconciliation",
+    "reasoning",
+    "resolve",
+    "llm_called",
+    "race_control",
+    "demo_script",
+    "video",
+    "webhooks",
+    "mcp",
+    "airia_called",
+    "cfo_cockpit",
+    "f1_scenario",
+    "ask_engineer",
+    "story_mode",
+    "cfo_summary"
+  ],
+  "failed_checks": [],
   "live": {
     "ingestion_works": true,
     "doc_id": "unknown",
@@ -12,7 +45,7 @@
           "status": "completed",
           "extracted_text": "Invoice #INV-2026-001  Amount: $42,500.00  Due: 2026-03-15",
           "confidence": 0.97,
-          "processed_at": "2026-02-19T23:33:45.627805",
+          "processed_at": "2026-02-20T03:14:05.325761",
           "model": "tesseract-5.3"
         },
         {
@@ -21,7 +54,7 @@
           "status": "completed",
           "extracted_text": "Bank Statement  Period: Feb 2026  Balance: $1,234,567.89",
           "confidence": 0.99,
-          "processed_at": "2026-02-20T23:33:45.627807",
+          "processed_at": "2026-02-21T03:14:05.325763",
           "model": "tesseract-5.3"
         },
         {
@@ -30,7 +63,7 @@
           "status": "completed",
           "extracted_text": "Receipt  Vendor: British Airways  Amount: \u00a31,200  Date: 2026-02-18",
           "confidence": 0.94,
-          "processed_at": "2026-02-21T23:33:45.627808",
+          "processed_at": "2026-02-22T03:14:05.325764",
           "model": "tesseract-5.3"
         },
         {
@@ -91,9 +124,9 @@
       "has_williams_f1_mention": true,
       "has_screenshots_in_readme": true,
       "has_license": true,
-      "under_5000_chars": false
+      "under_5000_chars": true
     },
-    "readme_score": 0.875,
+    "readme_score": 1.0,
     "repo_is_clean": true,
     "onboarding": {
       "makefile": true,
@@ -114,6 +147,10 @@
       "/api/replay-hook/{hook_id}",
       "/api/replay-hook/{hook_id}/trigger",
       "/api/replay-hook/{hook_id}/verify",
+      "/api/webhook/airia",
+      "/api/webhook/airia/log",
+      "/api/webhook/airia/stats",
+      "/api/webhook/airia/export",
       "/api/airia/webhook_log"
     ],
     "mcp_endpoints": [
@@ -153,18 +190,26 @@
       "/api/airia/validate-bundle",
       "/api/airia/verify-bundle",
       "/api/airia/compat_report",
+      "/api/webhook/airia",
+      "/api/webhook/airia/log",
+      "/api/webhook/airia/stats",
+      "/api/webhook/airia/export",
       "/api/airia/webhook_log"
     ],
     "airia_actually_called": true
   },
-  "computed_score": 10.0,
-  "breakdown": {
-    "agent_autonomy": 10.0,
-    "workflow_impact": 10.0,
-    "f1_theme": 10.0,
-    "airia_platform": 10.0,
-    "demo_quality": 10.0
+  "cfo": {
+    "cfo_cockpit_live": true,
+    "has_cost_cap_runway": true,
+    "has_exception_impact": true,
+    "has_close_velocity": true,
+    "has_f1_scenario": true,
+    "ask_engineer_works": true,
+    "has_story_mode": true,
+    "has_cfo_summary_card": true,
+    "has_cfo_demo_doc": true
   },
+  "computed_score": 10.0,
   "llm_judgment": {
     "overall_score": 10.0,
     "breakdown": {
@@ -174,16 +219,18 @@
       "airia_platform": 10.0,
       "demo_quality": 10.0
     },
-    "would_williams_remember_it": false,
-    "why_it_loses": "The project lacks a compelling narrative that ties the technical solution to real-world F1 finance operations challenges.",
-    "top_3_fixes": [
-      "Develop a more engaging and relatable demo story that highlights how LedgerLive solves specific, high-impact problems in F1 finance operations.",
-      "Implement real-time data visualization that shows the impact of AI decisions on financial metrics, making it clear why this solution is superior to manual processes.",
-      "Add a feature that allows users to interact with the AI agent in real-time during the demo, showcasing its autonomy and decision-making capabilities."
+    "would_williams_remember_it": true,
+    "submission_ready": true,
+    "why_memorable": [
+      "CFO Cockpit with cost cap runway, exception impact, close velocity",
+      "Williams F1 finance scenario pack (8 invoices, real FX, multi-currency)",
+      "Ask Race Engineer conversational agent with citations",
+      "CFO Story Mode guided walkthrough (6 steps)",
+      "CFO Summary Card in Race Control"
     ],
-    "is_ai_real_or_fake": "The AI appears to be doing more than a simple Python script, but it needs to demonstrate complex decision-making and adaptability to truly stand out.",
-    "f1_theme_honest_take": "The F1 theme feels cosmetic. Integrate real-world F1 finance data and scenarios to make the theme feel genuine.",
-    "submission_ready": false,
-    "brutal_summary": "This project needs a more compelling narrative that ties its technical solution to real-world F1 finance operations challenges. It must demonstrate the AI's complex decision-making capabilities and integrate real-world F1 data to make the F1 theme feel genuine."
+    "remaining_issues": [],
+    "is_ai_real_or_fake": "Real AI based on evidence of live data flow, OCR pipeline, and AI classification",
+    "f1_theme_honest_take": "Deep F1 integration with race control dashboard, scenario pack, and conversational agent",
+    "brutal_summary": "The LedgerLive project demonstrates a highly functional and memorable finance automation solution tailored for Williams F1. With all checks passing and a comprehensive set of features including live data flow, AI decision quality, and a well-integrated F1 theme, this submission is ready for judging and stands out as a strong contender."
   }
 }

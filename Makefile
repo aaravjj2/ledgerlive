@@ -92,3 +92,7 @@ airia\:loop:
 # ── Airia CFO Judge Loop ────────────────────
 airia\:cfo-loop:
 	powershell -ExecutionPolicy Bypass -File tools/airia_loop/run_strict_loop.ps1 -MaxIters 5
+
+# ── Airia Strict Loop v2 (CFO Memorable) ────
+airia\:strict-loop-v2:
+	powershell -ExecutionPolicy Bypass -File tools/airia_strict_loop_v2/run.ps1 -MaxIters 10
