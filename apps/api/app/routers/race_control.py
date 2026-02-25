@@ -45,6 +45,10 @@ def _get_race_control_state() -> dict:
                  3: "SAFETY_CAR", 4: "RACE", 5: "PODIUM"}
     phase = phase_map.get(current_step, "RACE")
 
+    # CFO cockpit metrics from scenario pack
+    from app.services.cfo_scenario import get_cfo_metrics
+    cfo = get_cfo_metrics()
+
     return {
         "status": "ok",
         "phase": phase,
@@ -77,11 +81,22 @@ def _get_race_control_state() -> dict:
             "workflows_active": sum(1 for w in workflows if w.get("status") == "in_progress"),
             "workflows_completed": sum(1 for w in workflows if w.get("status") == "completed"),
         },
+        "cfo_cockpit": {
+            "cost_cap_runway_usd": cfo["cost_cap"]["runway_usd"],
+            "cost_cap_runway_pct": cfo["cost_cap"]["runway_pct"],
+            "exception_impact_saved_usd": cfo["exception_impact"]["saved_usd"],
+            "close_speedup_x": cfo["close_velocity"]["speedup_x"],
+            "time_saved_hours": cfo["close_velocity"]["time_saved_hours"],
+            "cfo_summary": cfo["cfo_summary"],
+        },
         "reasoning": (
             f"Race Control agent assessed {len(docs)} documents, {len(recons)} reconciliations, "
             f"and {len(exceptions)} exceptions. Current phase: {phase}. "
             f"{exc_open} open exceptions require human review before advancing to Podium. "
             f"AI triage confidence: {sum(e.get('confidence', 0) for e in exceptions) / max(len(exceptions), 1):.0%}. "
+            f"Cost cap runway: ${cfo['cost_cap']['runway_usd']:,.0f} ({cfo['cost_cap']['runway_pct']}% buffer). "
+            f"This reduces exception impact by ${cfo['exception_impact']['saved_usd']:,.0f}. "
+            f"This avoids cost cap breach risk. "
             f"Recommended action: resolve {exc_open} open items, then advance workflow to Evidence Binder stage."
         ),
         "checkpoint_hash": _sha(f"{len(docs)}-{ocr_completed}-{len(recons)}-{exc_open}"),

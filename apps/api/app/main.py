@@ -775,6 +775,10 @@ from app.routers.airia_bundle import router as airia_bundle_router
 from app.routers.race_weekend import router as race_weekend_router
 from app.routers.mcp_server import router as mcp_router
 from app.routers.race_control import router as race_control_router
+from app.routers.cfo_cockpit import router as cfo_cockpit_router
+from app.routers.agent_ask import router as agent_ask_router
+from app.routers.agent_loop import router as agent_loop_router
+from app.routers.airia_webhook_inbound import router as airia_webhook_inbound_router
 
 app.include_router(w321_router)
 app.include_router(w322_router)
@@ -801,6 +805,10 @@ app.include_router(airia_bundle_router)
 app.include_router(race_weekend_router)
 app.include_router(mcp_router)
 app.include_router(race_control_router)
+app.include_router(cfo_cockpit_router)
+app.include_router(agent_ask_router)
+app.include_router(agent_loop_router)
+app.include_router(airia_webhook_inbound_router)
 
 
 # ── Airia Webhook Log Endpoint ────────────────────────────────────────

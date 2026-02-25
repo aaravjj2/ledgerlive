@@ -175,15 +175,15 @@
       "demo_quality": 10.0
     },
     "would_williams_remember_it": false,
-    "why_it_loses": "The project lacks a compelling narrative that ties the AI agent's autonomy to real-world financial operations in F1, making it feel more like a tech demo than a transformative solution.",
+    "why_it_loses": "The project lacks a compelling narrative that ties the technical solution to real-world F1 finance operations challenges.",
     "top_3_fixes": [
-      "Develop a detailed case study or scenario demonstrating how LedgerLive could have prevented a real-world financial mishap in an F1 team, highlighting the AI's decision-making process.",
-      "Integrate live data from actual F1 operations (even if simulated) to show real-time impact and relevance.",
-      "Create a more immersive demo experience that includes interactive elements where users can see the AI agent making decisions on the fly based on changing financial conditions."
+      "Develop a more engaging and relatable demo story that highlights how LedgerLive solves specific, high-impact problems in F1 finance operations.",
+      "Implement real-time data visualization that shows the impact of AI decisions on financial metrics, making it clear why this solution is superior to manual processes.",
+      "Add a feature that allows users to interact with the AI agent in real-time during the demo, showcasing its autonomy and decision-making capabilities."
     ],
-    "is_ai_real_or_fake": "The AI is doing something beyond simple Python scripts, but it needs to be more transparent in its decision-making process to truly stand out.",
-    "f1_theme_honest_take": "The F1 theme feels cosmetic. To make it feel real, integrate actual F1 financial data and scenarios that the AI agent can address in real-time.",
+    "is_ai_real_or_fake": "The AI appears to be doing more than a simple Python script, but it needs to demonstrate complex decision-making and adaptability to truly stand out.",
+    "f1_theme_honest_take": "The F1 theme feels cosmetic. Integrate real-world F1 finance data and scenarios to make the theme feel genuine.",
     "submission_ready": false,
-    "brutal_summary": "This project needs to move beyond a tech demo and into a compelling narrative that shows how its AI agent can transform financial operations in an F1 team. It must integrate real-world data, provide transparent decision-making processes, and create an immersive demo experience."
+    "brutal_summary": "This project needs a more compelling narrative that ties its technical solution to real-world F1 finance operations challenges. It must demonstrate the AI's complex decision-making capabilities and integrate real-world F1 data to make the F1 theme feel genuine."
   }
 }

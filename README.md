@@ -62,28 +62,17 @@ open http://127.0.0.1:4173/race-control
 | Court Pack | Stewards Evidence Package |
 | DRS Zone | Fast-path Auto-approval |
 
-### Why Racing Fits
+## Why Racing Fits
 
-Pit stops are **timed checkpoints** — a reconciliation run that takes twice as long as its SLA
-is a slow pit stop; the team sees it immediately in the lap delta.
-
-Telemetry is the **audit trail** — every tool call emits a structured trace; the court pack
-is the stewards' evidence package containing those traces plus signed verification hashes.
-
-Safety Car is **pause automation for approvals/risk** — when an approval chain is unresolved,
-the close automation halts (fail-closed) until the pit wall gives the all-clear, just as racing
-drivers slow behind the safety car until the track is declared safe.
+Pit stops are timed checkpoints; a slow reconciliation is a slow pit stop visible in lap delta.
+Telemetry is the audit trail; every tool call emits traces; the court pack is the stewards' evidence.
+Safety Car pauses automation for approvals — fail-closed until the pit wall gives all-clear.
 
 ## Why Airia
 
-LedgerLive showcases the Airia platform's three core strengths:
-
-1. **Orchestration** — 340+ deterministic waves chained into a single close workflow, all
-   expressible as Airia template steps with typed inputs and outputs.
-2. **Security posture** — every action passes through a typed guard; no write without approval
-   in HITL lanes; fail-closed on all ambiguity.
-3. **No-code template export** — Blueprint Builder (W301-305) compiles close workflows into
-   Airia community bundles; no API keys required for demo mode.
+1. **Orchestration** — 340+ deterministic waves as Airia template steps
+2. **Security** — typed guards; no write without HITL approval; fail-closed on ambiguity
+3. **No-code export** — Blueprint Builder compiles workflows into Airia community bundles
 
 ## Architecture
 
@@ -114,30 +103,13 @@ See [docs/airia/AIRIA_OVERVIEW.md](docs/airia/AIRIA_OVERVIEW.md) for full detail
 
 ## Airia Compatibility Report
 
-The `GET /api/airia/compat_report` endpoint produces a deterministic proof report:
-
-| Check | What it validates |
-|-------|-------------------|
-| Bundle Structure Completeness | All 7 required files present |
-| Tool Schemas Version-Pinned | Every tool has a pinned schema_version |
-| Workflow DAG Acyclic + Stable Ordering | Steps are unique, monotonically ordered |
-| Approvals for Sensitive Steps | HITL gate exists before close |
-| Fail-Closed Rules Enabled | `on_error=halt` on critical steps |
-| Required Outputs Present | telemetry, court, replay, narrative documented |
-| Deterministic Checksums Match | sha256 hashes match bundle files |
-
+`GET /api/airia/compat_report` produces a deterministic proof: bundle structure, pinned schemas,
+acyclic DAG, HITL approvals, fail-closed rules, required outputs, checksum verification.
 `overall: PASS` — all checks verified offline, no API keys required.
 
-Run: `make airia:compat` to write `artifacts/airia/community_bundle/compat_report.json`.
+Run: `make airia:compat`
 
 ## No-Code Builder Preview
 
-The `/airia` page ships a live **No-Code Builder Preview** showing the workflow DAG
-as interactive step cards, each with:
-
-- Approval-required / fail-closed / evidence-required badges
-- Mapped tool ID and I/O schema version
-- Link to dossier / verification artifacts
-
-An **Import Walkthrough** panel explains each step of importing the bundle into Airia:
-what gets created, how it's configured, and which endpoints it calls.
+The `/airia` page shows the workflow DAG as interactive step cards with approval/fail-closed badges,
+mapped tool IDs, and links to dossier artifacts. An Import Walkthrough explains each step.

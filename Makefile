@@ -88,3 +88,7 @@ release:
 # ── Airia Strict Judge Loop ──────────────────
 airia\:loop:
 	powershell -ExecutionPolicy Bypass -File tools/airia_loop/run_strict_loop.ps1
+
+# ── Airia CFO Judge Loop ────────────────────
+airia\:cfo-loop:
+	powershell -ExecutionPolicy Bypass -File tools/airia_loop/run_strict_loop.ps1 -MaxIters 5
