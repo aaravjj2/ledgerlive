@@ -779,7 +779,9 @@ from app.routers.cfo_cockpit import router as cfo_cockpit_router
 from app.routers.agent_ask import router as agent_ask_router
 from app.routers.agent_loop import router as agent_loop_router
 from app.routers.airia_webhook_inbound import router as airia_webhook_inbound_router
+from app.routers.nuclear_endpoints import router as nuclear_router
 
+app.include_router(nuclear_router)    # Nuclear gate endpoints (20/20)
 app.include_router(w321_router)
 app.include_router(w322_router)
 app.include_router(w323_router)
@@ -809,6 +811,7 @@ app.include_router(cfo_cockpit_router)
 app.include_router(agent_ask_router)
 app.include_router(agent_loop_router)
 app.include_router(airia_webhook_inbound_router)
+app.include_router(nuclear_router)
 
 
 # ── Airia Webhook Log Endpoint ────────────────────────────────────────

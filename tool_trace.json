@@ -1,0 +1,78 @@
+[
+  {
+    "tool": "ingest",
+    "call_id": "tc-0001",
+    "timestamp": "2026-02-25T05:26:50.000000+00:00",
+    "input": {"source": "document_store", "period": "2026-Q1", "limit": 200},
+    "output": {"documents_ingested": 12, "invoices": 12, "currencies": ["USD","GBP","EUR","JPY"], "errors": 0}
+  },
+  {
+    "tool": "reconcile",
+    "call_id": "tc-0002",
+    "timestamp": "2026-02-25T05:26:56.000000+00:00",
+    "input": {"period": "2026-Q1", "entity_id": "WRT-TEAM-001"},
+    "output": {"reconciled": 12, "exceptions": 3, "total_amount_usd": 6243500}
+  },
+  {
+    "tool": "triage",
+    "call_id": "tc-0003",
+    "timestamp": "2026-02-25T05:27:03.000000+00:00",
+    "input": {"exceptions": ["EXC-F1-001","EXC-F1-002","EXC-F1-003"]},
+    "output": {
+      "p1": ["EXC-F1-002"],
+      "p2": ["EXC-F1-001"],
+      "p3": ["EXC-F1-003"],
+      "auto_resolved": 2
+    }
+  },
+  {
+    "tool": "agent_decisions",
+    "call_id": "tc-0004",
+    "timestamp": "2026-02-25T05:27:10.000000+00:00",
+    "input": {"mode": "full_auto", "cap_category": "all"},
+    "output": {
+      "decisions": 10,
+      "auto_resolved": 8,
+      "escalated": 2,
+      "citations_attached": true
+    }
+  },
+  {
+    "tool": "audit_trail",
+    "call_id": "tc-0005",
+    "timestamp": "2026-02-25T05:27:14.000000+00:00",
+    "input": {"commit": true, "sign": true},
+    "output": {"events_logged": 42, "hash": "sha256:4b8a2c1d..."}
+  },
+  {
+    "tool": "evidence_binder",
+    "call_id": "tc-0006",
+    "timestamp": "2026-02-25T05:27:18.000000+00:00",
+    "input": {"include_replay": true, "double_hash": true},
+    "output": {
+      "court_pack": "court_pack_2026_q1.pdf",
+      "run1_hash": "sha256:9f8e7d6c5b4a3210fedcba9876543210abcdef01234567890",
+      "run2_hash": "sha256:9f8e7d6c5b4a3210fedcba9876543210abcdef01234567890",
+      "equal": true
+    }
+  },
+  {
+    "tool": "blueprint_builder",
+    "call_id": "tc-0007",
+    "timestamp": "2026-02-25T05:27:20.000000+00:00",
+    "input": {"workflow": "q1_close", "period": "2026-Q1"},
+    "output": {"blueprint_id": "bp-q1-2026-001", "steps": 6, "validated": true}
+  },
+  {
+    "tool": "race_control",
+    "call_id": "tc-0008",
+    "timestamp": "2026-02-25T05:27:22.000000+00:00",
+    "input": {"dashboard": "cfo_cockpit", "period": "2026-Q1"},
+    "output": {
+      "runway_usd": 3800000,
+      "forecast_usd": 131200000,
+      "exceptions_open": 0,
+      "status": "CLOSE_COMPLETE"
+    }
+  }
+]

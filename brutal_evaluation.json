@@ -99,7 +99,7 @@
     "workflow_endpoint": "/api/workflows",
     "has_reasoning": true,
     "can_resolve_exception": true,
-    "resolution_time_ms": 16,
+    "resolution_time_ms": 15,
     "llm_actually_called": true
   },
   "demo": {
@@ -229,8 +229,8 @@
       "CFO Summary Card in Race Control"
     ],
     "remaining_issues": [],
-    "is_ai_real_or_fake": "Real AI based on evidence of live data flow, OCR pipeline, and AI classification",
-    "f1_theme_honest_take": "Deep F1 integration with race control dashboard, scenario pack, and conversational agent",
-    "brutal_summary": "The LedgerLive project demonstrates a highly functional and memorable finance automation solution tailored for Williams F1. With all checks passing and a comprehensive set of features including live data flow, AI decision quality, and a well-integrated F1 theme, this submission is ready for judging and stands out as a strong contender."
+    "is_ai_real_or_fake": "Real based on evidence of AI classification and resolution capabilities",
+    "f1_theme_honest_take": "Deep integration with F1 theme, including race control dashboard and scenario data",
+    "brutal_summary": "The LedgerLive project demonstrates a highly functional and memorable finance automation solution tailored for Williams Racing. With a comprehensive CFO Cockpit, real-world financial scenarios, and an engaging conversational agent, it effectively showcases AI-driven decision-making and seamless integration with the Airia platform. The demo is polished and impactful, making it a standout submission."
   }
 }

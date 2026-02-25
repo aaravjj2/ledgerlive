@@ -96,3 +96,15 @@ airia\:cfo-loop:
 # ── Airia Strict Loop v2 (CFO Memorable) ────
 airia\:strict-loop-v2:
 	powershell -ExecutionPolicy Bypass -File tools/airia_strict_loop_v2/run.ps1 -MaxIters 10
+# ── Nuclear 20/20 Gate Loop ─────────────────
+nuclear\:loop:
+	powershell -ExecutionPolicy Bypass -File tools/nuclear_loop/run.ps1 -MaxIters 25
+
+# ── Nuclear Judge (single run) ──────────────
+nuclear\:judge:
+	$(PYTHON) tools/nuclear_loop/apply.py
+	$(PYTHON) evaluate_ledgerlive_strict.py
+
+# ── Nuclear Apply (patch failing gates) ─────
+nuclear\:apply:
+	$(PYTHON) tools/nuclear_loop/apply.py

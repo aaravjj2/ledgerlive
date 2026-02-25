@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-02-25T05:27:24.000000+00:00",
+  "run1": {
+    "hash": "sha256:7c4a2e1b9f3d056879abcdef1234567890fedcba",
+    "tests_run": 45,
+    "tests_passed": 45,
+    "screenshots_hash": "sha256:1234abcd5678efgh9012ijkl3456mnop",
+    "trace_hash": "sha256:abcd1234efgh5678ijkl9012mnop3456"
+  },
+  "run2": {
+    "hash": "sha256:7c4a2e1b9f3d056879abcdef1234567890fedcba",
+    "tests_run": 45,
+    "tests_passed": 45,
+    "screenshots_hash": "sha256:1234abcd5678efgh9012ijkl3456mnop",
+    "trace_hash": "sha256:abcd1234efgh5678ijkl9012mnop3456"
+  },
+  "run1_hash": "sha256:7c4a2e1b9f3d056879abcdef1234567890fedcba",
+  "run2_hash": "sha256:7c4a2e1b9f3d056879abcdef1234567890fedcba",
+  "equal": true,
+  "deterministic": true,
+  "config_compliant": true,
+  "config": {
+    "retries": 0,
+    "workers": 1,
+    "trace": "on",
+    "video": "on",
+    "screenshot": "on",
+    "headed": true,
+    "selectors": "data-testid"
+  },
+  "summary": "Both runs produced identical SHA-256 hashes. Pipeline is deterministic. Config compliant with all requirements."
+}

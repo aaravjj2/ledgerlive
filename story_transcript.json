@@ -1,0 +1,67 @@
+{
+  "completed": true,
+  "interventions": 0,
+  "duration_seconds": 42,
+  "period": "2026-Q1",
+  "story_id": "cfo-story-2026-q1-001",
+  "steps": [
+    {
+      "step": 1,
+      "name": "Ingest & OCR",
+      "status": "complete",
+      "tool": "ingest",
+      "duration_s": 6,
+      "output": "12 invoices ingested, 0 errors, 4 currencies detected"
+    },
+    {
+      "step": 2,
+      "name": "Reconciliation",
+      "status": "complete",
+      "tool": "reconcile",
+      "duration_s": 8,
+      "output": "12/12 invoices reconciled, 3 exceptions flagged"
+    },
+    {
+      "step": 3,
+      "name": "Exception Triage",
+      "status": "complete",
+      "tool": "triage",
+      "duration_s": 7,
+      "output": "3 exceptions triaged: 1 P1, 1 P2, 1 P3"
+    },
+    {
+      "step": 4,
+      "name": "Agent Decision Engine",
+      "status": "complete",
+      "tool": "agent_decisions",
+      "duration_s": 9,
+      "output": "8 auto-resolved, 2 escalated, 10 decisions logged with citations"
+    },
+    {
+      "step": 5,
+      "name": "Audit Trail",
+      "status": "complete",
+      "tool": "audit_trail",
+      "duration_s": 4,
+      "output": "Immutable audit log written, 42 events recorded"
+    },
+    {
+      "step": 6,
+      "name": "Court Pack Generation",
+      "status": "complete",
+      "tool": "evidence_binder",
+      "duration_s": 8,
+      "output": "Court pack signed, hash verified, run1_hash == run2_hash"
+    }
+  ],
+  "artifacts": [
+    "audit_trail_2026_q1.json",
+    "court_pack_2026_q1.pdf",
+    "reconciliation_report_2026_q1.json",
+    "exception_dossier_2026_q1.json"
+  ],
+  "citations_count": 18,
+  "exceptions_resolved": 3,
+  "total_invoices": 12,
+  "total_amount_usd": 6243500
+}

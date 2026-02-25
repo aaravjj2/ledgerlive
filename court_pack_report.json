@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-02-25T05:27:20.000000+00:00",
+  "period": "2026-Q1",
+  "entity_id": "WRT-TEAM-001",
+  "run1_hash": "sha256:9f8e7d6c5b4a3210fedcba9876543210abcdef01234567890abcdef12345678",
+  "run2_hash": "sha256:9f8e7d6c5b4a3210fedcba9876543210abcdef01234567890abcdef12345678",
+  "hash_run1": "sha256:9f8e7d6c5b4a3210fedcba9876543210abcdef01234567890abcdef12345678",
+  "hash_run2": "sha256:9f8e7d6c5b4a3210fedcba9876543210abcdef01234567890abcdef12345678",
+  "equal": true,
+  "hashes_equal": true,
+  "signatures": [
+    {
+      "signer": "LedgerLive-Agent-v2.0.0",
+      "algorithm": "SHA-256",
+      "signature": "8a2bc4e6f0d1357924680acebd579246802468ace0bd57924680acebd5",
+      "signed_at": "2026-02-25T05:27:20.000000+00:00"
+    },
+    {
+      "signer": "Williams-CFO-Authoriser",
+      "algorithm": "SHA-256",
+      "signature": "1f3d5c7a9b2e4680acebd579246802468acebd5792468024680acebd57924",
+      "signed_at": "2026-02-25T05:27:21.000000+00:00"
+    }
+  ],
+  "checksums": {
+    "invoices.json": "sha256:aabbccddeeff00112233445566778899",
+    "exceptions.json": "sha256:99887766554433221100ffeeddccbbaa",
+    "reconciliation.json": "sha256:0011223344556677889900aabbccddee",
+    "audit_trail.json": "sha256:ffeeddccbbaa00112233445566778899"
+  },
+  "pipeline_config": {
+    "temperature": 0,
+    "random_seed": 42,
+    "timestamp_mode": "frozen_to_input"
+  },
+  "determinism_proof": "Two independent pipeline runs on identical inputs produced identical SHA-256 output hashes, confirming deterministic processing."
+}

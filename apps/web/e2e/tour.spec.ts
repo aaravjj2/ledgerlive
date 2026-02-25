@@ -8,8 +8,8 @@
  * generator with --grep TOUR.
  *
  * SELECTOR POLICY: data-testid ONLY.  No role, text, label, placeholder,
- * alt-text, title, body locator, querySelector, xpath, or deep combinator
- * selectors are permitted.
+ * alt-text, title, body locator, css, or deep combinator
+ * selectors are permitted. Strictly data-testid attribute-based.
  */
 import { test, expect } from '@playwright/test'
 import { initE2E, checkpoint } from './helpers'

@@ -1,0 +1,74 @@
+[
+  {
+    "question": "What is the current cost cap runway?",
+    "answer": "The cost cap runway is $3,800,000 USD (2.8% buffer). Forecast year-end spend is $131.2M against the $135M FIA cap. Risk level: medium.",
+    "citations": ["INV-2026-001 through INV-2026-012", "FIA Cost Cap Regulations Art. 3", "cfo_scenario.py:COST_CAP_RUNWAY_USD"],
+    "navigation_action": "show /view/cfo-cockpit"
+  },
+  {
+    "question": "Which exception has the highest cap breach risk?",
+    "answer": "EXC-F1-002 (FX variance on GBP invoices) carries the highest cap breach risk at P1. The GBP/USD rate moved from 1.27 to 1.249 between invoicing and settlement, creating a $142K adverse variance.",
+    "citations": ["EXC-F1-002", "INV-2026-001", "fx-rate-day1-1.27", "fx-rate-day3-1.249"],
+    "navigation_action": "show /view/exceptions/EXC-F1-002"
+  },
+  {
+    "question": "Show me the reconciliation status for the aero chassis bucket.",
+    "answer": "Chassis bucket: $20,200,000 of $34,350,000 annual budget spent (41.2%). 3 invoices reconciled. 1 open exception (EXC-F1-002, FX variance). Runway: $14,150,000.",
+    "citations": ["INV-2026-004", "INV-2026-009", "cap-budget-chassis-2026", "runway_by_category.chassis"],
+    "navigation_action": "show /view/reconciliation?cap_category=chassis"
+  },
+  {
+    "question": "What is the FX exposure on JPY invoices?",
+    "answer": "Two JPY invoices totalling ¥625,000,000. At current rate 151.20 USD/JPY = $4,133,600 USD. Day-1 rate was 148.90 giving original value $4,197,450 — adverse variance of -$63,850 USD.",
+    "citations": ["INV-2026-009", "INV-2026-010", "fx-rate-jpy-day1-148.90", "fx-rate-jpy-day3-151.20"],
+    "navigation_action": "show /view/fx-exposure?currency=JPY"
+  },
+  {
+    "question": "Which vendors have the highest concentration risk?",
+    "answer": "Top 5 by spend: Williams Advanced Engineering 16.7%, Pirelli Motorsport 10.6%, Gulf Oil International 10.3%, Honda Manufacturing Aero 9.7%, DHL Motorsport Logistics 6.8%. Single vendor cap risk: medium (WAE at 16.7%).",
+    "citations": ["vendor_concentration.top_vendors", "INV-2026-004", "INV-2026-005", "INV-2026-007"],
+    "navigation_action": "show /view/vendor-concentration"
+  },
+  {
+    "question": "What revenue has been recognised from sponsors so far?",
+    "answer": "Q1 2026 recognised: $2,375,000 USD. Gulf Oil: $1,250,000/qtr (IFRS 15 schedule). ORLEN Group: $1,125,000/qtr. Total sponsorship contract value: $10,250,000 over 2026.",
+    "citations": ["INV-2026-007", "INV-2026-012", "IFRS15-recognition-sched", "FIA Art. 4.1 — Revenue Exclusion"],
+    "navigation_action": "show /view/revenue-recognition"
+  },
+  {
+    "question": "What would the forecast be if the late Aerodyne Parts invoice arrived?",
+    "answer": "The Aerodyne Parts late invoice of £185,000 GBP ($234,950 USD) would increase the forecast to $131,434,950 USD and reduce runway to $3,565,050 USD — still within limits but cap breach risk increases to high.",
+    "citations": ["late_invoice_adaptation.json", "INV-LATE-AERODYNE-EST", "FIA Cost Cap Regulations Art. 3.1"],
+    "navigation_action": "show /view/forecast-impact?scenario=late-invoice"
+  },
+  {
+    "question": "Is the court pack deterministic across two runs?",
+    "answer": "Yes. run1_hash = run2_hash = sha256:9f8e7d6c5b4a3210... The pipeline is deterministic because temperature=0, timestamps are frozen to input, and random seed is 42.",
+    "citations": ["court_pack_report.json", "tool_trace.json:tc-0006", "audit_trail_2026_q1.json"],
+    "navigation_action": "show /view/audit-integrity"
+  },
+  {
+    "question": "What compliance plan has the best risk-to-speed tradeoff?",
+    "answer": "The risk-first plan scores risk=9.5, speed=5.0, compliance=9.8 but adds ~4h. The speed-first plan scores risk=4.0, speed=9.8, compliance=6.5 saving ~5h. For submission deadline: risk-first recommended — runway is only $3.8M.",
+    "citations": ["agent_plans.json", "cfo_cockpit.runway_usd=3800000", "FIA Cost Cap Regulations Art. 3"],
+    "navigation_action": "show /view/agent-plans?compare=risk-first,speed-first"
+  },
+  {
+    "question": "Show me the 30-day cash ladder.",
+    "answer": "7-day: $11.2M, 14-day: $18.7M, 30-day: $31.4M. Receivables (30-day): $4.2M (Gulf Oil sponsorship Q1 settlement + ORLEN remittance). Net 30-day position: $35.6M USD.",
+    "citations": ["cash_ladder.7_day_usd", "cash_ladder.14_day_usd", "cash_ladder.30_day_usd", "cash_ladder.receivables_30_day_usd"],
+    "navigation_action": "show /view/cash-ladder"
+  },
+  {
+    "question": "What is the forecast adjustment delta and why?",
+    "answer": "Forecast increased $1.05M from $130.15M to $131.20M (+0.81%). Reason: FX variance on GBP/JPY invoices + late penalty clause on DHL freight. This reduces runway from $4.85M to $3.8M. Cap breach risk after adjustment: medium.",
+    "citations": ["forecast_delta.original_forecast_usd", "forecast_delta.adjusted_forecast_usd", "forecast_delta.adjustment_reason", "EXC-F1-002"],
+    "navigation_action": "show /view/forecast-delta"
+  },
+  {
+    "question": "Which decisions were auto-resolved versus escalated?",
+    "answer": "8 of 10 decisions auto-resolved (confidence ≥ 85%). DEC-002 (FX variance EXC-F1-002) and DEC-005 (travel overspend INV-2026-006) escalated to CFO with full citation chains.",
+    "citations": ["DEC-001 through DEC-010", "agent_decisions.json", "EXC-F1-002", "INV-2026-006"],
+    "navigation_action": "show /view/agent-decisions"
+  }
+]

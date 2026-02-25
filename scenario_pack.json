@@ -1,0 +1,504 @@
+{
+  "scenario_id": "WILLIAMS_Q1_2026",
+  "version": "2.0.0",
+  "team": "Williams Racing",
+  "period": "Q1 2026",
+  "cost_cap_limit_usd": 135000000,
+  "invoices": [
+    {
+      "id": "INV-2026-001",
+      "vendor": "Mercedes HPP",
+      "category": "power_unit",
+      "invoice_number": "MHPP-Q1-001",
+      "amount_usd": 12500000,
+      "currency": "GBP",
+      "fx_rate": 1.27,
+      "fx_rate_day1": 1.27,
+      "fx_rate_day3": 1.249,
+      "amount_local": 9842520,
+      "due_date": "2026-03-15",
+      "status": "approved",
+      "cap_category": "power_unit",
+      "cost_cap_category": "power_unit_supply",
+      "cap_breach_risk": 0.42,
+      "logistics_cost_center": null,
+      "r_and_d_mapping": null,
+      "recognition_schedule": null
+    },
+    {
+      "id": "INV-2026-002",
+      "vendor": "DHL Logistics",
+      "category": "freight",
+      "invoice_number": "DHL-2026-Q1-7832",
+      "amount_usd": 2340000,
+      "currency": "USD",
+      "fx_rate": 1.0,
+      "fx_rate_day1": 1.0,
+      "fx_rate_day3": 1.0,
+      "amount_local": 2340000,
+      "due_date": "2026-03-20",
+      "status": "approved",
+      "cap_category": "travel",
+      "cost_cap_category": "transportation",
+      "cap_breach_risk": 0.08,
+      "logistics_cost_center": "LOG-APAC-001",
+      "r_and_d_mapping": null,
+      "recognition_schedule": null
+    },
+    {
+      "id": "INV-2026-003",
+      "vendor": "Hilton Hotels",
+      "category": "hospitality",
+      "invoice_number": "HILT-02260315",
+      "amount_usd": 890000,
+      "currency": "EUR",
+      "fx_rate": 1.08,
+      "fx_rate_day1": 1.08,
+      "fx_rate_day3": 1.073,
+      "amount_local": 824074,
+      "due_date": "2026-03-25",
+      "status": "pending_review",
+      "cap_category": "other",
+      "cost_cap_category": "excluded_hospitality",
+      "cap_breach_risk": 0.0,
+      "logistics_cost_center": null,
+      "r_and_d_mapping": null,
+      "recognition_schedule": null
+    },
+    {
+      "id": "INV-2026-004",
+      "vendor": "Williams Advanced Engineering",
+      "category": "r_and_d",
+      "invoice_number": "WAE-Q1-2026-088",
+      "amount_usd": 4200000,
+      "currency": "GBP",
+      "fx_rate": 1.27,
+      "fx_rate_day1": 1.27,
+      "fx_rate_day3": 1.265,
+      "amount_local": 3307087,
+      "due_date": "2026-04-01",
+      "status": "approved",
+      "cap_category": "chassis",
+      "cost_cap_category": "research_development",
+      "cap_breach_risk": 0.18,
+      "logistics_cost_center": null,
+      "r_and_d_mapping": "AERO-FW-2026",
+      "recognition_schedule": null
+    },
+    {
+      "id": "INV-2026-005",
+      "vendor": "Pirelli",
+      "category": "tyres",
+      "invoice_number": "PIR-2026-WR-005",
+      "amount_usd": 1850000,
+      "currency": "EUR",
+      "fx_rate": 1.08,
+      "fx_rate_day1": 1.08,
+      "fx_rate_day3": 1.072,
+      "amount_local": 1712963,
+      "due_date": "2026-03-30",
+      "status": "approved",
+      "cap_category": "other",
+      "cost_cap_category": "excluded_tyres",
+      "cap_breach_risk": 0.0,
+      "logistics_cost_center": null,
+      "r_and_d_mapping": null,
+      "recognition_schedule": null
+    },
+    {
+      "id": "INV-2026-006",
+      "vendor": "British Airways",
+      "category": "travel",
+      "invoice_number": "BA-CORP-2026-1121",
+      "amount_usd": 567000,
+      "currency": "GBP",
+      "fx_rate": 1.27,
+      "fx_rate_day1": 1.27,
+      "fx_rate_day3": 1.258,
+      "amount_local": 446457,
+      "due_date": "2026-03-18",
+      "status": "flagged",
+      "cap_category": "travel",
+      "cost_cap_category": "personnel_travel",
+      "cap_breach_risk": 0.05,
+      "logistics_cost_center": null,
+      "r_and_d_mapping": null,
+      "recognition_schedule": null
+    },
+    {
+      "id": "INV-2026-007",
+      "vendor": "Gulf Oil Sponsor",
+      "category": "sponsor_revenue",
+      "invoice_number": "GULF-SPNSR-2026-01",
+      "amount_usd": -5000000,
+      "currency": "USD",
+      "fx_rate": 1.0,
+      "fx_rate_day1": 1.0,
+      "fx_rate_day3": 1.0,
+      "amount_local": -5000000,
+      "due_date": "2026-04-15",
+      "status": "receivable",
+      "cap_category": "other",
+      "cost_cap_category": "excluded_revenue",
+      "cap_breach_risk": 0.0,
+      "logistics_cost_center": null,
+      "r_and_d_mapping": null,
+      "recognition_schedule": {
+        "quarters": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4"
+        ],
+        "per_quarter_usd": 1250000
+      }
+    },
+    {
+      "id": "INV-2026-008",
+      "vendor": "Duracell Sponsor",
+      "category": "sponsor_revenue",
+      "invoice_number": "DURACELL-SPNSR-2026-01",
+      "amount_usd": -3200000,
+      "currency": "USD",
+      "fx_rate": 1.0,
+      "fx_rate_day1": 1.0,
+      "fx_rate_day3": 1.0,
+      "amount_local": -3200000,
+      "due_date": "2026-04-20",
+      "status": "receivable",
+      "cap_category": "other",
+      "cost_cap_category": "excluded_revenue",
+      "cap_breach_risk": 0.0,
+      "logistics_cost_center": null,
+      "r_and_d_mapping": null,
+      "recognition_schedule": {
+        "quarters": [
+          "Q1",
+          "Q2"
+        ],
+        "per_quarter_usd": 1600000
+      }
+    },
+    {
+      "id": "INV-2026-009",
+      "vendor": "Honda Manufacturing (Aero)",
+      "category": "aero_parts",
+      "invoice_number": "HONDA-AERO-2026-034",
+      "amount_usd": 3850000,
+      "currency": "JPY",
+      "fx_rate": 149.5,
+      "fx_rate_day1": 149.5,
+      "fx_rate_day3": 151.2,
+      "amount_local": 575575000,
+      "due_date": "2026-03-28",
+      "status": "approved",
+      "cap_category": "chassis",
+      "cost_cap_category": "chassis_components",
+      "cap_breach_risk": 0.22,
+      "logistics_cost_center": "LOG-JP-AERO",
+      "r_and_d_mapping": "AERO-FLOOR-2026",
+      "recognition_schedule": null
+    },
+    {
+      "id": "INV-2026-010",
+      "vendor": "Yamato Transport",
+      "category": "freight",
+      "invoice_number": "YTC-FRT-2026-112",
+      "amount_usd": 780000,
+      "currency": "JPY",
+      "fx_rate": 149.5,
+      "fx_rate_day1": 149.5,
+      "fx_rate_day3": 151.0,
+      "amount_local": 116610000,
+      "due_date": "2026-03-22",
+      "status": "approved",
+      "cap_category": "travel",
+      "cost_cap_category": "transportation",
+      "cap_breach_risk": 0.03,
+      "logistics_cost_center": "LOG-JP-FRT-001",
+      "r_and_d_mapping": null,
+      "recognition_schedule": null
+    },
+    {
+      "id": "INV-2026-011",
+      "vendor": "AMS Technical Staffing",
+      "category": "personnel",
+      "invoice_number": "AMS-PERS-2026-Q1",
+      "amount_usd": 2100000,
+      "currency": "EUR",
+      "fx_rate": 1.08,
+      "fx_rate_day1": 1.08,
+      "fx_rate_day3": 1.075,
+      "amount_local": 1944444,
+      "due_date": "2026-03-31",
+      "status": "approved",
+      "cap_category": "personnel",
+      "cost_cap_category": "personnel_costs",
+      "cap_breach_risk": 0.12,
+      "logistics_cost_center": null,
+      "r_and_d_mapping": null,
+      "recognition_schedule": null
+    },
+    {
+      "id": "INV-2026-012",
+      "vendor": "ORLEN Group Sponsorship",
+      "category": "sponsor_revenue",
+      "invoice_number": "ORLEN-SPNSR-2026-Q1",
+      "amount_usd": -4500000,
+      "currency": "EUR",
+      "fx_rate": 1.08,
+      "fx_rate_day1": 1.08,
+      "fx_rate_day3": 1.072,
+      "amount_local": -4166667,
+      "due_date": "2026-04-01",
+      "status": "receivable",
+      "cap_category": "other",
+      "cost_cap_category": "excluded_revenue",
+      "cap_breach_risk": 0.0,
+      "logistics_cost_center": null,
+      "r_and_d_mapping": null,
+      "recognition_schedule": {
+        "quarters": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4"
+        ],
+        "per_quarter_usd": 1125000
+      }
+    }
+  ],
+  "exceptions_before": [
+    {
+      "id": "EXC-F1-001",
+      "description": "Duplicate freight payment to DHL",
+      "amount_usd": 78000,
+      "risk": "overpayment",
+      "status": "open"
+    },
+    {
+      "id": "EXC-F1-002",
+      "description": "FX variance on Mercedes HPP invoice",
+      "amount_usd": 142500,
+      "risk": "cost_cap_breach",
+      "status": "open"
+    },
+    {
+      "id": "EXC-F1-003",
+      "description": "Missing PO for Hilton hospitality",
+      "amount_usd": 45000,
+      "risk": "compliance",
+      "status": "open"
+    }
+  ],
+  "exceptions_after": [
+    {
+      "id": "EXC-F1-001",
+      "description": "Duplicate freight payment to DHL",
+      "amount_usd": 78000,
+      "risk": "overpayment",
+      "status": "auto_resolved",
+      "resolution": "Agent matched duplicate invoice numbers, flagged for recovery. Saves $78K."
+    },
+    {
+      "id": "EXC-F1-002",
+      "description": "FX variance on Mercedes HPP invoice",
+      "amount_usd": 142500,
+      "risk": "cost_cap_breach",
+      "status": "escalated_to_cfo",
+      "resolution": "Agent computed FX impact on cost cap; variance pushes forecast to $131.34M. Recommended hedge action to treasury. Avoids $142.5K cost cap risk."
+    },
+    {
+      "id": "EXC-F1-003",
+      "description": "Missing PO for Hilton hospitality",
+      "amount_usd": 45000,
+      "risk": "compliance",
+      "status": "auto_resolved",
+      "resolution": "Hospitality is excluded from cost cap (FIA Art. 4.1b). Agent auto-classified and approved. Saves 2 hours of manual review."
+    }
+  ],
+  "close_stages": [
+    {
+      "stage": "Pit Stop: Ingest",
+      "manual_hours": 16,
+      "agent_hours": 0.5,
+      "speedup_x": 32,
+      "status": "completed"
+    },
+    {
+      "stage": "Qualifying: Reconcile",
+      "manual_hours": 24,
+      "agent_hours": 1.2,
+      "speedup_x": 20,
+      "status": "completed"
+    },
+    {
+      "stage": "Safety Car: Triage",
+      "manual_hours": 12,
+      "agent_hours": 0.3,
+      "speedup_x": 40,
+      "status": "completed"
+    },
+    {
+      "stage": "Race: Review",
+      "manual_hours": 8,
+      "agent_hours": 2.0,
+      "speedup_x": 4,
+      "status": "in_progress"
+    },
+    {
+      "stage": "Podium: Binder",
+      "manual_hours": 6,
+      "agent_hours": 0.1,
+      "speedup_x": 60,
+      "status": "pending"
+    }
+  ],
+  "metrics": {
+    "scenario_id": "WILLIAMS_Q1_2026",
+    "scenario_version": "2.0.0",
+    "cost_cap": {
+      "limit_usd": 135000000,
+      "spent_usd": 98450000,
+      "forecast_usd": 131200000,
+      "runway_usd": 3800000,
+      "runway_pct": 2.8,
+      "risk_level": "medium"
+    },
+    "exception_impact": {
+      "before_usd": 265500,
+      "after_usd": 142500,
+      "saved_usd": 123000,
+      "auto_resolved_count": 2,
+      "escalated_count": 1
+    },
+    "close_velocity": {
+      "manual_hours": 66,
+      "agent_hours": 4.1,
+      "time_saved_hours": 61.9,
+      "speedup_x": 16.1,
+      "stages": [
+        {
+          "stage": "Pit Stop: Ingest",
+          "manual_hours": 16,
+          "agent_hours": 0.5,
+          "speedup_x": 32,
+          "status": "completed"
+        },
+        {
+          "stage": "Qualifying: Reconcile",
+          "manual_hours": 24,
+          "agent_hours": 1.2,
+          "speedup_x": 20,
+          "status": "completed"
+        },
+        {
+          "stage": "Safety Car: Triage",
+          "manual_hours": 12,
+          "agent_hours": 0.3,
+          "speedup_x": 40,
+          "status": "completed"
+        },
+        {
+          "stage": "Race: Review",
+          "manual_hours": 8,
+          "agent_hours": 2.0,
+          "speedup_x": 4,
+          "status": "in_progress"
+        },
+        {
+          "stage": "Podium: Binder",
+          "manual_hours": 6,
+          "agent_hours": 0.1,
+          "speedup_x": 60,
+          "status": "pending"
+        }
+      ]
+    },
+    "financials": {
+      "total_payable_usd": 29077000,
+      "total_receivable_usd": 12700000,
+      "net_position_usd": -16377000,
+      "invoices_count": 12,
+      "currencies": [
+        "JPY",
+        "GBP",
+        "USD",
+        "EUR"
+      ]
+    },
+    "cfo_summary": "After this close cycle: cost cap runway $3,800,000 (2.8% buffer), risk flags 1 (FX variance on power unit), time saved 61.9 hours vs manual close (16.1x speedup). Agent auto-resolved 2/3 exceptions saving $123K.",
+    "runway_by_category": {
+      "chassis": {
+        "spent_usd": 8050000,
+        "budget_usd": 18000000,
+        "runway_usd": 9950000
+      },
+      "power_unit": {
+        "spent_usd": 12500000,
+        "budget_usd": 17000000,
+        "runway_usd": 4500000
+      },
+      "personnel": {
+        "spent_usd": 42000000,
+        "budget_usd": 55000000,
+        "runway_usd": 13000000
+      },
+      "travel": {
+        "spent_usd": 2907000,
+        "budget_usd": 4000000,
+        "runway_usd": 1093000
+      },
+      "other": {
+        "spent_usd": 32993000,
+        "budget_usd": 41000000,
+        "runway_usd": 8007000
+      }
+    },
+    "cash_ladder": {
+      "7_day_usd": 16187000,
+      "14_day_usd": 20927000,
+      "30_day_usd": 29077000,
+      "receivables_30_day_usd": 12700000
+    },
+    "vendor_concentration": {
+      "top_vendors": [
+        {
+          "vendor": "Mercedes HPP",
+          "exposure_usd": 12500000,
+          "pct_of_cap": 9.3
+        },
+        {
+          "vendor": "Williams Advanced Engineering",
+          "exposure_usd": 4200000,
+          "pct_of_cap": 3.1
+        },
+        {
+          "vendor": "AMS Technical Staffing",
+          "exposure_usd": 2100000,
+          "pct_of_cap": 1.6
+        },
+        {
+          "vendor": "DHL Logistics",
+          "exposure_usd": 2340000,
+          "pct_of_cap": 1.7
+        },
+        {
+          "vendor": "Honda Manufacturing (Aero)",
+          "exposure_usd": 3850000,
+          "pct_of_cap": 2.9
+        }
+      ],
+      "single_vendor_cap_risk": "Mercedes HPP at 9.3% of cap is the highest concentration risk"
+    },
+    "forecast_delta": {
+      "original_forecast_usd": 132500000,
+      "adjusted_forecast_usd": 131200000,
+      "delta_amount_usd": -1300000,
+      "delta_pct": -0.98,
+      "adjustment_reason": "Auto-resolved duplicate freight ($78K) + hospitality re-class ($45K) + FX hedge ($1.177M)",
+      "cap_breach_risk_after": "Low \u2014 runway $3.8M after adjustments"
+    }
+  },
+  "checksum": "ec588eb627539ac9"
+}

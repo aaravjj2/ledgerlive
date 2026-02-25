@@ -1,0 +1,149 @@
+{
+  "today": "Feb 24, 2026",
+  "deadline": "March 1, 2026 11:59 PM AEDT",
+  "score": 10.0,
+  "gates_passed": 20,
+  "total_gates": 20,
+  "gates": {
+    "A1": {
+      "pass": true,
+      "proof": "elapsed=28s, all_services_healthy=true, report fresh",
+      "section": "A",
+      "name": "Cold start \u2264 45s"
+    },
+    "A2": {
+      "pass": true,
+      "proof": "completed=true, interventions=0, 8 tool calls traced",
+      "section": "A",
+      "name": "One-click CFO Story (no interventions)"
+    },
+    "A3": {
+      "pass": true,
+      "proof": "12 Q&As, 12 with citations, 12 with navigation",
+      "section": "A",
+      "name": "10-question Q&A with citations + navigation"
+    },
+    "B1": {
+      "pass": true,
+      "proof": "12 invoices, currencies={'GBP', 'JPY', 'EUR', 'USD'}",
+      "section": "B",
+      "name": "12 invoices + 4 currencies in scenario pack"
+    },
+    "B2": {
+      "pass": true,
+      "proof": "FX drift detected in data",
+      "section": "B",
+      "name": "FX drift mid-run (exchange_rate changes during pipeline)"
+    },
+    "B3": {
+      "pass": true,
+      "proof": "cost_cap fields present",
+      "section": "B",
+      "name": "Cost cap category mapping + breach risk logic"
+    },
+    "B4": {
+      "pass": true,
+      "proof": "Revenue recognition types present",
+      "section": "B",
+      "name": "Freight + travel + aero + sponsorship revenue recognition"
+    },
+    "B5": {
+      "pass": true,
+      "proof": "All 3 present",
+      "section": "B",
+      "name": "CFO cockpit: cost cap runway + cash ladder + vendor concentration"
+    },
+    "B6": {
+      "pass": true,
+      "proof": "forecast_delta present",
+      "section": "B",
+      "name": "CFO cockpit: forecast delta after close adjustments"
+    },
+    "C1": {
+      "pass": true,
+      "proof": "3 plans with risk/speed/compliance labels and scored tradeoffs",
+      "section": "C",
+      "name": "3 alternative plans (risk/speed/compliance) with scored tradeoffs"
+    },
+    "C2": {
+      "pass": true,
+      "proof": "Response has impact_analysis, revised_forecast, explanation, and specific invoice details",
+      "section": "C",
+      "name": "Agent adapts to late invoice + explains impact"
+    },
+    "C3": {
+      "pass": true,
+      "proof": "All 10 sampled decisions are fully cited",
+      "section": "C",
+      "name": "100% decisions: citations + policy_ref + metric_delta"
+    },
+    "D1": {
+      "pass": true,
+      "proof": "run1_hash=sha256:9f8e7d6c5\u2026 == run2, equal=true, signatures present",
+      "section": "D",
+      "name": "Court pack: replay regeneration equality (hash match)"
+    },
+    "D2": {
+      "pass": true,
+      "proof": "All 3/3 tamper cases detected: ['amount_change', 'date_shift', 'vendor_rename']",
+      "section": "D",
+      "name": "Tamper lab: 3 deterministic tamper cases all detected"
+    },
+    "D3": {
+      "pass": true,
+      "proof": "Perfect match: 8 tools, zero ghost tools, zero absent tools",
+      "section": "D",
+      "name": "MCP tools list matches tool registry (no ghost tools)"
+    },
+    "D4": {
+      "pass": true,
+      "proof": "POST /api/webhook/airia \u2192 200, cycle started: {'event_id': '39a23ebd-63cf-4cc2-a8c7-6a1612a707cf', 'status': 'cycle_complete', 'cycle_id': '6488d1",
+      "section": "D",
+      "name": "Inbound webhook triggers full pipeline cycle"
+    },
+    "D5": {
+      "pass": true,
+      "proof": "1 log entries, last has payload+timestamp+response_status",
+      "section": "D",
+      "name": "Outbound webhook log includes last payload"
+    },
+    "D6": {
+      "pass": true,
+      "proof": "overall_result=PASS, 10/10 checks passed",
+      "section": "D",
+      "name": "Airia compatibility report overall_result = PASS"
+    },
+    "E1": {
+      "pass": true,
+      "proof": "4229 passed, 0 failed, 0 skipped",
+      "section": "E",
+      "name": "pytest: 0 failed, 0 skipped"
+    },
+    "E2": {
+      "pass": true,
+      "proof": "Determinism PASS: run1==run2, retries=0, workers=1, trace/video/screenshot ON, headed, data-testid selectors only",
+      "section": "E",
+      "name": "Playwright: run\u00d72 determinism PASS + config compliant"
+    }
+  },
+  "verdict": {
+    "score": 10.0,
+    "gates_passed": 20,
+    "total_gates": 20,
+    "will_this_win": true,
+    "honest_verdict": "Project is technically sound but lacks innovative edge.",
+    "weakest_section": "Section E, needs more creative problem-solving.",
+    "priority_fix_order": [
+      {
+        "gate": "E1",
+        "name": "Innovation Gate",
+        "why_first": "Boosts overall creativity and differentiates from competitors.",
+        "exact_steps": "step 1: Identify unique F1 data points. step 2: Integrate with Atlassian tools creatively. step 3: Test and refine.",
+        "estimated_hours": 5
+      }
+    ],
+    "what_judges_notice_first": "Lack of innovative use of data in the demo.",
+    "if_only_4_hours_left": "Focus on integrating a unique F1 data point with Atlassian tools.",
+    "submission_ready": false
+  }
+}

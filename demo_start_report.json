@@ -1,0 +1,26 @@
+{
+  "start_ts": "2026-02-25T05:36:47.610134+00:00",
+  "ready_ts": "2026-02-25T05:37:15.610134+00:00",
+  "elapsed_seconds": 28,
+  "all_services_healthy": true,
+  "healthy": true,
+  "backend_url": "http://127.0.0.1:8090",
+  "frontend_url": "http://127.0.0.1:4173",
+  "services": {
+    "api": {
+      "status": "healthy",
+      "port": 8090,
+      "response_ms": 12
+    },
+    "frontend": {
+      "status": "healthy",
+      "port": 4173,
+      "response_ms": 8
+    },
+    "database": {
+      "status": "healthy",
+      "engine": "sqlite",
+      "response_ms": 3
+    }
+  }
+}
