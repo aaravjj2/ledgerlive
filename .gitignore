@@ -45,3 +45,9 @@ keys.env
 
 # Artifacts
 artifacts/
+
+# Cloudflare tunnel + temp test output
+tunnel_log.txt
+test_suite_result.txt
+test_mcp_result.txt
+test_full_result.txt
