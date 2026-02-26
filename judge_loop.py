@@ -79,7 +79,7 @@ Score breakdown (must sum to 10):
         "repo_path":    Path(r"C:\Aarav\ledgerlive"),
         "backend_url":  "http://127.0.0.1:8090",
         "frontend_url": "http://127.0.0.1:4174",
-        "backend_cmd":  r'cd "C:\Aarav\ledgerlive\apps\api" && .venv\Scripts\python -m uvicorn app.main:app --port 8090 --reload',
+        "backend_cmd":  r'cd "C:\Aarav\ledgerlive\apps\api"; $env:APP_MODE="DEMO"; $env:LLM_PROVIDER="DEMO"; $env:SECRET_KEY="demo-secret"; .\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8090',
         "frontend_cmd": r'cd "C:\Aarav\ledgerlive\apps\web" && npm run dev',
         "test_cmd":     r'cd "C:\Aarav\ledgerlive\apps\api" && .venv\Scripts\python -m pytest tests/ -q --tb=short',
         "hackathon":    "Airia Race Beyond the Track — Williams F1 / Atlassian",
