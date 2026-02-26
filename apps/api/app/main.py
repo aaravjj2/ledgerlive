@@ -780,8 +780,10 @@ from app.routers.agent_ask import router as agent_ask_router
 from app.routers.agent_loop import router as agent_loop_router
 from app.routers.airia_webhook_inbound import router as airia_webhook_inbound_router
 from app.routers.nuclear_endpoints import router as nuclear_router
+from app.routers.mcp_remote import router as mcp_remote_router  # Airia Remote MCP (SSE)
 
 app.include_router(nuclear_router)    # Nuclear gate endpoints (20/20)
+app.include_router(mcp_remote_router) # Remote MCP SSE transport (Airia Option B)
 app.include_router(w321_router)
 app.include_router(w322_router)
 app.include_router(w323_router)
