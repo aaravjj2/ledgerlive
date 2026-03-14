@@ -1,115 +1,251 @@
-# LedgerLive — AI Finance Close Agent
+# LedgerLive -- AI Finance Close Agent
 
-> **One-liner pitch:** LedgerLive is an autonomous AI agent that closes your books like a Williams F1 pit crew closes a race — every document ingested, every mismatch triaged, every decision explained, every artifact sealed.
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Python 3.12+](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://python.org)
+[![Node 22+](https://img.shields.io/badge/Node.js-22+-green.svg)](https://nodejs.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.131-009688.svg)](https://fastapi.tiangolo.com)
+[![React 18](https://img.shields.io/badge/React-18-61DAFB.svg)](https://react.dev)
+[![Tests](https://img.shields.io/badge/Tests-4269_passing-brightgreen.svg)]()
 
-> The finance close process is a race. LedgerLive operates it like the Williams F1 pit wall:
-> lanes hold position, checkpoints gate progress, incidents surface in real-time, approvals
-> gate the car through scrutineering, and every tool trace becomes the telemetry pack
-> the stewards audit. No LLM keys required — fully deterministic in DEMO mode.
+> **LedgerLive closes your books like a Williams F1 pit crew closes a race** -- every document ingested, every mismatch triaged, every decision explained, every artifact sealed.
+
+Finance teams spend 40+ hours per quarter on manual close reconciliation, during which errors cost companies an average of $300K. LedgerLive automates the entire month-end close process with an AI agent that perceives financial data, decides on actions, acts autonomously on low-risk items, and escalates high-risk decisions to humans -- all with a complete audit trail.
 
 ## Screenshots
 
 ![Race Control Dashboard](artifacts/debug/test-07-race-control.png)
-*Race Control: live lanes, scoreboard, and incident tracking during a close cycle.*
+*Race Control: Live command center showing lanes, scoreboard, and incident tracking during a close cycle.*
 
 ![Dashboard Overview](artifacts/debug/test-01-dashboard.png)
-*Dashboard: Pit Lane overview showing documents, OCR, reconciliations, and exceptions at a glance.*
+*Dashboard: Pit Lane overview -- documents, OCR, reconciliations, and exceptions at a glance.*
 
-## Project Identity
+![Documents](artifacts/debug/test-02-documents.png)
+*Document Ingestion: Upload and track PDFs, CSVs, and bank statements with auto-OCR status.*
 
-```
-PROJECT_ID: LEDGERLIVE
-```
+![Reconciliation](artifacts/debug/test-03-reconciliation.png)
+*Reconciliation Engine: Bank-to-GL and subledger matching with AI-powered mismatch reasoning.*
 
-## What It Does
+![Exceptions](artifacts/debug/test-04-exceptions.png)
+*Exception Triage: AI-classified mismatches by severity, with auto-resolve for low-risk items.*
 
-LedgerLive is a **no-code, deterministic finance-close orchestration agent** built on the Airia
-platform. It turns a month-end close — a multi-team, multi-approval, deadline-critical operation —
-into a race-control metaphor every CFO can read at a glance.
+![Review Queue](artifacts/debug/test-05-review-queue.png)
+*Human-in-the-Loop Review: High-severity exceptions routed to approvers with full reasoning context.*
 
-**Finance reality:** sub-ledger feeds, AP matching, cutoff reviews, intercompany elimination,
-exception triage, HITL approvals, and signed evidence bundles.
+![Audit Log](artifacts/debug/test-06-audit-log.png)
+*Audit Trail: Every action, decision, and approval captured with tamper-evident hashing.*
 
-**F1 metaphor:** lanes, pit stops, telemetry packs, safety cars, lap completions, and court packs
-for the stewards.
+![Race Control Incidents](artifacts/debug/test-11-race-control-incident.png)
+*Incident Tracking: Real-time blocker and exception surfacing during an active close cycle.*
 
-The agent runs 340+ deterministic service waves, exports Airia community bundles, and proves
-every assertion with real sha256 hashes — never constants.
+![Mobile Dashboard](artifacts/debug/test-10-mobile-dashboard.png)
+*Mobile: Responsive CFO dashboard for on-the-go close monitoring.*
 
-## 3-Step Quickstart
+## Features
 
-```bash
-# 1 — Start demo (API + web preview)
-make demo
-
-# 2 — Open Race Control in your browser
-open http://127.0.0.1:4173/race-control
-
-# 3 — Click "▷ Run Canonical" to seed the full golden scenario
-```
-
-## F1 Glossary
-
-| F1 Term | Finance Reality |
-|---------|-----------------|
-| Race Control | Close Command Center |
-| Pit Stops | Close Checkpoints |
-| Laps | Close Stages / Milestones |
-| Telemetry | Tool Trace + Audit Trail + Drift Budgets |
-| Safety Car | Fail-Closed + Approvals Required |
-| Pit Wall | Approver Chain + SLA Escalations |
-| Incident Log | Exceptions / Blockers / Policy Events |
-| Court Pack | Stewards Evidence Package |
-| DRS Zone | Fast-path Auto-approval |
-
-## Why Racing Fits
-
-Pit stops are timed checkpoints; a slow reconciliation is a slow pit stop visible in lap delta.
-Telemetry is the audit trail; every tool call emits traces; the court pack is the stewards' evidence.
-Safety Car pauses automation for approvals — fail-closed until the pit wall gives all-clear.
-
-## Why Airia
-
-1. **Orchestration** — 340+ deterministic waves as Airia template steps
-2. **Security** — typed guards; no write without HITL approval; fail-closed on ambiguity
-3. **No-code export** — Blueprint Builder compiles workflows into Airia community bundles
+- **Document Ingestion** -- Upload PDFs, CSVs, bank statements; auto-OCR with 94%+ confidence
+- **Reconciliation Engine** -- Bank-to-GL, subledger-to-GL, vendor statement matching with AI reasoning
+- **Exception Triage** -- AI classifies mismatches by severity and confidence; auto-resolves low-risk items
+- **Human-in-the-Loop Review** -- High-severity exceptions routed to the right approver with full reasoning
+- **Evidence Binder** -- Tamper-evident, SHA-256 sealed audit pack for compliance
+- **Voice Assistant (Gemini)** -- Talk to your ledger in real-time using Gemini Live API
+- **Race Control Dashboard** -- F1-inspired live command center for close cycle management
+- **340+ Deterministic Service Waves** -- Comprehensive finance operations coverage
+- **Multi-Agent Architecture** -- Specialized agents for ingestion, reconciliation, triage, and HITL
+- **No-Code Builder Preview** -- Export workflows to Airia community bundles
+- **Consolidation Engine** -- Intercompany elimination, FX translation, cashflow consolidation
+- **FP&A Suite** -- Budgeting, forecasting, driver-based planning, scenario analysis
 
 ## Architecture
 
-| Layer | Tech | Port |
-|-------|------|------|
-| API | FastAPI + Python 3.14 | 8090 |
-| Web | React 18 + Vite + Tailwind | 5173 (dev) / 4173 (preview) |
-| DB | SQLite (local) | — |
-| E2E | Playwright MCP headed-only | — |
+```mermaid
+graph TB
+    subgraph Frontend
+        WEB[React 18 + Vite + Tailwind]
+        VOICE[Voice Assistant UI]
+    end
 
-## Gates
+    subgraph Backend
+        API[FastAPI + Python 3.12]
+        GEMINI[Gemini Live API]
+        GRADIENT[Gradient AI OCR]
+        AIRIA[Airia Agent Orchestration]
+    end
 
-- `tools/gates/no_apex_references.py` — Zero Apex Terminal references
-- `tools/gates/no_network_in_tests.py` — No outbound network in tests
+    subgraph Data
+        DB[(SQLite / PostgreSQL)]
+        SPACES[DigitalOcean Spaces]
+    end
 
-## Airia Community Bundle
+    subgraph Deployment
+        CR[Google Cloud Run]
+        DO[DigitalOcean App Platform]
+        GL[GitLab CI/CD]
+    end
+
+    WEB --> API
+    VOICE --> GEMINI
+    API --> DB
+    API --> GRADIENT
+    API --> AIRIA
+    API --> SPACES
+    API --> CR
+    API --> DO
+```
+
+## Tech Stack
+
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| Backend | FastAPI + Python 3.12 | API server, business logic |
+| Frontend | React 18 + Vite + Tailwind | SPA dashboard |
+| Voice | Gemini Live API | Real-time voice interaction |
+| OCR/AI | DigitalOcean Gradient AI | Document extraction |
+| Orchestration | Airia Platform | Multi-agent workflows |
+| Database | SQLite (dev) / PostgreSQL (prod) | Data persistence |
+| Object Storage | DigitalOcean Spaces | Document and artifact storage |
+| E2E Testing | Playwright (headed-only) | End-to-end verification |
+| CI/CD | GitLab CI/CD | Automated build, test, deploy |
+| Deployment | Docker + Cloud Run + App Platform | Containerized hosting |
+
+## Quick Start
 
 ```bash
-make airia:bundle    # generate deterministic bundle
-make airia:validate  # strict readiness check
-make airia:verify    # offline checksum verification
-make airia:compat    # run Airia Compatibility Report
+# Clone and start
+git clone https://github.com/aaravjj2/ledgerlive.git
+cd ledgerlive
+cp .env.example .env
+make demo
+
+# Open Race Control
+open http://127.0.0.1:4173/race-control
+```
+
+### Docker Quick Start
+
+```bash
+docker-compose up -d
+open http://localhost:3000
+```
+
+### Prerequisites
+
+- Python 3.12+
+- Node.js 22+
+- npm 10+
+
+## Development
+
+```bash
+make dev          # Start API + web dev server with hot reload
+make test         # Run 4,269+ backend tests
+make e2e-mcp      # Run Playwright E2E headed tests
+make lint         # Run all linters
+make airia:bundle # Generate deterministic Airia community bundle
+```
+
+### Airia Community Bundle
+
+```bash
+make airia:bundle    # Generate deterministic bundle
+make airia:validate  # Strict readiness check
+make airia:verify    # Offline checksum verification
+make airia:compat    # Run Airia Compatibility Report
 ```
 
 Bundle output: `artifacts/airia/community_bundle/`
 
 See [docs/airia/AIRIA_OVERVIEW.md](docs/airia/AIRIA_OVERVIEW.md) for full details.
 
-## Airia Compatibility Report
+## Hackathon Submissions
 
-`GET /api/airia/compat_report` produces a deterministic proof: bundle structure, pinned schemas,
-acyclic DAG, HITL approvals, fail-closed rules, required outputs, checksum verification.
-`overall: PASS` — all checks verified offline, no API keys required.
+LedgerLive is submitted to 4 hackathons simultaneously:
 
-Run: `make airia:compat`
+| Hackathon | Prize Pool | Deadline | Angle |
+|-----------|-----------|----------|-------|
+| [Gemini Live Agent Challenge](https://geminiliveagentchallenge.devpost.com/) | $80,000 | Mar 16, 2026 | Voice-enabled finance assistant using Gemini Live API for real-time conversational close management |
+| [DigitalOcean Gradient AI](https://digitalocean.devpost.com/) | $20,000 | Mar 18, 2026 | Cloud-native AI finance ops with Gradient AI OCR and DigitalOcean Spaces |
+| [Airia AI Agents](https://airia-hackathon.devpost.com/) | $7,000 | Mar 19, 2026 | Enterprise multi-agent close team with no-code blueprint builder and community bundles |
+| [GitLab AI Hackathon](https://gitlab.devpost.com/) | $65,000 | Mar 25, 2026 | AI-accelerated compliance DevOps with CI/CD gates, proof packs, and deterministic verification |
 
-## No-Code Builder Preview
+Per-hackathon submission assets live in `hackathons/gemini/`, `hackathons/digitalocean/`, `hackathons/airia/`, and `hackathons/gitlab/`.
 
-The `/airia` page shows the workflow DAG as interactive step cards with approval/fail-closed badges,
-mapped tool IDs, and links to dossier artifacts. An Import Walkthrough explains each step.
+## F1 Glossary
+
+The entire product uses an F1 racing metaphor to make the finance close process intuitive and visual.
+
+| F1 Term | Finance Reality |
+|---------|-----------------|
+| Race Control | Close Command Center |
+| Pit Stops | Close Checkpoints |
+| Laps | Close Stages / Milestones |
+| Telemetry | Audit Trail + Drift Budgets |
+| Safety Car | Fail-Closed + Approvals Required |
+| Pit Wall | Approver Chain + SLA Escalations |
+| Incident Log | Exceptions / Blockers / Policy Events |
+| Court Pack | Stewards Evidence Package |
+| DRS Zone | Fast-path Auto-approval |
+
+**Why racing fits:** Pit stops are timed checkpoints; a slow reconciliation is a slow pit stop visible in lap delta. Telemetry is the audit trail; every tool call emits traces; the court pack is the stewards' evidence. Safety Car pauses automation for approvals -- fail-closed until the pit wall gives all-clear.
+
+## Project Structure
+
+```
+ledgerlive/
+├── apps/
+│   ├── api/                # FastAPI backend (340+ wave routers)
+│   │   ├── app/
+│   │   │   ├── routers/    # API route handlers (w01 - w340)
+│   │   │   ├── services/   # Business logic layer
+│   │   │   ├── models/     # Pydantic models
+│   │   │   ├── mcp/        # MCP server registry
+│   │   │   ├── golden/     # Golden baseline verification
+│   │   │   └── main.py     # FastAPI entry point
+│   │   └── tests/          # 4,269+ pytest tests
+│   └── web/                # React frontend
+│       ├── src/
+│       │   ├── components/   # 20+ reusable components
+│       │   ├── hooks/        # 87+ custom hooks
+│       │   └── pages/        # 113+ page components
+│       └── e2e/              # Playwright E2E specs
+├── hackathons/             # Per-hackathon submission assets
+│   ├── gemini/             # Gemini Live Agent Challenge
+│   ├── digitalocean/       # DigitalOcean Gradient AI
+│   ├── airia/              # Airia AI Agents
+│   └── gitlab/             # GitLab AI Hackathon
+├── artifacts/              # Generated artifacts and screenshots
+├── docs/                   # Documentation
+│   ├── airia/              # Airia integration docs
+│   ├── architecture/       # System design docs
+│   └── features/           # Feature documentation
+├── tools/                  # Build, deploy, and gate tooling
+├── docker-compose.yml      # Full-stack Docker setup
+├── Makefile                # Task runner
+└── Procfile                # Process manager config
+```
+
+## Gates
+
+LedgerLive enforces deterministic correctness through automated gates:
+
+- **No Apex References** -- `tools/gates/no_apex_references.py` ensures zero Apex Terminal references
+- **No Network in Tests** -- `tools/gates/no_network_in_tests.py` blocks outbound network calls in tests
+- **Golden Binder SHA-256** -- `app/golden/baselines/golden_binder_sha256.txt` verifies artifact integrity
+- **Route Coverage Gate** -- Every API route must have a corresponding test
+- **Determinism Harness** -- Repeated runs produce identical outputs
+
+## Roadmap
+
+- [ ] Real-time collaborative close cycles
+- [ ] Mobile-responsive CFO dashboard
+- [ ] Multi-currency reconciliation engine
+- [ ] Regulatory compliance templates (SOX, IFRS)
+- [ ] Integration marketplace (QuickBooks, Xero, Plaid)
+- [ ] AI-powered anomaly detection with trend analysis
+
+## License
+
+[MIT](LICENSE) -- see the LICENSE file for details.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.

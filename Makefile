@@ -1,18 +1,28 @@
 # LedgerLive — Finance Ops Close Agent
 # ──────────────────────────────────────────────
-
-PYTHON  := apps/api/.venv/Scripts/python.exe
-PIP     := apps/api/.venv/Scripts/pip.exe
-UVICORN := apps/api/.venv/Scripts/uvicorn.exe
+# Cross-platform: Linux/WSL uses python3, Windows uses .venv
+UNAME_S := $(shell uname -s 2>/dev/null || echo Unknown)
+ifeq ($(UNAME_S),Linux)
+  PYTHON  := python3
+  PIP     := pip3
+  UVICORN := python3 -m uvicorn
+  E2E_CMD := xvfb-run $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
+else
+  PYTHON  := apps/api/.venv/Scripts/python.exe
+  PIP     := apps/api/.venv/Scripts/pip.exe
+  UVICORN := apps/api/.venv/Scripts/uvicorn.exe
+  E2E_CMD := $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
+endif
 NPM     := npm
 NPX     := npx
 
 MILESTONE ?= golden-e2e
 
 .PHONY: dev demo test e2e proof release proof-index gates \
-        e2e-mcp e2e-mcp-twice e2e\:mcp\:twice \
+        e2e-mcp e2e-mcp-twice e2e-mcp-xvfb e2e\:mcp\:twice \
         airia\:bundle airia\:validate airia\:verify airia\:compat proof-airia proof-airia-score \
-        airia\:loop
+        airia\:loop \
+        lint docker-up docker-down seed format coverage security
 
 # ── Dev ──────────────────────────────────────
 dev:
@@ -24,7 +34,7 @@ dev:
 demo:
 	@echo "=== LedgerLive DEMO mode (API:8090  Web:4173) ==="
 	@echo "Starting API server (APP_MODE=DEMO E2E_MODE=1)..."
-	@start /B cmd /C "cd apps\api && set APP_MODE=DEMO && set LLM_PROVIDER=DEMO && set SECRET_KEY=demo-secret && set E2E_MODE=1 && $(UVICORN) app.main:app --host 127.0.0.1 --port 8090"
+	@cd apps/api && APP_MODE=DEMO LLM_PROVIDER=DEMO SECRET_KEY=demo-secret E2E_MODE=1 $(UVICORN) app.main:app --host 127.0.0.1 --port 8090 &
 	@echo "Building and starting web preview..."
 	@cd apps/web && $(NPX) vite build --outDir dist && $(NPX) vite preview --host 127.0.0.1 --port 4173
 
@@ -35,14 +45,18 @@ test:
 e2e-mcp:
 	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
 
+# Xvfb: Virtual Framebuffer for Linux/WSL — non-headless Playwright without stealing focus
+e2e-mcp-xvfb:
+	cd apps/web && xvfb-run $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
+
 e2e-mcp-twice:
-	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
-	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
+	cd apps/web && $(E2E_CMD)
+	cd apps/web && $(E2E_CMD)
 
 # Colon-variant alias — also validates API determinism after second run
 e2e\:mcp\:twice:
-	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
-	cd apps/web && $(NPX) playwright test --project=chromium --retries=0 --workers=1 --headed
+	cd apps/web && $(E2E_CMD)
+	cd apps/web && $(E2E_CMD)
 	$(PYTHON) tools/gates/e2e_determinism_gate.py --api http://127.0.0.1:8090
 
 # ── Airia Community Bundle ────────────────────────────────────────────────────
@@ -108,3 +122,35 @@ nuclear\:judge:
 # ── Nuclear Apply (patch failing gates) ─────
 nuclear\:apply:
 	$(PYTHON) tools/nuclear_loop/apply.py
+
+# ── Lint ───────────────────────────────────
+lint:
+	cd apps/api && $(PYTHON) -m black --check app/ tests/
+	cd apps/api && $(PYTHON) -m isort --check-only app/ tests/
+	cd apps/web && $(NPX) tsc --noEmit
+
+# ── Docker ─────────────────────────────────
+docker-up:
+	docker-compose up -d --build
+	@echo "LedgerLive running at http://localhost:3000"
+
+docker-down:
+	docker-compose down
+
+# ── Seed ───────────────────────────────────
+seed:
+	$(PYTHON) demo/seed.py
+
+# ── Format ─────────────────────────────────
+format:
+	cd apps/api && $(PYTHON) -m black app/ tests/
+	cd apps/api && $(PYTHON) -m isort app/ tests/
+
+# ── Coverage ───────────────────────────────
+coverage:
+	cd apps/api && $(PYTHON) -m pytest tests/ --cov=app --cov-report=html --cov-report=term-missing
+
+# ── Security ───────────────────────────────
+security:
+	$(PYTHON) -m bandit -r apps/api/app/ -ll --skip B101 || true
+	$(PYTHON) -m pip_audit -r requirements.txt || true

@@ -1,0 +1,20 @@
+fa0b48a feat(golden-e2e): Task A-E  Golden Scenario seed+assertions, RC Run Canonical UX, 4 Playwright specs, determinism gate, proof pack
+de3a63b fix(web): 6 frontend fixes found via Playwright testing  404 page, nav brand link, mobile scrollable nav, Settings stale stats (340 waves/4021 tests), openapi.json proxy, SVG favicon
+8ac5005 docs: WAVES.md updated to 340 waves + proof pack for W301-W340 (MANIFEST, TEST_MATRIX, DETERMINISM, gates, pytest)
+05299d1 feat(w301-w340): Phases 32-36  Blueprint Builder, Atlassian Integration, Airia Readiness, Security Governance, Impact+Race WOW  40 waves, 4021 tests, 2/2 gates PASS
+898ee41 docs: WAVES.md updated to 300 waves + proof pack for W241-W300 (MANIFEST, TEST_MATRIX, DETERMINISM, gates, pytest)
+b4f7ba1 feat(w241-w300): Phases 26-31  Agent RC, Security Posture, Replay/Court/Telemetry, Everywhere, Finance, Hardening  60 waves, 3539 tests, 2/2 gates PASS
+6a1ddee proof(w240): Race Control RC proof pack  2803 tests, 2/2 gates, determinism verified
+d8b8f2e feat(rc): Race Control frontend page with lanes, scoreboard, checkpoints, incidents, approvals
+cab296e docs: WAVES.md updated for W221-240 Race Control
+1a2ef12 feat(w221-w240): Race Control close orchestration  20 waves, 2803 tests, 2/2 gates PASS
+5b8c886 feat(tour): live frontend tour video + rich page components (all 7 tabs with live API data)
+f43eb77 docs: WAVES.md updated for W201-220 (2558 tests, 1312+ routes, 221 tags)
+6fdfac7 feat(waves-201-220): Phases 20-22  live parity, close replay, ML impact (2558 tests, all gates green)
+b43c790 docs: WAVES.md updated for W181-200 (2316 tests, 1184+ routes, 201 tags)
+3d098c1 feat: Waves 181-200  Real implementations behind flags, evidence-first dossier, deploy proof
+07d73d2 docs: WAVES.md updated for W161-180 (2068 tests, 1054+ routes, 181 tags)
+d12c3b2 feat: Waves 161-180  DEMO completeness, agentization, mocked connectors, ML baseline, live-ready adapters
+e202fdf docs: update WAVES.md with Phases 4-13 (Waves 61-160)
+fe4a30b feat: Waves 61-160 (Phases 4-13)  100 waves, 1827 tests, 924 routes
+5ad9943 docs: add WAVES.md registry for all 60 waves with proof pack paths

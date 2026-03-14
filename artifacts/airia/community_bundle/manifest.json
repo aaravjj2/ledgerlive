@@ -1,0 +1,28 @@
+{
+  "name": "ledgerlive-race-control-close-agent",
+  "display_name": "LedgerLive Race Control Close Agent",
+  "version": "v0.302.0-ledgerlive",
+  "category": "Finance / Period Close",
+  "subcategory": "Month-End Close Orchestration",
+  "tags": ["finance", "close", "f1", "williams", "airia", "reconciliation", "audit", "hitl"],
+  "description": "Deterministic finance-close orchestration agent modelled as a Williams F1 race-control operation. No API keys required in DEMO mode.",
+  "author": "LedgerLive @ Airia Williams F1 Hackathon",
+  "license": "MIT",
+  "airia_min_version": "1.0.0",
+  "bundle_hash": "a3f8c2d1e4b5a6f7c8d9e0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1",
+  "template_hash": "b4e9d3c2f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3",
+  "tools_hash": "c5f0e4d3a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4",
+  "wave_count": 340,
+  "test_count": 4042,
+  "demo_mode": true,
+  "created_at": "2025-01-01T00:00:00Z",
+  "bundle_files": [
+    "manifest.json",
+    "tools.json",
+    "workflow_template.json",
+    "runbooks.md",
+    "screenshots_manifest.json",
+    "checksums.txt",
+    "verify_bundle.py"
+  ]
+}

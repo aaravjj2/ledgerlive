@@ -1,0 +1,35 @@
+name: E2E Tests
+on:
+  workflow_dispatch:
+
+jobs:
+  playwright:
+    name: Playwright E2E
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: pip install -r requirements.txt
+      - run: cd apps/web && npm ci && npx playwright install --with-deps chromium
+      - name: Start backend
+        run: cd apps/api && uvicorn app.main:app --host 127.0.0.1 --port 8090 &
+        env:
+          APP_MODE: DEMO
+          E2E_MODE: '1'
+          LLM_PROVIDER: DEMO
+      - name: Wait for backend
+        run: timeout 30 bash -c 'until curl -s http://127.0.0.1:8090/healthz; do sleep 1; done'
+      - name: Run E2E tests
+        run: cd apps/web && PLAYWRIGHT_HEADLESS=false xvfb-run npx playwright test --project=chromium --retries=0 --workers=1 --headed
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report/

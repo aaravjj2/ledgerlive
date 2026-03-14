@@ -164,7 +164,10 @@ async def security_fix_path(event_id: str):
 @router.post("/api/ops/channel/send-approval", status_code=201)
 async def channel_send_approval(request: Request):
     """Send approval request to mock channel (email/chat)."""
-    data = await request.json()
+    try:
+        data = await request.json()
+    except Exception:
+        data = {}
     approval_id = data.get("approval_id", "")
     channel = data.get("channel", "email")
     return service.send_channel_approval(approval_id, channel)
@@ -175,7 +178,10 @@ async def channel_send_approval(request: Request):
 @router.post("/api/ops/atlassian/create-jira", status_code=201)
 async def atlassian_create_jira(request: Request):
     """Create a mock Jira issue for an overdue approval."""
-    data = await request.json()
+    try:
+        data = await request.json()
+    except Exception:
+        data = {}
     approval_id = data.get("approval_id", "")
     return service.create_jira_issue(approval_id)
 

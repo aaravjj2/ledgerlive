@@ -1,0 +1,87 @@
+{
+  "timestamp": "20260224172204",
+  "milestone": "airia-score-boost-v2",
+  "project_id": "LEDGERLIVE",
+  "gates": {
+    "no_apex_references": {
+      "rc": 0,
+      "pass": true
+    },
+    "no_network_in_tests": {
+      "rc": 0,
+      "pass": true
+    }
+  },
+  "pytest": {
+    "rc": 0,
+    "pass": true
+  },
+  "playwright": {
+    "screenshots": [
+      "AR-01-airia-readiness-page.png",
+      "AR-02-airia-generate-bundle.png",
+      "AR-03-airia-validate-pass.png",
+      "AR-04-airia-tools-list.png",
+      "AR-05-f1-theme-badge.png",
+      "AR-06-nav-airia.png",
+      "AR-08-bundle-path.png",
+      "AR-09-compat-badge.png",
+      "AR-10-nocode-step-cards.png",
+      "AR-11-import-walkthrough.png",
+      "AR-12-copy-import-notes.png",
+      "chan-03-audit-after-channel.png",
+      "rc-01-assertions.png",
+      "rc-01-seeded.png",
+      "rc-02-lanes.png",
+      "rc-03-verify-dossier.png",
+      "rc-03-why-dossier.png",
+      "rc-04-incident-why.png",
+      "rc-05-after-approve.png",
+      "rc-05-before-approve.png",
+      "rc-06-court-badge.png",
+      "rc-06-telem-badge.png",
+      "rc-07-replay-hash.png",
+      "rc-08-before-assertions.png",
+      "rc-08-binder-hash.png",
+      "rc-08-court-pass.png",
+      "rc-08-replay-match.png",
+      "rc-08-signature-stable.png",
+      "rc-08-telemetry-pass.png",
+      "RWT-01-timeline-visible.png",
+      "RWT-02-six-stage-cards.png",
+      "RWT-03-stage-labels.png",
+      "RWT-04-lap-time-tiles.png",
+      "RWT-05-safety-car-badges.png",
+      "RWT-08-timeline-after-golden.png",
+      "sec-02-before-fix.png",
+      "tour-audit-log.png",
+      "tour-dashboard.png",
+      "tour-documents.png",
+      "tour-exceptions.png",
+      "tour-final.png",
+      "tour-reconciliation.png",
+      "tour-review-queue.png",
+      "tour-settings.png"
+    ],
+    "traces": [
+      "00-airia-readiness-Airia-Read-4750f-th-element-visible-on-airia-chromium-trace.zip",
+      "01-airia-readiness-Airia-Read-4cfaa-ls-list-shows-8-Airia-tools-chromium-trace.zip",
+      "02-airia-readiness-Airia-Read-4ede0-i-airia-status-returns-PASS-chromium-trace.zip",
+      "03-airia-readiness-Airia-Read-5bca7-review-renders-8-step-cards-chromium-trace.zip",
+      "04-airia-readiness-Airia-Read-6dc51-enerate-bundle-returns-hash-chromium-trace.zip",
+      "05-airia-readiness-Airia-Read-87d79-el-visible-with-copy-button-chromium-trace.zip",
+      "06-airia-readiness-Airia-Read-8d9cc--returns-PASS-with-7-checks-chromium-trace.zip",
+      "07-airia-readiness-Airia-Read-9830d-nav-link-reaches-airia-page-chromium-trace.zip",
+      "08-airia-readiness-Airia-Read-afb8c-dge-visible-on-Race-Control-chromium-trace.zip",
+      "09-airia-readiness-Airia-Read-d258f-t-notes-button-is-clickable-chromium-trace.zip"
+    ],
+    "videos": [
+      "00-airia-readiness-Airia-Read-4750f-th-element-visible-on-airia-chromium.webm",
+      "01-airia-readiness-Airia-Read-4cfaa-ls-list-shows-8-Airia-tools-chromium.webm",
+      "02-airia-readiness-Airia-Read-4ede0-i-airia-status-returns-PASS-chromium.webm",
+      "03-airia-readiness-Airia-Read-5bca7-review-renders-8-step-cards-chromium.webm",
+      "04-airia-readiness-Airia-Read-6dc51-enerate-bundle-returns-hash-chromium.webm"
+    ],
+    "html_report": "playwright-report/index.html"
+  }
+}

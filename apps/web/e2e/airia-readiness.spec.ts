@@ -175,12 +175,12 @@ test.describe('Airia Readiness', () => {
     await checkpoint(page, 'AR-12-copy-import-notes')
   })
 
-  test('AR-13 — compat_report API returns PASS with 7 checks', async ({ page }) => {
+  test('AR-13 — compat_report API returns PASS with 10 checks', async ({ page }) => {
     const resp = await page.request.get(`${API}/api/airia/compat_report`)
     expect(resp.status()).toBe(200)
     const data = await resp.json()
     expect(data.overall).toBe('PASS')
-    expect(data.checks).toHaveLength(7)
+    expect(data.checks).toHaveLength(10)
     expect(data.report_signature_sha256.length).toBe(64)
     expect(data.bundle_sha256.length).toBe(64)
   })

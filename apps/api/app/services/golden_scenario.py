@@ -369,10 +369,13 @@ class GoldenScenarioService:
         # ── Security event ───────────────────────────────────────────
         self._security_store[GRC["security_evt"]] = {
             "security_event_id": GRC["security_evt"],
+            "event_id": GRC["security_evt"],
             "action": "blocked_action",
+            "blocked": True,
             "reason_id": "SEC-GRC-001",
             "description": "Attempt to bypass AP approval without CFO sign-off — BLOCKED",
             "fix_path": "obtain_approval",
+            "fix_applied": False,
             "resolution": None,
             "status": "blocked",
             "trace_id": "grc-trace-sec-00000000000006",
@@ -441,6 +444,8 @@ class GoldenScenarioService:
             return None
         evt["resolution"] = "approved_proceed"
         evt["status"] = "resolved"
+        evt["fix_applied"] = True
+        evt["blocked"] = False
         emit_audit_event("grc_security_resolved", "security_timeline", event_id,
                          {"reason_id": "SEC-GRC-001", "fix_path": "obtain_approval", "resolution": "approved_proceed"})
         return evt
@@ -479,6 +484,7 @@ class GoldenScenarioService:
         replay = self._artifacts.get(GRC["replay_run"], {})
         replay["status"] = "PASS"
         replay["hash"] = self._compute_binder_hash()
+        replay["binder_hash"] = replay["hash"]
         emit_audit_event("grc_replay_regen", "replay_engine", GRC["replay_run"],
                          {"scenario": "golden_race_control", "hash": replay["hash"]})
         return replay
@@ -548,6 +554,7 @@ class GoldenScenarioService:
         trace_id = "grc-trace-chan-000000000018"
         result = {
             "action_id": GRC["channel_action"],
+            "channel_action_id": GRC["channel_action"],
             "channel": channel,
             "approval_id": approval_id,
             "trace_id": trace_id,
@@ -564,10 +571,12 @@ class GoldenScenarioService:
         from app.main import emit_audit_event
         issue = {
             "issue_id": GRC["jira_issue"],
+            "jira_id": GRC["jira_issue"],
             "jira_issue_key": "LLIVE-GRC-001",
             "title": "CFO Approval Overdue — FY25-Q4 Close",
             "linked_approval_id": approval_id,
             "url": "https://ledgerlive.atlassian.net/browse/LLIVE-GRC-001",
+            "issue_url": "https://ledgerlive.atlassian.net/browse/LLIVE-GRC-001",
             "status": "open",
         }
         emit_audit_event("grc_jira_issue_created", "jira_adapter", GRC["jira_issue"],
@@ -578,9 +587,11 @@ class GoldenScenarioService:
         from app.main import emit_audit_event
         page = {
             "page_id": GRC["confluence_page"],
+            "confluence_id": GRC["confluence_page"],
             "title": "Race Weekend Close Report — FY25-Q4",
             "hash": _sha256_of("Race Weekend Close Report FY25-Q4 LEDGERLIVE"),
             "url": "https://ledgerlive.atlassian.net/wiki/LLIVE-GRC-CLOSE-REPORT",
+            "page_url": "https://ledgerlive.atlassian.net/wiki/LLIVE-GRC-CLOSE-REPORT",
             "status": "published",
         }
         emit_audit_event("grc_confluence_page_created", "confluence_adapter", GRC["confluence_page"],

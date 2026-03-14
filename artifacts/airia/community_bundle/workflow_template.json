@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "template_id": "ledgerlive-close-workflow",
+  "template_name": "LedgerLive Month-End Close Workflow",
+  "description": "Full month-end close orchestration: ingest → reconcile → triage → review → close",
+  "version": "v0.302.0-ledgerlive",
+  "steps": [
+    {
+      "step": 1,
+      "id": "ingest",
+      "name": "Document Ingest",
+      "tool": "ledgerlive.ingest",
+      "description": "Ingest all sub-ledger feeds for the period. OCR and extract structured fields.",
+      "inputs": {
+        "document_url": "{{trigger.document_feed_url}}",
+        "document_type": "{{trigger.document_type}}"
+      },
+      "outputs_to": "reconcile.ap_entries",
+      "on_error": "halt",
+      "f1_metaphor": "Sensor data arrives — telemetry pipeline starts"
+    },
+    {
+      "step": 2,
+      "id": "reconcile",
+      "name": "AP/AR Reconciliation",
+      "tool": "ledgerlive.reconcile",
+      "description": "Match extracted AP entries against AR settlements. Apply drift budget.",
+      "inputs": {
+        "ap_entries": "{{ingest.extracted_fields.ap}}",
+        "ar_entries": "{{ingest.extracted_fields.ar}}",
+        "drift_threshold_pct": "{{config.drift_threshold_pct | default: 0.5}}"
+      },
+      "outputs_to": "triage.exception_list",
+      "on_error": "halt",
+      "f1_metaphor": "Lap delta — flag any outlier"
+    },
+    {
+      "step": 3,
+      "id": "triage",
+      "name": "Exception Triage",
+      "tool": "ledgerlive.triage",
+      "description": "Classify all exceptions. Apply SLA. Route to review queue.",
+      "inputs": {
+        "exception_list": "{{reconcile.exceptions}}",
+        "policy_rules": "{{config.policy_rules}}"
+      },
+      "outputs_to": "review.items_for_review",
+      "on_error": "escalate",
+      "f1_metaphor": "Incidents classified — send marshal flags"
+    },
+    {
+      "step": 4,
+      "id": "review",
+      "name": "HITL Approval Gate",
+      "tool": "ledgerlive.hitl_review",
+      "description": "Route classified exceptions to the approval chain. Block until all cleared.",
+      "inputs": {
+        "items_for_review": "{{triage.classified_exceptions}}",
+        "approver_chain": "{{config.approver_chain}}",
+        "deadline": "{{config.close_deadline}}"
+      },
+      "outputs_to": "close.approved_items",
+      "on_error": "halt",
+      "f1_metaphor": "Pit stop — pit wall must confirm"
+    },
+    {
+      "step": 5,
+      "id": "close",
+      "name": "Seal Evidence Binder",
+      "tool": "ledgerlive.evidence_binder",
+      "description": "Compile all approved items and audit entries into the signed court pack.",
+      "inputs": {
+        "approved_items": "{{review.approved_items}}",
+        "audit_log_slice": "{{audit_trail.recent_entries}}",
+        "close_period": "{{trigger.close_period}}"
+      },
+      "outputs_to": "terminal",
+      "on_error": "halt",
+      "f1_metaphor": "Chequered flag — court pack sealed for stewards"
+    }
+  ],
+  "triggers": ["manual", "scheduled", "webhook"],
+  "config_schema": {
+    "drift_threshold_pct": {"type": "number", "default": 0.5},
+    "approver_chain": {"type": "array", "items": {"type": "string"}},
+    "close_deadline": {"type": "string", "format": "date-time"},
+    "policy_rules": {"type": "object"}
+  }
+}

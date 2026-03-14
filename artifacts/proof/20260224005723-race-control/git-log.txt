@@ -1,0 +1,5 @@
+﻿d8b8f2e feat(rc): Race Control frontend page with lanes, scoreboard, checkpoints, incidents, approvals
+cab296e docs: WAVES.md updated for W221-240 Race Control
+1a2ef12 feat(w221-w240): Race Control close orchestration  20 waves, 2803 tests, 2/2 gates PASS
+5b8c886 feat(tour): live frontend tour video + rich page components (all 7 tabs with live API data)
+f43eb77 docs: WAVES.md updated for W201-220 (2558 tests, 1312+ routes, 221 tags)

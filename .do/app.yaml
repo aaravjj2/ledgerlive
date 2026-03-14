@@ -1,0 +1,61 @@
+# ── LedgerLive — DigitalOcean App Platform Spec ────────────────────
+# Deploy via: doctl apps create --spec .do/app.yaml
+# Docs: https://docs.digitalocean.com/products/app-platform/reference/app-spec/
+
+name: ledgerlive
+region: nyc
+
+services:
+  # ── FastAPI backend ────────────────────────────────────────────
+  - name: api
+    dockerfile_path: apps/api/Dockerfile
+    source_dir: /
+    github:
+      repo: <your-org>/ledgerlive
+      branch: main
+      deploy_on_push: true
+    instance_count: 1
+    instance_size_slug: apps-s-1vcpu-1gb
+    http_port: 8090
+    routes:
+      - path: /api
+      - path: /healthz
+      - path: /docs
+      - path: /openapi.json
+    envs:
+      - key: APP_MODE
+        value: DEMO
+      - key: E2E_MODE
+        value: "1"
+      - key: DATABASE_URL
+        value: ${db.DATABASE_URL}
+        type: SECRET
+    health_check:
+      http_path: /healthz
+      initial_delay_seconds: 10
+      period_seconds: 30
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 3
+
+  # ── React + Vite frontend ──────────────────────────────────────
+  - name: web
+    dockerfile_path: apps/web/Dockerfile
+    source_dir: /
+    github:
+      repo: <your-org>/ledgerlive
+      branch: main
+      deploy_on_push: true
+    instance_count: 1
+    instance_size_slug: apps-s-1vcpu-0.5gb
+    http_port: 80
+    routes:
+      - path: /
+
+databases:
+  # ── PostgreSQL (dev tier) ──────────────────────────────────────
+  - name: db
+    engine: PG
+    version: "16"
+    size: db-s-dev-database
+    num_nodes: 1

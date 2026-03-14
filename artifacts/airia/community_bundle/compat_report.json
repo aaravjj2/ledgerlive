@@ -1,0 +1,81 @@
+{
+  "blueprint_sha256": "e7b388cf17d32984cd2fbd20afc8d161f895eb4896036b38e7632bffd43646a3",
+  "bundle_sha256": "91638d33eb640190c0be46e5b160df3627377ed1f60940a86e3d0533fe73778a",
+  "checks": [
+    {
+      "id": "bundle_structure_completeness",
+      "name": "Bundle Structure Completeness",
+      "passed": true,
+      "reason": "All required files present",
+      "status": "PASS"
+    },
+    {
+      "id": "tool_schemas_version_pinned",
+      "name": "Tool Schemas Version-Pinned",
+      "passed": true,
+      "reason": "All tool schemas have version pinned",
+      "status": "PASS"
+    },
+    {
+      "id": "workflow_dag_acyclic",
+      "name": "Workflow DAG Acyclic + Stable Ordering",
+      "passed": true,
+      "reason": "DAG has 5 steps, acyclic with stable ordering",
+      "status": "PASS"
+    },
+    {
+      "id": "approvals_for_sensitive_steps",
+      "name": "Approvals for Sensitive Steps",
+      "passed": true,
+      "reason": "Found 2 approval/HITL step(s) in workflow",
+      "status": "PASS"
+    },
+    {
+      "id": "fail_closed_rules",
+      "name": "Fail-Closed Rules Enabled",
+      "passed": true,
+      "reason": "4/5 steps configured with on_error=halt",
+      "status": "PASS"
+    },
+    {
+      "id": "required_outputs",
+      "name": "Required Outputs Present",
+      "passed": true,
+      "reason": "All required outputs (telemetry, court, replay, narrative) documented",
+      "status": "PASS"
+    },
+    {
+      "id": "deterministic_checksums",
+      "name": "Deterministic Checksums Match",
+      "passed": true,
+      "reason": "All checksums verified",
+      "status": "PASS"
+    },
+    {
+      "id": "mcp_server_present",
+      "name": "MCP Server Present",
+      "passed": true,
+      "reason": "MCP server service + router found (Airia MCP Gateway compatible)",
+      "status": "PASS"
+    },
+    {
+      "id": "mcp_tools_match_registry",
+      "name": "MCP Tools Match Registry",
+      "passed": true,
+      "reason": "All 8 bundle tools have MCP equivalents",
+      "status": "PASS"
+    },
+    {
+      "id": "mcp_config_generated",
+      "name": "MCP Config Generated (Deterministic)",
+      "passed": true,
+      "reason": "Airia MCP Gateway config generated (sha256=637e6cc1d60db2f6...)",
+      "status": "PASS"
+    }
+  ],
+  "fail_count": 0,
+  "overall": "PASS",
+  "pass_count": 10,
+  "report_signature_sha256": "7ebdd83d2e995bb71fc6c213980dd55d7153f5205b3dc60d0d9c0a06342090c0",
+  "tools_sha256": "602b5cc3538fb8bade1ed5285d76f37f1a0d9ed9119bc7864f15cca674ae31e1"
+}

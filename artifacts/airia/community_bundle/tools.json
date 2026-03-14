@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "bundle": "ledgerlive-race-control-close-agent",
+  "tools": [
+    {
+      "id": "ledgerlive.ingest",
+      "name": "Document Ingest",
+      "type": "DocumentReader",
+      "description": "OCR and structured extraction from sub-ledger feeds (AP invoices, AR settlements, payroll accruals, intercompany entries).",
+      "inputs": ["document_url", "document_type"],
+      "outputs": ["extracted_fields", "confidence_score", "raw_text"],
+      "demo_mode": true,
+      "f1_metaphor": "Sensor data arriving from the car"
+    },
+    {
+      "id": "ledgerlive.reconcile",
+      "name": "AP/AR Reconciliation",
+      "type": "DataMatcher",
+      "description": "Match AP invoices against AR settlements with configurable drift budget. Flag unmatched items as exceptions.",
+      "inputs": ["ap_entries", "ar_entries", "drift_threshold_pct"],
+      "outputs": ["matched_pairs", "exceptions", "drift_pct", "variance_amount"],
+      "demo_mode": true,
+      "f1_metaphor": "Lap delta — within threshold or outlier"
+    },
+    {
+      "id": "ledgerlive.triage",
+      "name": "Exception Triage",
+      "type": "Classifier",
+      "description": "Classify exceptions by severity (P1/P2/P3), apply SLA targets, route to appropriate review queue.",
+      "inputs": ["exception_list", "policy_rules"],
+      "outputs": ["classified_exceptions", "sla_targets", "routing_decisions"],
+      "demo_mode": true,
+      "f1_metaphor": "Marshal flags — yellow/red/green"
+    },
+    {
+      "id": "ledgerlive.hitl_review",
+      "name": "HITL Approval Gate",
+      "type": "HumanInTheLoop",
+      "description": "Structured approval gate with multi-level approver chain. Blocks close progress until all required approvals received.",
+      "inputs": ["items_for_review", "approver_chain", "deadline"],
+      "outputs": ["approved_items", "rejected_items", "approval_timestamps"],
+      "demo_mode": true,
+      "f1_metaphor": "Pit stop — the pit wall must sign off"
+    },
+    {
+      "id": "ledgerlive.audit_trail",
+      "name": "Audit Trail Logger",
+      "type": "EventLogger",
+      "description": "Immutable append-only log of every action, approval, and system event. sha256-hashed entries for tamper detection.",
+      "inputs": ["event_type", "actor", "payload"],
+      "outputs": ["log_entry_id", "log_hash", "timestamp"],
+      "demo_mode": true,
+      "f1_metaphor": "Race telemetry — every data point recorded"
+    },
+    {
+      "id": "ledgerlive.evidence_binder",
+      "name": "Evidence Binder",
+      "type": "DocumentWriter",
+      "description": "Compile all approved items, audit entries, and assertions into a signed evidence PDF with sha256 manifest.",
+      "inputs": ["approved_items", "audit_log_slice", "close_period"],
+      "outputs": ["evidence_pdf_url", "manifest_hash", "assertion_count"],
+      "demo_mode": true,
+      "f1_metaphor": "Court pack ready for the stewards"
+    },
+    {
+      "id": "ledgerlive.blueprint_builder",
+      "name": "Airia Blueprint Builder",
+      "type": "WorkflowCompiler",
+      "description": "Map close workflow tasks to Airia template steps. Export as community bundle or deploy directly to platform.",
+      "inputs": ["close_workflow_spec", "target_environment"],
+      "outputs": ["airia_template", "bundle_path", "deployment_status"],
+      "demo_mode": true,
+      "f1_metaphor": "Race strategy compiled into race-day plan"
+    },
+    {
+      "id": "ledgerlive.race_control",
+      "name": "Race Control Dashboard",
+      "type": "Dashboard",
+      "description": "Real-time close-progress monitor showing lap completion, active incidents, pending pit stops, and team status.",
+      "inputs": ["close_period", "refresh_interval_s"],
+      "outputs": ["dashboard_state", "active_incidents", "completion_pct"],
+      "demo_mode": true,
+      "f1_metaphor": "Race Control pit wall display"
+    }
+  ]
+}

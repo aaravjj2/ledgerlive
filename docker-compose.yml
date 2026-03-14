@@ -1,0 +1,69 @@
+# ── LedgerLive — Docker Compose ────────────────────────────────────
+# Usage:
+#   docker compose up --build        # build & start all services
+#   docker compose up -d             # detached mode
+#   docker compose down -v           # stop & remove volumes
+
+services:
+  # ── PostgreSQL database ──────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ledgerlive
+      POSTGRES_PASSWORD: ledgerlive
+      POSTGRES_DB: ledgerlive
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ledgerlive-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ledgerlive -d ledgerlive"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ── FastAPI backend ──────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    env_file:
+      - .env
+    environment:
+      APP_MODE: ${APP_MODE:-DEMO}
+      E2E_MODE: ${E2E_MODE:-1}
+      DATABASE_URL: postgresql+asyncpg://ledgerlive:ledgerlive@db:5432/ledgerlive
+      DATABASE_URL_SYNC: postgresql://ledgerlive:ledgerlive@db:5432/ledgerlive
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - ledgerlive-net
+
+  # ── React + Vite frontend (nginx) ───────────────────────────────
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    networks:
+      - ledgerlive-net
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  ledgerlive-net:
+    driver: bridge

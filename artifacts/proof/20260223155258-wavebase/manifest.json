@@ -1,0 +1,19 @@
+{
+  "timestamp": "20260223155258",
+  "wave_range": "base",
+  "project_id": "LEDGERLIVE",
+  "gates": {
+    "no_apex_references": {
+      "rc": 0,
+      "pass": true
+    },
+    "no_network_in_tests": {
+      "rc": 0,
+      "pass": true
+    }
+  },
+  "pytest": {
+    "rc": 0,
+    "pass": true
+  }
+}

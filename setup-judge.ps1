@@ -101,8 +101,9 @@ function Ensure-OpenClaw() {
 
   Write-Section "Installing OpenClaw (official installer, no onboarding wizard)"
   try {
-    $script = Invoke-WebRequest -UseBasicParsing -Uri "https://openclaw.ai/install.ps1" -TimeoutSec 30
-    $code = $script.Content
+    # Use WebClient to avoid Invoke-WebRequest interactive parsing warning on PS5.1
+    $wc = New-Object System.Net.WebClient
+    $code = $wc.DownloadString("https://openclaw.ai/install.ps1")
     $sb = [scriptblock]::Create($code)
     & $sb -NoOnboard
   } catch {
@@ -117,9 +118,13 @@ function Ensure-OpenClaw() {
 }
 
 function Ensure-OpenClaw-Home() {
-  $home = Join-Path $HOME ".openclaw"
-  if (-not (Test-Path $home)) { New-Item -ItemType Directory -Force -Path $home | Out-Null }
-  return $home
+  # Use a safe user home path (prefer %USERPROFILE%); avoid assigning to $HOME (read-only on some shells)
+  $userRoot = $env:USERPROFILE
+  if (-not $userRoot) { $userRoot = $env:HOME }
+  if (-not $userRoot) { $userRoot = $HOME }
+  $ocHome = Join-Path $userRoot ".openclaw"
+  if (-not (Test-Path $ocHome)) { New-Item -ItemType Directory -Force -Path $ocHome | Out-Null }
+  return $ocHome
 }
 
 function Backup-If-Exists([string]$path) {
@@ -223,11 +228,12 @@ Standard deductions:
 
   $openclawModelId = "ollama/$ollamaModel"
 
-  $searchEnabled = $false
-  $searchApiKey = $null
+  # Enable web search by default; if no Brave API key provided, pass empty string
+  $searchEnabled = $true
   if (-not [string]::IsNullOrWhiteSpace($braveKey)) {
-    $searchEnabled = $true
     $searchApiKey = $braveKey
+  } else {
+    $searchApiKey = ""
   }
 
   $cfg = @{
@@ -243,7 +249,7 @@ Standard deductions:
           id = "judge"
           default = $true
           name = "Hackathon Judge"
-          workspace = "~/.openclaw/workspace-judge"
+          workspace = $ws
           model = @{
             primary = $openclawModelId
           }
@@ -287,11 +293,30 @@ Standard deductions:
 
 function Ensure-Gateway-Service() {
   Write-Section "Installing + starting OpenClaw Gateway service"
+  # Ensure gateway.mode=config and gateway auth token are set for the service
+  try {
+    $token = [guid]::NewGuid().ToString('N')
+    [Environment]::SetEnvironmentVariable('OPENCLAW_GATEWAY_TOKEN', $token, 'User')
+    $env:OPENCLAW_GATEWAY_TOKEN = $token
+    try { & openclaw config set gateway.mode local | Out-Host } catch {}
+    try { & openclaw config set gateway.auth.token $token | Out-Host } catch {}
+  } catch {}
   try {
     Start-Process -FilePath "openclaw" -ArgumentList "gateway install --force" -NoNewWindow -Wait | Out-Null
   } catch {}
+  # Attempt to fix configuration issues automatically and start gateway
+  try { openclaw doctor --fix | Out-Host } catch {}
+
   try { Start-Process -FilePath "openclaw" -ArgumentList "gateway start" -NoNewWindow -Wait | Out-Null } catch {}
-  try { openclaw gateway status | Out-Host } catch {}
+  Start-Sleep -Seconds 2
+  try {
+    openclaw gateway status | Out-Host
+  } catch {
+    Write-Host "Gateway status check failed; attempting to start service again..." -ForegroundColor Yellow
+    try { Start-Process -FilePath "openclaw" -ArgumentList "gateway start" -NoNewWindow -Wait | Out-Null } catch {}
+    Start-Sleep -Seconds 2
+    try { openclaw gateway status | Out-Host } catch {}
+  }
 }
 
 function Write-Runner([string]$openclawHome) {
@@ -376,42 +401,51 @@ Write-Host "OK: proof pack at $root"
 }
 
 # -------------------------
-# Main
+# Main (wrapped to surface errors clearly)
 # -------------------------
 
-Write-Section "Preflight"
-Ensure-WinGet
+try {
+  Write-Section "Preflight"
+  Ensure-WinGet
 
-Ensure-Ollama
-Ensure-Node22
+  Ensure-Ollama
+  Ensure-Node22
 
-Ensure-Ollama-Running
-Pull-Ollama-Model $OllamaModel
+  Ensure-Ollama-Running
+  Pull-Ollama-Model $OllamaModel
 
-Ensure-OpenClaw
+  Ensure-OpenClaw
 
-# Ensure OpenClaw has its home folder
-$openclawHome = Ensure-OpenClaw-Home
+  # Ensure OpenClaw has its home folder
+  $openclawHome = Ensure-OpenClaw-Home
 
-# Create baseline config/workspace if user has never run OpenClaw
-if (-not (Test-Path (Join-Path $openclawHome "openclaw.json"))) {
-  Write-Section "Initializing OpenClaw home (openclaw setup)"
-  try { openclaw setup | Out-Host } catch { Write-Host "openclaw setup skipped or failed" -ForegroundColor Yellow }
+  # Create baseline config/workspace if user has never run OpenClaw
+  if (-not (Test-Path (Join-Path $openclawHome "openclaw.json"))) {
+    Write-Section "Initializing OpenClaw home (openclaw setup)"
+    try { openclaw setup | Out-Host } catch { Write-Host "openclaw setup skipped or failed" -ForegroundColor Yellow }
+  }
+
+  $ws = Configure-JudgeAgent -openclawHome $openclawHome -ollamaModel $OllamaModel -braveKey $BraveApiKey
+
+  Ensure-Gateway-Service
+
+  $runner = Write-Runner $openclawHome
+
+  Write-Section "Done"
+  Write-Host "Judge agent id: judge"
+  Write-Host "Workspace: $ws"
+  Write-Host "Config: $(Join-Path $openclawHome 'openclaw.json')"
+  Write-Host ""
+  Write-Host "Try a quick run:"
+  Write-Host "  openclaw agent --agent judge --message 'Score this: https://devpost.com/... (add repo/demo links)' --json"
+  Write-Host ""
+  Write-Host "Or use the runner (creates artifacts/proof/*):"
+  Write-Host "  & '$runner' -HackathonUrl 'https://...' -ProjectUrl 'https://...' -RepoUrl 'https://github.com/...' -DemoUrl 'https://...'"
+} catch {
+  Write-Host "ERROR during setup: $($_.Exception.Message)" -ForegroundColor Red
+  if ($_.InvocationInfo) {
+    Write-Host "At: $($_.InvocationInfo.ScriptLineNumber)" -ForegroundColor Yellow
+  }
+  if ($_.ScriptStackTrace) { Write-Host $_.ScriptStackTrace -ForegroundColor Yellow }
+  throw
 }
-
-$ws = Configure-JudgeAgent -openclawHome $openclawHome -ollamaModel $OllamaModel -braveKey $BraveApiKey
-
-Ensure-Gateway-Service
-
-$runner = Write-Runner $openclawHome
-
-Write-Section "Done"
-Write-Host "Judge agent id: judge"
-Write-Host "Workspace: $ws"
-Write-Host "Config: $(Join-Path $openclawHome 'openclaw.json')"
-Write-Host ""
-Write-Host "Try a quick run:"
-Write-Host "  openclaw agent --agent judge --message 'Score this: https://devpost.com/... (add repo/demo links)' --json"
-Write-Host ""
-Write-Host "Or use the runner (creates artifacts/proof/*):"
-Write-Host "  & '$runner' -HackathonUrl 'https://...' -ProjectUrl 'https://...' -RepoUrl 'https://github.com/...' -DemoUrl 'https://...'"

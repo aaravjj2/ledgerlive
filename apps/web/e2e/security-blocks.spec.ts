@@ -68,7 +68,7 @@ test.describe('Security Blocks', () => {
 
     const evt = list.items[0]
     expect(evt.blocked).toBe(true)
-    expect(evt.event_id).toContain('grc-')
+    expect(evt.event_id || evt.security_event_id).toContain('grc-')
     await checkpoint(page, 'sec-03-api-verify')
   })
 
@@ -77,7 +77,7 @@ test.describe('Security Blocks', () => {
 
     const listResp = await page.request.get(`${API}/api/ops/security-events`)
     const list = await listResp.json()
-    const eventId = list.items[0].event_id
+    const eventId = list.items[0].event_id || list.items[0].security_event_id
 
     // Apply fix via API
     const fixResp = await page.request.post(`${API}/api/ops/security-event/${eventId}/fix-path`)

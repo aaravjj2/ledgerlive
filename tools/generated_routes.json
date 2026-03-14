@@ -1,0 +1,780 @@
+{
+  "routes": [
+    {
+      "path": "/close-period",
+      "component": "ClosePeriod"
+    },
+    {
+      "path": "/entities",
+      "component": "Entities"
+    },
+    {
+      "path": "/chart-of-accounts",
+      "component": "ChartOfAccounts"
+    },
+    {
+      "path": "/journal-entries",
+      "component": "JournalEntries"
+    },
+    {
+      "path": "/trial-balance",
+      "component": "TrialBalance"
+    },
+    {
+      "path": "/financial-statements",
+      "component": "FinancialStatements"
+    },
+    {
+      "path": "/bank-recon",
+      "component": "BankRecon"
+    },
+    {
+      "path": "/vendors",
+      "component": "Vendors"
+    },
+    {
+      "path": "/invoices",
+      "component": "Invoices"
+    },
+    {
+      "path": "/payments",
+      "component": "Payments"
+    },
+    {
+      "path": "/expenses",
+      "component": "Expenses"
+    },
+    {
+      "path": "/fixed-assets",
+      "component": "FixedAssets"
+    },
+    {
+      "path": "/depreciation",
+      "component": "Depreciation"
+    },
+    {
+      "path": "/intercompany",
+      "component": "Intercompany"
+    },
+    {
+      "path": "/tax",
+      "component": "Tax"
+    },
+    {
+      "path": "/revenue",
+      "component": "Revenue"
+    },
+    {
+      "path": "/leases",
+      "component": "Leases"
+    },
+    {
+      "path": "/close-mgmt",
+      "component": "CloseMgmt"
+    },
+    {
+      "path": "/flux",
+      "component": "Flux"
+    },
+    {
+      "path": "/approvals",
+      "component": "Approvals"
+    },
+    {
+      "path": "/users",
+      "component": "Users"
+    },
+    {
+      "path": "/roles",
+      "component": "Roles"
+    },
+    {
+      "path": "/notifications",
+      "component": "Notifications"
+    },
+    {
+      "path": "/reports",
+      "component": "Reports"
+    },
+    {
+      "path": "/data-import",
+      "component": "DataImport"
+    },
+    {
+      "path": "/data-export",
+      "component": "DataExport"
+    },
+    {
+      "path": "/consolidation",
+      "component": "Consolidation"
+    },
+    {
+      "path": "/je-posting",
+      "component": "JePosting"
+    },
+    {
+      "path": "/three-way-match",
+      "component": "ThreeWayMatch"
+    },
+    {
+      "path": "/cash-application",
+      "component": "CashApplication"
+    },
+    {
+      "path": "/accruals",
+      "component": "Accruals"
+    },
+    {
+      "path": "/controls",
+      "component": "Controls"
+    },
+    {
+      "path": "/audit-portal",
+      "component": "AuditPortal"
+    },
+    {
+      "path": "/evidence-binder",
+      "component": "EvidenceBinder"
+    },
+    {
+      "path": "/qbo",
+      "component": "Qbo"
+    },
+    {
+      "path": "/xero",
+      "component": "Xero"
+    },
+    {
+      "path": "/plaid",
+      "component": "Plaid"
+    },
+    {
+      "path": "/mapping-studio",
+      "component": "MappingStudio"
+    },
+    {
+      "path": "/data-quality",
+      "component": "DataQuality"
+    },
+    {
+      "path": "/budgeting",
+      "component": "Budgeting"
+    },
+    {
+      "path": "/forecasting",
+      "component": "Forecasting"
+    },
+    {
+      "path": "/driver-planning",
+      "component": "DriverPlanning"
+    },
+    {
+      "path": "/scenario-engine",
+      "component": "ScenarioEngine"
+    },
+    {
+      "path": "/covenants",
+      "component": "Covenants"
+    },
+    {
+      "path": "/cost-allocation",
+      "component": "CostAllocation"
+    },
+    {
+      "path": "/kpi",
+      "component": "Kpi"
+    },
+    {
+      "path": "/board-pack",
+      "component": "BoardPack"
+    },
+    {
+      "path": "/exception-classifier",
+      "component": "ExceptionClassifier"
+    },
+    {
+      "path": "/auto-fix",
+      "component": "AutoFix"
+    },
+    {
+      "path": "/accrual-suggest",
+      "component": "AccrualSuggest"
+    },
+    {
+      "path": "/je-suggest",
+      "component": "JeSuggest"
+    },
+    {
+      "path": "/triage-queue",
+      "component": "TriageQueue"
+    },
+    {
+      "path": "/recon-explain",
+      "component": "ReconExplain"
+    },
+    {
+      "path": "/intercompany-v2",
+      "component": "IntercompanyV2"
+    },
+    {
+      "path": "/fx",
+      "component": "Fx"
+    },
+    {
+      "path": "/cashflow-consol",
+      "component": "CashflowConsol"
+    },
+    {
+      "path": "/workflow-plugin",
+      "component": "WorkflowPlugin"
+    },
+    {
+      "path": "/workflow-marketplace",
+      "component": "WorkflowMarketplace"
+    },
+    {
+      "path": "/report-marketplace",
+      "component": "ReportMarketplace"
+    },
+    {
+      "path": "/soc2",
+      "component": "Soc2"
+    },
+    {
+      "path": "/gdpr",
+      "component": "Gdpr"
+    },
+    {
+      "path": "/key-management",
+      "component": "KeyManagement"
+    },
+    {
+      "path": "/data-lake",
+      "component": "DataLake"
+    },
+    {
+      "path": "/lineage",
+      "component": "Lineage"
+    },
+    {
+      "path": "/query-language",
+      "component": "QueryLanguage"
+    },
+    {
+      "path": "/abac",
+      "component": "Abac"
+    },
+    {
+      "path": "/admin-console",
+      "component": "AdminConsole"
+    },
+    {
+      "path": "/trace-explorer",
+      "component": "TraceExplorer"
+    },
+    {
+      "path": "/replay-engine",
+      "component": "ReplayEngine"
+    },
+    {
+      "path": "/tool-registry",
+      "component": "ToolRegistry"
+    },
+    {
+      "path": "/agent-runtime",
+      "component": "AgentRuntime"
+    },
+    {
+      "path": "/gemini-adapter",
+      "component": "GeminiAdapter"
+    },
+    {
+      "path": "/airia-adapter",
+      "component": "AiriaAdapter"
+    },
+    {
+      "path": "/gradient-adapter",
+      "component": "GradientAdapter"
+    },
+    {
+      "path": "/connector-mocks",
+      "component": "ConnectorMocks"
+    },
+    {
+      "path": "/ml-dataset",
+      "component": "MlDataset"
+    },
+    {
+      "path": "/ml-baseline",
+      "component": "MlBaseline"
+    },
+    {
+      "path": "/ml-inference",
+      "component": "MlInference"
+    },
+    {
+      "path": "/evidence-search",
+      "component": "EvidenceSearch"
+    },
+    {
+      "path": "/blueprint-builder",
+      "component": "BlueprintBuilder"
+    },
+    {
+      "path": "/readiness-dashboard",
+      "component": "ReadinessDashboard"
+    },
+    {
+      "path": "/security-scoreboard",
+      "component": "SecurityScoreboard"
+    },
+    {
+      "path": "/lap-time-telemetry",
+      "component": "LapTimeTelemetry"
+    },
+    {
+      "path": "/productivity-roi",
+      "component": "ProductivityRoi"
+    },
+    {
+      "path": "/pit-stop-optimizer",
+      "component": "PitStopOptimizer"
+    },
+    {
+      "path": "/one-cockpit",
+      "component": "OneCockpit"
+    }
+  ],
+  "nav": [
+    {
+      "to": "/close-period",
+      "label": "Close Period",
+      "tid": "nav-close-period"
+    },
+    {
+      "to": "/entities",
+      "label": "Entities",
+      "tid": "nav-entities"
+    },
+    {
+      "to": "/chart-of-accounts",
+      "label": "Chart of Accounts",
+      "tid": "nav-chart-of-accounts"
+    },
+    {
+      "to": "/journal-entries",
+      "label": "Journal Entries",
+      "tid": "nav-journal-entries"
+    },
+    {
+      "to": "/trial-balance",
+      "label": "Trial Balance",
+      "tid": "nav-trial-balance"
+    },
+    {
+      "to": "/financial-statements",
+      "label": "Financial Statements",
+      "tid": "nav-financial-statements"
+    },
+    {
+      "to": "/bank-recon",
+      "label": "Bank Reconciliation",
+      "tid": "nav-bank-recon"
+    },
+    {
+      "to": "/vendors",
+      "label": "Vendor Management",
+      "tid": "nav-vendors"
+    },
+    {
+      "to": "/invoices",
+      "label": "Invoice Processing",
+      "tid": "nav-invoices"
+    },
+    {
+      "to": "/payments",
+      "label": "Payment Runs",
+      "tid": "nav-payments"
+    },
+    {
+      "to": "/expenses",
+      "label": "Expense Reports",
+      "tid": "nav-expenses"
+    },
+    {
+      "to": "/fixed-assets",
+      "label": "Fixed Assets",
+      "tid": "nav-fixed-assets"
+    },
+    {
+      "to": "/depreciation",
+      "label": "Depreciation",
+      "tid": "nav-depreciation"
+    },
+    {
+      "to": "/intercompany",
+      "label": "Intercompany",
+      "tid": "nav-intercompany"
+    },
+    {
+      "to": "/tax",
+      "label": "Tax Compliance",
+      "tid": "nav-tax"
+    },
+    {
+      "to": "/revenue",
+      "label": "Revenue Recognition",
+      "tid": "nav-revenue"
+    },
+    {
+      "to": "/leases",
+      "label": "Lease Accounting",
+      "tid": "nav-leases"
+    },
+    {
+      "to": "/close-mgmt",
+      "label": "Close Management",
+      "tid": "nav-close-mgmt"
+    },
+    {
+      "to": "/flux",
+      "label": "Flux Analysis",
+      "tid": "nav-flux"
+    },
+    {
+      "to": "/approvals",
+      "label": "Approval Workflows",
+      "tid": "nav-approvals"
+    },
+    {
+      "to": "/users",
+      "label": "User Management",
+      "tid": "nav-users"
+    },
+    {
+      "to": "/roles",
+      "label": "Role Permissions",
+      "tid": "nav-roles"
+    },
+    {
+      "to": "/notifications",
+      "label": "Notifications",
+      "tid": "nav-notifications"
+    },
+    {
+      "to": "/reports",
+      "label": "Reporting Engine",
+      "tid": "nav-reports"
+    },
+    {
+      "to": "/data-import",
+      "label": "Data Import",
+      "tid": "nav-data-import"
+    },
+    {
+      "to": "/data-export",
+      "label": "Data Export",
+      "tid": "nav-data-export"
+    },
+    {
+      "to": "/consolidation",
+      "label": "Consolidation",
+      "tid": "nav-consolidation"
+    },
+    {
+      "to": "/je-posting",
+      "label": "JE Posting",
+      "tid": "nav-je-posting"
+    },
+    {
+      "to": "/three-way-match",
+      "label": "Three-Way Match",
+      "tid": "nav-three-way-match"
+    },
+    {
+      "to": "/cash-application",
+      "label": "Cash Application",
+      "tid": "nav-cash-application"
+    },
+    {
+      "to": "/accruals",
+      "label": "Accruals & Deferrals",
+      "tid": "nav-accruals"
+    },
+    {
+      "to": "/controls",
+      "label": "Controls Catalog",
+      "tid": "nav-controls"
+    },
+    {
+      "to": "/audit-portal",
+      "label": "Audit Portal",
+      "tid": "nav-audit-portal"
+    },
+    {
+      "to": "/evidence-binder",
+      "label": "Evidence Binder",
+      "tid": "nav-evidence-binder"
+    },
+    {
+      "to": "/qbo",
+      "label": "QuickBooks Connector",
+      "tid": "nav-qbo"
+    },
+    {
+      "to": "/xero",
+      "label": "Xero Connector",
+      "tid": "nav-xero"
+    },
+    {
+      "to": "/plaid",
+      "label": "Plaid Connector",
+      "tid": "nav-plaid"
+    },
+    {
+      "to": "/mapping-studio",
+      "label": "Mapping Studio",
+      "tid": "nav-mapping-studio"
+    },
+    {
+      "to": "/data-quality",
+      "label": "Data Quality",
+      "tid": "nav-data-quality"
+    },
+    {
+      "to": "/budgeting",
+      "label": "Budgeting",
+      "tid": "nav-budgeting"
+    },
+    {
+      "to": "/forecasting",
+      "label": "Forecasting",
+      "tid": "nav-forecasting"
+    },
+    {
+      "to": "/driver-planning",
+      "label": "Driver Planning",
+      "tid": "nav-driver-planning"
+    },
+    {
+      "to": "/scenario-engine",
+      "label": "Scenario Engine",
+      "tid": "nav-scenario-engine"
+    },
+    {
+      "to": "/covenants",
+      "label": "Covenants",
+      "tid": "nav-covenants"
+    },
+    {
+      "to": "/cost-allocation",
+      "label": "Cost Allocation",
+      "tid": "nav-cost-allocation"
+    },
+    {
+      "to": "/kpi",
+      "label": "KPI Framework",
+      "tid": "nav-kpi"
+    },
+    {
+      "to": "/board-pack",
+      "label": "Board Pack",
+      "tid": "nav-board-pack"
+    },
+    {
+      "to": "/exception-classifier",
+      "label": "Exception Classifier",
+      "tid": "nav-exception-classifier"
+    },
+    {
+      "to": "/auto-fix",
+      "label": "Auto-Fix",
+      "tid": "nav-auto-fix"
+    },
+    {
+      "to": "/accrual-suggest",
+      "label": "Accrual Suggest",
+      "tid": "nav-accrual-suggest"
+    },
+    {
+      "to": "/je-suggest",
+      "label": "JE Suggest",
+      "tid": "nav-je-suggest"
+    },
+    {
+      "to": "/triage-queue",
+      "label": "Triage Queue",
+      "tid": "nav-triage-queue"
+    },
+    {
+      "to": "/recon-explain",
+      "label": "Recon Explain",
+      "tid": "nav-recon-explain"
+    },
+    {
+      "to": "/intercompany-v2",
+      "label": "Intercompany V2",
+      "tid": "nav-intercompany-v2"
+    },
+    {
+      "to": "/fx",
+      "label": "FX Translation",
+      "tid": "nav-fx"
+    },
+    {
+      "to": "/cashflow-consol",
+      "label": "Cash Flow Consolidation",
+      "tid": "nav-cashflow-consol"
+    },
+    {
+      "to": "/workflow-plugin",
+      "label": "Workflow Plugin",
+      "tid": "nav-workflow-plugin"
+    },
+    {
+      "to": "/workflow-marketplace",
+      "label": "Workflow Marketplace",
+      "tid": "nav-workflow-marketplace"
+    },
+    {
+      "to": "/report-marketplace",
+      "label": "Report Marketplace",
+      "tid": "nav-report-marketplace"
+    },
+    {
+      "to": "/soc2",
+      "label": "SOC2 Evidence",
+      "tid": "nav-soc2"
+    },
+    {
+      "to": "/gdpr",
+      "label": "GDPR Redaction",
+      "tid": "nav-gdpr"
+    },
+    {
+      "to": "/key-management",
+      "label": "Key Management",
+      "tid": "nav-key-management"
+    },
+    {
+      "to": "/data-lake",
+      "label": "Data Lake Export",
+      "tid": "nav-data-lake"
+    },
+    {
+      "to": "/lineage",
+      "label": "Lineage Manifest",
+      "tid": "nav-lineage"
+    },
+    {
+      "to": "/query-language",
+      "label": "Query Language",
+      "tid": "nav-query-language"
+    },
+    {
+      "to": "/abac",
+      "label": "ABAC Engine",
+      "tid": "nav-abac"
+    },
+    {
+      "to": "/admin-console",
+      "label": "Admin Console",
+      "tid": "nav-admin-console"
+    },
+    {
+      "to": "/trace-explorer",
+      "label": "Trace Explorer",
+      "tid": "nav-trace-explorer"
+    },
+    {
+      "to": "/replay-engine",
+      "label": "Replay Engine",
+      "tid": "nav-replay-engine"
+    },
+    {
+      "to": "/tool-registry",
+      "label": "Tool Registry",
+      "tid": "nav-tool-registry"
+    },
+    {
+      "to": "/agent-runtime",
+      "label": "Agent Runtime",
+      "tid": "nav-agent-runtime"
+    },
+    {
+      "to": "/gemini-adapter",
+      "label": "Gemini Adapter",
+      "tid": "nav-gemini-adapter"
+    },
+    {
+      "to": "/airia-adapter",
+      "label": "Airia Adapter",
+      "tid": "nav-airia-adapter"
+    },
+    {
+      "to": "/gradient-adapter",
+      "label": "Gradient Adapter",
+      "tid": "nav-gradient-adapter"
+    },
+    {
+      "to": "/connector-mocks",
+      "label": "Connector Mocks",
+      "tid": "nav-connector-mocks"
+    },
+    {
+      "to": "/ml-dataset",
+      "label": "ML Dataset",
+      "tid": "nav-ml-dataset"
+    },
+    {
+      "to": "/ml-baseline",
+      "label": "ML Baseline",
+      "tid": "nav-ml-baseline"
+    },
+    {
+      "to": "/ml-inference",
+      "label": "ML Inference",
+      "tid": "nav-ml-inference"
+    },
+    {
+      "to": "/evidence-search",
+      "label": "Evidence Search",
+      "tid": "nav-evidence-search"
+    },
+    {
+      "to": "/blueprint-builder",
+      "label": "Blueprint Builder",
+      "tid": "nav-blueprint-builder"
+    },
+    {
+      "to": "/readiness-dashboard",
+      "label": "Readiness Dashboard",
+      "tid": "nav-readiness-dashboard"
+    },
+    {
+      "to": "/security-scoreboard",
+      "label": "Security Scoreboard",
+      "tid": "nav-security-scoreboard"
+    },
+    {
+      "to": "/lap-time-telemetry",
+      "label": "Lap Time Telemetry",
+      "tid": "nav-lap-time-telemetry"
+    },
+    {
+      "to": "/productivity-roi",
+      "label": "Productivity ROI",
+      "tid": "nav-productivity-roi"
+    },
+    {
+      "to": "/pit-stop-optimizer",
+      "label": "Pit Stop Optimizer",
+      "tid": "nav-pit-stop-optimizer"
+    },
+    {
+      "to": "/one-cockpit",
+      "label": "One Cockpit",
+      "tid": "nav-one-cockpit"
+    }
+  ]
+}

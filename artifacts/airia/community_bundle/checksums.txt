@@ -1,0 +1,8 @@
+# LedgerLive Airia Community Bundle Checksums
+# Generated deterministically — sha256
+
+91638d33eb640190c0be46e5b160df3627377ed1f60940a86e3d0533fe73778a  manifest.json
+602b5cc3538fb8bade1ed5285d76f37f1a0d9ed9119bc7864f15cca674ae31e1  tools.json
+e7b388cf17d32984cd2fbd20afc8d161f895eb4896036b38e7632bffd43646a3  workflow_template.json
+4fd40d82e8d5ac3c3e40f3e6547602dce6c15044202b17fa5d11f30c162fd385  runbooks.md
+cb6f0055943105e719400aec27237d48603cc7710ede4dc1ad042302f1836409  screenshots_manifest.json

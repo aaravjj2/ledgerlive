@@ -1,0 +1,38 @@
+GATE FAIL: 13 Apex reference(s) found:
+
+  judge_loop.py:52  ['Trading', 'Trading']
+    "repo_path":    Path(r"C:\Tradingview\Tradingview recreation"),
+
+  judge_loop.py:55  ['Trading', 'Trading']
+    "backend_cmd":  r'cd "C:\Tradingview\Tradingview recreation\phase1" && .venv\Scripts\python -m uvicorn services.api.main
+
+  judge_loop.py:56  ['Trading', 'Trading']
+    "frontend_cmd": r'cd "C:\Tradingview\Tradingview recreation\frontend" && npm run dev',
+
+  judge_loop.py:57  ['Trading', 'Trading']
+    "test_cmd":     r'cd "C:\Tradingview\Tradingview recreation\phase1" && .venv\Scripts\python -m pytest tests/ -q --tb=sho
+
+  judge_loop.py:58  ['Elasticsearch']
+    "hackathon":    "Elasticsearch Vector Search (Devpost)",
+
+  judge_loop.py:61  ['Elasticsearch']
+    You are the most brutal, uncompromising senior judge for the Elasticsearch Vector Search
+
+  judge_loop.py:64  ['Elasticsearch']
+    - Code that technically runs but doesn't actually use Elasticsearch kNN/vector search
+
+  judge_loop.py:71  ['elasticsearch']
+    elasticsearch_usage     (4.0 max) — ONLY if dense_vector + kNN actually executes
+
+  judge_loop.py:73  ['trading']
+    originality_impact      (2.0 max) — Novel problem solved in trading/finance domain
+
+  judge_loop.py:209  ['Elasticsearch']
+Traceback (most recent call last):
+  File "C:\Aarav\ledgerlive\tools\gates\no_apex_references.py", line 64, in <module>
+    print(f"    {snippet}\n")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 6-7: character maps to <undefined>

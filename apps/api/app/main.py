@@ -781,9 +781,15 @@ from app.routers.agent_loop import router as agent_loop_router
 from app.routers.airia_webhook_inbound import router as airia_webhook_inbound_router
 from app.routers.nuclear_endpoints import router as nuclear_router
 from app.routers.mcp_remote import router as mcp_remote_router  # Airia Remote MCP (SSE)
+from app.routers.gemini_voice import router as gemini_voice_router  # Gemini Live Voice
+from app.routers.gradient_endpoints import router as gradient_router  # DO Gradient AI + Spaces
+from app.routers.gitlab_compliance import router as gitlab_compliance_router  # GitLab Compliance Agent
 
 app.include_router(nuclear_router)    # Nuclear gate endpoints (20/20)
+app.include_router(gemini_voice_router)  # Gemini Live Voice WebSocket + REST
 app.include_router(mcp_remote_router) # Remote MCP SSE transport (Airia Option B)
+app.include_router(gradient_router)   # DigitalOcean Gradient AI + Spaces
+app.include_router(gitlab_compliance_router)  # GitLab Compliance Agent
 app.include_router(w321_router)
 app.include_router(w322_router)
 app.include_router(w323_router)

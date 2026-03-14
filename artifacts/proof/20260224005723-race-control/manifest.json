@@ -1,0 +1,65 @@
+{
+  "proof_pack": "W240 Race Control RC Proof Pack",
+  "project": "LEDGERLIVE",
+  "timestamp": "2026-02-24T00:57:23Z",
+  "wave_range": "W221-W240",
+  "theme": "Race Control — Close Orchestration",
+  "phases": {
+    "phase_23": {
+      "name": "Close Orchestration Foundation",
+      "waves": "W221-W228",
+      "components": [
+        "close_calendar", "task_dag", "dependency_resolver", "sla_monitor",
+        "blocker_tracker", "handoff_protocol", "progress_aggregator", "close_checkpoint"
+      ]
+    },
+    "phase_24": {
+      "name": "Race Control Dashboard",
+      "waves": "W229-W234",
+      "components": [
+        "rc_state_machine", "lane_status", "critical_path",
+        "live_scoreboard", "incident_log", "control_export"
+      ]
+    },
+    "phase_25": {
+      "name": "Race Control Integration & RC",
+      "waves": "W235-W240",
+      "components": [
+        "rc_rules", "rc_notifications", "rc_playbook",
+        "rc_dry_run", "rc_approval", "rc_proof_pack"
+      ]
+    }
+  },
+  "test_results": {
+    "total_tests": 2803,
+    "passed": 2803,
+    "failed": 0,
+    "new_tests_w221_w240": 245
+  },
+  "gates": {
+    "no_apex_references": "PASS",
+    "no_network_in_tests": "PASS"
+  },
+  "tags": {
+    "total": 241,
+    "range": "v0.0.0-ledgerlive-purged → v0.240.0-ledgerlive"
+  },
+  "frontend": {
+    "race_control_page": true,
+    "sections": ["scoreboard", "lane_status_board", "close_checkpoints", "incident_log", "approval_chain"],
+    "determinism_verified": true,
+    "runs": 2,
+    "screenshots": ["rc-page-run1.png", "rc-page-run2.png"]
+  },
+  "artifacts": [
+    "pytest-output.txt",
+    "gate-apex.txt",
+    "gate-network.txt",
+    "git-log.txt",
+    "tags-w220-240.txt",
+    "diff-stat.txt",
+    "rc-page-run1.png",
+    "rc-page-run2.png",
+    "manifest.json"
+  ]
+}

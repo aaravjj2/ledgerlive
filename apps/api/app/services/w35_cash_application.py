@@ -2,6 +2,8 @@
 
 PROJECT_ID: LEDGERLIVE
 """
+from __future__ import annotations
+
 from app.main import emit_audit_event
 
 

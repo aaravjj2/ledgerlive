@@ -9,6 +9,7 @@
     "preview": "vite preview --port 4173",
     "test": "playwright test --project=chromium --retries=0 --workers=1 --headed",
     "e2e": "playwright test --project=chromium --retries=0 --workers=1 --headed",
+    "e2e:xvfb": "xvfb-run playwright test --project=chromium --retries=0 --workers=1 --headed",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {

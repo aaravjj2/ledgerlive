@@ -1,0 +1,58 @@
+{
+  "timestamp": "20260224132829",
+  "milestone": "golden-scenario-truthfulness",
+  "project_id": "LEDGERLIVE",
+  "gates": {
+    "no_apex_references": {
+      "rc": 0,
+      "pass": true
+    },
+    "no_network_in_tests": {
+      "rc": 0,
+      "pass": true
+    }
+  },
+  "pytest": {
+    "rc": 0,
+    "pass": true
+  },
+  "playwright": {
+    "screenshots": [
+      "rc-01-assertions.png",
+      "rc-01-seeded.png",
+      "rc-02-lanes.png",
+      "rc-03-verify-dossier.png",
+      "rc-03-why-dossier.png",
+      "rc-04-incident-why.png",
+      "rc-05-after-approve.png",
+      "rc-05-before-approve.png",
+      "rc-06-court-badge.png",
+      "rc-06-telem-badge.png",
+      "rc-07-replay-hash.png",
+      "rc-08-before-assertions.png",
+      "rc-08-binder-hash.png",
+      "rc-08-court-pass.png",
+      "rc-08-replay-match.png",
+      "rc-08-signature-stable.png",
+      "rc-08-telemetry-pass.png"
+    ],
+    "traces": [
+      "00-golden-race-control-Golden-19ff8-rds-are-rendered-after-seed-chromium-trace.zip",
+      "01-golden-race-control-Golden-6a502-ncident-log-and-Why-dossier-chromium-trace.zip",
+      "02-golden-race-control-Golden-83618-ashes-real-signature-stable-chromium-trace.zip",
+      "03-golden-race-control-Golden-ac038-rows-and-Why-Verify-dossier-chromium-trace.zip",
+      "04-golden-race-control-Golden-d7874-t-telemetry-and-court-packs-chromium-trace.zip",
+      "05-golden-race-control-Golden-dc72d-play-viewer-and-binder-hash-chromium-trace.zip",
+      "06-golden-race-control-Golden-e90ea-in-and-approve-pending-step-chromium-trace.zip",
+      "07-golden-race-control-Golden-f8207-ario-and-verify-panels-load-chromium-trace.zip"
+    ],
+    "videos": [
+      "00-golden-race-control-Golden-19ff8-rds-are-rendered-after-seed-chromium.webm",
+      "01-golden-race-control-Golden-6a502-ncident-log-and-Why-dossier-chromium.webm",
+      "02-golden-race-control-Golden-83618-ashes-real-signature-stable-chromium.webm",
+      "03-golden-race-control-Golden-ac038-rows-and-Why-Verify-dossier-chromium.webm",
+      "04-golden-race-control-Golden-d7874-t-telemetry-and-court-packs-chromium.webm"
+    ],
+    "html_report": "playwright-report/index.html"
+  }
+}
