@@ -1,8 +1,19 @@
-# dependencies
+# ─── Dependencies ───────────────────────────────────────────────────────────
 node_modules/
 **/node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+*.whl
+build/
+develop-eggs/
+.eggs/
 
-# build output
+# ─── Build & Output ─────────────────────────────────────────────────────────
 dist/
 build/
 out/
@@ -11,10 +22,23 @@ out/
 .cache/
 .tmp/
 temp/
-.tmp/
 coverage/
+*.tsbuildinfo
 
-# logs
+# ─── Environment & Secrets (CRITICAL: never commit these) ──────────────────
+.env
+.env.*
+!.env.example
+.env.local
+.env.*.local
+keys.env
+credentials.json
+*.key
+*.pem
+.gcloud/
+config.json
+
+# ─── Logs ───────────────────────────────────────────────────────────────────
 logs/
 *.log
 npm-debug.log*
@@ -22,41 +46,52 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+*.out
 
-# env files
-.env
-.env.*
-!.env.example
-
-# OS / editor junk
+# ─── OS & Editor ────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-workspace
+*.sublime-project
+.project
+.classpath
+*.iml
 
-# test artifacts
+# ─── Testing ────────────────────────────────────────────────────────────────
 playwright-report/
 test-results/
-coverage/
 .nyc_output/
+.pytest_cache/
+.coverage
 
-# TypeScript
-*.tsbuildinfo
-
-# local database / misc local files
+# ─── Databases ──────────────────────────────────────────────────────────────
 *.sqlite
 *.sqlite3
+*.db
+*.rbx
 
-# package manager caches
+# ─── Package Manager Caches ─────────────────────────────────────────────────
 .pnpm-store/
 .npm/
-.yarn/
 .yarn/cache/
 .yarn/unplugged/
 .yarn/build-state.yml
 .yarn/install-state.gz
 
-# optional misc generated files
+# ─── Generated Files ────────────────────────────────────────────────────────
 storybook-static/
+.history/
+.venv/
+venv/
+env/
+.python-version
+
+# ─── IDE & Local ────────────────────────────────────────────────────────────
+.idea
+.vscode
+*.local
+*.tmp
