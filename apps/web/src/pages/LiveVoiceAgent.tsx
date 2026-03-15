@@ -38,7 +38,7 @@ function ConnectionBadge({ isConnected }: { isConnected: boolean }) {
       <div
         data-testid="connection-indicator"
         className={`w-2.5 h-2.5 rounded-full ${
-          isConnected ? 'bg-green-400 shadow-green-400/50 shadow-sm' : 'bg-red-400'
+          isConnected ? 'bg-green-400 shadow-green-400/50' : 'bg-red-400'
         }`}
       />
       <span className={`text-xs font-medium ${isConnected ? 'text-green-400' : 'text-gray-400'}`}>
@@ -287,7 +287,7 @@ export default function LiveVoiceAgent() {
                   </svg>
                 </div>
                 <p className="text-lg font-medium mb-1">LedgerBot Voice Agent</p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-400">
                   {isConnected
                     ? 'Start speaking or type a message below'
                     : 'Click Connect to start a conversation'}
@@ -439,7 +439,7 @@ export default function LiveVoiceAgent() {
             {sidebarTab === 'tools' && (
               <>
                 {toolCallMessages.length === 0 ? (
-                  <div className="text-center text-gray-600 text-xs mt-8 px-4">
+                  <div className="text-center text-gray-400 text-xs mt-8 px-4">
                     <p>Tool calls from the agent will appear here as they execute.</p>
                   </div>
                 ) : (
@@ -452,7 +452,7 @@ export default function LiveVoiceAgent() {
             {sidebarTab === 'history' && (
               <>
                 {messages.length === 0 ? (
-                  <div className="text-center text-gray-600 text-xs mt-8 px-4">
+                  <div className="text-center text-gray-400 text-xs mt-8 px-4">
                     <p>Conversation activity will appear here.</p>
                   </div>
                 ) : (
@@ -476,7 +476,7 @@ export default function LiveVoiceAgent() {
                           {msg.role === 'user' ? 'You' : msg.role === 'system' ? 'System' : 'LedgerBot'}
                         </span>
                         <p className="text-gray-400 truncate">{msg.text}</p>
-                        <span className="text-gray-600">
+                        <span className="text-gray-400">
                           {new Date(msg.timestamp).toLocaleTimeString()}
                         </span>
                       </div>

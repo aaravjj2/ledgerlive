@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { API_BASE } from '../services/api'
 
 interface Review { review_id: string; review_type?: string; subject?: string; assignee?: string; priority?: string; status?: string; due_date?: string }
 
@@ -9,22 +10,22 @@ export default function ReviewQueue() {
 
   const load = () => {
     setLoading(true)
-    fetch('/api/reviews').then(r => r.json()).then(d => { setItems(d.items || []); setLoading(false) }).catch(() => setLoading(false))
+    fetch(`${API_BASE}/api/reviews`).then(r => r.json()).then(d => { setItems(d.items || []); setLoading(false) }).catch(() => setLoading(false))
   }
 
   useEffect(() => { load() }, [])
 
   const decide = async (id: string, decision: string) => {
     setActing(id)
-    await fetch(`/api/reviews/${id}/decide`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ decision }) })
+    await fetch(`${API_BASE}/api/reviews/${id}/decide`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ decision }) })
     setActing(null)
     load()
   }
 
   const priColor = (p?: string) => {
-    if (p === 'high' || p === 'critical') return 'bg-red-100 text-red-700'
-    if (p === 'medium') return 'bg-yellow-100 text-yellow-700'
-    return 'bg-blue-100 text-blue-700'
+    if (p === 'high' || p === 'critical') return 'bg-red-900/40 text-red-400'
+    if (p === 'medium') return 'bg-yellow-900/40 text-yellow-400'
+    return 'bg-blue-900/40 text-blue-400'
   }
 
   return (
@@ -39,17 +40,17 @@ export default function ReviewQueue() {
         <div className="space-y-3">
           {items.length === 0 && <p className="text-gray-400 py-8 text-center">Review queue is empty.</p>}
           {items.map(rv => (
-            <div key={rv.review_id} className="rounded-xl border bg-white shadow-sm p-4 flex items-start gap-4">
+            <div key={rv.review_id} className="rounded-xl border bg-[#111118] p-4 flex items-start gap-4">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${priColor(rv.priority)}`}>{rv.priority || 'normal'}</span>
                   <span className="text-xs text-gray-500 uppercase">{rv.review_type || 'review'}</span>
                 </div>
-                <p className="text-sm font-medium text-gray-800">{rv.subject || rv.review_id.slice(0,8)}</p>
-                <p className="text-xs text-gray-500 mt-1">Assigned to: <span className="text-indigo-600">{rv.assignee || '—'}</span> · Due: {rv.due_date || '—'}</p>
+                <p className="text-sm font-medium text-gray-200">{rv.subject || rv.review_id.slice(0,8)}</p>
+                <p className="text-xs text-gray-500 mt-1">Assigned to: <span className="text-red-400">{rv.assignee || '—'}</span> · Due: {rv.due_date || '—'}</p>
               </div>
               <div className="flex flex-col items-end gap-2">
-                <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${rv.status === 'pending' ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700'}`}>{rv.status}</span>
+                <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${rv.status === 'pending' ? 'bg-yellow-900/40 text-yellow-400' : 'bg-green-900/40 text-green-400'}`}>{rv.status}</span>
                 {rv.status === 'pending' && (
                   <div className="flex gap-1">
                     <button onClick={() => decide(rv.review_id, 'approved')} disabled={acting === rv.review_id}

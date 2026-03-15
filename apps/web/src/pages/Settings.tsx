@@ -34,16 +34,16 @@ export default function Settings() {
       <h1 className="text-2xl font-bold mb-1" data-testid="settings-title">Settings</h1>
       <p className="text-gray-500 mb-6" data-testid="settings-subtitle">System configuration and preferences.</p>
 
-      <div className="rounded-xl border bg-white shadow-sm overflow-hidden mb-6">
-        <div className="bg-gray-50 border-b px-4 py-3">
-          <h2 className="font-semibold text-gray-700">System Info</h2>
+      <div className="rounded-xl border bg-[#111118] overflow-hidden mb-6">
+        <div className="bg-[#1A1A24] border-b px-4 py-3">
+          <h2 className="font-semibold text-gray-300">System Info</h2>
         </div>
         <table className="w-full text-sm">
           <tbody>
             {rows.map(r => (
-              <tr key={r.label} className="border-b last:border-0 hover:bg-gray-50">
-                <td className="px-4 py-3 font-medium text-gray-600 w-48">{r.label}</td>
-                <td className="px-4 py-3 text-gray-800 font-mono text-xs">{r.value}</td>
+              <tr key={r.label} className="border-b last:border-0 hover:bg-[#1A1A24]">
+                <td className="px-4 py-3 font-medium text-gray-400 w-48">{r.label}</td>
+                <td className="px-4 py-3 text-gray-200 font-mono text-xs">{r.value}</td>
               </tr>
             ))}
           </tbody>
@@ -51,8 +51,8 @@ export default function Settings() {
       </div>
 
       <div className="rounded-xl border bg-indigo-50 border-indigo-200 p-4">
-        <h2 className="font-semibold text-indigo-800 mb-1">LedgerLive — Finance Ops Close Agent</h2>
-        <p className="text-sm text-indigo-600">340 waves shipped · Phases 0–36 · Blueprint Builder, Atlassian Integration, Airia Readiness, Security Governance, Impact+Race WOW</p>
+        <h2 className="font-semibold text-blue-300 mb-1">LedgerLive — Finance Ops Close Agent</h2>
+        <p className="text-sm text-red-400">340 waves shipped · Phases 0–36 · Blueprint Builder, Atlassian Integration, Airia Readiness, Security Governance, Impact+Race WOW</p>
       </div>
     </div>
   )

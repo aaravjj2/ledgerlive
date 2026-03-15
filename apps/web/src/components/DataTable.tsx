@@ -30,12 +30,12 @@ function DataTableInner<T>({
   const getHeader = (c: Column<T>) => c.header ?? c.label ?? c.key
 
   return (
-    <div className="rounded-xl border bg-white shadow-sm overflow-hidden" data-testid={dataTestId}>
+    <div className="rounded-xl border border-[#2A2A3A] bg-[#111118] overflow-hidden" data-testid={dataTestId}>
       <table className="w-full text-sm">
-        <thead className="bg-gray-50 border-b">
+        <thead className="bg-[#1A1A24] border-b border-[#2A2A3A]">
           <tr>
             {columns.map((c) => (
-              <th key={c.key} className={`text-left px-4 py-3 font-semibold text-gray-600 ${c.className ?? ''}`}>
+              <th key={c.key} className={`text-left px-4 py-3 font-semibold text-gray-400 uppercase tracking-wide text-xs ${c.className ?? ''}`}>
                 {getHeader(c)}
               </th>
             ))}
@@ -57,7 +57,7 @@ function DataTableInner<T>({
             </tr>
           )}
           {!loading && data.map((row, idx) => (
-            <tr key={keyExtractor(row) || String(idx)} className="border-b hover:bg-gray-50">
+            <tr key={keyExtractor(row) || String(idx)} className="border-b border-[#2A2A3A] hover:bg-[#1A1A24] transition-colors">
               {columns.map((col) => {
                 const val = (row as Record<string, unknown>)[col.key]
                 return (

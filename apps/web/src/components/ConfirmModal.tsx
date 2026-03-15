@@ -23,13 +23,13 @@ export default function ConfirmModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" data-testid="confirm-modal">
-      <div className="bg-white rounded-xl shadow-2xl p-6 max-w-md w-full mx-4">
-        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-        <p className="mt-2 text-sm text-gray-600">{message}</p>
+      <div className="bg-[#111118] rounded-xl shadow-2xl p-6 max-w-md w-full mx-4">
+        <h3 className="text-lg font-semibold text-gray-100">{title}</h3>
+        <p className="mt-2 text-sm text-gray-400">{message}</p>
         <div className="mt-6 flex justify-end gap-3">
           <button
             onClick={onCancel}
-            className="px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200"
+            className="px-4 py-2 text-sm text-gray-300 bg-[#1A1A24] rounded-lg hover:bg-gray-200"
             data-testid="confirm-cancel"
           >
             {cancelLabel}

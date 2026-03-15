@@ -60,9 +60,9 @@ export default function Treasury() {
         <>
           <section className="mb-6" data-testid="treasury-debt-section">
             <h2 className="text-lg font-semibold mb-3">Debt Schedules</h2>
-            <div className="rounded-xl border bg-white shadow-sm overflow-hidden">
+            <div className="rounded-xl border bg-[#111118] overflow-hidden">
               <table className="w-full text-sm">
-                <thead className="bg-gray-50">
+                <thead className="bg-[#1A1A24]">
                   <tr>
                     <th className="text-left px-4 py-3">Entity</th>
                     <th className="text-right px-4 py-3">Principal</th>
@@ -74,14 +74,14 @@ export default function Treasury() {
                 </thead>
                 <tbody>
                   {schedules.map(s => (
-                    <tr key={s.schedule_id} className="border-b hover:bg-gray-50">
+                    <tr key={s.schedule_id} className="border-b hover:bg-[#1A1A24]">
                       <td className="px-4 py-3 font-mono">{s.entity_id}</td>
                       <td className="px-4 py-3 text-right">${(s.principal || 0).toLocaleString()}</td>
                       <td className="px-4 py-3 text-right">{s.rate_pct}%</td>
                       <td className="px-4 py-3">{s.maturity_date || '—'}</td>
                       <td className="px-4 py-3 text-right">${(s.next_payment || 0).toLocaleString()}</td>
                       <td className="px-4 py-3">
-                        <span className={`px-2 py-0.5 rounded text-xs ${s.status === 'current' ? 'bg-green-100 text-green-700' : 'bg-gray-100'}`}>
+                        <span className={`px-2 py-0.5 rounded text-xs ${s.status === 'current' ? 'bg-green-900/40 text-green-400' : 'bg-[#1A1A24]'}`}>
                           {s.status}
                         </span>
                       </td>
@@ -94,7 +94,7 @@ export default function Treasury() {
 
           <section className="mb-6" data-testid="treasury-ladder-section">
             <h2 className="text-lg font-semibold mb-3">Liquidity Ladder</h2>
-            <div className="rounded-xl border bg-white shadow-sm p-4 h-64">
+            <div className="rounded-xl border bg-[#111118] p-4 h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />

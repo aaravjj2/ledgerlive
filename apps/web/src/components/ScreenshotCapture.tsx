@@ -100,7 +100,7 @@ export function ScreenshotCapture({ onCapture, className = '', dataTestId = 'scr
       <div className="flex items-center gap-3 mb-3">
         <button
           onClick={captureFull}
-          className="px-3 py-1.5 bg-indigo-600 text-white rounded text-sm font-medium hover:bg-indigo-700"
+          className="px-3 py-1.5 bg-red-600 text-white rounded text-sm font-medium hover:bg-red-700"
         >
           📷 Capture Full Screen
         </button>

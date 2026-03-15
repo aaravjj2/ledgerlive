@@ -42,11 +42,11 @@ export function Watchlist({
   return (
     <div
       data-testid={dataTestId}
-      className={`rounded-lg border border-slate-700 bg-slate-900/50 overflow-hidden ${className}`}
+      className={`rounded-lg border border-[#2A2A3A] bg-[#0A0A0F]/50 overflow-hidden ${className}`}
     >
       <button
         onClick={() => setExpanded((e) => !e)}
-        className="w-full px-4 py-2 flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 text-left"
+        className="w-full px-4 py-2 flex items-center justify-between bg-[#111118]/50 hover:bg-[#111118] text-left"
       >
         <span className="font-semibold text-slate-200">Watchlist</span>
         <span className="text-slate-500 text-sm">{items.length} items</span>
@@ -57,7 +57,7 @@ export function Watchlist({
             <div
               key={item.id}
               data-testid={`watchlist-item-${item.id}`}
-              className={`flex items-center justify-between px-4 py-2 border-b border-slate-800 last:border-0 hover:bg-slate-800/30 ${
+              className={`flex items-center justify-between px-4 py-2 border-b border-slate-800 last:border-0 hover:bg-[#111118]/30 ${
                 item.alert ? 'bg-amber-900/20' : ''
               }`}
             >

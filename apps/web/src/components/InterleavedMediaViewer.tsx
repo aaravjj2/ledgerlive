@@ -40,23 +40,23 @@ function MediaBlockRenderer({ block }: { block: MediaBlock }) {
       return (
         <div
           data-testid={`media-block-text-${block.id}`}
-          className="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
+          className="prose prose-sm dark:prose-invert max-w-none text-gray-300 dark:text-gray-300"
         >
           {block.content}
         </div>
       )
     case 'image':
       return (
-        <div data-testid={`media-block-image-${block.id}`} className="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+        <div data-testid={`media-block-image-${block.id}`} className="rounded-lg overflow-hidden border border-[#2A2A3A] dark:border-gray-700">
           {block.url ? (
             <img src={block.url} alt={block.caption ?? ''} className="w-full max-h-96 object-contain" />
           ) : (
-            <div className="h-48 bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500">
+            <div className="h-48 bg-[#1A1A24] dark:bg-gray-800 flex items-center justify-center text-gray-500">
               [Generated image placeholder]
             </div>
           )}
           {block.caption && (
-            <p className="text-xs text-gray-500 dark:text-gray-400 p-2 bg-gray-50 dark:bg-gray-800">
+            <p className="text-xs text-gray-500 dark:text-gray-400 p-2 bg-[#1A1A24] dark:bg-gray-800">
               {block.caption}
             </p>
           )}
@@ -64,7 +64,7 @@ function MediaBlockRenderer({ block }: { block: MediaBlock }) {
       )
     case 'audio':
       return (
-        <div data-testid={`media-block-audio-${block.id}`} className="rounded-lg border border-gray-200 dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-800">
+        <div data-testid={`media-block-audio-${block.id}`} className="rounded-lg border border-[#2A2A3A] dark:border-gray-700 p-4 bg-[#1A1A24] dark:bg-gray-800">
           {block.url ? (
             <audio controls src={block.url} className="w-full" />
           ) : (
@@ -77,11 +77,11 @@ function MediaBlockRenderer({ block }: { block: MediaBlock }) {
       )
     case 'video':
       return (
-        <div data-testid={`media-block-video-${block.id}`} className="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+        <div data-testid={`media-block-video-${block.id}`} className="rounded-lg overflow-hidden border border-[#2A2A3A] dark:border-gray-700">
           {block.url ? (
             <video controls src={block.url} className="w-full max-h-96" />
           ) : (
-            <div className="h-48 bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500">
+            <div className="h-48 bg-[#1A1A24] dark:bg-gray-800 flex items-center justify-center text-gray-500">
               [Video: {block.content || 'Generated clip'}]
             </div>
           )}

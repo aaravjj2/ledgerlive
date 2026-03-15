@@ -2,6 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+/* LedgerLive — Dark-first base styles (F1 timing screen aesthetic) */
 body {
-  @apply bg-gray-50 text-gray-900 font-sans;
+  background-color: #0A0A0F;
+  color: #F8F9FA;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Custom scrollbar — thin, dark */
+.scrollbar-thin::-webkit-scrollbar { width: 4px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: #374151; border-radius: 2px; }
+.scrollbar-thin::-webkit-scrollbar-thumb:hover { background: #4B5563; }
+
+/* Hide scrollbar but keep scrolling */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Light theme overrides */
+.theme-light body, .theme-light {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Typing animation — HackathonShowcase hero */
+@keyframes ll-typing {
+  from { max-width: 0; }
+  to   { max-width: 28ch; }
+}
+@keyframes ll-caret-blink {
+  0%, 100% { border-color: #E8002D; }
+  50%       { border-color: transparent; }
+}
+.typing-hero {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  border-right: 2px solid #E8002D;
+  animation:
+    ll-typing      2.2s steps(22, end) both,
+    ll-caret-blink 0.75s step-end     infinite;
 }

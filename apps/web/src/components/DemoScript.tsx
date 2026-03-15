@@ -41,7 +41,7 @@ export function DemoScript({ steps = DEFAULT_STEPS, title = 'Judge demo script',
             <button
               onClick={() => setCurrent(i)}
               className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-medium transition ${
-                current === i ? 'bg-amber-500 text-black' : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
+                current === i ? 'bg-amber-500 text-gray-100' : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
               }`}
             >
               {i + 1}
@@ -54,7 +54,7 @@ export function DemoScript({ steps = DEFAULT_STEPS, title = 'Judge demo script',
                 </Link>
               )}
               {s.action && <span className="ml-2 text-gray-500 text-sm">— {s.action}</span>}
-              {s.duration && <span className="ml-2 text-gray-600 text-xs">({s.duration})</span>}
+              {s.duration && <span className="ml-2 text-gray-400 text-xs">({s.duration})</span>}
             </div>
           </li>
         ))}

@@ -36,7 +36,7 @@ export function TickerBar({ items, speed = 30, className = '', dataTestId = 'tic
   return (
     <div
       data-testid={dataTestId}
-      className={`overflow-hidden bg-slate-900 border-y border-slate-700 ${className}`}
+      className={`overflow-hidden bg-[#0A0A0F] border-y border-[#2A2A3A] ${className}`}
     >
       <div
         className="flex gap-8 py-2 animate-ticker whitespace-nowrap"

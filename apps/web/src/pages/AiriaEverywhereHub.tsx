@@ -41,8 +41,8 @@ export default function AiriaEverywhereHub() {
       </div>
 
       <div className="rounded-xl border bg-indigo-50 border-indigo-200 p-4">
-        <h3 className="font-semibold text-indigo-800 mb-2">Track 1: Airia Everywhere</h3>
-        <p className="text-sm text-indigo-700">
+        <h3 className="font-semibold text-blue-300 mb-2">Track 1: Airia Everywhere</h3>
+        <p className="text-sm text-blue-400">
           LedgerLive agents integrate into the platforms people use every day. Ask the CFO assistant from Slack,
           triage exceptions from Outlook, or run close checks from a browser extension — intelligence exactly when needed.
         </p>
@@ -55,24 +55,24 @@ export default function AiriaEverywhereHub() {
             data-testid={`airia-channel-${c.id}`}
             onClick={() => setSelected(c.id)}
             className={`rounded-xl border p-4 cursor-pointer transition ${
-              selected === c.id ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200 hover:border-indigo-300'
+              selected === c.id ? 'border-indigo-500 bg-indigo-50' : 'border-[#2A2A3A] hover:border-indigo-300'
             }`}
           >
             <div className="flex items-center justify-between mb-2">
               <span className="text-2xl">{c.icon}</span>
               <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                c.connected ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
+                c.connected ? 'bg-green-900/40 text-green-400' : 'bg-[#1A1A24] text-gray-400'
               }`}>
                 {c.connected ? 'Connected' : 'Disconnected'}
               </span>
             </div>
-            <div className="font-semibold text-gray-800">{c.name}</div>
+            <div className="font-semibold text-gray-200">{c.name}</div>
             <div className="text-xs text-gray-500 mt-1">
               Last sync: {c.lastSync} · {c.actions} actions
             </div>
             <button
               onClick={e => { e.stopPropagation(); toggleConnection(c.id) }}
-              className="mt-3 w-full py-1.5 text-xs rounded bg-indigo-600 text-white hover:bg-indigo-700"
+              className="mt-3 w-full py-1.5 text-xs rounded bg-red-600 text-white hover:bg-red-700"
             >
               {c.connected ? 'Disconnect' : 'Connect'}
             </button>
@@ -80,7 +80,7 @@ export default function AiriaEverywhereHub() {
         ))}
       </div>
 
-      <div className="rounded-xl border bg-white p-4">
+      <div className="rounded-xl border bg-[#111118] p-4">
         <h2 className="font-semibold mb-3">Recent Channel Actions</h2>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between py-2 border-b">

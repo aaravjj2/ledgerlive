@@ -67,15 +67,15 @@ export default function UINavigator() {
           data-testid="ui-navigator-capture"
           onClick={captureScreen}
           disabled={isCapturing}
-          className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 disabled:opacity-50"
+          className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 disabled:opacity-50"
         >
           {isCapturing ? 'Capturing…' : 'Capture & Analyze'}
         </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-xl border bg-slate-900 overflow-hidden">
-          <div className="px-3 py-2 bg-slate-800 text-slate-300 text-sm font-medium">
+        <div className="rounded-xl border bg-[#0A0A0F] overflow-hidden">
+          <div className="px-3 py-2 bg-[#111118] text-slate-300 text-sm font-medium">
             Screenshot / Display
           </div>
           <div className="aspect-video flex items-center justify-center bg-slate-950 min-h-[200px]">
@@ -87,8 +87,8 @@ export default function UINavigator() {
           </div>
         </div>
 
-        <div className="rounded-xl border bg-white overflow-hidden">
-          <div className="px-3 py-2 bg-indigo-50 text-indigo-800 text-sm font-medium">
+        <div className="rounded-xl border bg-[#111118] overflow-hidden">
+          <div className="px-3 py-2 bg-indigo-50 text-blue-300 text-sm font-medium">
             Executable Actions (Gemini multimodal)
           </div>
           <div className="p-4 space-y-2 max-h-[300px] overflow-auto">
@@ -102,15 +102,15 @@ export default function UINavigator() {
                 onClick={() => executeAction(a.id)}
                 className={`p-3 rounded-lg border cursor-pointer transition ${
                   selectedAction === a.id
-                    ? 'border-green-500 bg-green-50'
-                    : 'border-gray-200 hover:border-indigo-300 hover:bg-indigo-50'
+                    ? 'border-green-500 bg-green-900/20'
+                    : 'border-[#2A2A3A] hover:border-indigo-300 hover:bg-indigo-50'
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-indigo-600">{a.type}</span>
+                  <span className="font-mono text-xs text-red-400">{a.type}</span>
                   <span className="text-xs text-gray-500">{Math.round(a.confidence * 100)}%</span>
                 </div>
-                <p className="text-sm font-medium text-gray-800 mt-1">{a.target}</p>
+                <p className="text-sm font-medium text-gray-200 mt-1">{a.target}</p>
                 {a.value && <p className="text-xs text-gray-500">{a.value}</p>}
               </div>
             ))}

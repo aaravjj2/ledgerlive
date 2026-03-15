@@ -73,13 +73,13 @@ export default function MultimodalStoryteller() {
             data-testid="storyteller-play"
             onClick={() => setIsPlaying(true)}
             disabled={isPlaying || currentIndex >= blocks.length}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 disabled:opacity-50"
+            className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 disabled:opacity-50"
           >
             {isPlaying ? 'Playing…' : 'Play Story'}
           </button>
           <button
             onClick={() => { setCurrentIndex(0); setIsPlaying(false) }}
-            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300"
+            className="px-4 py-2 bg-gray-200 text-gray-300 rounded-lg font-medium hover:bg-gray-300"
           >
             Reset
           </button>
@@ -93,18 +93,18 @@ export default function MultimodalStoryteller() {
         {visibleBlocks.map(b => (
           <div key={b.id} data-testid={`story-block-${b.type}`} className="animate-fadeIn">
             {b.type === 'text' && (
-              <p className="text-gray-800 text-lg leading-relaxed">{b.content}</p>
+              <p className="text-gray-200 text-lg leading-relaxed">{b.content}</p>
             )}
             {b.type === 'chart' && (
-              <div className="bg-white rounded-lg border p-4 shadow-sm">
+              <div className="bg-[#111118] rounded-lg border p-4">
                 <div className="h-32 flex items-center justify-center bg-indigo-50 rounded">
-                  <span className="text-indigo-600 font-medium">📊 Completion by Lane (Chart)</span>
+                  <span className="text-red-400 font-medium">📊 Completion by Lane (Chart)</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">{b.alt}</p>
               </div>
             )}
             {b.type === 'image' && (
-              <div className="bg-white rounded-lg border p-4 shadow-sm">
+              <div className="bg-[#111118] rounded-lg border p-4">
                 <div className="h-24 flex items-center justify-center bg-amber-50 rounded font-mono text-sm">
                   [Telemetry Pack — SHA-256 sealed]
                 </div>

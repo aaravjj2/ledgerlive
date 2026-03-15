@@ -32,12 +32,12 @@ export default function EmptyState({ title, description, action, icon = 'documen
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center" data-testid="empty-state">
       {icons[icon]}
-      <h3 className="mt-4 text-lg font-medium text-gray-900">{title}</h3>
+      <h3 className="mt-4 text-lg font-medium text-gray-100">{title}</h3>
       <p className="mt-2 text-sm text-gray-500 max-w-sm">{description}</p>
       {action && (
         <button
           onClick={action.onClick}
-          className="mt-4 px-4 py-2 bg-teal-600 text-white text-sm rounded-lg hover:bg-teal-700 transition-colors"
+          className="mt-4 px-4 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 transition-colors"
           data-testid="empty-state-action"
         >
           {action.label}

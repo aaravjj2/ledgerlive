@@ -50,9 +50,9 @@ export default function OCRPipeline() {
   }
 
   const statusColor = (s: string) => {
-    if (s === 'completed') return 'bg-green-100 text-green-700'
-    if (s === 'pending' || s === 'processing') return 'bg-yellow-100 text-yellow-700'
-    return 'bg-red-100 text-red-700'
+    if (s === 'completed') return 'bg-green-900/40 text-green-400'
+    if (s === 'pending' || s === 'processing') return 'bg-yellow-900/40 text-yellow-400'
+    return 'bg-red-900/40 text-red-400'
   }
 
   return (
@@ -62,15 +62,15 @@ export default function OCRPipeline() {
 
       {stats && (
         <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="rounded-lg border bg-white p-4">
-            <div className="text-2xl font-bold text-indigo-600">{stats.total}</div>
+          <div className="rounded-lg border bg-[#111118] p-4">
+            <div className="text-2xl font-bold text-red-400">{stats.total}</div>
             <div className="text-sm text-gray-500">Total Jobs</div>
           </div>
-          <div className="rounded-lg border bg-white p-4">
+          <div className="rounded-lg border bg-[#111118] p-4">
             <div className="text-2xl font-bold text-green-600">{stats.completed}</div>
             <div className="text-sm text-gray-500">Completed</div>
           </div>
-          <div className="rounded-lg border bg-white p-4">
+          <div className="rounded-lg border bg-[#111118] p-4">
             <div className="text-2xl font-bold text-yellow-600">{stats.pending}</div>
             <div className="text-sm text-gray-500">Pending</div>
           </div>
@@ -80,9 +80,9 @@ export default function OCRPipeline() {
       {loading ? (
         <p className="text-gray-400">Loading…</p>
       ) : (
-        <div className="rounded-xl border bg-white shadow-sm overflow-hidden">
+        <div className="rounded-xl border bg-[#111118] overflow-hidden">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50">
+            <thead className="bg-[#1A1A24]">
               <tr>
                 <th className="text-left px-4 py-3">OCR ID</th>
                 <th className="text-left px-4 py-3">Doc ID</th>
@@ -94,7 +94,7 @@ export default function OCRPipeline() {
             </thead>
             <tbody>
               {jobs.map(j => (
-                <tr key={j.ocr_id} className="border-b hover:bg-gray-50">
+                <tr key={j.ocr_id} className="border-b hover:bg-[#1A1A24]">
                   <td className="px-4 py-3 font-mono text-xs">{j.ocr_id.slice(0, 8)}…</td>
                   <td className="px-4 py-3 font-mono text-xs">{j.doc_id?.slice(0, 8) || '—'}…</td>
                   <td className="px-4 py-3">
@@ -107,7 +107,7 @@ export default function OCRPipeline() {
                       <button
                         onClick={() => retry(j.ocr_id)}
                         disabled={acting === j.ocr_id}
-                        className="text-xs px-2 py-1 rounded bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50"
+                        className="text-xs px-2 py-1 rounded bg-red-600 text-white hover:bg-red-700 disabled:opacity-50"
                       >
                         {acting === j.ocr_id ? '…' : 'Retry'}
                       </button>

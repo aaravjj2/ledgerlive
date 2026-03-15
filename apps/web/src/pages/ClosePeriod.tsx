@@ -51,21 +51,21 @@ export default function ClosePeriodPage() {
         <button
           onClick={load}
           disabled={loading}
-          className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-50"
+          className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 disabled:opacity-50"
         >
           {loading ? 'Loading…' : '↻ Refresh'}
         </button>
       </div>
 
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+        <div className="p-4 bg-red-900/20 border border-red-500/30 rounded-lg text-red-400 text-sm">
           {error}
         </div>
       )}
 
       <ChartCard title="Summary" data={{ total: items.length, active: items.filter(i => i.status === 'active').length }} />
 
-      <div className="rounded-xl border bg-white shadow-sm overflow-hidden">
+      <div className="rounded-xl border bg-[#111118] overflow-hidden">
         <DataTable columns={columns} data={items} loading={loading} emptyMessage="No items yet." />
       </div>
     </div>

@@ -43,7 +43,7 @@ export default function SearchBar() {
 
   return (
     <div className="relative" data-testid="search-bar">
-      <div className="flex items-center bg-indigo-600 rounded-lg px-3">
+      <div className="flex items-center bg-red-600 rounded-lg px-3">
         <svg className="w-4 h-4 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
@@ -60,23 +60,23 @@ export default function SearchBar() {
         <kbd className="hidden sm:inline text-xs text-indigo-300 bg-indigo-800 px-1.5 py-0.5 rounded">/</kbd>
       </div>
       {isOpen && results.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-lg border z-50 max-h-64 overflow-y-auto" data-testid="search-results">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-[#111118] rounded-lg shadow-lg border z-50 max-h-64 overflow-y-auto" data-testid="search-results">
           {results.map(r => (
             <a
               key={r.id}
               href={r.url}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 border-b last:border-0"
+              className="flex items-center gap-3 px-4 py-3 hover:bg-[#1A1A24] border-b last:border-0"
               onClick={() => { setIsOpen(false); setQuery('') }}
             >
               <span className={`text-xs font-medium px-2 py-0.5 rounded ${
-                r.type === 'exception' ? 'bg-red-100 text-red-700' :
-                r.type === 'transaction' ? 'bg-blue-100 text-blue-700' :
-                'bg-green-100 text-green-700'
+                r.type === 'exception' ? 'bg-red-900/40 text-red-400' :
+                r.type === 'transaction' ? 'bg-blue-900/40 text-blue-400' :
+                'bg-green-900/40 text-green-400'
               }`}>
                 {r.type}
               </span>
               <div>
-                <p className="text-sm font-medium text-gray-900">{r.title}</p>
+                <p className="text-sm font-medium text-gray-100">{r.title}</p>
                 <p className="text-xs text-gray-500">{r.subtitle}</p>
               </div>
             </a>

@@ -66,7 +66,7 @@ export function HITLGate({
           className={`px-2 py-0.5 rounded text-xs font-bold ${
             status === 'approved' ? 'bg-green-600 text-white' :
             status === 'rejected' ? 'bg-red-600 text-white' :
-            'bg-amber-600 text-black'
+            'bg-amber-600 text-gray-100'
           }`}
         >
           {status.toUpperCase()}

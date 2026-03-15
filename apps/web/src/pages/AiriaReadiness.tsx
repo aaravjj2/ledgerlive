@@ -363,7 +363,7 @@ export default function AiriaReadiness() {
         <ol className="space-y-3">
           {IMPORT_WALKTHROUGH_STEPS.map(s => (
             <li key={s.step} className="flex gap-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+              <span className="flex-shrink-0 w-6 h-6 bg-red-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
                 {s.step}
               </span>
               <div className="min-w-0">
@@ -429,7 +429,7 @@ export default function AiriaReadiness() {
           <button
             data-testid="airia-mcp-export-config"
             onClick={handleCopyMcpConfig}
-            className="px-3 py-1 bg-indigo-700 hover:bg-indigo-600 text-white rounded text-xs font-medium transition"
+            className="px-3 py-1 bg-red-700 hover:bg-red-600 text-white rounded text-xs font-medium transition"
           >
             {mcpConfigCopied ? '✓ Copied!' : '📋 Export MCP Config'}
           </button>

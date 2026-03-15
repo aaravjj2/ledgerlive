@@ -32,9 +32,9 @@ export default function Compliance() {
   useEffect(() => { load() }, [load])
 
   const statusColor = (s: string) => {
-    if (s === 'pass' || s === 'compliant') return 'bg-green-100 text-green-700'
-    if (s === 'pending') return 'bg-yellow-100 text-yellow-700'
-    return 'bg-red-100 text-red-700'
+    if (s === 'pass' || s === 'compliant') return 'bg-green-900/40 text-green-400'
+    if (s === 'pending') return 'bg-yellow-900/40 text-yellow-400'
+    return 'bg-red-900/40 text-red-400'
   }
 
   return (
@@ -50,9 +50,9 @@ export default function Compliance() {
             <div className="col-span-full text-center py-12 text-gray-400">No compliance items. Run demo seed.</div>
           )}
           {items.map(item => (
-            <div key={item.id} className="rounded-xl border bg-white shadow-sm p-4" data-testid="compliance-card">
+            <div key={item.id} className="rounded-xl border bg-[#111118] p-4" data-testid="compliance-card">
               <div className="flex justify-between items-start mb-2">
-                <span className="font-semibold text-gray-800">{item.type}</span>
+                <span className="font-semibold text-gray-200">{item.type}</span>
                 <span className={`px-2 py-0.5 rounded text-xs ${statusColor(item.status)}`}>{item.status}</span>
               </div>
               <div className="text-sm text-gray-500">

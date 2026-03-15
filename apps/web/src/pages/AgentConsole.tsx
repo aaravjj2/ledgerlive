@@ -78,10 +78,10 @@ export default function AgentConsole() {
   }
 
   const healthColor = (h?: string) => {
-    if (h === 'green') return 'bg-green-100 text-green-800'
-    if (h === 'yellow') return 'bg-yellow-100 text-yellow-800'
-    if (h === 'red') return 'bg-red-100 text-red-800'
-    return 'bg-gray-100 text-gray-800'
+    if (h === 'green') return 'bg-green-900/40 text-green-300'
+    if (h === 'yellow') return 'bg-yellow-900/40 text-yellow-300'
+    if (h === 'red') return 'bg-red-900/40 text-red-800'
+    return 'bg-[#1A1A24] text-gray-200'
   }
 
   return (
@@ -95,7 +95,7 @@ export default function AgentConsole() {
           data-testid="agent-run-cycle"
           onClick={runCycle}
           disabled={cycleLoading}
-          className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-50"
+          className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 disabled:opacity-50"
         >
           {cycleLoading ? 'Running…' : '▶ Run Cycle'}
         </button>
@@ -110,19 +110,19 @@ export default function AgentConsole() {
             <section className="mb-6" data-testid="agent-perceive-section">
               <h2 className="text-lg font-semibold mb-3">Perceived State</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="rounded-xl border bg-white p-4">
+                <div className="rounded-xl border bg-[#111118] p-4">
                   <div className="text-xs text-gray-500">Open Exceptions</div>
                   <div className="text-2xl font-bold text-red-600">{perceive.open_exceptions ?? 0}</div>
                 </div>
-                <div className="rounded-xl border bg-white p-4">
+                <div className="rounded-xl border bg-[#111118] p-4">
                   <div className="text-xs text-gray-500">Pending Reviews</div>
                   <div className="text-2xl font-bold text-amber-600">{perceive.pending_reviews ?? 0}</div>
                 </div>
-                <div className="rounded-xl border bg-white p-4">
+                <div className="rounded-xl border bg-[#111118] p-4">
                   <div className="text-xs text-gray-500">Blocked Lanes</div>
                   <div className="text-2xl font-bold text-orange-600">{perceive.blocked_lanes ?? 0}</div>
                 </div>
-                <div className="rounded-xl border bg-white p-4">
+                <div className="rounded-xl border bg-[#111118] p-4">
                   <div className="text-xs text-gray-500">Overall Health</div>
                   <span className={`inline-block px-2 py-0.5 rounded text-sm font-bold ${healthColor(perceive.overall_health)}`}>
                     {perceive.overall_health || '—'}
@@ -149,7 +149,7 @@ export default function AgentConsole() {
                 data-testid="agent-ask-submit"
                 onClick={submitAsk}
                 disabled={askLoading}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50"
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50"
               >
                 {askLoading ? '…' : 'Ask'}
               </button>
@@ -157,7 +157,7 @@ export default function AgentConsole() {
             {askResponse && (
               <div
                 data-testid="agent-ask-response"
-                className="mt-3 rounded-xl border bg-indigo-50 border-indigo-200 p-4 text-gray-800"
+                className="mt-3 rounded-xl border bg-indigo-50 border-indigo-200 p-4 text-gray-200"
               >
                 {askResponse.response}
               </div>
@@ -167,15 +167,15 @@ export default function AgentConsole() {
           {/* Cycle History */}
           <section data-testid="agent-cycles-section">
             <h2 className="text-lg font-semibold mb-3">Cycle History</h2>
-            <div className="rounded-xl border bg-white overflow-hidden">
+            <div className="rounded-xl border bg-[#111118] overflow-hidden">
               <table className="w-full text-sm">
-                <thead className="bg-gray-50">
+                <thead className="bg-[#1A1A24]">
                   <tr>
-                    <th className="text-left px-4 py-2 font-semibold text-gray-600">Cycle ID</th>
-                    <th className="text-left px-4 py-2 font-semibold text-gray-600">Status</th>
-                    <th className="text-right px-4 py-2 font-semibold text-gray-600">Perceived</th>
-                    <th className="text-right px-4 py-2 font-semibold text-gray-600">Decided</th>
-                    <th className="text-right px-4 py-2 font-semibold text-gray-600">Acted</th>
+                    <th className="text-left px-4 py-2 font-semibold text-gray-400">Cycle ID</th>
+                    <th className="text-left px-4 py-2 font-semibold text-gray-400">Status</th>
+                    <th className="text-right px-4 py-2 font-semibold text-gray-400">Perceived</th>
+                    <th className="text-right px-4 py-2 font-semibold text-gray-400">Decided</th>
+                    <th className="text-right px-4 py-2 font-semibold text-gray-400">Acted</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -183,7 +183,7 @@ export default function AgentConsole() {
                     <tr><td colSpan={5} className="text-center py-8 text-gray-400">No cycles yet.</td></tr>
                   )}
                   {cycles.map(c => (
-                    <tr key={c.cycle_id} className="border-t hover:bg-gray-50">
+                    <tr key={c.cycle_id} className="border-t hover:bg-[#1A1A24]">
                       <td className="px-4 py-2 font-mono text-xs">{c.cycle_id?.slice(0, 8)}…</td>
                       <td className="px-4 py-2">{c.status}</td>
                       <td className="px-4 py-2 text-right">{c.perceived_count ?? '—'}</td>

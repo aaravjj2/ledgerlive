@@ -12,16 +12,16 @@ function ChartCardInner({ title, children, data, className = '', dataTestId }: C
   return (
     <div
       data-testid={dataTestId}
-      className={`rounded-xl border bg-white shadow-sm p-4 ${className}`}
+      className={`rounded-xl border bg-[#111118] p-4 ${className}`}
     >
-      <h3 className="text-sm font-semibold text-gray-700 mb-3">{title}</h3>
+      <h3 className="text-sm font-semibold text-gray-300 mb-3">{title}</h3>
       <div className="min-h-[120px]">
         {data && (
           <div className="grid grid-cols-2 gap-4">
             {Object.entries(data).map(([k, v]) => (
               <div key={k}>
                 <span className="text-xs text-gray-500 capitalize">{k}</span>
-                <div className="text-xl font-bold text-indigo-600">{v}</div>
+                <div className="text-xl font-bold text-red-400">{v}</div>
               </div>
             ))}
           </div>

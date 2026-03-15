@@ -49,13 +49,13 @@ export default function CloseScorecard() {
         <>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             {metrics.slice(0, 4).map(m => (
-              <div key={m.metric_id} className="rounded-xl border bg-white p-4 shadow-sm" data-testid="scorecard-metric">
+              <div key={m.metric_id} className="rounded-xl border bg-[#111118] p-4" data-testid="scorecard-metric">
                 <div className="text-sm text-gray-500 mb-1">{m.name}</div>
-                <div className="text-2xl font-bold text-indigo-600">{m.value}{m.unit}</div>
+                <div className="text-2xl font-bold text-red-400">{m.value}{m.unit}</div>
                 <div className="text-xs text-gray-400">Target: {m.target}{m.unit}</div>
                 <span className={`inline-block mt-2 px-2 py-0.5 rounded text-xs ${
-                  m.status === 'on_track' ? 'bg-green-100 text-green-700' :
-                  m.status === 'at_risk' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                  m.status === 'on_track' ? 'bg-green-900/40 text-green-400' :
+                  m.status === 'at_risk' ? 'bg-yellow-900/40 text-yellow-400' : 'bg-red-900/40 text-red-400'
                 }`}>
                   {m.status}
                 </span>
@@ -64,7 +64,7 @@ export default function CloseScorecard() {
           </div>
 
           {chartData.length > 0 && (
-            <div className="rounded-xl border bg-white p-4 h-64">
+            <div className="rounded-xl border bg-[#111118] p-4 h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />
