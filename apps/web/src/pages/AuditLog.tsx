@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { API_BASE } from '../services/api'
 
 interface AuditEvent { trace_id: string; action: string; entity_type: string; entity_id: string; ts: string; detail?: Record<string, unknown> }
 
@@ -9,7 +8,7 @@ export default function AuditLog() {
 
   const load = () => {
     setLoading(true)
-    fetch(`${API_BASE}/api/audit`).then(r => r.json()).then(d => { setEvents((d.events || []).slice().reverse()); setLoading(false) }).catch(() => setLoading(false))
+    fetch('/api/audit').then(r => r.json()).then(d => { setEvents((d.events || []).slice().reverse()); setLoading(false) }).catch(() => setLoading(false))
   }
 
   useEffect(() => { load() }, [])

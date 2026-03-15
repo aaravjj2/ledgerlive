@@ -1,5 +1,4 @@
 ﻿import { useEffect, useState, useCallback } from 'react'
-import { API_BASE } from '../services/api'
 
 interface Lane { lane_id: string; lane_name: string; workstream: string; completion_pct: number; blocked_count: number; on_track: boolean; status: string }
 interface Incident { incident_id: string; incident_title: string; severity: string; status: string; reported_at: string }
@@ -62,13 +61,13 @@ export default function RaceControl() {
 
   const loadAll = useCallback(() => {
     Promise.all([
-      fetch(`${API_BASE}/api/lane-status`).then(r => r.json()),
-      fetch(`${API_BASE}/api/incident-log`).then(r => r.json()),
-      fetch(`${API_BASE}/api/live-scoreboard`).then(r => r.json()),
-      fetch(`${API_BASE}/api/close-checkpoint`).then(r => r.json()),
-      fetch(`${API_BASE}/api/rc-approval`).then(r => r.json()),
-      fetch(`${API_BASE}/api/rc-state-machine`).then(r => r.json()),
-      fetch(`${API_BASE}/api/ops/security-events`).then(r => r.json()).catch(() => ({ items: [] })),
+      fetch('/api/lane-status').then(r => r.json()),
+      fetch('/api/incident-log').then(r => r.json()),
+      fetch('/api/live-scoreboard').then(r => r.json()),
+      fetch('/api/close-checkpoint').then(r => r.json()),
+      fetch('/api/rc-approval').then(r => r.json()),
+      fetch('/api/rc-state-machine').then(r => r.json()),
+      fetch('/api/ops/security-events').then(r => r.json()).catch(() => ({ items: [] })),
     ]).then(([ln, inc, sc, cp, ap, sm, sec]) => {
       setLanes(ln.items || [])
       setIncidents(inc.items || [])
@@ -81,7 +80,7 @@ export default function RaceControl() {
     }).catch(() => setStateInfo('Error loading RC data'))
 
     // Race weekend stages — always available, deterministic
-    fetch(`${API_BASE}/api/race-weekend/stages`)
+    fetch('/api/race-weekend/stages')
       .then(r => r.json())
       .then(data => setRaceWeekend(data))
       .catch(() => {/* non-fatal */})
@@ -107,7 +106,7 @@ export default function RaceControl() {
     setRunLoading(true)
     setRunStatus('')
     try {
-      const r = await fetch(`${API_BASE}/api/ops/golden-scenario-run`, { method: 'POST' })
+      const r = await fetch('/api/ops/golden-scenario-run', { method: 'POST' })
       const j = await r.json()
       setRunStatus(j.status === 'seeded' ? 'SEEDED' : j.status || 'OK')
       loadAll()
@@ -122,9 +121,8 @@ export default function RaceControl() {
     setDossierTitle(title)
     setDossierContent('Loading...')
     setDossierOpen(true)
-    const fullUrl = url.startsWith('/') ? `${API_BASE}${url}` : url
     try {
-      const r = await fetch(fullUrl)
+      const r = await fetch(url)
       const j = await r.json()
       setDossierContent(JSON.stringify(j, null, 2))
     } catch {
@@ -133,32 +131,32 @@ export default function RaceControl() {
   }
 
   const approveStep = async (approvalId: string) => {
-    await fetch(`${API_BASE}/api/ops/rc-approval/${approvalId}/approve`, { method: 'POST' })
+    await fetch(`/api/ops/rc-approval/${approvalId}/approve`, { method: 'POST' })
     loadAll()
   }
 
   const exportTelemetry = async () => {
-    const r = await fetch(`${API_BASE}/api/ops/export/telemetry-pack`, { method: 'POST' })
+    const r = await fetch('/api/ops/export/telemetry-pack', { method: 'POST' })
     const j = await r.json()
     setTelemBadge(j.status || 'PASS')
   }
 
   const exportCourt = async () => {
-    const r = await fetch(`${API_BASE}/api/ops/export/court-pack`, { method: 'POST' })
+    const r = await fetch('/api/ops/export/court-pack', { method: 'POST' })
     const j = await r.json()
     setCourtBadge(j.status || 'PASS')
   }
 
   const regenBinder = async () => {
     setReplayLoading(true)
-    const r = await fetch(`${API_BASE}/api/ops/replay/regenerate-binder`, { method: 'POST' })
+    const r = await fetch('/api/ops/replay/regenerate-binder', { method: 'POST' })
     const j = await r.json()
     setReplayHash(j.binder_hash || j.hash || '')
     setReplayLoading(false)
   }
 
   const fixSecurityPath = async (eventId: string) => {
-    await fetch(`${API_BASE}/api/ops/security-event/${eventId}/fix-path`, { method: 'POST' })
+    await fetch(`/api/ops/security-event/${eventId}/fix-path`, { method: 'POST' })
     loadAll()
   }
 

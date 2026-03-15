@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { API_BASE } from '../services/api'
 
 interface Doc { doc_id: string; doc_name?: string; filename?: string; doc_type?: string; status?: string; file_size?: number; uploaded_by?: string }
 
@@ -9,7 +8,7 @@ export default function Documents() {
 
   const load = () => {
     setLoading(true)
-    fetch(`${API_BASE}/api/documents`).then(r => r.json()).then(d => { setDocs(d.items || []); setLoading(false) }).catch(() => setLoading(false))
+    fetch('/api/documents').then(r => r.json()).then(d => { setDocs(d.items || []); setLoading(false) }).catch(() => setLoading(false))
   }
 
   useEffect(() => { load() }, [])

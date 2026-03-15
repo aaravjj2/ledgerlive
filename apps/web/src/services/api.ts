@@ -3,12 +3,7 @@
  * PROJECT_ID: LEDGERLIVE
  */
 
-// In development, Vite proxies /api to localhost:8090.
-// In production, VITE_API_URL is set to the Cloud Run backend URL.
-const BASE = (import.meta as { env?: { VITE_API_URL?: string } }).env?.VITE_API_URL?.replace(/\/$/, '') ?? ''
-
-// Export for use in pages that use raw fetch() instead of typed wrappers
-export const API_BASE = BASE
+const BASE = ''
 
 export interface ApiResponse<T> {
   items?: T[]

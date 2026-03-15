@@ -237,40 +237,21 @@ class GeminiLiveSession:
             yield {"type": "text", "role": "assistant", "text": response_text}
             return
 
-        # Real Gemini interaction
-        try:
-            config = types.GenerateContentConfig(
-                system_instruction=SYSTEM_PROMPT,
-                tools=[types.Tool(function_declarations=[
-                    types.FunctionDeclaration(**tool) for tool in LEDGER_TOOLS
-                ])]
-            )
-            response = await self._client.aio.models.generate_content(
-                model="gemini-2.0-flash",
-                contents=text,
-                config=config
-            )
-            if response.text:
-                self.history.append({"role": "assistant", "text": response.text})
-                yield {"type": "text", "role": "assistant", "text": response.text}
-        except Exception as e:
-            # Quota exhausted or other API error — fall back to smart demo response
-            err_str = str(e).lower()
-            text_lower = text.lower()
-            if "exception" in text_lower:
-                fallback = "I checked the exception queue: 3 open exceptions — 1 critical ($7,800 duplicate payment), 1 high (invoice variance $500), 1 medium (timing difference). Total exposure: ~$9,500. The critical item requires immediate attention."
-            elif "reconcil" in text_lower:
-                fallback = "Reconciliation status: 94.2% match rate across 847 transactions. 3 exceptions await review. The automated matching handled 49 items — overall close is on track for the FY25-Q4 deadline."
-            elif "close" in text_lower or "cycle" in text_lower or "status" in text_lower:
-                fallback = "Close cycle status: Revenue Recognition at 85% (green), Accounts Payable at 62% (yellow, blocked). 2 checkpoints passed, 1 pending. SLA adherence at 87.5%. You need CFO sign-off on the revenue cutoff exception to unblock AP."
-            elif "audit" in text_lower or "log" in text_lower:
-                fallback = "Audit trail shows 47 events today — 12 auto-classifications, 8 reconciliation matches, 3 exception flags, 1 CFO review request. All events are SHA-256 sealed. No tampering detected."
-            elif "approve" in text_lower:
-                fallback = "To approve exceptions automatically, I need your explicit confirmation. Please say 'Yes, approve all low-risk exceptions' — I'll auto-resolve the 2 medium/low items and route the critical and high ones to the CFO queue."
-            else:
-                fallback = "I'm LedgerBot, your finance operations assistant. I have live access to your reconciliation data (94.2% match rate), exception queue (3 open), and audit trail. Ask me about exceptions, reconciliation status, close cycle progress, or to approve low-risk items."
-            self.history.append({"role": "assistant", "text": fallback})
-            yield {"type": "text", "role": "assistant", "text": fallback}
+        # Real Gemini interaction would go here
+        config = types.GenerateContentConfig(
+            system_instruction=SYSTEM_PROMPT,
+            tools=[types.Tool(function_declarations=[
+                types.FunctionDeclaration(**tool) for tool in LEDGER_TOOLS
+            ])]
+        )
+        response = await self._client.aio.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=text,
+            config=config
+        )
+        if response.text:
+            self.history.append({"role": "assistant", "text": response.text})
+            yield {"type": "text", "role": "assistant", "text": response.text}
 
 
 # Session manager
