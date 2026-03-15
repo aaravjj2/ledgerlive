@@ -43,8 +43,8 @@ export default function SearchBar() {
 
   return (
     <div className="relative" data-testid="search-bar">
-      <div className="flex items-center bg-indigo-600 rounded-lg px-3">
-        <svg className="w-4 h-4 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="flex items-center bg-[#1A1A24] border border-[#2A2A3A] rounded-lg px-3 focus-within:border-[#3A3A4A] transition">
+        <svg className="w-3.5 h-3.5 text-gray-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
         <input
@@ -53,31 +53,34 @@ export default function SearchBar() {
           value={query}
           onChange={(e) => { setQuery(e.target.value); setIsOpen(true) }}
           onFocus={() => setIsOpen(true)}
-          placeholder="Search... (press /)"
-          className="bg-transparent px-2 py-2 text-sm text-white placeholder-indigo-300 focus:outline-none w-48 lg:w-64"
+          placeholder="Search… /"
+          className="bg-transparent px-2 py-1.5 text-sm text-gray-300 placeholder-gray-700 focus:outline-none w-36 lg:w-48"
           data-testid="search-input"
         />
-        <kbd className="hidden sm:inline text-xs text-indigo-300 bg-indigo-800 px-1.5 py-0.5 rounded">/</kbd>
+        <kbd className="hidden sm:inline text-[10px] text-gray-700 bg-[#111118] border border-[#2A2A3A] px-1 py-0.5 rounded font-mono">/</kbd>
       </div>
       {isOpen && results.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-lg border z-50 max-h-64 overflow-y-auto" data-testid="search-results">
+        <div
+          className="absolute top-full left-0 right-0 mt-1 bg-[#111118] border border-[#2A2A3A] rounded-xl shadow-2xl z-50 max-h-64 overflow-y-auto"
+          data-testid="search-results"
+        >
           {results.map(r => (
             <a
               key={r.id}
               href={r.url}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 border-b last:border-0"
+              className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#1A1A24] border-b border-[#1E1E2E] last:border-0 transition"
               onClick={() => { setIsOpen(false); setQuery('') }}
             >
-              <span className={`text-xs font-medium px-2 py-0.5 rounded ${
-                r.type === 'exception' ? 'bg-red-100 text-red-700' :
-                r.type === 'transaction' ? 'bg-blue-100 text-blue-700' :
-                'bg-green-100 text-green-700'
+              <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded font-mono ${
+                r.type === 'exception'   ? 'bg-red-900/40 text-red-400' :
+                r.type === 'transaction' ? 'bg-blue-900/40 text-blue-400' :
+                                           'bg-green-900/40 text-green-400'
               }`}>
                 {r.type}
               </span>
-              <div>
-                <p className="text-sm font-medium text-gray-900">{r.title}</p>
-                <p className="text-xs text-gray-500">{r.subtitle}</p>
+              <div className="min-w-0">
+                <p className="text-sm text-gray-300 truncate">{r.title}</p>
+                <p className="text-xs text-gray-600">{r.subtitle}</p>
               </div>
             </a>
           ))}

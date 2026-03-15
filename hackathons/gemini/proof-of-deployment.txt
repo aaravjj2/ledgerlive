@@ -1,0 +1,20 @@
+=== LedgerLive Cloud Run Deployment Proof ===
+Timestamp: 2026-03-15T04:38:03Z
+
+   SERVICE         REGION       URL                                                      LAST DEPLOYED BY        LAST DEPLOYED AT
+[32m✔[39;0m  ledgerlive-api  us-central1  https://ledgerlive-api-570445019871.us-central1.run.app  ajtopper2412@gmail.com  2026-03-14T04:16:46.770591Z
+[32m✔[39;0m  ledgerlive-web  us-central1  https://ledgerlive-web-570445019871.us-central1.run.app  ajtopper2412@gmail.com  2026-03-15T04:26:19.026848Z
+
+=== Service Revisions ===
+   REVISION                  ACTIVE  SERVICE         DEPLOYED                 DEPLOYED BY
+[32m✔[39;0m  ledgerlive-api-00004-2q2  yes     ledgerlive-api  2026-03-14 04:16:01 UTC  ajtopper2412@gmail.com
+[32m✔[39;0m  ledgerlive-api-00003-pr6          ledgerlive-api  2026-03-14 04:04:24 UTC  ajtopper2412@gmail.com
+[32m✔[39;0m  ledgerlive-api-00002-lhl          ledgerlive-api  2026-03-14 03:47:07 UTC  ajtopper2412@gmail.com
+[32m✔[39;0m  ledgerlive-api-00001-5wd          ledgerlive-api  2026-03-14 03:42:11 UTC  ajtopper2412@gmail.com
+
+   REVISION                  ACTIVE  SERVICE         DEPLOYED                 DEPLOYED BY
+[32m✔[39;0m  ledgerlive-web-00005-bzq  yes     ledgerlive-web  2026-03-15 04:26:14 UTC  ajtopper2412@gmail.com
+[32m✔[39;0m  ledgerlive-web-00004-489          ledgerlive-web  2026-03-14 04:19:57 UTC  ajtopper2412@gmail.com
+[32m✔[39;0m  ledgerlive-web-00003-hpt          ledgerlive-web  2026-03-14 04:15:29 UTC  ajtopper2412@gmail.com
+[32m✔[39;0m  ledgerlive-web-00002-fbn          ledgerlive-web  2026-03-14 03:52:22 UTC  ajtopper2412@gmail.com
+[32m✔[39;0m  ledgerlive-web-00001-s4z          ledgerlive-web  2026-03-14 03:49:25 UTC  ajtopper2412@gmail.com

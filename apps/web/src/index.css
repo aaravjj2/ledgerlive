@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* LedgerLive — Dark-first base styles (F1 timing screen aesthetic) */
 body {
-  @apply bg-gray-50 text-gray-900 font-sans;
+  background-color: #0A0A0F;
+  color: #F8F9FA;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Custom scrollbar — thin, dark */
+.scrollbar-thin::-webkit-scrollbar { width: 4px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: #374151; border-radius: 2px; }
+.scrollbar-thin::-webkit-scrollbar-thumb:hover { background: #4B5563; }
+
+/* Hide scrollbar but keep scrolling */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Light theme overrides */
+.theme-light body, .theme-light {
+  background-color: #f8fafc;
+  color: #0f172a;
 }

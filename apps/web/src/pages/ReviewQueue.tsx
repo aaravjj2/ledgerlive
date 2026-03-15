@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { API_BASE } from '../services/api'
 
 interface Review { review_id: string; review_type?: string; subject?: string; assignee?: string; priority?: string; status?: string; due_date?: string }
 
@@ -9,14 +10,14 @@ export default function ReviewQueue() {
 
   const load = () => {
     setLoading(true)
-    fetch('/api/reviews').then(r => r.json()).then(d => { setItems(d.items || []); setLoading(false) }).catch(() => setLoading(false))
+    fetch(`${API_BASE}/api/reviews`).then(r => r.json()).then(d => { setItems(d.items || []); setLoading(false) }).catch(() => setLoading(false))
   }
 
   useEffect(() => { load() }, [])
 
   const decide = async (id: string, decision: string) => {
     setActing(id)
-    await fetch(`/api/reviews/${id}/decide`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ decision }) })
+    await fetch(`${API_BASE}/api/reviews/${id}/decide`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ decision }) })
     setActing(null)
     load()
   }

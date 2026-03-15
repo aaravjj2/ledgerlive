@@ -5,9 +5,11 @@ Provides real-time voice interaction with the finance agent.
 from __future__ import annotations
 
 import json
+import time
 import uuid
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from pydantic import BaseModel
 
 from app.services.gemini_live import get_or_create_session, remove_session
 
@@ -144,3 +146,43 @@ async def voice_tools():
     """List available voice assistant tools."""
     from app.services.gemini_live import LEDGER_TOOLS
     return {"tools": LEDGER_TOOLS, "count": len(LEDGER_TOOLS)}
+
+
+class VoiceAskRequest(BaseModel):
+    text: str
+    session_id: str | None = None
+
+
+@router.post("/api/voice/ask")
+async def voice_ask(req: VoiceAskRequest):
+    """REST endpoint for text-based LedgerBot queries (demo / judge testing).
+
+    Equivalent to sending a text message over the WebSocket — runs through
+    the same Gemini Live session, tool-calling, and response pipeline.
+    Returns the full response with latency metrics.
+    """
+    t0 = time.monotonic()
+    session_id = req.session_id or str(uuid.uuid4())
+    session = await get_or_create_session(session_id, execute_tool)
+
+    response_parts: list[str] = []
+    tool_calls: list[dict] = []
+
+    async for event in session.send_text(req.text):
+        if event.get("type") == "text":
+            response_parts.append(event.get("text", ""))
+        elif event.get("type") == "tool_call":
+            tool_calls.append({"name": event.get("name"), "args": event.get("args")})
+
+    # Clean up ephemeral sessions (no session_id provided = stateless call)
+    if not req.session_id:
+        remove_session(session_id)
+
+    latency_ms = round((time.monotonic() - t0) * 1000)
+    return {
+        "response": " ".join(response_parts) if response_parts else "LedgerBot processed your request.",
+        "tool_calls": tool_calls,
+        "session_id": session_id,
+        "latency_ms": latency_ms,
+        "model": "gemini-2.0-flash-live",
+    }

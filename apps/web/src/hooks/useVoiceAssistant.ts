@@ -48,10 +48,18 @@ export function useVoiceAssistant() {
   }, [])
 
   const connect = useCallback(() => {
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-    const host = window.location.hostname
-    const port = window.location.port || (window.location.protocol === 'https:' ? '443' : '80')
-    const wsUrl = `${protocol}//${host}:${port}/ws/voice`
+    // In production, use VITE_WS_URL pointing directly to the Cloud Run API backend.
+    // In development, derive from window.location (Vite proxy handles it).
+    const viteWsUrl = (import.meta as { env?: { VITE_WS_URL?: string } }).env?.VITE_WS_URL
+    let wsUrl: string
+    if (viteWsUrl) {
+      wsUrl = `${viteWsUrl.replace(/\/$/, '')}/ws/voice`
+    } else {
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+      const host = window.location.hostname
+      const port = window.location.port || (window.location.protocol === 'https:' ? '443' : '80')
+      wsUrl = `${protocol}//${host}:${port}/ws/voice`
+    }
 
     const ws = new WebSocket(wsUrl)
 

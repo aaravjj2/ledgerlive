@@ -8,23 +8,23 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 
 # ── Dependencies ───────────────────────────────────────────────────
-# Copy requirements from repo root (build context is repo root via
-# docker-compose context/dockerfile directives).
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
 # ── Application code ──────────────────────────────────────────────
 COPY apps/api/app /app/app
+COPY tools /app/tools
 
-# ── Runtime config ────────────────────────────────────────────────
-ENV APP_MODE=DEMO \
+# ── Python path — makes `import tools.*` work in container ───────
+ENV PYTHONPATH=/app \
+    APP_MODE=DEMO \
     E2E_MODE=1
 
 EXPOSE 8090
 
 # ── Healthcheck ───────────────────────────────────────────────────
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8090/healthz')" || exit 1
 
 # ── Entrypoint ────────────────────────────────────────────────────

@@ -1,0 +1,248 @@
+{
+  "apiVersion": "serving.knative.dev/v1",
+  "kind": "Service",
+  "metadata": {
+    "annotations": {
+      "run.googleapis.com/client-name": "gcloud",
+      "run.googleapis.com/client-version": "560.0.0",
+      "run.googleapis.com/ingress": "all",
+      "run.googleapis.com/ingress-status": "all",
+      "run.googleapis.com/maxScale": "10",
+      "run.googleapis.com/operation-id": "43adcd63-57b8-4a7b-9320-b2da14c6458a",
+      "run.googleapis.com/urls": "[\"https://ledgerlive-api-570445019871.us-central1.run.app\",\"https://ledgerlive-api-zkw2sk4rha-uc.a.run.app\"]",
+      "serving.knative.dev/creator": "ajtopper2412@gmail.com",
+      "serving.knative.dev/lastModifier": "ajtopper2412@gmail.com"
+    },
+    "creationTimestamp": "2026-03-14T03:42:11.394970Z",
+    "generation": 4,
+    "labels": {
+      "cloud.googleapis.com/location": "us-central1"
+    },
+    "name": "ledgerlive-api",
+    "namespace": "570445019871",
+    "resourceVersion": "AAZM9EED6Z8",
+    "selfLink": "/apis/serving.knative.dev/v1/namespaces/570445019871/services/ledgerlive-api",
+    "uid": "feb41ca1-7f5b-4cea-9199-9535cb49afd4"
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "annotations": {
+          "autoscaling.knative.dev/maxScale": "10",
+          "autoscaling.knative.dev/minScale": "1",
+          "run.googleapis.com/client-name": "gcloud",
+          "run.googleapis.com/client-version": "560.0.0",
+          "run.googleapis.com/startup-cpu-boost": "true"
+        },
+        "labels": {
+          "client.knative.dev/nonce": "uryrrzaied",
+          "run.googleapis.com/startupProbeType": "Default"
+        }
+      },
+      "spec": {
+        "containerConcurrency": 160,
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "APP_MODE",
+                "value": "DEMO"
+              },
+              {
+                "name": "E2E_MODE",
+                "value": "1"
+              },
+              {
+                "name": "ENVIRONMENT",
+                "value": "production"
+              },
+              {
+                "name": "GEMINI_API_KEY",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "latest",
+                    "name": "GEMINI_API_KEY"
+                  }
+                }
+              }
+            ],
+            "image": "us-central1-docker.pkg.dev/gen-lang-client-0432346640/ledgerlive/api:latest",
+            "ports": [
+              {
+                "containerPort": 8090,
+                "name": "http1"
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "2",
+                "memory": "2Gi"
+              }
+            },
+            "startupProbe": {
+              "failureThreshold": 1,
+              "periodSeconds": 240,
+              "tcpSocket": {
+                "port": 8090
+              },
+              "timeoutSeconds": 240
+            }
+          }
+        ],
+        "serviceAccountName": "570445019871-compute@developer.gserviceaccount.com",
+        "timeoutSeconds": 300
+      }
+    },
+    "traffic": [
+      {
+        "latestRevision": true,
+        "percent": 100
+      }
+    ]
+  },
+  "status": {
+    "address": {
+      "url": "https://ledgerlive-api-zkw2sk4rha-uc.a.run.app"
+    },
+    "conditions": [
+      {
+        "lastTransitionTime": "2026-03-14T04:16:46.770591Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2026-03-14T04:16:45.481633Z",
+        "status": "True",
+        "type": "ConfigurationsReady"
+      },
+      {
+        "lastTransitionTime": "2026-03-14T04:16:46.724847Z",
+        "status": "True",
+        "type": "RoutesReady"
+      }
+    ],
+    "latestCreatedRevisionName": "ledgerlive-api-00004-2q2",
+    "latestReadyRevisionName": "ledgerlive-api-00004-2q2",
+    "observedGeneration": 4,
+    "traffic": [
+      {
+        "latestRevision": true,
+        "percent": 100,
+        "revisionName": "ledgerlive-api-00004-2q2"
+      }
+    ],
+    "url": "https://ledgerlive-api-zkw2sk4rha-uc.a.run.app"
+  }
+}
+{
+  "apiVersion": "serving.knative.dev/v1",
+  "kind": "Service",
+  "metadata": {
+    "annotations": {
+      "run.googleapis.com/client-name": "gcloud",
+      "run.googleapis.com/client-version": "560.0.0",
+      "run.googleapis.com/ingress": "all",
+      "run.googleapis.com/ingress-status": "all",
+      "run.googleapis.com/maxScale": "20",
+      "run.googleapis.com/operation-id": "85bfb786-df7c-4301-9edc-b07ae6a722ef",
+      "run.googleapis.com/urls": "[\"https://ledgerlive-web-570445019871.us-central1.run.app\",\"https://ledgerlive-web-zkw2sk4rha-uc.a.run.app\"]",
+      "serving.knative.dev/creator": "ajtopper2412@gmail.com",
+      "serving.knative.dev/lastModifier": "ajtopper2412@gmail.com"
+    },
+    "creationTimestamp": "2026-03-14T03:49:25.380232Z",
+    "generation": 5,
+    "labels": {
+      "cloud.googleapis.com/location": "us-central1"
+    },
+    "name": "ledgerlive-web",
+    "namespace": "570445019871",
+    "resourceVersion": "AAZNCID3OaA",
+    "selfLink": "/apis/serving.knative.dev/v1/namespaces/570445019871/services/ledgerlive-web",
+    "uid": "3c07937e-a04e-4113-a0ce-67e8eb97c754"
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "annotations": {
+          "autoscaling.knative.dev/maxScale": "10",
+          "run.googleapis.com/client-name": "gcloud",
+          "run.googleapis.com/client-version": "560.0.0",
+          "run.googleapis.com/startup-cpu-boost": "true"
+        },
+        "labels": {
+          "client.knative.dev/nonce": "mbbfyccurc",
+          "run.googleapis.com/startupProbeType": "Default"
+        }
+      },
+      "spec": {
+        "containerConcurrency": 80,
+        "containers": [
+          {
+            "image": "us-central1-docker.pkg.dev/gen-lang-client-0432346640/ledgerlive/web:latest",
+            "ports": [
+              {
+                "containerPort": 8080,
+                "name": "http1"
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "1",
+                "memory": "512Mi"
+              }
+            },
+            "startupProbe": {
+              "failureThreshold": 1,
+              "periodSeconds": 240,
+              "tcpSocket": {
+                "port": 8080
+              },
+              "timeoutSeconds": 240
+            }
+          }
+        ],
+        "serviceAccountName": "570445019871-compute@developer.gserviceaccount.com",
+        "timeoutSeconds": 300
+      }
+    },
+    "traffic": [
+      {
+        "latestRevision": true,
+        "percent": 100
+      }
+    ]
+  },
+  "status": {
+    "address": {
+      "url": "https://ledgerlive-web-zkw2sk4rha-uc.a.run.app"
+    },
+    "conditions": [
+      {
+        "lastTransitionTime": "2026-03-15T04:26:19.026848Z",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2026-03-15T04:26:16.050623Z",
+        "status": "True",
+        "type": "ConfigurationsReady"
+      },
+      {
+        "lastTransitionTime": "2026-03-15T04:26:18.998554Z",
+        "status": "True",
+        "type": "RoutesReady"
+      }
+    ],
+    "latestCreatedRevisionName": "ledgerlive-web-00005-bzq",
+    "latestReadyRevisionName": "ledgerlive-web-00005-bzq",
+    "observedGeneration": 5,
+    "traffic": [
+      {
+        "latestRevision": true,
+        "percent": 100,
+        "revisionName": "ledgerlive-web-00005-bzq"
+      }
+    ],
+    "url": "https://ledgerlive-web-zkw2sk4rha-uc.a.run.app"
+  }
+}

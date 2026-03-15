@@ -8,16 +8,20 @@ export type ThemeMode = 'light' | 'dark' | 'terminal'
 export const THEME_STORAGE_KEY = 'ledgerlive-theme'
 
 export function getStoredTheme(): ThemeMode {
-  if (typeof window === 'undefined') return 'light'
+  if (typeof window === 'undefined') return 'dark'
   const stored = localStorage.getItem(THEME_STORAGE_KEY) as ThemeMode | null
-  return stored && ['light', 'dark', 'terminal'].includes(stored) ? stored : 'light'
+  return stored && ['light', 'dark', 'terminal'].includes(stored) ? stored : 'dark'
 }
 
 export function setStoredTheme(mode: ThemeMode): void {
   if (typeof window === 'undefined') return
   localStorage.setItem(THEME_STORAGE_KEY, mode)
-  document.documentElement.classList.remove('theme-light', 'theme-dark', 'theme-terminal')
+  document.documentElement.classList.remove('theme-light', 'theme-dark', 'theme-terminal', 'dark')
   document.documentElement.classList.add(`theme-${mode}`)
+  // Add Tailwind 'dark' class for dark: variants
+  if (mode === 'dark' || mode === 'terminal') {
+    document.documentElement.classList.add('dark')
+  }
 }
 
 export function applyTheme(mode: ThemeMode): void {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { API_BASE } from '../services/api'
 
 interface Exc { exception_id: string; exception_type?: string; severity?: string; description?: string; account_id?: string; status?: string; amount_delta?: number }
 
@@ -9,14 +10,14 @@ export default function Exceptions() {
 
   const load = () => {
     setLoading(true)
-    fetch('/api/exceptions').then(r => r.json()).then(d => { setItems(d.items || []); setLoading(false) }).catch(() => setLoading(false))
+    fetch(`${API_BASE}/api/exceptions`).then(r => r.json()).then(d => { setItems(d.items || []); setLoading(false) }).catch(() => setLoading(false))
   }
 
   useEffect(() => { load() }, [])
 
   const resolve = async (id: string) => {
     setActing(id)
-    await fetch(`/api/exceptions/${id}/resolve`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' })
+    await fetch(`${API_BASE}/api/exceptions/${id}/resolve`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' })
     setActing(null)
     load()
   }
