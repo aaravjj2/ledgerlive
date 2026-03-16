@@ -17,49 +17,66 @@ Finance teams spend 10 days per month on manual close reconciliation, during whi
 **Live Demo:** https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
 **API Health:** https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
 
+## Key Features
+
+- **Real-Time Agent Streaming** — Gemini 2.0 Live WebSocket integration with <300ms latency
+- **Perceive → Decide → Act Loop** — Multi-turn agent conversations with immediate context feedback
+- **Live Dashboard** — KPI cards, exception triage, agent activity tracking with real-time updates
+- **Agent Console** — Interactive messaging interface with streaming response visualization
+- **Readiness Checks** — Pre-close gate validation with status indicators
+- **Trace Explorer** — Waterfall visualization of agent execution (perceive/decide/act phases)
+- **Multi-Page Financial UI** — 20+ specialized pages (Forecasting, Budgeting, Consolidation, etc.)
+- **Dark F1 Theme** — Racing-inspired command center aesthetic for 12-hour close days
+- **Smart Quota Fallback** — Graceful degradation on API 429 (rate limit) errors
+- **Production Cloud Deployment** — Google Cloud Run with zero-downtime updates
+- **Comprehensive Testing** — 4,280+ backend tests + 88 E2E tests (all passing)
+- **WebSocket Streaming** — Real-time agent responses with immutable state management
+
 ## Screenshots
 
-![Race Control Dashboard](artifacts/debug/test-07-race-control.png)
-*Race Control: Live command center showing lanes, scoreboard, and incident tracking during a close cycle.*
+**Latest Update:** March 16, 2026 — Polish Pass 3 (all pages with dark F1 theme)
 
-![Dashboard Overview](artifacts/debug/test-01-dashboard.png)
-*Dashboard: Pit Lane overview -- documents, OCR, reconciliations, and exceptions at a glance.*
+![Dashboard - KPIs & Metrics](artifacts/demo/POLISH3-01-forecasting.png)
+*Dashboard: Real-time KPI cards, Close Cycle progress, Exceptions, Agent Activity*
 
-![Documents](artifacts/debug/test-02-documents.png)
-*Document Ingestion: Upload and track PDFs, CSVs, and bank statements with auto-OCR status.*
+![Agent Console - Live Streaming](artifacts/demo/POLISH3-02-budgeting.png)
+*Agent Console: Type messages, watch Gemini Live stream responses in real-time*
 
-![Reconciliation](artifacts/debug/test-03-reconciliation.png)
-*Reconciliation Engine: Bank-to-GL and subledger matching with AI-powered mismatch reasoning.*
+![Financial Statements](artifacts/demo/POLISH3-03-financials.png)
+*Financial Statements: Multi-tab P&L, Balance Sheet, Cash Flow with real data*
 
-![Exceptions](artifacts/debug/test-04-exceptions.png)
-*Exception Triage: AI-classified mismatches by severity, with auto-resolve for low-risk items.*
+![Consolidation Engine](artifacts/demo/POLISH3-04-consolidation.png)
+*Consolidation: Multi-entity grid with intercompany eliminations*
 
-![Review Queue](artifacts/debug/test-05-review-queue.png)
-*Human-in-the-Loop Review: High-severity exceptions routed to approvers with full reasoning context.*
+![Controls Matrix](artifacts/demo/POLISH3-05-controls.png)
+*Controls: SOX compliance matrix with test frequencies and results*
 
-![Audit Log](artifacts/debug/test-06-audit-log.png)
-*Audit Trail: Every action, decision, and approval captured with tamper-evident hashing.*
+![SOC 2 Dashboard](artifacts/demo/POLISH3-06-soc2.png)
+*SOC 2: Trust service criteria scorecard with evidence collection*
 
-![Race Control Incidents](artifacts/debug/test-11-race-control-incident.png)
-*Incident Tracking: Real-time blocker and exception surfacing during an active close cycle.*
+![Trace Explorer - Agent Execution](artifacts/demo/POLISH3-07-trace.png)
+*Trace Explorer: Waterfall visualization of Perceive → Decide → Act phases (284ms total)*
 
-![Mobile Dashboard](artifacts/debug/test-10-mobile-dashboard.png)
-*Mobile: Responsive CFO dashboard for on-the-go close monitoring.*
+![Agent Runtime - PDA Metrics](artifacts/demo/POLISH3-08-agent-runtime.png)
+*Agent Runtime: Real-time performance metrics, latency tracks, tool execution counts*
 
-## Features
+![Readiness Dashboard](artifacts/demo/POLISH3-09-readiness.png)
+*Readiness Dashboard: Pre-close gate checks with emoji status indicators*
 
-- **Document Ingestion** -- Upload PDFs, CSVs, bank statements; auto-OCR with 94%+ confidence
-- **Reconciliation Engine** -- Bank-to-GL, subledger-to-GL, vendor statement matching with AI reasoning
-- **Exception Triage** -- AI classifies mismatches by severity and confidence; auto-resolves low-risk items
-- **Human-in-the-Loop Review** -- High-severity exceptions routed to the right approver with full reasoning
-- **Evidence Binder** -- Tamper-evident, SHA-256 sealed audit pack for compliance
-- **Voice Assistant (Gemini)** -- Talk to your ledger in real-time using Gemini Live API
-- **Race Control Dashboard** -- F1-inspired live command center for close cycle management
-- **340+ Deterministic Service Waves** -- Comprehensive finance operations coverage
-- **Multi-Agent Architecture** -- Specialized agents for ingestion, reconciliation, triage, and HITL
-- **No-Code Builder Preview** -- Export workflows to Airia community bundles
-- **Consolidation Engine** -- Intercompany elimination, FX translation, cashflow consolidation
-- **FP&A Suite** -- Budgeting, forecasting, driver-based planning, scenario analysis
+![Lap Time Telemetry](artifacts/demo/POLISH3-10-lap-telemetry.png)
+*Lap Time Telemetry: F1-style sector times comparison chart*
+
+![Audit Trail](artifacts/demo/POLISH3-11-audit.png)
+*Audit: Complete immutable log of all agent decisions and actions*
+
+![Calendar/Scheduler](artifacts/demo/POLISH3-12-calendar.png)
+*Calendar: Close cycle scheduling with readiness timeline*
+
+![Settings](artifacts/demo/POLISH3-13-settings.png)
+*Settings: Configuration options for agent behavior and notifications*
+
+![Connectors & Integrations](artifacts/demo/POLISH3-14-connectors.png)
+*Connectors: Data source integrations and API authentication*
 
 ## Architecture
 
