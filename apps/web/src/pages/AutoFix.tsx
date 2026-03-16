@@ -46,7 +46,7 @@ export default function AutoFixPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="auto-fix-title">Auto-Fix</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Auto-Fix via API /api/auto-fix</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Auto-Fix</p>
         </div>
         <button
           onClick={load}

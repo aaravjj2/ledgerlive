@@ -46,7 +46,7 @@ export default function DataExportPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="data-export-title">Data Export</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Data Export via API /api/export</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Data Export</p>
         </div>
         <button
           onClick={load}

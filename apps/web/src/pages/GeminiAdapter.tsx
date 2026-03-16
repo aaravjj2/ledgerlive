@@ -46,7 +46,7 @@ export default function GeminiAdapterPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="gemini-adapter-title">Gemini Adapter</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Gemini Adapter via API /api/gemini</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Gemini Adapter</p>
         </div>
         <button
           onClick={load}

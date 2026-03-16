@@ -46,7 +46,7 @@ export default function ReplayEnginePage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="replay-engine-title">Replay Engine</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Replay Engine via API /api/replay</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Replay Engine</p>
         </div>
         <button
           onClick={load}

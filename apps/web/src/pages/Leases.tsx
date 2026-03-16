@@ -46,7 +46,7 @@ export default function LeasesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="leases-title">Lease Accounting</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Lease Accounting via API /api/leases</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Lease Accounting</p>
         </div>
         <button
           onClick={load}

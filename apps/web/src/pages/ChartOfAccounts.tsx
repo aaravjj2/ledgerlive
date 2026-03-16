@@ -46,7 +46,7 @@ export default function ChartOfAccountsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="chart-of-accounts-title">Chart of Accounts</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Chart of Accounts via API /api/coa</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Chart of Accounts</p>
         </div>
         <button
           onClick={load}

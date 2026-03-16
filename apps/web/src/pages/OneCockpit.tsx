@@ -46,7 +46,7 @@ export default function OneCockpitPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="one-cockpit-title">One Cockpit</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage One Cockpit via API /api/one-cockpit</p>
+          <p className="text-gray-500 text-sm mt-1">Manage One Cockpit</p>
         </div>
         <button
           onClick={load}

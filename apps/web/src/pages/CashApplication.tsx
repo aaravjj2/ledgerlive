@@ -46,7 +46,7 @@ export default function CashApplicationPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="cash-application-title">Cash Application</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Cash Application via API /api/cash-application</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Cash Application</p>
         </div>
         <button
           onClick={load}

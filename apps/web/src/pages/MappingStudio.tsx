@@ -46,7 +46,7 @@ export default function MappingStudioPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="mapping-studio-title">Mapping Studio</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Mapping Studio via API /api/mapping</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Mapping Studio</p>
         </div>
         <button
           onClick={load}

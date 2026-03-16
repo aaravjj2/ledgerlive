@@ -46,7 +46,7 @@ export default function JePostingPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="je-posting-title">JE Posting</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage JE Posting via API /api/je-posting</p>
+          <p className="text-gray-500 text-sm mt-1">Manage JE Posting</p>
         </div>
         <button
           onClick={load}

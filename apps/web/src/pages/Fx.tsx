@@ -46,7 +46,7 @@ export default function FxPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="fx-title">FX Translation</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage FX Translation via API /api/fx</p>
+          <p className="text-gray-500 text-sm mt-1">Manage FX Translation</p>
         </div>
         <button
           onClick={load}

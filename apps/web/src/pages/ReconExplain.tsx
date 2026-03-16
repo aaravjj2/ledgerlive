@@ -46,7 +46,7 @@ export default function ReconExplainPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="recon-explain-title">Recon Explain</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Recon Explain via API /api/recon-explain</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Recon Explain</p>
         </div>
         <button
           onClick={load}

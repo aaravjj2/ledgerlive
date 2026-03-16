@@ -46,7 +46,7 @@ export default function DepreciationPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="depreciation-title">Depreciation</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Depreciation via API /api/depreciation</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Depreciation</p>
         </div>
         <button
           onClick={load}

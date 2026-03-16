@@ -46,7 +46,7 @@ export default function JeSuggestPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="je-suggest-title">JE Suggest</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage JE Suggest via API /api/je-suggest</p>
+          <p className="text-gray-500 text-sm mt-1">Manage JE Suggest</p>
         </div>
         <button
           onClick={load}

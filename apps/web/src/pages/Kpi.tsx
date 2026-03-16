@@ -22,7 +22,7 @@ export default function KpiPage() {
     setLoading(true)
     setError(null)
     try {
-      const res = await apiGet<{ items?: KpiItem[] }>(`/api/kpi`)
+      const res = await apiGet<{ items?: KpiItem[] }>(`/api/kpis`)
       setItems(res?.items ?? [])
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to load')

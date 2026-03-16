@@ -46,7 +46,7 @@ export default function ClosePeriodPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="close-period-title">Close Period</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Close Period via API /api/close-periods</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Close Period</p>
         </div>
         <button
           onClick={load}

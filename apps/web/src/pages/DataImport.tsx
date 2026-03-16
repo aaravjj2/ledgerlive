@@ -46,7 +46,7 @@ export default function DataImportPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="data-import-title">Data Import</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Data Import via API /api/import</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Data Import</p>
         </div>
         <button
           onClick={load}

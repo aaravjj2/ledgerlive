@@ -46,7 +46,7 @@ export default function InvoicesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="invoices-title">Invoice Processing</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Invoice Processing via API /api/invoices</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Invoice Processing</p>
         </div>
         <button
           onClick={load}

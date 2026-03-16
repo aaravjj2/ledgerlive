@@ -11,7 +11,7 @@ services:
     dockerfile_path: apps/api/Dockerfile
     source_dir: /
     github:
-      repo: <your-org>/ledgerlive
+      repo: aaravjj2/ledgerlive
       branch: main
       deploy_on_push: true
     instance_count: 1
@@ -19,7 +19,6 @@ services:
     http_port: 8090
     routes:
       - path: /api
-      - path: /healthz
       - path: /docs
       - path: /openapi.json
     envs:
@@ -31,7 +30,7 @@ services:
         value: ${db.DATABASE_URL}
         type: SECRET
     health_check:
-      http_path: /healthz
+      http_path: /api/exceptions
       initial_delay_seconds: 10
       period_seconds: 30
       timeout_seconds: 5
@@ -43,7 +42,7 @@ services:
     dockerfile_path: apps/web/Dockerfile
     source_dir: /
     github:
-      repo: <your-org>/ledgerlive
+      repo: aaravjj2/ledgerlive
       branch: main
       deploy_on_push: true
     instance_count: 1

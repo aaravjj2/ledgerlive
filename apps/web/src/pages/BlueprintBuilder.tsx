@@ -46,7 +46,7 @@ export default function BlueprintBuilderPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="blueprint-builder-title">Blueprint Builder</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Blueprint Builder via API /api/blueprint-builder</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Blueprint Builder</p>
         </div>
         <button
           onClick={load}

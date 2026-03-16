@@ -46,7 +46,7 @@ export default function LineagePage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="lineage-title">Lineage Manifest</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Lineage Manifest via API /api/lineage</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Lineage Manifest</p>
         </div>
         <button
           onClick={load}

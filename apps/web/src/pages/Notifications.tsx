@@ -46,7 +46,7 @@ export default function NotificationsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="notifications-title">Notifications</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Notifications via API /api/notifications</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Notifications</p>
         </div>
         <button
           onClick={load}

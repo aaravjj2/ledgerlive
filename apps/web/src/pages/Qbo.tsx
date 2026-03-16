@@ -46,7 +46,7 @@ export default function QboPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="qbo-title">QuickBooks Connector</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage QuickBooks Connector via API /api/qbo</p>
+          <p className="text-gray-500 text-sm mt-1">Manage QuickBooks Connector</p>
         </div>
         <button
           onClick={load}

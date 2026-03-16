@@ -46,7 +46,7 @@ export default function QueryLanguagePage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="query-language-title">Query Language</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Query Language via API /api/query</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Query Language</p>
         </div>
         <button
           onClick={load}

@@ -46,7 +46,7 @@ export default function AdminConsolePage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="admin-console-title">Admin Console</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Admin Console via API /api/admin</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Admin Console</p>
         </div>
         <button
           onClick={load}

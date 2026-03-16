@@ -46,7 +46,7 @@ export default function CostAllocationPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="cost-allocation-title">Cost Allocation</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Cost Allocation via API /api/cost-allocation</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Cost Allocation</p>
         </div>
         <button
           onClick={load}

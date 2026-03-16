@@ -46,7 +46,7 @@ export default function ExpensesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="expenses-title">Expense Reports</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Expense Reports via API /api/expenses</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Expense Reports</p>
         </div>
         <button
           onClick={load}

@@ -46,7 +46,7 @@ export default function PlaidPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="plaid-title">Plaid Connector</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Plaid Connector via API /api/plaid</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Plaid Connector</p>
         </div>
         <button
           onClick={load}

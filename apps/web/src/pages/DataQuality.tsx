@@ -46,7 +46,7 @@ export default function DataQualityPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="data-quality-title">Data Quality</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Data Quality via API /api/data-quality</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Data Quality</p>
         </div>
         <button
           onClick={load}

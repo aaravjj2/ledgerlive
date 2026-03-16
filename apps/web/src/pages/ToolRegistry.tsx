@@ -46,7 +46,7 @@ export default function ToolRegistryPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="tool-registry-title">Tool Registry</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Tool Registry via API /api/tool-registry</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Tool Registry</p>
         </div>
         <button
           onClick={load}

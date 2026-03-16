@@ -46,7 +46,7 @@ export default function VendorsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="vendors-title">Vendor Management</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Vendor Management via API /api/vendors</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Vendor Management</p>
         </div>
         <button
           onClick={load}

@@ -46,7 +46,7 @@ export default function AccrualsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="accruals-title">Accruals & Deferrals</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Accruals & Deferrals via API /api/accruals</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Accruals & Deferrals</p>
         </div>
         <button
           onClick={load}

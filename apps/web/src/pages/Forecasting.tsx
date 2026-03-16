@@ -23,7 +23,7 @@ export default function ForecastingPage() {
     setLoading(true)
     setError(null)
     try {
-      const res = await apiGet<{ items?: ForecastingItem[] }>(`/api/forecasting`)
+      const res = await apiGet<{ items?: ForecastingItem[] }>(`/api/forecasts`)
       setItems(res?.items ?? [])
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to load')

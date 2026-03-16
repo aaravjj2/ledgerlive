@@ -16,7 +16,7 @@ interface ScorecardMetric {
 }
 
 export default function CloseScorecard() {
-  const { fetchData } = useApi<{ items?: ScorecardMetric[] }>('/api/close-scorecard')
+  const { fetchData } = useApi<{ items?: ScorecardMetric[] }>('/api/close-scorecards')
   const [metrics, setMetrics] = useState<ScorecardMetric[]>([])
   const [loading, setLoading] = useState(true)
 

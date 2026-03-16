@@ -46,7 +46,7 @@ export default function TriageQueuePage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="triage-queue-title">Triage Queue</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Triage Queue via API /api/triage</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Triage Queue</p>
         </div>
         <button
           onClick={load}

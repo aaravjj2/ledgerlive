@@ -46,7 +46,7 @@ export default function FixedAssetsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="fixed-assets-title">Fixed Assets</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Fixed Assets via API /api/fixed-assets</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Fixed Assets</p>
         </div>
         <button
           onClick={load}

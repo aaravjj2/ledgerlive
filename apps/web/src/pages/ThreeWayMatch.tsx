@@ -46,7 +46,7 @@ export default function ThreeWayMatchPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="three-way-match-title">Three-Way Match</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Three-Way Match via API /api/three-way-match</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Three-Way Match</p>
         </div>
         <button
           onClick={load}

@@ -46,7 +46,7 @@ export default function WorkflowPluginPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="workflow-plugin-title">Workflow Plugin</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Workflow Plugin via API /api/workflow-plugin</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Workflow Plugin</p>
         </div>
         <button
           onClick={load}

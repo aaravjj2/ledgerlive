@@ -46,7 +46,7 @@ export default function ProductivityRoiPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="productivity-roi-title">Productivity ROI</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Productivity ROI via API /api/productivity-roi</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Productivity ROI</p>
         </div>
         <button
           onClick={load}

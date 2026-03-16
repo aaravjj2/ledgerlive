@@ -46,7 +46,7 @@ export default function GradientAdapterPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="gradient-adapter-title">Gradient Adapter</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Gradient Adapter via API /api/gradient</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Gradient Adapter</p>
         </div>
         <button
           onClick={load}

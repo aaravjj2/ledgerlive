@@ -46,7 +46,7 @@ export default function ApprovalsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="approvals-title">Approval Workflows</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Approval Workflows via API /api/approvals</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Approval Workflows</p>
         </div>
         <button
           onClick={load}

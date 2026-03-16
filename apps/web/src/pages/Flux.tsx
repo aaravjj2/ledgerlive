@@ -46,7 +46,7 @@ export default function FluxPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="flux-title">Flux Analysis</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Flux Analysis via API /api/flux</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Flux Analysis</p>
         </div>
         <button
           onClick={load}

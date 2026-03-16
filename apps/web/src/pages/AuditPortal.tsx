@@ -46,7 +46,7 @@ export default function AuditPortalPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="audit-portal-title">Audit Portal</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Audit Portal via API /api/audit-portal</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Audit Portal</p>
         </div>
         <button
           onClick={load}

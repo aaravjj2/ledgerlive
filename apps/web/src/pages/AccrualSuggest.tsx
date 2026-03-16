@@ -46,7 +46,7 @@ export default function AccrualSuggestPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="accrual-suggest-title">Accrual Suggest</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Accrual Suggest via API /api/accrual-suggest</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Accrual Suggest</p>
         </div>
         <button
           onClick={load}

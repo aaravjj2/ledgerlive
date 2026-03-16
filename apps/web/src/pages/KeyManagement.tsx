@@ -46,7 +46,7 @@ export default function KeyManagementPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="key-management-title">Key Management</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Key Management via API /api/key-management</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Key Management</p>
         </div>
         <button
           onClick={load}

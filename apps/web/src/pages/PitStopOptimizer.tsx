@@ -46,7 +46,7 @@ export default function PitStopOptimizerPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="pit-stop-optimizer-title">Pit Stop Optimizer</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Pit Stop Optimizer via API /api/pit-stop-optimizer</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Pit Stop Optimizer</p>
         </div>
         <button
           onClick={load}

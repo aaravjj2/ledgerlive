@@ -46,7 +46,7 @@ export default function RolesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="roles-title">Role Permissions</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Role Permissions via API /api/roles</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Role Permissions</p>
         </div>
         <button
           onClick={load}

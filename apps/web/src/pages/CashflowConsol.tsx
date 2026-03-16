@@ -46,7 +46,7 @@ export default function CashflowConsolPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="cashflow-consol-title">Cash Flow Consolidation</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Cash Flow Consolidation via API /api/cashflow-consol</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Cash Flow Consolidation</p>
         </div>
         <button
           onClick={load}

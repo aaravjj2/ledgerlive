@@ -46,7 +46,7 @@ export default function AiriaAdapterPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="airia-adapter-title">Airia Adapter</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Airia Adapter via API /api/airia-adapter</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Airia Adapter</p>
         </div>
         <button
           onClick={load}

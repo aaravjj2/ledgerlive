@@ -46,7 +46,7 @@ export default function EvidenceSearchPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="evidence-search-title">Evidence Search</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Evidence Search via API /api/evidence-search</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Evidence Search</p>
         </div>
         <button
           onClick={load}

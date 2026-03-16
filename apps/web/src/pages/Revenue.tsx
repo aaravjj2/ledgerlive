@@ -46,7 +46,7 @@ export default function RevenuePage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="revenue-title">Revenue Recognition</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Revenue Recognition via API /api/revenue</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Revenue Recognition</p>
         </div>
         <button
           onClick={load}

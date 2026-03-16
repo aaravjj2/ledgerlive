@@ -46,7 +46,7 @@ export default function ExceptionClassifierPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="exception-classifier-title">Exception Classifier</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Exception Classifier via API /api/exception-classifier</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Exception Classifier</p>
         </div>
         <button
           onClick={load}

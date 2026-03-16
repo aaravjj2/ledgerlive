@@ -46,7 +46,7 @@ export default function DriverPlanningPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="driver-planning-title">Driver Planning</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Driver Planning via API /api/driver-planning</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Driver Planning</p>
         </div>
         <button
           onClick={load}

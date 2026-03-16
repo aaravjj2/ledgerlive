@@ -46,7 +46,7 @@ export default function ReportMarketplacePage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="report-marketplace-title">Report Marketplace</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Report Marketplace via API /api/report-marketplace</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Report Marketplace</p>
         </div>
         <button
           onClick={load}

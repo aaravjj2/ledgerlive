@@ -46,7 +46,7 @@ export default function TaxPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="tax-title">Tax Compliance</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Tax Compliance via API /api/tax</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Tax Compliance</p>
         </div>
         <button
           onClick={load}

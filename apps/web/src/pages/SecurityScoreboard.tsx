@@ -46,7 +46,7 @@ export default function SecurityScoreboardPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="security-scoreboard-title">Security Scoreboard</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Security Scoreboard via API /api/security-scoreboard</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Security Scoreboard</p>
         </div>
         <button
           onClick={load}

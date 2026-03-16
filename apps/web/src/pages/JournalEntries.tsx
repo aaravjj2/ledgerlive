@@ -46,7 +46,7 @@ export default function JournalEntriesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="journal-entries-title">Journal Entries</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Journal Entries via API /api/journal-entries</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Journal Entries</p>
         </div>
         <button
           onClick={load}

@@ -46,7 +46,7 @@ export default function IntercompanyV2Page() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="intercompany-v2-title">Intercompany V2</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Intercompany V2 via API /api/intercompany-v2</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Intercompany V2</p>
         </div>
         <button
           onClick={load}

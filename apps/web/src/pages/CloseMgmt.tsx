@@ -46,7 +46,7 @@ export default function CloseMgmtPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="close-mgmt-title">Close Management</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Close Management via API /api/close</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Close Management</p>
         </div>
         <button
           onClick={load}

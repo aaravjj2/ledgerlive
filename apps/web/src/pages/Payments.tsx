@@ -46,7 +46,7 @@ export default function PaymentsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="payments-title">Payment Runs</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Payment Runs via API /api/payments</p>
+          <p className="text-gray-500 text-sm mt-1">Manage Payment Runs</p>
         </div>
         <button
           onClick={load}

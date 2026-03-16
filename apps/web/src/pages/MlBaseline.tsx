@@ -46,7 +46,7 @@ export default function MlBaselinePage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" data-testid="ml-baseline-title">ML Baseline</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage ML Baseline via API /api/ml-baseline</p>
+          <p className="text-gray-500 text-sm mt-1">Manage ML Baseline</p>
         </div>
         <button
           onClick={load}
