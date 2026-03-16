@@ -34,49 +34,34 @@ Finance teams spend 10 days per month on manual close reconciliation, during whi
 
 ## Screenshots
 
-**Latest Update:** March 16, 2026 — Polish Pass 3 (all pages with dark F1 theme)
+**Latest Update:** March 16, 2026 — Polish Pass 2 (all pages with dark F1 theme)
 
-![Dashboard - KPIs & Metrics](artifacts/demo/POLISH3-01-forecasting.png)
-*Dashboard: Real-time KPI cards, Close Cycle progress, Exceptions, Agent Activity*
+![Airia Everywhere Hub](artifacts/demo/POLISH2-01-airia-everywhere.png)
+*Airia Everywhere Hub: Gemini Live agent accessible from any page with real-time streaming*
 
-![Agent Console - Live Streaming](artifacts/demo/POLISH3-02-budgeting.png)
-*Agent Console: Type messages, watch Gemini Live stream responses in real-time*
+![Bank Reconciliation](artifacts/demo/POLISH2-02-bank-recon.png)
+*Bank Reconciliation: AI-powered matching engine with exception flagging and resolution*
 
-![Financial Statements](artifacts/demo/POLISH3-03-financials.png)
-*Financial Statements: Multi-tab P&L, Balance Sheet, Cash Flow with real data*
+![Trial Balance](artifacts/demo/POLISH2-03-trial-balance.png)
+*Trial Balance: Real-time debit/credit ledger with variance analysis and drill-down*
 
-![Consolidation Engine](artifacts/demo/POLISH3-04-consolidation.png)
-*Consolidation: Multi-entity grid with intercompany eliminations*
+![Close Scorecard](artifacts/demo/POLISH2-04-scorecard.png)
+*Close Scorecard: F1-style lap metrics showing close cycle progress gate-by-gate*
 
-![Controls Matrix](artifacts/demo/POLISH3-05-controls.png)
-*Controls: SOX compliance matrix with test frequencies and results*
+![Agent Console - Live Streaming](artifacts/demo/POLISH2-05-agent-console.png)
+*Agent Console: Type messages, watch Gemini Live stream Perceive→Decide→Act in real-time*
 
-![SOC 2 Dashboard](artifacts/demo/POLISH3-06-soc2.png)
-*SOC 2: Trust service criteria scorecard with evidence collection*
+![Agent Console - Response](artifacts/demo/POLISH2-05b-agent-console-response.png)
+*Agent Console Response: Structured multi-turn response with latency metrics (284ms cycle)*
 
-![Trace Explorer - Agent Execution](artifacts/demo/POLISH3-07-trace.png)
-*Trace Explorer: Waterfall visualization of Perceive → Decide → Act phases (284ms total)*
+![KPI Dashboard](artifacts/demo/POLISH2-06-kpi.png)
+*KPI Dashboard: Real-time financial metrics — Days to Close, Exceptions, Agent Activity*
 
-![Agent Runtime - PDA Metrics](artifacts/demo/POLISH3-08-agent-runtime.png)
-*Agent Runtime: Real-time performance metrics, latency tracks, tool execution counts*
+![Scenario Engine](artifacts/demo/POLISH2-07-scenario.png)
+*Scenario Engine: What-if analysis with agent-generated projections and risk scoring*
 
-![Readiness Dashboard](artifacts/demo/POLISH3-09-readiness.png)
-*Readiness Dashboard: Pre-close gate checks with emoji status indicators*
-
-![Lap Time Telemetry](artifacts/demo/POLISH3-10-lap-telemetry.png)
-*Lap Time Telemetry: F1-style sector times comparison chart*
-
-![Audit Trail](artifacts/demo/POLISH3-11-audit.png)
-*Audit: Complete immutable log of all agent decisions and actions*
-
-![Calendar/Scheduler](artifacts/demo/POLISH3-12-calendar.png)
-*Calendar: Close cycle scheduling with readiness timeline*
-
-![Settings](artifacts/demo/POLISH3-13-settings.png)
-*Settings: Configuration options for agent behavior and notifications*
-
-![Connectors & Integrations](artifacts/demo/POLISH3-14-connectors.png)
-*Connectors: Data source integrations and API authentication*
+![Settings](artifacts/demo/POLISH2-08-settings.png)
+*Settings: Configuration for agent behavior, Gemini API, notifications, and integrations*
 
 ## Architecture
 
@@ -633,7 +618,7 @@ ledgerlive/
 ├── artifacts/
 │   └── demo/                   # Screenshots & demo media
 │       ├── THUMBNAIL.png       # Devpost thumbnail (1280×720)
-│       ├── POLISH3-*.png       # 14 UI screenshots
+│       ├── POLISH2-*.png       # 9 UI screenshots (latest polish pass)
 │       └── LEDGERLIVE_DEMO.mp4 # Video demo (4.1 MB)
 │
 ├── docs/
