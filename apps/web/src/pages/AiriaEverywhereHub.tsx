@@ -40,8 +40,8 @@ export default function AiriaEverywhereHub() {
         </p>
       </div>
 
-      <div className="rounded-xl border bg-indigo-50 border-indigo-200 p-4">
-        <h3 className="font-semibold text-blue-300 mb-2">Track 1: Airia Everywhere</h3>
+      <div className="rounded-xl border bg-blue-900/20 border-blue-500/30 p-4">
+        <h3 className="font-semibold text-blue-400 mb-2">Track 1: Airia Everywhere</h3>
         <p className="text-sm text-blue-400">
           LedgerLive agents integrate into the platforms people use every day. Ask the CFO assistant from Slack,
           triage exceptions from Outlook, or run close checks from a browser extension — intelligence exactly when needed.
@@ -55,7 +55,7 @@ export default function AiriaEverywhereHub() {
             data-testid={`airia-channel-${c.id}`}
             onClick={() => setSelected(c.id)}
             className={`rounded-xl border p-4 cursor-pointer transition ${
-              selected === c.id ? 'border-indigo-500 bg-indigo-50' : 'border-[#2A2A3A] hover:border-indigo-300'
+              selected === c.id ? 'border-red-500/60 bg-red-900/10' : 'border-[#2A2A3A] hover:border-indigo-300'
             }`}
           >
             <div className="flex items-center justify-between mb-2">
@@ -83,21 +83,21 @@ export default function AiriaEverywhereHub() {
       <div className="rounded-xl border bg-[#111118] p-4">
         <h2 className="font-semibold mb-3">Recent Channel Actions</h2>
         <div className="space-y-2 text-sm">
-          <div className="flex justify-between py-2 border-b">
+          <div className="flex justify-between py-2 border-b border-[#2A2A3A] text-gray-300">
             <span>Browser: Asked CFO about Q4 variance</span>
-            <span className="text-gray-500">2m ago</span>
+            <span className="text-gray-600">2m ago</span>
           </div>
-          <div className="flex justify-between py-2 border-b">
+          <div className="flex justify-between py-2 border-b border-[#2A2A3A] text-gray-300">
             <span>Slack: /ledgerlive status</span>
-            <span className="text-gray-500">5m ago</span>
+            <span className="text-gray-600">5m ago</span>
           </div>
-          <div className="flex justify-between py-2 border-b">
+          <div className="flex justify-between py-2 border-b border-[#2A2A3A] text-gray-300">
             <span>Outlook: Triage exception EX-001</span>
-            <span className="text-gray-500">8m ago</span>
+            <span className="text-gray-600">8m ago</span>
           </div>
-          <div className="flex justify-between py-2">
+          <div className="flex justify-between py-2 text-gray-300">
             <span>Chat: Run canonical close</span>
-            <span className="text-gray-500">12m ago</span>
+            <span className="text-gray-600">12m ago</span>
           </div>
         </div>
       </div>

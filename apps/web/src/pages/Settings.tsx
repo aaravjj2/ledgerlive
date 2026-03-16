@@ -20,7 +20,7 @@ export default function Settings() {
     { label: 'Mode', value: health?.mode ?? '…' },
     { label: 'LLM Provider', value: health?.llm ?? '…' },
     { label: 'API Timestamp', value: health?.ts ? new Date(health.ts).toLocaleString() : '…' },
-    { label: 'Backend URL', value: 'http://127.0.0.1:8090' },
+    { label: 'Backend URL', value: 'https://ledgerlive-api-zkw2sk4rha-uc.a.run.app' },
     { label: 'Total API Routes', value: waveCount != null ? `${waveCount}` : '…' },
     { label: 'Waves Shipped', value: '340' },
     { label: 'Test Suite', value: '4021 tests · all green' },
@@ -50,9 +50,29 @@ export default function Settings() {
         </table>
       </div>
 
-      <div className="rounded-xl border bg-indigo-50 border-indigo-200 p-4">
-        <h2 className="font-semibold text-blue-300 mb-1">LedgerLive — Finance Ops Close Agent</h2>
-        <p className="text-sm text-red-400">340 waves shipped · Phases 0–36 · Blueprint Builder, Atlassian Integration, Airia Readiness, Security Governance, Impact+Race WOW</p>
+      <div className="rounded-xl border bg-[#111118] border-[#2A2A3A] p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-lg">🏎️</span>
+          <h2 className="font-semibold text-gray-200 text-sm">LedgerLive — Finance Ops Close Agent</h2>
+        </div>
+        <p className="text-xs text-gray-500 leading-relaxed">
+          340 waves shipped · Phases 0–36 · Blueprint Builder · Atlassian Integration ·
+          Airia Readiness · Security Governance · 4,021 tests passing
+        </p>
+        <div className="flex gap-4 mt-3">
+          <a href="https://github.com/aaravjj2/ledgerlive" target="_blank" rel="noopener noreferrer"
+            className="text-xs text-blue-400 hover:text-blue-400 transition">
+            → GitHub Repo
+          </a>
+          <a href="https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/docs" target="_blank" rel="noopener noreferrer"
+            className="text-xs text-blue-400 hover:text-blue-400 transition">
+            → API Docs
+          </a>
+          <a href="https://ledgerlive-web-570445019871.us-central1.run.app" target="_blank" rel="noopener noreferrer"
+            className="text-xs text-red-400 hover:text-red-300 transition">
+            → Live App
+          </a>
+        </div>
       </div>
     </div>
   )

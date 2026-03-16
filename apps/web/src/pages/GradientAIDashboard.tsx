@@ -99,7 +99,7 @@ export default function GradientAIDashboard() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="px-3 py-1 bg-blue-900/30 border border-blue-500/30 text-blue-300 text-xs rounded-lg font-medium">
+          <span className="px-3 py-1 bg-blue-900/30 border border-blue-500/30 text-blue-400 text-xs rounded-lg font-medium">
             🔵 Powered by DigitalOcean Gradient AI
           </span>
           <button

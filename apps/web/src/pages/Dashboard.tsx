@@ -53,7 +53,7 @@ function CloseProgress({ stages }: { stages: CloseStage[] }) {
           }`} />
           <span className={`text-xs w-36 truncate flex-shrink-0 ${
             stage.status === 'done'   ? 'text-gray-400 line-through' :
-            stage.status === 'active' ? 'text-blue-300 font-medium' : 'text-gray-300'
+            stage.status === 'active' ? 'text-blue-400 font-medium' : 'text-gray-300'
           }`}>{stage.name}</span>
           <div className="flex-1 h-1 bg-[#1E1E2E] rounded-full overflow-hidden">
             <div className={`h-full rounded-full transition-all duration-500 ${

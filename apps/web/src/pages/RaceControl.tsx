@@ -200,7 +200,7 @@ export default function RaceControl() {
 
       {/* State Machine Info */}
       <div className="mb-6 flex gap-3 flex-wrap" data-testid="rc-state-info">
-        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-blue-900/40 text-blue-300">
+        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-blue-900/40 text-blue-400">
           ðŸ {stateInfo}
         </span>
       </div>

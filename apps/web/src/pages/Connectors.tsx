@@ -202,7 +202,7 @@ export default function Connectors() {
       return { cls: 'bg-green-900/40 text-green-300 border border-green-800/50', label: 'Connected' }
     if (s === 'coming_soon')
       return { cls: 'bg-[#1A1A24] text-[#9CA3AF] border border-[#2A2A3A]', label: 'Coming Soon' }
-    return { cls: 'bg-blue-900/40 text-blue-300 border border-blue-800/50', label: 'Available' }
+    return { cls: 'bg-blue-900/40 text-blue-400 border border-blue-800/50', label: 'Available' }
   }
 
   return (

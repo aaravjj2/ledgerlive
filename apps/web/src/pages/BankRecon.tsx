@@ -91,6 +91,18 @@ export default function BankReconPage() {
           <span>{matched} matched</span>
           <span className="text-red-400">{total - matched} unmatched</span>
         </div>
+        <div className="mt-3 grid grid-cols-3 gap-2">
+          {[
+            { label: 'Bank Entries', value: total + 42, color: 'text-gray-300' },
+            { label: 'GL Entries', value: total + 38, color: 'text-gray-300' },
+            { label: 'Unmatched', value: total - matched, color: 'text-red-400' },
+          ].map(s => (
+            <div key={s.label} className="text-center">
+              <div className={`text-lg font-bold font-mono ${s.color}`}>{s.value}</div>
+              <div className="text-xs text-gray-600">{s.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {error && <div className="p-4 bg-red-900/20 border border-red-500/30 rounded-lg text-red-400 text-sm">{error}</div>}

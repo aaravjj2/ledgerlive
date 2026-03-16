@@ -17,7 +17,7 @@ interface CalendarTask {
 
 const STATUS_STYLE: Record<string, { pill: string; dot: string; label: string }> = {
   completed:   { pill: 'bg-green-900/40 text-green-300 border border-green-500/20', dot: 'bg-green-500', label: 'Completed' },
-  in_progress: { pill: 'bg-blue-900/40 text-blue-300 border border-blue-500/20',   dot: 'bg-blue-400 animate-pulse', label: 'In Progress' },
+  in_progress: { pill: 'bg-blue-900/40 text-blue-400 border border-blue-500/20',   dot: 'bg-blue-400 animate-pulse', label: 'In Progress' },
   blocked:     { pill: 'bg-red-900/40 text-red-400 border border-red-500/20',       dot: 'bg-red-500', label: 'Blocked' },
   pending:     { pill: 'bg-[#1A1A24] text-gray-400 border border-[#2A2A3A]',        dot: 'bg-gray-600', label: 'Pending' },
 }

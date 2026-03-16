@@ -80,7 +80,7 @@ export default function AgentConsole() {
   const healthColor = (h?: string) => {
     if (h === 'green') return 'bg-green-900/40 text-green-300'
     if (h === 'yellow') return 'bg-yellow-900/40 text-yellow-300'
-    if (h === 'red') return 'bg-red-900/40 text-red-800'
+    if (h === 'red') return 'bg-red-900/40 text-red-400'
     return 'bg-[#1A1A24] text-gray-200'
   }
 
@@ -110,19 +110,19 @@ export default function AgentConsole() {
             <section className="mb-6" data-testid="agent-perceive-section">
               <h2 className="text-lg font-semibold mb-3">Perceived State</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="rounded-xl border bg-[#111118] p-4">
+                <div className="rounded-xl border border-[#2A2A3A] bg-[#111118] p-4">
                   <div className="text-xs text-gray-500">Open Exceptions</div>
-                  <div className="text-2xl font-bold text-red-600">{perceive.open_exceptions ?? 0}</div>
+                  <div className="text-2xl font-bold font-mono text-red-400">{perceive.open_exceptions ?? 0}</div>
                 </div>
-                <div className="rounded-xl border bg-[#111118] p-4">
+                <div className="rounded-xl border border-[#2A2A3A] bg-[#111118] p-4">
                   <div className="text-xs text-gray-500">Pending Reviews</div>
-                  <div className="text-2xl font-bold text-amber-600">{perceive.pending_reviews ?? 0}</div>
+                  <div className="text-2xl font-bold font-mono text-yellow-400">{perceive.pending_reviews ?? 0}</div>
                 </div>
-                <div className="rounded-xl border bg-[#111118] p-4">
+                <div className="rounded-xl border border-[#2A2A3A] bg-[#111118] p-4">
                   <div className="text-xs text-gray-500">Blocked Lanes</div>
-                  <div className="text-2xl font-bold text-orange-600">{perceive.blocked_lanes ?? 0}</div>
+                  <div className="text-2xl font-bold font-mono text-orange-400">{perceive.blocked_lanes ?? 0}</div>
                 </div>
-                <div className="rounded-xl border bg-[#111118] p-4">
+                <div className="rounded-xl border border-[#2A2A3A] bg-[#111118] p-4">
                   <div className="text-xs text-gray-500">Overall Health</div>
                   <span className={`inline-block px-2 py-0.5 rounded text-sm font-bold ${healthColor(perceive.overall_health)}`}>
                     {perceive.overall_health || '—'}
@@ -143,7 +143,7 @@ export default function AgentConsole() {
                 onChange={e => setAskQuery(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && submitAsk()}
                 placeholder="e.g. What's blocking the close?"
-                className="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+                className="flex-1 px-4 py-2 bg-[#1A1A24] border border-[#2A2A3A] rounded-lg text-gray-100 placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-red-500/50 text-sm"
               />
               <button
                 data-testid="agent-ask-submit"
@@ -154,10 +154,20 @@ export default function AgentConsole() {
                 {askLoading ? '…' : 'Ask'}
               </button>
             </div>
+            {!askResponse && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                {["What's blocking the close?", "How many exceptions are open?", "Run a cycle summary", "What's the overall health?"].map(q => (
+                  <button key={q} onClick={() => { setAskQuery(q); }}
+                    className="px-3 py-1 text-xs rounded-lg border border-[#2A2A3A] text-gray-500 hover:text-gray-300 hover:border-[#3A3A4A] transition">
+                    {q}
+                  </button>
+                ))}
+              </div>
+            )}
             {askResponse && (
               <div
                 data-testid="agent-ask-response"
-                className="mt-3 rounded-xl border bg-indigo-50 border-indigo-200 p-4 text-gray-200"
+                className="mt-3 rounded-xl border bg-[#111118] border-[#2A2A3A] p-4 text-gray-300 text-sm leading-relaxed"
               >
                 {askResponse.response}
               </div>

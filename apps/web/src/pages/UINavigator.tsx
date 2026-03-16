@@ -88,7 +88,7 @@ export default function UINavigator() {
         </div>
 
         <div className="rounded-xl border bg-[#111118] overflow-hidden">
-          <div className="px-3 py-2 bg-indigo-50 text-blue-300 text-sm font-medium">
+          <div className="px-3 py-2 bg-[#111118] text-blue-400 text-sm font-medium">
             Executable Actions (Gemini multimodal)
           </div>
           <div className="p-4 space-y-2 max-h-[300px] overflow-auto">
@@ -103,7 +103,7 @@ export default function UINavigator() {
                 className={`p-3 rounded-lg border cursor-pointer transition ${
                   selectedAction === a.id
                     ? 'border-green-500 bg-green-900/20'
-                    : 'border-[#2A2A3A] hover:border-indigo-300 hover:bg-indigo-50'
+                    : 'border-[#2A2A3A] hover:border-indigo-300 hover:bg-[#111118]'
                 }`}
               >
                 <div className="flex items-center justify-between">

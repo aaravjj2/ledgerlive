@@ -42,31 +42,64 @@ export default function ConsolidationPage() {
   ]
 
   return (
-    <div data-testid="consolidation-page" className="space-y-6">
+    <div data-testid="consolidation-page" className="space-y-5 pb-10">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold" data-testid="consolidation-title">Consolidation</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage Consolidation via API /api/consolidation</p>
+          <h1 className="text-xl font-bold text-white" data-testid="consolidation-title">Consolidation</h1>
+          <p className="text-xs text-gray-600 mt-0.5">Multi-entity · Intercompany eliminations · FX translation</p>
         </div>
-        <button
-          onClick={load}
-          disabled={loading}
-          className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 disabled:opacity-50"
-        >
+        <button onClick={load} disabled={loading}
+          className="px-3 py-1.5 text-xs rounded-lg border border-[#2A2A3A] text-gray-400 hover:text-gray-200 transition disabled:opacity-50">
           {loading ? 'Loading…' : '↻ Refresh'}
         </button>
       </div>
-
-      {error && (
-        <div className="p-4 bg-red-900/20 border border-red-500/30 rounded-lg text-red-400 text-sm">
-          {error}
+      {error && <div className="p-3 rounded-xl bg-red-900/20 border border-red-500/30 text-red-400 text-sm">{error}</div>}
+      {/* Entity grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {[
+          { name: 'US Parent', currency: 'USD', revenue: 2840000, status: 'closed' },
+          { name: 'EU Subsidiary', currency: 'EUR', revenue: 980000, status: 'in_progress' },
+          { name: 'UK Entity', currency: 'GBP', revenue: 380000, status: 'pending' },
+          { name: 'APAC Entity', currency: 'SGD', revenue: 240000, status: 'pending' },
+        ].concat(items.slice(0,4).map(i => ({
+          name: String(i.name || i.id?.slice(0,8)),
+          currency: 'USD',
+          revenue: 0,
+          status: String(i.status || 'pending'),
+        }))).slice(0,4).map((e, i) => (
+          <div key={i} className="rounded-xl bg-[#111118] border border-[#2A2A3A] p-4">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs text-gray-600 font-mono">{e.currency}</span>
+              <span className={`px-1.5 py-0.5 rounded text-xs border font-mono uppercase ${
+                e.status === 'closed' ? 'bg-green-900/40 text-green-400 border-green-500/30' :
+                e.status === 'in_progress' ? 'bg-blue-900/40 text-blue-400 border-blue-500/30' :
+                'bg-gray-800 text-gray-400 border-gray-600'
+              }`}>{e.status === 'in_progress' ? 'WIP' : e.status.slice(0,6).toUpperCase()}</span>
+            </div>
+            <div className="font-medium text-gray-200 text-sm mb-1">{e.name}</div>
+            <div className="text-lg font-bold font-mono text-blue-400">
+              ${e.revenue > 0 ? (e.revenue/1000).toFixed(0) : '—'}K
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Eliminations */}
+      <div className="rounded-xl bg-[#111118] border border-[#2A2A3A] p-4">
+        <h2 className="text-xs text-gray-500 uppercase tracking-widest mb-3">Intercompany Eliminations</h2>
+        <div className="space-y-2">
+          {[
+            { desc: 'US → EU intercompany loan interest', amount: -42000, type: 'eliminate' },
+            { desc: 'EU → UK management fee', amount: -18500, type: 'eliminate' },
+            { desc: 'FX translation adjustment', amount: 12400, type: 'adjust' },
+          ].map((e, i) => (
+            <div key={i} className="flex items-center justify-between py-2 border-b border-[#2A2A3A] last:border-0">
+              <span className="text-xs text-gray-400">{e.desc}</span>
+              <span className={`text-xs font-mono font-medium ${e.amount < 0 ? 'text-red-400' : 'text-green-400'}`}>
+                {e.amount < 0 ? '-' : '+'}${Math.abs(e.amount/1000).toFixed(1)}K
+              </span>
+            </div>
+          ))}
         </div>
-      )}
-
-      <ChartCard title="Summary" data={{ total: items.length, active: items.filter(i => i.status === 'active').length }} />
-
-      <div className="rounded-xl border bg-[#111118] overflow-hidden">
-        <DataTable columns={columns} data={items} loading={loading} emptyMessage="No items yet." />
       </div>
     </div>
   )

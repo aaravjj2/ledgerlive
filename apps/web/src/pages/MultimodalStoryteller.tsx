@@ -88,7 +88,7 @@ export default function MultimodalStoryteller() {
 
       <div
         data-testid="storyteller-output"
-        className="rounded-xl border-2 border-indigo-200 bg-gradient-to-b from-white to-indigo-50 p-6 min-h-[400px] space-y-6"
+        className="rounded-xl border-2 border-[#2A2A3A] bg-gradient-to-b from-white to-indigo-50 p-6 min-h-[400px] space-y-6"
       >
         {visibleBlocks.map(b => (
           <div key={b.id} data-testid={`story-block-${b.type}`} className="animate-fadeIn">
@@ -97,7 +97,7 @@ export default function MultimodalStoryteller() {
             )}
             {b.type === 'chart' && (
               <div className="bg-[#111118] rounded-lg border p-4">
-                <div className="h-32 flex items-center justify-center bg-indigo-50 rounded">
+                <div className="h-32 flex items-center justify-center bg-[#111118] rounded">
                   <span className="text-red-400 font-medium">📊 Completion by Lane (Chart)</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">{b.alt}</p>
