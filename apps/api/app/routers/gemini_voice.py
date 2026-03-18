@@ -8,10 +8,22 @@ import json
 import uuid
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from pydantic import BaseModel
 
+from app.airia_adapter import call_airia_agent
 from app.services.gemini_live import get_or_create_session, remove_session
 
 router = APIRouter(tags=["gemini-voice"])
+
+
+class VoiceRequest(BaseModel):
+    text: str
+
+
+@router.post("/api/voice/ask")
+async def voice_ask(request: VoiceRequest):
+    result = await call_airia_agent(request.text)
+    return result
 
 
 async def execute_tool(tool_name: str, tool_args: dict) -> dict:
