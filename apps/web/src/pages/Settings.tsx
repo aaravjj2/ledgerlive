@@ -20,7 +20,7 @@ export default function Settings() {
     { label: 'Mode', value: health?.mode ?? '…' },
     { label: 'LLM Provider', value: health?.llm ?? '…' },
     { label: 'API Timestamp', value: health?.ts ? new Date(health.ts).toLocaleString() : '…' },
-    { label: 'Backend URL', value: 'https://ledgerlive-api-zkw2sk4rha-uc.a.run.app' },
+    { label: 'Backend URL', value: 'https://ledgerlive-api-production.up.railway.app' },
     { label: 'Total API Routes', value: waveCount != null ? `${waveCount}` : '…' },
     { label: 'Waves Shipped', value: '340' },
     { label: 'Test Suite', value: '4021 tests · all green' },
@@ -64,7 +64,7 @@ export default function Settings() {
             className="text-xs text-blue-400 hover:text-blue-400 transition">
             → GitHub Repo
           </a>
-          <a href="https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/docs" target="_blank" rel="noopener noreferrer"
+          <a href="https://ledgerlive-api-production.up.railway.app/docs" target="_blank" rel="noopener noreferrer"
             className="text-xs text-blue-400 hover:text-blue-400 transition">
             → API Docs
           </a>

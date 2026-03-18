@@ -72,13 +72,13 @@ PROJECT TITLE:
 LedgerLive: Real-Time Financial Close with Gemini Live Agents
 
 LIVE DEMO:
-https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+https://web-omega-silk-71.vercel.app
 
 GITHUB REPO (PUBLIC):
 https://github.com/aaravjj2/ledgerlive
 
 API HEALTH CHECK:
-https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+https://ledgerlive-api-production.up.railway.app/api/exceptions
 
 DEPLOYMENT AUTOMATION (Bonus 0.2 pts):
 https://github.com/aaravjj2/ledgerlive/blob/main/hackathons/gemini/deploy.sh
@@ -171,7 +171,7 @@ SUBMISSION CHECKLIST (Pre-submit tasks):
                   [Links: GitHub, Live Demo, API Health]
 ```
 
-### 2. Click "Live Demo" → https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+### 2. Click "Live Demo" → https://web-omega-silk-71.vercel.app
 ```
 Dashboard loads instantly
 │
@@ -326,10 +326,10 @@ Review → Click SUBMIT → Confirm email
 
 ```bash
 # 1. Test API
-curl https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions ✓
+curl https://ledgerlive-api-production.up.railway.app/api/exceptions ✓
 
 # 2. Test Frontend
-open https://ledgerlive-web-zkw2sk4rha-uc.a.run.app ✓
+open https://web-omega-silk-71.vercel.app ✓
 
 # 3. Test Agent Console
 # Navigate to Agent Console, type message, see streaming ✓

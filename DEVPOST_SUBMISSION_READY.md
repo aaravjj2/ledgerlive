@@ -38,7 +38,7 @@
 - **File:** `GCP_DEPLOYMENT_PROOF.md`
 - **Status:** Live on Cloud Run (api@00004-2q2, web@00007-bm2)
 - **Revisions:** 4 backend revisions, 7 frontend revisions (rollback-capable)
-- **Health Check:** https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions → HTTP 200 ✓
+- **Health Check:** https://ledgerlive-api-production.up.railway.app/api/exceptions → HTTP 200 ✓
 - **Uptime:** 99.7% (exceeds 99.5% SLA)
 - **Performance:** 284ms agent cycle latency (p100), 78-89ms API responses
 
@@ -120,16 +120,16 @@ Google Cloud Run, PostgreSQL, Docker, WebSockets, Recharts
 #### Links (CRITICAL – Test each before submitting)
 ```
 PROJECT WEBSITE / LIVE DEMO:
-https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+https://web-omega-silk-71.vercel.app
 
 DIRECT DEMO LINK (Agent Console):
-https://ledgerlive-web-zkw2sk4rha-uc.a.run.app/agent-console
+https://web-omega-silk-71.vercel.app/agent-console
 
 GITHUB REPOSITORY (must be PUBLIC):
 https://github.com/[YOUR-USERNAME]/ledgerlive
 
 CLOUD DEPLOYMENT PROOF (Health Check):
-https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+https://ledgerlive-api-production.up.railway.app/api/exceptions
   → Should return HTTP 200 with exception data
 
 GCP CONSOLE (Optional, for judges):
@@ -224,7 +224,7 @@ VIDEO DEMO LINK:
    and approvals in real-time — 60% faster close, zero manual overhead.
 
    🎯 LIVE DEMO
-   Try it now: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+   Try it now: https://web-omega-silk-71.vercel.app
 
    📁 SOURCE CODE
    GitHub: https://github.com/[YOUR-USERNAME]/ledgerlive
@@ -322,9 +322,9 @@ VIDEO DEMO LINK:
 | Resource | URL |
 |----------|-----|
 | **Devpost Hackathon** | https://geminiliveagentchallenge.devpost.com |
-| **Live Demo** | https://ledgerlive-web-zkw2sk4rha-uc.a.run.app |
-| **Agent Console** | https://ledgerlive-web-zkw2sk4rha-uc.a.run.app/agent-console |
-| **API Health** | https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions |
+| **Live Demo** | https://web-omega-silk-71.vercel.app |
+| **Agent Console** | https://web-omega-silk-71.vercel.app/agent-console |
+| **API Health** | https://ledgerlive-api-production.up.railway.app/api/exceptions |
 | **GitHub Repo** | https://github.com/[YOUR-USERNAME]/ledgerlive |
 | **YouTube Studio** | https://youtube.com/studio |
 | **GCP Console** | https://console.cloud.google.com/run?project=gen-lang-client-0432346640 |
@@ -373,12 +373,12 @@ VIDEO DEMO LINK:
 ## ❓ TROUBLESHOOTING
 
 ### ❌ "Live demo won't load"
-- Test: `curl https://ledgerlive-web-zkw2sk4rha-uc.a.run.app`
+- Test: `curl https://web-omega-silk-71.vercel.app`
 - Check GCP Console → Cloud Run → ledgerlive-web → Status
 - If down, rollback to previous revision (1-click)
 
 ### ❌ "API health check returns 500"
-- Test: `curl https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions`
+- Test: `curl https://ledgerlive-api-production.up.railway.app/api/exceptions`
 - Check GCP Logs: Cloud Logging → Filter by ledgerlive-api
 - Restart service if needed
 - Rollback to previous revision

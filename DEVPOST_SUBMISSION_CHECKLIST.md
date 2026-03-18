@@ -28,9 +28,9 @@ Best Use of Google Cloud / Best AI Innovation / Most Impactful Hack
 
 ## "TRY IT OUT" LINKS
 
-1. **Live Demo:** https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+1. **Live Demo:** https://web-omega-silk-71.vercel.app
 2. **GitHub Repository:** https://github.com/[username]/ledgerlive
-3. **API Status:** https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+3. **API Status:** https://ledgerlive-api-production.up.railway.app/api/exceptions
 4. **Demo Screenshots:** `/artifacts/demo/POLISH3-*.png` (14 high-res images)
 
 ---
@@ -39,8 +39,8 @@ Best Use of Google Cloud / Best AI Innovation / Most Impactful Hack
 
 **Console Output Evidence:**
 ```bash
-Service URL: https://ledgerlive-api-zkw2sk4rha-uc.a.run.app
-Service URL: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+Service URL: https://ledgerlive-api-production.up.railway.app
+Service URL: https://web-omega-silk-71.vercel.app
 
 Latest revisions:
   api@00004-2q2   (2026-03-15, 100% traffic)
@@ -94,11 +94,11 @@ curl -N http://localhost:8090/api/voice/ask -d '{"message":"Analyze exceptions"}
 ### Cloud Deployment Verification
 \`\`\`bash
 # Check live deployment
-curl https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+curl https://ledgerlive-api-production.up.railway.app/api/exceptions
 # Returns: HTTP 200 with exception list
 
 # WebSocket test
-wscat -c wss://ledgerlive-api-zkw2sk4rha-uc.a.run.app/ws/voice
+wscat -c wss://ledgerlive-api-production.up.railway.app/ws/voice
 \`\`\`
 ```
 
@@ -229,7 +229,7 @@ ledgerlive-devpost-submission.zip
     "WebSockets",
     "Recharts"
   ],
-  "demo_url": "https://ledgerlive-web-zkw2sk4rha-uc.a.run.app",
+  "demo_url": "https://web-omega-silk-71.vercel.app",
   "github_url": "https://github.com/[username]/ledgerlive",
   "gcp_proof_url": "https://console.cloud.google.com/run/detail/us-central1/ledgerlive-api",
   "video_demo_url": "https://youtube.com/watch?v=...",

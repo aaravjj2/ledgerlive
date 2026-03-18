@@ -80,7 +80,7 @@
 
 | Field | URL |
 |-------|-----|
-| **Demo URL** | https://ledgerlive-web-zkw2sk4rha-uc.a.run.app |
+| **Demo URL** | https://web-omega-silk-71.vercel.app |
 | **GitHub Repo** | https://github.com/[your-username]/ledgerlive |
 | **GCP Proof** | https://console.cloud.google.com/run/detail/us-central1/ledgerlive-api (or screenshot) |
 
@@ -101,15 +101,15 @@
 ### Step 1: Prepare Environment
 ```bash
 # Ensure live deployment is running
-curl https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+curl https://ledgerlive-api-production.up.railway.app/api/exceptions
 # Should return HTTP 200
 
 # Load test data
-curl -X POST https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions \
+curl -X POST https://ledgerlive-api-production.up.railway.app/api/exceptions \
   -d '{"name":"Unmatched Invoice","amount":100000}'
 
 # Test WebSocket
-wscat -c wss://ledgerlive-api-zkw2sk4rha-uc.a.run.app/ws/voice
+wscat -c wss://ledgerlive-api-production.up.railway.app/ws/voice
 # Should connect and echo responses
 ```
 
@@ -124,7 +124,7 @@ Settings:
 ```
 
 **Recording checklist:**
-- [ ] Open browser to https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+- [ ] Open browser to https://web-omega-silk-71.vercel.app
 - [ ] Dashboard loads with live metrics visible
 - [ ] Navigate to Agent Console
 - [ ] Type message: "Resolve open AP exceptions"
@@ -152,7 +152,7 @@ Visibility: Unlisted (only via link)
 Description:
   Submitted to #GeminiLiveAgentChallenge
 
-  Live demo: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+  Live demo: https://web-omega-silk-71.vercel.app
   GitHub: https://github.com/[username]/ledgerlive
 
   Built with Google Gemini 2.0 Live API, FastAPI, and Cloud Run.
@@ -206,8 +206,8 @@ ledgerlive-devpost-submission.zip
 │
 └── CODE_LINKS.txt
     ├─ GitHub: https://github.com/[...]/ledgerlive
-    ├─ Demo: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
-    ├─ API: https://ledgerlive-api-zkw2sk4rha-uc.a.run.app
+    ├─ Demo: https://web-omega-silk-71.vercel.app
+    ├─ API: https://ledgerlive-api-production.up.railway.app
     ├─ Video: https://youtube.com/watch?v=...
     └─ Blog (OPTIONAL): https://dev.to/...
 ```
@@ -352,7 +352,7 @@ ledgerlive-devpost-submission.zip
 
 ## 🎓 CLOSING NOTES FOR JUDGES
 
-"LedgerLive solves a real problem—financial close is genuinely broken in 2026. We show that Gemini Live agents + streaming can transform a 10-day manual grind into a 4-day agentic workflow. This isn't a toy demo; it's production-grade code on Cloud Run, doing real work. Try it: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app"
+"LedgerLive solves a real problem—financial close is genuinely broken in 2026. We show that Gemini Live agents + streaming can transform a 10-day manual grind into a 4-day agentic workflow. This isn't a toy demo; it's production-grade code on Cloud Run, doing real work. Try it: https://web-omega-silk-71.vercel.app"
 
 ---
 

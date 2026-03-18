@@ -15,8 +15,8 @@
 
 Finance teams spend 10 days per month on manual close reconciliation, during which errors cost companies an average of $300K. LedgerLive automates the entire month-end close process using **Gemini 2.0 Live** for real-time multi-turn agent conversations that perceive financial data, decide on actions, act autonomously on low-risk items, and escalate high-risk decisions to humans — all with complete audit trail and 284ms agent cycle latency.
 
-**Live Demo:** https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
-**API Health:** https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+**Live Demo:** https://web-omega-silk-71.vercel.app
+**API Health:** https://ledgerlive-api-production.up.railway.app/api/exceptions
 
 ## Key Features
 
@@ -212,10 +212,10 @@ For detailed architecture, see [ARCHITECTURE_DIAGRAM.txt](./ARCHITECTURE_DIAGRAM
 ### Live Demo (No Setup Required)
 ```bash
 # Open live demo (no installation needed)
-open https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+open https://web-omega-silk-71.vercel.app
 
 # Test the API health
-curl https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+curl https://ledgerlive-api-production.up.railway.app/api/exceptions
 # Should return HTTP 200 with exception data
 ```
 
@@ -278,13 +278,13 @@ This section provides step-by-step instructions for judges to verify LedgerLive 
 
 ```bash
 # ✅ Test 1.1: Check frontend loads
-curl -s https://ledgerlive-web-zkw2sk4rha-uc.a.run.app | grep -q "<title>" && echo "✓ Frontend renders"
+curl -s https://web-omega-silk-71.vercel.app | grep -q "<title>" && echo "✓ Frontend renders"
 
 # ✅ Test 1.2: Check API health
-curl -s https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions | jq '.' && echo "✓ API responds"
+curl -s https://ledgerlive-api-production.up.railway.app/api/exceptions | jq '.' && echo "✓ API responds"
 
 # ✅ Test 1.3: Verify Gemini integration
-# Open browser to: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+# Open browser to: https://web-omega-silk-71.vercel.app
 # Navigate to: Agent Console
 # Type: "What are the current exceptions?"
 # Expected: Real-time streaming response from Gemini Live
@@ -338,7 +338,7 @@ open test-results/index.html
 #### Test 4: Manual Testing Checklist
 
 **Step 1: Dashboard Page**
-- [ ] Open https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+- [ ] Open https://web-omega-silk-71.vercel.app
 - [ ] Dashboard loads with KPI cards visible
 - [ ] Verify "Days to Close" metric is displayed
 - [ ] Verify "Open Exceptions" count shows
@@ -390,14 +390,14 @@ open test-results/index.html
 
 ```bash
 # Test API health endpoint
-curl -v https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions 2>&1 | grep -E "< HTTP|\"success\""
+curl -v https://ledgerlive-api-production.up.railway.app/api/exceptions 2>&1 | grep -E "< HTTP|\"success\""
 
 # Expected output:
 # < HTTP/1.1 200 OK
 # "success": true
 
 # Test voice endpoint (REST)
-curl -X POST https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/voice/ask \
+curl -X POST https://ledgerlive-api-production.up.railway.app/api/voice/ask \
   -H "Content-Type: application/json" \
   -d '{"message":"List current exceptions"}' | jq '.'
 
@@ -427,7 +427,7 @@ npm run type-check                   # TypeScript
 
 ```bash
 # Measure agent cycle latency
-# 1. Open Agent Console: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app/agent-console
+# 1. Open Agent Console: https://web-omega-silk-71.vercel.app/agent-console
 # 2. Open DevTools → Network tab
 # 3. Open DevTools → Console tab
 # 4. Type message and hit Send
@@ -460,8 +460,8 @@ After running full test suite, you should see:
 88 passed in 156.29s                                        ✓
 
 =============================== API Health ===================================
-Frontend: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app   ✓ HTTP 200
-Backend:  https://ledgerlive-api-zkw2sk4rha-uc.a.run.app   ✓ HTTP 200
+Frontend: https://web-omega-silk-71.vercel.app   ✓ HTTP 200
+Backend:  https://ledgerlive-api-production.up.railway.app   ✓ HTTP 200
 WebSocket: /ws/voice                                        ✓ Connected
 
 =============================== Performance =================================
@@ -693,9 +693,9 @@ LedgerLive enforces deterministic correctness through automated gates:
 
 ### Materials Included
 
-- ✅ **Live Demo:** https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+- ✅ **Live Demo:** https://web-omega-silk-71.vercel.app
 - ✅ **Source Code:** https://github.com/[YOUR-USERNAME]/ledgerlive (PUBLIC)
-- ✅ **API Health:** https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+- ✅ **API Health:** https://ledgerlive-api-production.up.railway.app/api/exceptions
 - ✅ **Tests:** 4,280 backend (pytest) + 88 E2E (Playwright)
 - ✅ **Project Story:** 2,500+ word narrative with inspiration + architecture
 - ✅ **Video Demo:** 215-second demo with AI voiceover
@@ -707,8 +707,8 @@ LedgerLive enforces deterministic correctness through automated gates:
 ### Submission Checklist for Judges
 
 **Technical Verification (Judge's Testing):**
-- [ ] Frontend loads: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
-- [ ] API health: `curl https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions`
+- [ ] Frontend loads: https://web-omega-silk-71.vercel.app
+- [ ] API health: `curl https://ledgerlive-api-production.up.railway.app/api/exceptions`
 - [ ] Agent Console works: Type message → see streamed response
 - [ ] All 20+ pages render correctly
 - [ ] Dark F1 theme applied throughout

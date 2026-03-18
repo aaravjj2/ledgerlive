@@ -134,8 +134,8 @@ Each step needs immediate context from the previous one. Airia Close Orchestrato
 ## 🎬 Try It Out
 
 **Live Demo:**
-- Frontend: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
-- API health: https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+- Frontend: https://web-omega-silk-71.vercel.app
+- API health: https://ledgerlive-api-production.up.railway.app/api/exceptions
 
 **GitHub Repository:**
 - Source code: https://github.com/yourusername/ledgerlive

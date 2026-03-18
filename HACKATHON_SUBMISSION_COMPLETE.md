@@ -111,7 +111,7 @@ FPS: 60
 Audio: USB headset or MacBook mic
 
 Script: VIDEO_DEMO_SCRIPT.md (follow timeline)
-Demo URL: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+Demo URL: https://web-omega-silk-71.vercel.app
 ```
 
 ### Editing (45-60 minutes)
@@ -143,8 +143,8 @@ Tags: Gemini, Agents, AI, FinTech, CloudRun
 
 | Resource | URL | Status |
 |----------|-----|--------|
-| **Frontend Demo** | https://ledgerlive-web-zkw2sk4rha-uc.a.run.app | ✓ Live HTTP 200 |
-| **Backend API** | https://ledgerlive-api-zkw2sk4rha-uc.a.run.app | ✓ Live HTTP 200 |
+| **Frontend Demo** | https://web-omega-silk-71.vercel.app | ✓ Live HTTP 200 |
+| **Backend API** | https://ledgerlive-api-production.up.railway.app | ✓ Live HTTP 200 |
 | **GitHub Repo** | https://github.com/[your-username]/ledgerlive | ℹ️ Update with your GitHub |
 | **GCP Console** | https://console.cloud.google.com/run/detail/us-central1/ledgerlive-api | ✓ Active |
 
@@ -219,7 +219,7 @@ Use `DEVPOST_SUBMISSION_CHECKLIST.md` for pre-filled values:
   "elevator_pitch": "LedgerLive automates financial close cycles using Gemini Live multi-turn agent conversations. Process reconciliations, exceptions, and approvals in real-time. 60% faster close, zero manual overhead.",
   "category": "Best Use of Google Cloud",
   "built_with": ["Python 3.12", "FastAPI", "React 18", "Gemini 2.0 Live", "Cloud Run", "PostgreSQL"],
-  "demo_url": "https://ledgerlive-web-zkw2sk4rha-uc.a.run.app",
+  "demo_url": "https://web-omega-silk-71.vercel.app",
   "github_url": "https://github.com/[your-username]/ledgerlive",
   "video_url": "https://youtube.com/watch?v=...",
   "reproducible_testing": true
@@ -267,7 +267,7 @@ Everything needed to submit is complete:
 ## 📞 FINAL REMINDER
 
 Before submission:
-- [ ] Test live demo one more time (https://ledgerlive-web-zkw2sk4rha-uc.a.run.app)
+- [ ] Test live demo one more time (https://web-omega-silk-71.vercel.app)
 - [ ] Verify GitHub is public + tests passing
 - [ ] Verify video is Unlisted on YouTube (not private)
 - [ ] Have all URLs copied to clipboard

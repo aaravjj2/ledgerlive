@@ -4,11 +4,12 @@
  */
 
 // In development, Vite proxies /api to localhost:8090.
-// In production, VITE_API_URL is set to the Cloud Run backend URL.
-const BASE = (import.meta as { env?: { VITE_API_URL?: string } }).env?.VITE_API_URL?.replace(/\/$/, '') ?? ''
+// In production, VITE_API_URL should point to the deployed API.
+const API_BASE = (import.meta as { env?: { VITE_API_URL?: string } }).env?.VITE_API_URL || 'https://ledgerlive-api-production.up.railway.app'
+const BASE = API_BASE.replace(/\/$/, '')
 
 // Export for use in pages that use raw fetch() instead of typed wrappers
-export const API_BASE = BASE
+export { API_BASE }
 
 export interface ApiResponse<T> {
   items?: T[]

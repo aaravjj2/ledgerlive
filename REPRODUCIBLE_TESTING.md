@@ -26,7 +26,7 @@
 
 ```bash
 # Test 1.1: Check frontend loads (copy-paste into terminal)
-curl -s https://ledgerlive-web-zkw2sk4rha-uc.a.run.app/api/exceptions | jq '.'
+curl -s https://web-omega-silk-71.vercel.app/api/exceptions | jq '.'
 
 # Expected output:
 # {
@@ -38,7 +38,7 @@ curl -s https://ledgerlive-web-zkw2sk4rha-uc.a.run.app/api/exceptions | jq '.'
 # }
 
 # Test 1.2: Verify HTTP 200 response
-curl -I https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/healthz 2>&1 | head -1
+curl -I https://ledgerlive-api-production.up.railway.app/healthz 2>&1 | head -1
 
 # Expected output:
 # HTTP/2 200
@@ -47,7 +47,7 @@ curl -I https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/healthz 2>&1 | head -1
 ### Manual Verification in Browser
 
 1. **Open Frontend**
-   - Navigate to: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+   - Navigate to: https://web-omega-silk-71.vercel.app
    - Expected: Dashboard loads with KPI cards visible
    - Verify: Dark F1 theme (dark blues/grays)
 
@@ -57,7 +57,7 @@ curl -I https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/healthz 2>&1 | head -1
    - Look for: "Application loaded" or similar success message
 
 3. **Visit API Docs**
-   - Navigate to: https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/docs
+   - Navigate to: https://ledgerlive-api-production.up.railway.app/docs
    - Expected: Swagger UI shows all available API endpoints
    - Verify: `/api/exceptions`, `/api/voice/ask`, `/ws/voice` are listed
 
@@ -73,7 +73,7 @@ curl -I https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/healthz 2>&1 | head -1
 ### Steps
 
 1. **Open Agent Console**
-   - Navigate to: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+   - Navigate to: https://web-omega-silk-71.vercel.app
    - Click: "Agent Console" from sidebar
    - Wait: Page loads (should be instant)
 
@@ -202,7 +202,7 @@ npm run test:e2e
 ## TEST 5: Manual Page-by-Page Verification 📋
 
 ### Prerequisites
-- Open https://ledgerlive-web-zkw2sk4rha-uc.a.run.app in browser
+- Open https://web-omega-silk-71.vercel.app in browser
 
 ### Dashboard
 
@@ -263,7 +263,7 @@ All pages should:
 ### Test 6.1: Health Check
 
 ```bash
-curl -v https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/healthz
+curl -v https://ledgerlive-api-production.up.railway.app/healthz
 
 # Expected:
 # HTTP/2 200
@@ -273,7 +273,7 @@ curl -v https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/healthz
 ### Test 6.2: Get Exceptions
 
 ```bash
-curl -s https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions | jq '.'
+curl -s https://ledgerlive-api-production.up.railway.app/api/exceptions | jq '.'
 
 # Expected response structure:
 # {
@@ -294,7 +294,7 @@ curl -s https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions | jq '.'
 ### Test 6.3: Voice Endpoint (REST)
 
 ```bash
-curl -X POST https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/voice/ask \
+curl -X POST https://ledgerlive-api-production.up.railway.app/api/voice/ask \
   -H "Content-Type: application/json" \
   -d '{"message":"List exceptions"}' | jq '.'
 
@@ -313,7 +313,7 @@ curl -X POST https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/voice/ask \
 npm install -g wscat
 
 # Connect to WebSocket
-wscat -c wss://ledgerlive-api-zkw2sk4rha-uc.a.run.app/ws/voice
+wscat -c wss://ledgerlive-api-production.up.railway.app/ws/voice
 
 # In the prompt, type:
 # {"type": "message", "content": "What exceptions exist?"}
@@ -413,7 +413,7 @@ pylint app/
 ### "Frontend won't load"
 ```bash
 # Check API health
-curl https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+curl https://ledgerlive-api-production.up.railway.app/api/exceptions
 
 # If not responding, service may be down
 # GCP Console: https://console.cloud.google.com/run?project=gen-lang-client-0432346640

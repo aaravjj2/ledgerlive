@@ -5,7 +5,7 @@
 | Service  | URL |
 |----------|-----|
 | Frontend | https://ledgerlive-web-570445019871.us-central1.run.app |
-| Backend  | https://ledgerlive-api-zkw2sk4rha-uc.a.run.app |
+| Backend  | https://ledgerlive-api-production.up.railway.app |
 
 ## Current Revisions (2026-03-15)
 
@@ -17,7 +17,7 @@
 ## Health Checks
 
 - Frontend: `https://ledgerlive-web-570445019871.us-central1.run.app` → HTTP 200
-- Backend: `https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions` → HTTP 200
+- Backend: `https://ledgerlive-api-production.up.railway.app/api/exceptions` → HTTP 200
 
 ## Key Pages
 

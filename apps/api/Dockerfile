@@ -8,14 +8,13 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 
 # ── Dependencies ───────────────────────────────────────────────────
-# Copy requirements from repo root (build context is repo root via
-# docker-compose context/dockerfile directives).
+# Copy requirements from the local apps/api context.
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
 # ── Application code ──────────────────────────────────────────────
-COPY apps/api/app /app/app
+COPY app /app/app
 
 # ── Runtime config ────────────────────────────────────────────────
 ENV APP_MODE=DEMO \
@@ -28,4 +27,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8090/healthz')" || exit 1
 
 # ── Entrypoint ────────────────────────────────────────────────────
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8090"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8090}"]

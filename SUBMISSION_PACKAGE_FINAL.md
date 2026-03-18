@@ -105,13 +105,13 @@ Google Cloud Run, PostgreSQL, Docker, WebSockets, Recharts
 #### Required Links (Test Before Pasting)
 ```
 LIVE DEMO (Project Website):
-https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+https://web-omega-silk-71.vercel.app
 
 GITHUB REPO (Must be PUBLIC):
 https://github.com/[YOUR-USERNAME]/ledgerlive
 
 API HEALTH CHECK:
-https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+https://ledgerlive-api-production.up.railway.app/api/exceptions
   → Returns HTTP 200 with JSON exception data
 
 VIDEO DEMO LINK (After YouTube Upload):

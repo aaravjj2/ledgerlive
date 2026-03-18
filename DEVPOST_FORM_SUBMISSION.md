@@ -43,10 +43,10 @@
 
 | Field | Value | Format | Instructions |
 |-------|-------|--------|--------------|
-| **Project Website** | `https://ledgerlive-web-zkw2sk4rha-uc.a.run.app` | URL | Live demo (frontend) |
+| **Project Website** | `https://web-omega-silk-71.vercel.app` | URL | Live demo (frontend) |
 | **GitHub Repository** | `https://github.com/[YOUR-USERNAME]/ledgerlive` | URL | Public repo with code |
-| **Demo Link** | `https://ledgerlive-web-zkw2sk4rha-uc.a.run.app/agent-console` | URL | Direct to Agent Console page |
-| **Cloud Deployment Proof** | `https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions` | URL | API health check (HTTP 200) |
+| **Demo Link** | `https://web-omega-silk-71.vercel.app/agent-console` | URL | Direct to Agent Console page |
+| **Cloud Deployment Proof** | `https://ledgerlive-api-production.up.railway.app/api/exceptions` | URL | API health check (HTTP 200) |
 | **GCP Console Link** | `https://console.cloud.google.com/run/detail/us-central1/ledgerlive-api?project=gen-lang-client-0432346640` | URL | Service details in GCP (optional, for judges) |
 
 ---
@@ -130,7 +130,7 @@ Submitted to the Gemini Live Agent Challenge 2026 hackathon.
 LedgerLive automates financial close cycles using Gemini Live multi-turn agent streaming. Process reconciliations, exceptions, and approvals in real-time — 60% faster close, zero manual overhead.
 
 🎯 LIVE DEMO
-Try it now: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+Try it now: https://web-omega-silk-71.vercel.app
 
 📁 SOURCE CODE
 GitHub: https://github.com/[YOUR-USERNAME]/ledgerlive
@@ -184,8 +184,8 @@ ledgerlive-devpost-submission.zip
 │
 └── CODE_LINKS.txt
     ├─ GitHub: https://github.com/[USERNAME]/ledgerlive
-    ├─ Demo: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
-    ├─ API: https://ledgerlive-api-zkw2sk4rha-uc.a.run.app
+    ├─ Demo: https://web-omega-silk-71.vercel.app
+    ├─ API: https://ledgerlive-api-production.up.railway.app
     └─ Video: https://youtube.com/watch?v=...
 ```
 
@@ -256,7 +256,7 @@ zip -r ledgerlive-devpost-submission.zip \
 ## 📞 SUPPORT
 
 **If live demo breaks:**
-- API health: `curl https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions`
+- API health: `curl https://ledgerlive-api-production.up.railway.app/api/exceptions`
 - GCP Console: https://console.cloud.google.com/run
 - Rollback: Select previous revision in Cloud Run UI
 

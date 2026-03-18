@@ -110,13 +110,13 @@ PROJECT TITLE:
 LedgerLive: Real-Time Financial Close with Gemini Live Agents
 
 LIVE DEMO / PROJECT WEBSITE:
-https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+https://web-omega-silk-71.vercel.app
 
 GITHUB REPOSITORY:
 https://github.com/aaravjj2/ledgerlive
 
 API HEALTH CHECK:
-https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+https://ledgerlive-api-production.up.railway.app/api/exceptions
 ```
 
 ### Bonus Points Links
@@ -227,8 +227,8 @@ multi-turn agent conversations..."
 
 [Links]
 GitHub: https://github.com/aaravjj2/ledgerlive
-Demo: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
-API: https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+Demo: https://web-omega-silk-71.vercel.app
+API: https://ledgerlive-api-production.up.railway.app/api/exceptions
 ```
 
 ### 2. Click Live Demo
@@ -311,8 +311,8 @@ Plus: Project story, deployment proof, architecture doc
 - [x] clean commit history
 
 ### Deployment
-- [x] Frontend live: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
-- [x] Backend live: https://ledgerlive-api-zkw2sk4rha-uc.a.run.app
+- [x] Frontend live: https://web-omega-silk-71.vercel.app
+- [x] Backend live: https://ledgerlive-api-production.up.railway.app
 - [x] API health responding (HTTP 200)
 - [x] Agent Console streaming works
 - [x] All 20+ pages rendering

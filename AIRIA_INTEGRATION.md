@@ -20,6 +20,6 @@ The LedgerLive FastAPI backend (/api/voice/ask) calls the Airia agent via airia_
 The Airia agent calls back into the LedgerLive API to fetch data and post actions.
 Live Systems Connected
 
-LedgerLive FastAPI: https://ledgerlive-api-zkw2sk4rha-uc.a.run.app
-LedgerLive Web: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+LedgerLive FastAPI: https://ledgerlive-api-production.up.railway.app
+LedgerLive Web: https://web-omega-silk-71.vercel.app
 Airia Agent: [COMMUNITY URL]

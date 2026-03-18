@@ -53,7 +53,7 @@ In real-time."
 ### [00:35-01:10] DEMO 1 – Dashboard Overview
 
 **Action:**
-1. **Open browser** to https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+1. **Open browser** to https://web-omega-silk-71.vercel.app
 2. **Show Dashboard page** (KPI cards visible)
    - "Days to Close: 4.2d" (blue)
    - "Open Exceptions: 12" (red)
@@ -218,7 +218,7 @@ It just works."
 ### [02:50-03:00] CLOSING – Call to Action
 
 **Visual:**
-- Show website URL: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+- Show website URL: https://web-omega-silk-71.vercel.app
 - Show GitHub badge
 - Final screen: "LedgerLive. Powered by Gemini Live."
 
@@ -279,7 +279,7 @@ Real-time agents. Real results."
 
    LedgerLive automates financial close cycles using Gemini Live multi-turn agent streaming.
 
-   Live demo: https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+   Live demo: https://web-omega-silk-71.vercel.app
    GitHub: https://github.com/[username]/ledgerlive
 
    Built with:

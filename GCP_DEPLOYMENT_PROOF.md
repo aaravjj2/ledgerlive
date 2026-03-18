@@ -16,7 +16,7 @@ Created:       March 2026
 ### Backend API
 ```
 Service:  ledgerlive-api
-URL:      https://ledgerlive-api-zkw2sk4rha-uc.a.run.app
+URL:      https://ledgerlive-api-production.up.railway.app
 Status:   ✓ Running (revision api@00004-2q2)
 Port:     8080 (Cloud Run managed)
 Traffic:  100% to latest revision
@@ -24,7 +24,7 @@ Traffic:  100% to latest revision
 
 **Health Check (HTTP 200):**
 ```bash
-$ curl https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
+$ curl https://ledgerlive-api-production.up.railway.app/api/exceptions
 {
   "success": true,
   "data": [
@@ -36,7 +36,7 @@ $ curl https://ledgerlive-api-zkw2sk4rha-uc.a.run.app/api/exceptions
 ### Frontend Web
 ```
 Service:  ledgerlive-web
-URL:      https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+URL:      https://web-omega-silk-71.vercel.app
 Status:   ✓ Running (revision web@00007-bm2)
 Port:     8080 (served by nginx on Cloud Run)
 Traffic:  100% to latest revision
@@ -152,7 +152,7 @@ ENVIRONMENT=production
 API_PORT=8080
 PYTHONPATH=/app
 DEBUG=false
-CORS_ALLOW_ORIGINS=https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+CORS_ALLOW_ORIGINS=https://web-omega-silk-71.vercel.app
 
 DATABASE_URL=postgresql://...  (from Secret Manager)
 GEMINI_API_KEY=...              (from Secret Manager)
@@ -162,8 +162,8 @@ SENDGRID_KEY=...                (from Secret Manager, optional)
 
 ### Frontend Environment Variables (build-time)
 ```
-VITE_API_URL=https://ledgerlive-api-zkw2sk4rha-uc.a.run.app
-VITE_WS_URL=wss://ledgerlive-api-zkw2sk4rha-uc.a.run.app
+VITE_API_URL=https://ledgerlive-api-production.up.railway.app
+VITE_WS_URL=wss://ledgerlive-api-production.up.railway.app
 NODE_ENV=production
 ```
 
@@ -180,8 +180,8 @@ All secrets stored in **Secret Manager** (not in source code):
 ```bash
 $ gcloud run services list --region=us-central1
 NAME              URL                                                    LAST DEPLOYED
-ledgerlive-api    https://ledgerlive-api-zkw2sk4rha-uc.a.run.app       2026-03-15T23:49:00Z
-ledgerlive-web    https://ledgerlive-web-zkw2sk4rha-uc.a.run.app       2026-03-15T23:49:00Z
+ledgerlive-api    https://ledgerlive-api-production.up.railway.app       2026-03-15T23:49:00Z
+ledgerlive-web    https://web-omega-silk-71.vercel.app       2026-03-15T23:49:00Z
 ```
 
 ### View Service Details
@@ -189,7 +189,7 @@ ledgerlive-web    https://ledgerlive-web-zkw2sk4rha-uc.a.run.app       2026-03-1
 $ gcloud run services describe ledgerlive-api --region=us-central1
 Service name:                ledgerlive-api
 Status:                      ✓
-URL:                         https://ledgerlive-api-zkw2sk4rha-uc.a.run.app
+URL:                         https://ledgerlive-api-production.up.railway.app
 Ingress:                     all
 Memory:                      512 Mi
 CPU:                         1
@@ -347,8 +347,8 @@ COPY package*.json ./
 RUN npm ci --production=false
 COPY . .
 RUN npm run build
-ENV VITE_API_URL=https://ledgerlive-api-zkw2sk4rha-uc.a.run.app
-ENV VITE_WS_URL=wss://ledgerlive-api-zkw2sk4rha-uc.a.run.app
+ENV VITE_API_URL=https://ledgerlive-api-production.up.railway.app
+ENV VITE_WS_URL=wss://ledgerlive-api-production.up.railway.app
 
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
@@ -414,5 +414,5 @@ Next deploy: [whenever next commit to main]
 
 **✓ LedgerLive is fully deployed, tested, and serving production traffic on Google Cloud Run.**
 
-For judges: Visit https://ledgerlive-web-zkw2sk4rha-uc.a.run.app
+For judges: Visit https://web-omega-silk-71.vercel.app
 Try the Agent Console → observe real-time Gemini Live streaming in action.
