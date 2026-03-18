@@ -27,12 +27,32 @@ Finance teams spend 10 days per month on manual close reconciliation, during whi
 - **Agent Console** — Interactive messaging interface with streaming response visualization
 - **Readiness Checks** — Pre-close gate validation with status indicators
 - **Trace Explorer** — Waterfall visualization of agent execution (perceive/decide/act phases)
+- **Court Pack Evidence** — Exportable Court Pack with immutable audit trace and exception decisions
 - **Multi-Page Financial UI** — 20+ specialized pages (Forecasting, Budgeting, Consolidation, etc.)
 - **Dark F1 Theme** — Racing-inspired command center aesthetic for 12-hour close days
 - **Smart Quota Fallback** — Graceful degradation on API 429 (rate limit) errors
 - **Production Cloud Deployment** — Google Cloud Run with zero-downtime updates
 - **Comprehensive Testing** — 4,280+ backend tests + 88 E2E tests (all passing)
 - **WebSocket Streaming** — Real-time agent responses with immutable state management
+
+## F1 Glossary
+
+- Race Control: Central command view for close operations and escalation routing.
+- Pit Stop: Human-in-the-loop review checkpoint for risky exceptions.
+- Telemetry: Real-time metrics from Perceive, Decide, and Act stages.
+- Safety Car: Automated slowdown path that prevents unsafe autonomous actions.
+- Court Pack: Immutable evidence bundle for audit and dispute readiness.
+- DRS Zone: Pre-approved fast lane where low-risk actions auto-execute.
+- Incident: Any anomaly detected in reconciliation, readiness, or posting flows.
+- Pit Wall: Finance leadership control plane for approvals and overrides.
+
+## Airia Compatibility Report
+
+LedgerLive includes an Airia Compatibility Report covering adapter behavior, payload normalization, and endpoint parity.
+
+## No-Code Builder Preview
+
+A No-Code Builder Preview is available for assembling finance close workflows and HITL approval gates.
 
 ## Screenshots
 

@@ -1,6 +1,7 @@
 import httpx
 import os
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -25,13 +26,25 @@ async def call_airia_agent(message: str) -> dict:
                     "Content-Type": "application/json",
                     "X-API-Key": AIRIA_API_KEY
                 },
-                json={"input": message}
+                json={"UserInput": message, "input": message}
             )
             response.raise_for_status()
             data = response.json()
 
+            # Some Airia pipelines wrap the actual response in a stringified "result" payload.
+            if isinstance(data, dict) and isinstance(data.get("result"), str):
+                try:
+                    data = json.loads(data["result"])
+                except Exception:
+                    pass
+
             # Extract response from Airia output format
             body = data.get("Body", data)
+            if isinstance(body, str):
+                try:
+                    body = json.loads(body)
+                except Exception:
+                    body = {"response": body}
             ai_response = (
                 body.get("response") or
                 body.get("summary") or
