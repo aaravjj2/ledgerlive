@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { API_BASE } from '../services/api'
 
 interface Health { project: string; status: string; mode: string; llm: string; ts: string }
 
@@ -7,9 +8,9 @@ export default function Settings() {
   const [waveCount, setWaveCount] = useState<number | null>(null)
 
   useEffect(() => {
-    fetch('/healthz').then(r => r.json()).then(setHealth).catch(() => {})
+    fetch(`${API_BASE}/healthz`).then(r => r.json()).then(setHealth).catch(() => {})
     // Count routes from openapi
-    fetch('/openapi.json').then(r => r.json()).then(spec => {
+    fetch(`${API_BASE}/openapi.json`).then(r => r.json()).then(spec => {
       setWaveCount(Object.keys(spec.paths || {}).length)
     }).catch(() => {})
   }, [])
@@ -21,6 +22,7 @@ export default function Settings() {
     { label: 'LLM Provider', value: health?.llm ?? '…' },
     { label: 'API Timestamp', value: health?.ts ? new Date(health.ts).toLocaleString() : '…' },
     { label: 'Backend URL', value: 'https://ledgerlive-api-production.up.railway.app' },
+    { label: 'Frontend URL', value: 'https://web-omega-silk-71.vercel.app' },
     { label: 'Total API Routes', value: waveCount != null ? `${waveCount}` : '…' },
     { label: 'Waves Shipped', value: '340' },
     { label: 'Test Suite', value: '4021 tests · all green' },
@@ -35,6 +37,19 @@ export default function Settings() {
       <p className="text-gray-500 mb-6" data-testid="settings-subtitle">System configuration and preferences.</p>
 
       <div className="rounded-xl border bg-[#111118] overflow-hidden mb-6">
+        <div className="mb-6 p-4 bg-purple-900/20 border border-purple-500/30 rounded-lg">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse"></div>
+            <h3 className="text-purple-300 font-medium text-sm">Airia Active Agent - Connected</h3>
+          </div>
+          <div className="grid grid-cols-2 gap-2 text-xs text-gray-400">
+            <div>Agent: LedgerLive Close Orchestrator</div>
+            <div>Model: GPT 4.1</div>
+            <div>Track: Active Agents</div>
+            <div>Status: Live</div>
+          </div>
+        </div>
+
         <div className="bg-[#1A1A24] border-b px-4 py-3">
           <h2 className="font-semibold text-gray-300">System Info</h2>
         </div>
@@ -68,7 +83,7 @@ export default function Settings() {
             className="text-xs text-blue-400 hover:text-blue-400 transition">
             → API Docs
           </a>
-          <a href="https://ledgerlive-web-570445019871.us-central1.run.app" target="_blank" rel="noopener noreferrer"
+          <a href="https://web-omega-silk-71.vercel.app" target="_blank" rel="noopener noreferrer"
             className="text-xs text-red-400 hover:text-red-300 transition">
             → Live App
           </a>

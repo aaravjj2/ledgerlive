@@ -65,7 +65,7 @@ export default function BudgetingPage() {
           ? items.slice(0,8).map((item, i) => ({
               dept: item.name || `Department ${i+1}`,
               budget: 500000 + i * 75000,
-              actual: Math.round((500000 + i * 75000) * (0.88 + Math.random() * 0.24)),
+              actual: [492000, 548000, 612000, 701000, 759000, 805000, 867000, 938000][i] ?? (500000 + i * 75000),
             }))
           : [
               { dept: 'Engineering', budget: 1200000, actual: 1148000 },

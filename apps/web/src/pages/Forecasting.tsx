@@ -70,15 +70,14 @@ export default function ForecastingPage() {
       </div>
       {/* Forecast chart */}
       {(() => {
-        const forecastData = Array.from({length: 12}, (_, i) => {
-          const month = new Date(2026, i - 9, 1).toLocaleString('default', {month: 'short'})
-          const base = 3800000 + i * 120000
-          return {
-            month,
-            actual: i < 3 ? Math.round(base + (Math.random() - 0.3) * 50000) : undefined,
-            forecast: Math.round(base + (Math.random() - 0.3) * 80000),
-          }
-        })
+        const forecastData = [
+          { month: 'Oct', actual: 2400000, forecast: 2350000 },
+          { month: 'Nov', actual: 2650000, forecast: 2600000 },
+          { month: 'Dec', actual: 2900000, forecast: 2850000 },
+          { month: 'Jan', actual: 2100000, forecast: 2200000 },
+          { month: 'Feb', actual: 2350000, forecast: 2400000 },
+          { month: 'Mar', actual: 2200000, forecast: 2350000 },
+        ]
         return (
           <div className="rounded-xl bg-[#111118] border border-[#2A2A3A] p-4">
             <h2 className="text-xs text-gray-500 uppercase tracking-widest mb-3">Revenue Forecast · 12 Month</h2>

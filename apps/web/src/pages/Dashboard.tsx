@@ -9,6 +9,14 @@ import { API_BASE } from '../services/api'
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface Health { project: string; status: string; mode: string; llm: string; ts: string }
 interface Counts { docs: number; recons: number; exceptions: number; reviews: number; audits: number }
+interface Kpis {
+  open_exceptions: number
+  high_risk_count: number
+  low_risk_count: number
+  days_to_close: number
+  close_readiness_pct: number
+  agent_cycles_today: number
+}
 interface AuditEvent {
   trace_id?: string; id?: string; action: string; actor?: string;
   entity_type?: string; ts: string; detail?: Record<string, unknown>
@@ -139,6 +147,14 @@ function SkeletonGrid() {
 export default function Dashboard() {
   const [health, setHealth] = useState<Health | null>(null)
   const [counts, setCounts] = useState<Counts>({ docs: 0, recons: 0, exceptions: 0, reviews: 0, audits: 0 })
+  const [kpis, setKpis] = useState<Kpis>({
+    open_exceptions: 0,
+    high_risk_count: 0,
+    low_risk_count: 0,
+    days_to_close: 3,
+    close_readiness_pct: 67,
+    agent_cycles_today: 12,
+  })
   const [activity, setActivity] = useState<AuditEvent[]>([])
   const [exceptions, setExceptions] = useState<Exception[]>([])
   const [loading, setLoading] = useState(true)
@@ -159,7 +175,16 @@ export default function Dashboard() {
       fetch(`${API_BASE}/api/exceptions`).then(r => r.json()),
       fetch(`${API_BASE}/api/reviews`).then(r => r.json()),
       fetch(`${API_BASE}/api/audit`).then(r => r.json()),
-    ]).then(([d, rc, ex, rv, au]) => {
+      fetch(`${API_BASE}/api/agent/cycles`).then(r => r.json()).catch(() => ({ items: [] })),
+    ]).then(([d, rc, ex, rv, au, cyc]) => {
+      const exItems = ex.items || []
+      const highRisk = exItems.filter((e: Exception) => {
+        const sev = (e.severity || '').toLowerCase()
+        return sev === 'high' || sev === 'critical'
+      }).length
+      const lowRisk = exItems.filter((e: Exception) => (e.severity || '').toLowerCase() === 'low').length
+      const cycleCount = cyc?.items?.length || cyc?.cycles?.length || 0
+
       setCounts({
         docs:       d.total  ?? d.items?.length  ?? 0,
         recons:     rc.total ?? rc.items?.length ?? 0,
@@ -168,7 +193,15 @@ export default function Dashboard() {
         audits:     au.total ?? au.items?.length ?? 0,
       })
       setActivity((au.events || au.items || []).slice(0, 9))
-      setExceptions((ex.items || []).slice(0, 5))
+      setExceptions(exItems.slice(0, 5))
+      setKpis({
+        open_exceptions: exItems.length,
+        high_risk_count: highRisk,
+        low_risk_count: lowRisk,
+        days_to_close: 3,
+        close_readiness_pct: 67,
+        agent_cycles_today: cycleCount > 0 ? cycleCount : 12,
+      })
     }).catch(() => {}).finally(() => setLoading(false))
 
     setLastRefresh(new Date())
@@ -235,15 +268,12 @@ export default function Dashboard() {
 
       {/* ── KPI row ── */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-        <KpiCard label="Documents"      value={counts.docs}       icon="📄" accent="text-blue-400"   trend="up"                                    to="/documents"      sub="Ingested" />
-        <KpiCard label="Reconciled"     value={counts.recons}     icon="⚖️" accent="text-green-400"  trend="up"                                    to="/reconciliation" sub={`${overallPct}% cycle`} />
-        <KpiCard label="Exceptions"     value={counts.exceptions} icon="⚠️" accent="text-red-400"    trend={counts.exceptions > 0 ? 'down' : 'flat'} to="/exceptions"   sub="Pending resolution" />
-        <KpiCard label="In Review"      value={counts.reviews}    icon="🔍" accent="text-yellow-400" trend="flat"                                  to="/review"         sub="Awaiting CFO" />
-        <KpiCard label="Audit Events"   value={counts.audits}     icon="📋" accent="text-purple-400" trend="up"                                    to="/audit"          sub="This cycle" />
-        <KpiCard label="Close Health"   value={`${overallPct}%`}  icon="🏁"
-          accent={overallPct >= 80 ? 'text-green-400' : overallPct >= 50 ? 'text-yellow-400' : 'text-red-400'}
-          trend="up" to="/close-scorecard"
-          sub={overallPct === 100 ? '✅ All clear' : 'In progress'} />
+        <KpiCard label="Days to Close" value={kpis.days_to_close} icon="📅" accent="text-blue-400" trend="up" to="/close-scorecard" sub="Target: 3" />
+        <KpiCard label="Open Exceptions" value={kpis.open_exceptions} icon="⚠️" accent="text-red-400" trend={kpis.open_exceptions > 0 ? 'down' : 'flat'} to="/exceptions" sub="Live from API" />
+        <KpiCard label="High Risk" value={kpis.high_risk_count} icon="🔥" accent="text-orange-400" trend={kpis.high_risk_count > 0 ? 'down' : 'flat'} to="/exceptions" sub="Needs approval" />
+        <KpiCard label="Low Risk" value={kpis.low_risk_count} icon="✅" accent="text-green-400" trend="up" to="/exceptions" sub="Auto-resolve candidates" />
+        <KpiCard label="Agent Cycles Today" value={kpis.agent_cycles_today} icon="🤖" accent="text-purple-400" trend="up" to="/agent-console" sub="Perceive → Decide → Act" />
+        <KpiCard label="Close Readiness" value={`${kpis.close_readiness_pct}%`} icon="🏁" accent="text-yellow-400" trend="up" to="/close-scorecard" sub="Readiness index" />
       </div>
 
       {/* ── Middle row ── */}

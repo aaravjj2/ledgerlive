@@ -34,6 +34,23 @@ export default function Exceptions() {
     return 'bg-[#1A1A24] text-gray-400'
   }
 
+  const getClassificationBadge = (ex: Exc) => {
+    const sev = (ex.severity || '').toLowerCase()
+    const isHighRisk = sev === 'high' || sev === 'critical'
+    if (isHighRisk) {
+      return (
+        <span className="px-2 py-0.5 bg-amber-900/40 text-amber-300 border border-amber-500/30 rounded text-xs font-medium">
+          ESCALATE
+        </span>
+      )
+    }
+    return (
+      <span className="px-2 py-0.5 bg-green-900/40 text-green-300 border border-green-500/30 rounded text-xs font-medium">
+        AUTO-RESOLVE
+      </span>
+    )
+  }
+
   return (
     <div data-testid="exceptions-page">
       <div className="flex items-center justify-between mb-2">
@@ -51,6 +68,7 @@ export default function Exceptions() {
                 <div className="flex items-center gap-2 mb-1">
                   <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${sevColor(ex.severity)}`}>{ex.severity || 'low'}</span>
                   <span className="text-xs text-gray-500 uppercase">{ex.exception_type || 'variance'}</span>
+                  {getClassificationBadge(ex)}
                   {ex.account_id && <span className="text-xs text-red-400 font-mono">{ex.account_id}</span>}
                 </div>
                 <p className="text-sm text-gray-200">{ex.description || 'Reconciliation exception'}</p>

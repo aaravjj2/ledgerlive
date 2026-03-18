@@ -59,7 +59,7 @@ export default function TraceExplorerPage() {
         const traces = items.length > 0 ? items.map((item, i) => ({
           name: String(item.name || `tool_call_${i}`),
           start: i * 80,
-          duration: 40 + Math.random() * 120,
+          duration: 60 + (i % 4) * 25,
           status: String(item.status || 'success'),
           depth: i % 3,
         })) : [

@@ -3,6 +3,7 @@
  * Integrates /api/agent/cycle, /api/agent/cycles, /api/agent/perceive, /api/agent/ask.
  */
 import { useEffect, useState, useCallback } from 'react'
+import { API_BASE } from '../services/api'
 
 interface AgentCycle {
   cycle_id: string
@@ -22,6 +23,13 @@ interface PerceiveState {
 
 interface AskResponse {
   response: string
+  success?: boolean
+  model?: string
+  low_risk_count?: number
+  high_risk_count?: number
+  journal_entries?: unknown[]
+  agent_summary?: string
+  latency_ms?: number
   intent?: string
   trace_id?: string
 }
@@ -34,6 +42,7 @@ export default function AgentConsole() {
   const [loading, setLoading] = useState(true)
   const [cycleLoading, setCycleLoading] = useState(false)
   const [askLoading, setAskLoading] = useState(false)
+  const [currentPhase, setCurrentPhase] = useState(0)
 
   const load = useCallback(() => {
     Promise.all([
@@ -47,6 +56,18 @@ export default function AgentConsole() {
   }, [])
 
   useEffect(() => { load() }, [load])
+
+  useEffect(() => {
+    if (!askLoading) {
+      setCurrentPhase(0)
+      return
+    }
+    const phases = 3
+    const interval = setInterval(() => {
+      setCurrentPhase(prev => (prev + 1) % phases)
+    }, 1500)
+    return () => clearInterval(interval)
+  }, [askLoading])
 
   const runCycle = async () => {
     setCycleLoading(true)
@@ -64,10 +85,10 @@ export default function AgentConsole() {
     setAskLoading(true)
     setAskResponse(null)
     try {
-      const r = await fetch('/api/agent/ask', {
+      const r = await fetch(`${API_BASE}/api/voice/ask`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: askQuery.trim() }),
+        body: JSON.stringify({ text: askQuery.trim() }),
       })
       const j = await r.json()
       setAskResponse(j)
@@ -75,6 +96,41 @@ export default function AgentConsole() {
       setAskResponse({ response: 'Failed to get response.', intent: 'error' })
     }
     setAskLoading(false)
+  }
+
+  const renderAgentResponse = (data: AskResponse | null) => {
+    if (!data) return null
+    return (
+      <div className="space-y-3">
+        <p className="text-white text-sm">{data.response || data.agent_summary}</p>
+
+        <div className="flex gap-2 text-xs">
+          <span className="px-2 py-1 bg-blue-900/40 text-blue-300 rounded">Perceive</span>
+          <span className="px-2 py-1 bg-purple-900/40 text-purple-300 rounded">Decide</span>
+          <span className="px-2 py-1 bg-green-900/40 text-green-300 rounded">Act</span>
+        </div>
+
+        {(data.low_risk_count || 0) > 0 && (
+          <div className="p-2 bg-green-900/20 border border-green-500/30 rounded text-xs">
+            <span className="text-green-400 font-medium">Auto-resolved: </span>
+            <span className="text-gray-300">{data.low_risk_count} exception(s) - journal entries posted</span>
+          </div>
+        )}
+
+        {(data.high_risk_count || 0) > 0 && (
+          <div className="p-2 bg-amber-900/20 border border-amber-500/30 rounded text-xs">
+            <span className="text-amber-400 font-medium">Escalated: </span>
+            <span className="text-gray-300">{data.high_risk_count} exception(s) - awaiting CFO approval</span>
+          </div>
+        )}
+
+        {data.latency_ms && (
+          <p className="text-gray-500 text-xs">
+            Agent cycle: {(data.latency_ms / 1000).toFixed(1)}s · {data.model}
+          </p>
+        )}
+      </div>
+    )
   }
 
   const healthColor = (h?: string) => {
@@ -105,6 +161,13 @@ export default function AgentConsole() {
         <p className="text-gray-400">Loading…</p>
       ) : (
         <>
+          <div className="flex items-center gap-2 mb-4 p-3 bg-purple-900/20 border border-purple-500/30 rounded-lg">
+            <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+            <span className="text-purple-300 text-sm font-medium">LedgerLive Close Orchestrator</span>
+            <span className="text-gray-500 text-xs">•</span>
+            <span className="text-gray-400 text-xs">Powered by Airia · GPT 4.1 · Active Agent</span>
+          </div>
+
           {/* Perceive State */}
           {perceive && (
             <section className="mb-6" data-testid="agent-perceive-section">
@@ -164,12 +227,22 @@ export default function AgentConsole() {
                 ))}
               </div>
             )}
+            {askLoading && (
+              <div className="space-y-2 p-3 mt-3 rounded-xl border bg-[#111118] border-[#2A2A3A]">
+                {['Perceiving exceptions...', 'Deciding risk levels...', 'Acting on low-risk items...'].map((phase, i) => (
+                  <div key={phase} className={`text-xs flex items-center gap-2 transition-opacity duration-500 ${i === currentPhase ? 'text-purple-300 opacity-100' : 'text-gray-600 opacity-40'}`}>
+                    <div className={`w-1.5 h-1.5 rounded-full ${i === currentPhase ? 'bg-purple-400 animate-pulse' : 'bg-gray-600'}`}></div>
+                    {phase}
+                  </div>
+                ))}
+              </div>
+            )}
             {askResponse && (
               <div
                 data-testid="agent-ask-response"
                 className="mt-3 rounded-xl border bg-[#111118] border-[#2A2A3A] p-4 text-gray-300 text-sm leading-relaxed"
               >
-                {askResponse.response}
+                {renderAgentResponse(askResponse)}
               </div>
             )}
           </section>
