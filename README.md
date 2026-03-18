@@ -6,6 +6,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-v0.131-009688.svg)](https://fastapi.tiangolo.com)
 [![React 18](https://img.shields.io/badge/React-18-61DAFB.svg)](https://react.dev)
 [![Gemini Live](https://img.shields.io/badge/Gemini_Live-Streaming-4285F4.svg)](https://ai.google.dev/gemini-api/docs/live)
+[![Airia](https://img.shields.io/badge/Airia-Close_Orchestrator-6B46C1.svg)](https://airia.com)
 [![Cloud Run](https://img.shields.io/badge/Cloud_Run-us--central1-4285F4.svg)](https://cloud.google.com/run)
 [![Tests](https://img.shields.io/badge/Tests-4280_passing-brightgreen.svg)]()
 [![E2E](https://img.shields.io/badge/E2E-88_passing-brightgreen.svg)]()
@@ -19,6 +20,7 @@ Finance teams spend 10 days per month on manual close reconciliation, during whi
 
 ## Key Features
 
+- **Airia Close Orchestrator** — Multi-step Active Agent with GPT 4.1, HITL approval, and live API integration
 - **Real-Time Agent Streaming** — Gemini 2.0 Live WebSocket integration with <300ms latency
 - **Perceive → Decide → Act Loop** — Multi-turn agent conversations with immediate context feedback
 - **Live Dashboard** — KPI cards, exception triage, agent activity tracking with real-time updates

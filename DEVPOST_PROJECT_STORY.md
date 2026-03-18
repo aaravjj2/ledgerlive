@@ -1,8 +1,8 @@
-# LedgerLive: Real-Time Financial Close with Gemini Live Agents
+# LedgerLive: Real-Time Financial Close with Airia Close Orchestrator
 
 ## 🎯 Elevator Pitch (197 characters)
 
-LedgerLive automates financial close cycles using Gemini Live multi-turn agent conversations. Process reconciliations, exceptions, and approvals in real-time. 60% faster close, zero manual overhead.
+LedgerLive automates financial close cycles using Airia Close Orchestrator multi-turn agent conversations. Process reconciliations, exceptions, and approvals in real-time. 60% faster close, zero manual overhead.
 
 ---
 
@@ -12,6 +12,8 @@ LedgerLive automates financial close cycles using Gemini Live multi-turn agent c
 
 Financial close is still fundamentally broken. CFOs spend weeks on manual reconciliations, exception triage, and stakeholder approvals. We watched a $2B company conduct their monthly close process: 15 people, 2 weeks, thousands of line items that could be auto-resolved in seconds.
 
+We built LedgerLive as an Active Agent on the Airia platform, connecting GPT 4.1 to a live financial close API with human-in-the-loop approval for high-risk exceptions.
+
 The insight: **Traditional chatbots can't handle financial workflows.** A single reconciliation might require:
 - Reading sub-ledger state
 - Querying AP/AR systems
@@ -20,11 +22,11 @@ The insight: **Traditional chatbots can't handle financial workflows.** A single
 - Notifying approvers
 - Handling multi-step corrections
 
-Each step needs immediate context from the previous one. Gemini Live's streaming, multi-turn conversation capability is *exactly* what financial close needs.
+Each step needs immediate context from the previous one. Airia Close Orchestrator's streaming, multi-turn conversation capability is *exactly* what financial close needs.
 
 ### What We Built
 
-**LedgerLive** is a production Gemini Live agent platform that transforms financial close from a 10-day manual grind into a 4-day agentic workflow:
+**LedgerLive** is a production Airia Close Orchestrator agent platform that transforms financial close from a 10-day manual grind into a 4-day agentic workflow:
 
 - **Real-time agent orchestration** — Perceive → Decide → Act loop matching financial close psychology
 - **Domain-specific dashboards** — 10 specialized interfaces (Forecasting, Controls, Consolidation, SOC 2, Readiness checks)
